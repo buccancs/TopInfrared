@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.topinfrared.tc001.standalone.app-mergeDebugResources-38:/values-zh/values-zh.xml",
+            "outputFile": "com.topinfrared.tc001.standalone.app-mergeDebugResources-37:/values-zh/values-zh.xml",
             "map": [
                 {
-                    "source": "/home/runner/.gradle/caches/transforms-3/51be3d5270e56c39d5db403dcd850bd7/transformed/permissionx-1.7.1/res/values-zh/values-zh.xml",
+                    "source": "/home/runner/.gradle/caches/transforms-3/9365986c828d22786ae1462e6e20ab61/transformed/permissionx-1.7.1/res/values-zh/values-zh.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8",
                         "startColumns": "4,4,4,4,4,4,4",

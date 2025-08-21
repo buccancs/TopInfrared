@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.topinfrared.tc001.standalone.app-mergeDebugResources-38:/values-ldrtl-v17/values-ldrtl-v17.xml",
+            "outputFile": "com.topinfrared.tc001.standalone.app-mergeDebugResources-37:/values-ldrtl-v17/values-ldrtl-v17.xml",
             "map": [
                 {
-                    "source": "/home/runner/.gradle/caches/transforms-3/c22ede517567f981f115223c99ca1790/transformed/material-1.10.0/res/values-ldrtl-v17/values-ldrtl-v17.xml",
+                    "source": "/home/runner/.gradle/caches/transforms-3/9b369476b5216dcf22e792672dfe9301/transformed/material-1.11.0/res/values-ldrtl-v17/values-ldrtl-v17.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
