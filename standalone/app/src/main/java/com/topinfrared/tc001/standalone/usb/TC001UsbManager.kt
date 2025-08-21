@@ -135,10 +135,11 @@ class TC001UsbManager(
             } else {
                 // No device connected - check if TC001 became available
                 val tc001Device = findTC001Device()
-                if (tc001Device != null) {
+                tc001Device?.let { detectedDevice ->
                     Log.d(TAG, "Health check: TC001 device now available")
                     statusCallback("TC001 device found")
-                    attemptConnection(tc001Device)
+                    val connected = attemptConnection(detectedDevice)
+                    Log.d(TAG, "Health check connection attempt: $connected")
                 }
             }
         }

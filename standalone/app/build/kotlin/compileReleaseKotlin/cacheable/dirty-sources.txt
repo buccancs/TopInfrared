@@ -1,9 +1,0 @@
-/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/java/com/topinfrared/tc001/standalone/thermal/TC001ThermalManager.kt
-/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/java/com/topinfrared/tc001/standalone/ThermalActivity.kt
-/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/java/com/topinfrared/tc001/standalone/LocalFilesAdapter.kt
-/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/java/com/topinfrared/tc001/standalone/LocalFilesActivity.kt
-/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/java/com/topinfrared/tc001/standalone/usb/TC001UsbManager.kt
-/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/java/com/topinfrared/tc001/standalone/usb/UsbReceiver.kt
-/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/java/com/topinfrared/tc001/standalone/ui/ThermalOverlayView.kt
-/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/java/com/topinfrared/tc001/standalone/TC001Application.kt
-/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/java/com/topinfrared/tc001/standalone/MainActivity.kt
