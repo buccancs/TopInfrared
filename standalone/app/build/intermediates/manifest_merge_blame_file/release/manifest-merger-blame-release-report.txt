@@ -1,0 +1,213 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.topinfrared.tc001.standalone"
+4    android:versionCode="100"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+8-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="34" />
+9-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml
+10
+11    <!-- USB permissions for TC001 device -->
+12    <uses-permission android:name="android.permission.USB_PERMISSION" />
+12-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:6:5-73
+12-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:6:22-70
+13
+14    <uses-feature
+14-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:7:5-86
+15        android:name="android.hardware.usb.host"
+15-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:7:19-59
+16        android:required="true" />
+16-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:7:60-83
+17
+18    <!-- Storage permissions for local recording -->
+19    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+19-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:10:5-81
+19-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:10:22-78
+20    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+20-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:11:5-80
+20-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:11:22-77
+21
+22    <!-- Camera permissions -->
+23    <uses-permission android:name="android.permission.CAMERA" />
+23-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:14:5-65
+23-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:14:22-62
+24
+25    <permission
+25-->[androidx.core:core:1.12.0] /home/runner/.gradle/caches/transforms-3/1ef8e8b4b037d13add8c7c37a6d36966/transformed/core-1.12.0/AndroidManifest.xml:22:5-24:47
+26        android:name="com.topinfrared.tc001.standalone.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+26-->[androidx.core:core:1.12.0] /home/runner/.gradle/caches/transforms-3/1ef8e8b4b037d13add8c7c37a6d36966/transformed/core-1.12.0/AndroidManifest.xml:23:9-81
+27        android:protectionLevel="signature" />
+27-->[androidx.core:core:1.12.0] /home/runner/.gradle/caches/transforms-3/1ef8e8b4b037d13add8c7c37a6d36966/transformed/core-1.12.0/AndroidManifest.xml:24:9-44
+28
+29    <uses-permission android:name="com.topinfrared.tc001.standalone.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+29-->[androidx.core:core:1.12.0] /home/runner/.gradle/caches/transforms-3/1ef8e8b4b037d13add8c7c37a6d36966/transformed/core-1.12.0/AndroidManifest.xml:26:5-97
+29-->[androidx.core:core:1.12.0] /home/runner/.gradle/caches/transforms-3/1ef8e8b4b037d13add8c7c37a6d36966/transformed/core-1.12.0/AndroidManifest.xml:26:22-94
+30
+31    <application
+31-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:16:5-57:19
+32        android:name="com.topinfrared.tc001.standalone.TC001Application"
+32-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:17:9-41
+33        android:allowBackup="true"
+33-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:18:9-35
+34        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+34-->[androidx.core:core:1.12.0] /home/runner/.gradle/caches/transforms-3/1ef8e8b4b037d13add8c7c37a6d36966/transformed/core-1.12.0/AndroidManifest.xml:28:18-86
+35        android:extractNativeLibs="false"
+36        android:icon="@drawable/ic_launcher"
+36-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:19:9-45
+37        android:label="@string/app_name"
+37-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:20:9-41
+38        android:requestLegacyExternalStorage="true"
+38-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:22:9-52
+39        android:theme="@style/Theme.TC001Standalone" >
+39-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:21:9-53
+40        <activity
+40-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:24:9-32:20
+41            android:name="com.topinfrared.tc001.standalone.MainActivity"
+41-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:25:13-41
+42            android:exported="true"
+42-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:26:13-36
+43            android:screenOrientation="portrait" >
+43-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:27:13-49
+44            <intent-filter>
+44-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:28:13-31:29
+45                <action android:name="android.intent.action.MAIN" />
+45-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:29:17-69
+45-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:29:25-66
+46
+47                <category android:name="android.intent.category.LAUNCHER" />
+47-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:30:17-77
+47-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:30:27-74
+48            </intent-filter>
+49        </activity>
+50        <activity
+50-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:34:9-37:52
+51            android:name="com.topinfrared.tc001.standalone.ThermalActivity"
+51-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:35:13-44
+52            android:exported="false"
+52-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:36:13-37
+53            android:screenOrientation="portrait" />
+53-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:37:13-49
+54        <activity
+54-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:39:9-42:52
+55            android:name="com.topinfrared.tc001.standalone.LocalFilesActivity"
+55-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:40:13-47
+56            android:exported="false"
+56-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:41:13-37
+57            android:screenOrientation="portrait" />
+57-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:42:13-49
+58
+59        <!-- USB device filter for TC001 -->
+60        <receiver
+60-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:45:9-52:20
+61            android:name="com.topinfrared.tc001.standalone.usb.UsbReceiver"
+61-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:45:19-50
+62            android:exported="false" >
+62-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:46:13-37
+63            <intent-filter>
+63-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:47:13-51:29
+64                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+64-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:48:17-90
+64-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:48:25-87
+65                <action android:name="android.hardware.usb.action.USB_DEVICE_DETACHED" />
+65-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:49:17-90
+65-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:49:25-87
+66                <action android:name="com.topinfrared.tc001.USB_PERMISSION" />
+66-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:50:17-79
+66-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:50:25-76
+67            </intent-filter>
+68        </receiver>
+69
+70        <meta-data
+70-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:54:9-55:53
+71            android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
+71-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:54:20-82
+72            android:resource="@xml/device_filter" />
+72-->/home/runner/work/TopInfrared/TopInfrared/standalone/app/src/main/AndroidManifest.xml:55:13-50
+73
+74        <service
+74-->[androidx.camera:camera-camera2:1.3.1] /home/runner/.gradle/caches/transforms-3/97df18234608dfacf83c8d896b37e0ab/transformed/camera-camera2-1.3.1/AndroidManifest.xml:24:9-33:19
+75            android:name="androidx.camera.core.impl.MetadataHolderService"
+75-->[androidx.camera:camera-camera2:1.3.1] /home/runner/.gradle/caches/transforms-3/97df18234608dfacf83c8d896b37e0ab/transformed/camera-camera2-1.3.1/AndroidManifest.xml:25:13-75
+76            android:enabled="false"
+76-->[androidx.camera:camera-camera2:1.3.1] /home/runner/.gradle/caches/transforms-3/97df18234608dfacf83c8d896b37e0ab/transformed/camera-camera2-1.3.1/AndroidManifest.xml:26:13-36
+77            android:exported="false" >
+77-->[androidx.camera:camera-camera2:1.3.1] /home/runner/.gradle/caches/transforms-3/97df18234608dfacf83c8d896b37e0ab/transformed/camera-camera2-1.3.1/AndroidManifest.xml:27:13-37
+78            <meta-data
+78-->[androidx.camera:camera-camera2:1.3.1] /home/runner/.gradle/caches/transforms-3/97df18234608dfacf83c8d896b37e0ab/transformed/camera-camera2-1.3.1/AndroidManifest.xml:30:13-32:89
+79                android:name="androidx.camera.core.impl.MetadataHolderService.DEFAULT_CONFIG_PROVIDER"
+79-->[androidx.camera:camera-camera2:1.3.1] /home/runner/.gradle/caches/transforms-3/97df18234608dfacf83c8d896b37e0ab/transformed/camera-camera2-1.3.1/AndroidManifest.xml:31:17-103
+80                android:value="androidx.camera.camera2.Camera2Config$DefaultProvider" />
+80-->[androidx.camera:camera-camera2:1.3.1] /home/runner/.gradle/caches/transforms-3/97df18234608dfacf83c8d896b37e0ab/transformed/camera-camera2-1.3.1/AndroidManifest.xml:32:17-86
+81        </service>
+82
+83        <provider
+83-->[androidx.emoji2:emoji2:1.2.0] /home/runner/.gradle/caches/transforms-3/2dfa71af9bee3680306de911b0d6d834/transformed/emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+84            android:name="androidx.startup.InitializationProvider"
+84-->[androidx.emoji2:emoji2:1.2.0] /home/runner/.gradle/caches/transforms-3/2dfa71af9bee3680306de911b0d6d834/transformed/emoji2-1.2.0/AndroidManifest.xml:25:13-67
+85            android:authorities="com.topinfrared.tc001.standalone.androidx-startup"
+85-->[androidx.emoji2:emoji2:1.2.0] /home/runner/.gradle/caches/transforms-3/2dfa71af9bee3680306de911b0d6d834/transformed/emoji2-1.2.0/AndroidManifest.xml:26:13-68
+86            android:exported="false" >
+86-->[androidx.emoji2:emoji2:1.2.0] /home/runner/.gradle/caches/transforms-3/2dfa71af9bee3680306de911b0d6d834/transformed/emoji2-1.2.0/AndroidManifest.xml:27:13-37
+87            <meta-data
+87-->[androidx.emoji2:emoji2:1.2.0] /home/runner/.gradle/caches/transforms-3/2dfa71af9bee3680306de911b0d6d834/transformed/emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+88                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+88-->[androidx.emoji2:emoji2:1.2.0] /home/runner/.gradle/caches/transforms-3/2dfa71af9bee3680306de911b0d6d834/transformed/emoji2-1.2.0/AndroidManifest.xml:30:17-75
+89                android:value="androidx.startup" />
+89-->[androidx.emoji2:emoji2:1.2.0] /home/runner/.gradle/caches/transforms-3/2dfa71af9bee3680306de911b0d6d834/transformed/emoji2-1.2.0/AndroidManifest.xml:31:17-49
+90            <meta-data
+90-->[androidx.lifecycle:lifecycle-process:2.6.2] /home/runner/.gradle/caches/transforms-3/52fa5f1b23b873c3a7dd6122f7548565/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:29:13-31:52
+91                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+91-->[androidx.lifecycle:lifecycle-process:2.6.2] /home/runner/.gradle/caches/transforms-3/52fa5f1b23b873c3a7dd6122f7548565/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:30:17-78
+92                android:value="androidx.startup" />
+92-->[androidx.lifecycle:lifecycle-process:2.6.2] /home/runner/.gradle/caches/transforms-3/52fa5f1b23b873c3a7dd6122f7548565/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:31:17-49
+93            <meta-data
+93-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/runner/.gradle/caches/transforms-3/7942e93d79becacc12044b16db88e6ab/transformed/profileinstaller-1.3.0/AndroidManifest.xml:29:13-31:52
+94                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+94-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/runner/.gradle/caches/transforms-3/7942e93d79becacc12044b16db88e6ab/transformed/profileinstaller-1.3.0/AndroidManifest.xml:30:17-85
+95                android:value="androidx.startup" />
+95-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/runner/.gradle/caches/transforms-3/7942e93d79becacc12044b16db88e6ab/transformed/profileinstaller-1.3.0/AndroidManifest.xml:31:17-49
+96        </provider>
+97
+98        <receiver
+98-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/runner/.gradle/caches/transforms-3/7942e93d79becacc12044b16db88e6ab/transformed/profileinstaller-1.3.0/AndroidManifest.xml:34:9-52:20
+99            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+99-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/runner/.gradle/caches/transforms-3/7942e93d79becacc12044b16db88e6ab/transformed/profileinstaller-1.3.0/AndroidManifest.xml:35:13-76
+100            android:directBootAware="false"
+100-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/runner/.gradle/caches/transforms-3/7942e93d79becacc12044b16db88e6ab/transformed/profileinstaller-1.3.0/AndroidManifest.xml:36:13-44
+101            android:enabled="true"
+101-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/runner/.gradle/caches/transforms-3/7942e93d79becacc12044b16db88e6ab/transformed/profileinstaller-1.3.0/AndroidManifest.xml:37:13-35
+102            android:exported="true"
+102-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/runner/.gradle/caches/transforms-3/7942e93d79becacc12044b16db88e6ab/transformed/profileinstaller-1.3.0/AndroidManifest.xml:38:13-36
+103            android:permission="android.permission.DUMP" >
+103-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/runner/.gradle/caches/transforms-3/7942e93d79becacc12044b16db88e6ab/transformed/profileinstaller-1.3.0/AndroidManifest.xml:39:13-57
+104            <intent-filter>
+104-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/runner/.gradle/caches/transforms-3/7942e93d79becacc12044b16db88e6ab/transformed/profileinstaller-1.3.0/AndroidManifest.xml:40:13-42:29
+105                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+105-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/runner/.gradle/caches/transforms-3/7942e93d79becacc12044b16db88e6ab/transformed/profileinstaller-1.3.0/AndroidManifest.xml:41:17-91
+105-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/runner/.gradle/caches/transforms-3/7942e93d79becacc12044b16db88e6ab/transformed/profileinstaller-1.3.0/AndroidManifest.xml:41:25-88
+106            </intent-filter>
+107            <intent-filter>
+107-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/runner/.gradle/caches/transforms-3/7942e93d79becacc12044b16db88e6ab/transformed/profileinstaller-1.3.0/AndroidManifest.xml:43:13-45:29
+108                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+108-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/runner/.gradle/caches/transforms-3/7942e93d79becacc12044b16db88e6ab/transformed/profileinstaller-1.3.0/AndroidManifest.xml:44:17-85
+108-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/runner/.gradle/caches/transforms-3/7942e93d79becacc12044b16db88e6ab/transformed/profileinstaller-1.3.0/AndroidManifest.xml:44:25-82
+109            </intent-filter>
+110            <intent-filter>
+110-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/runner/.gradle/caches/transforms-3/7942e93d79becacc12044b16db88e6ab/transformed/profileinstaller-1.3.0/AndroidManifest.xml:46:13-48:29
+111                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+111-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/runner/.gradle/caches/transforms-3/7942e93d79becacc12044b16db88e6ab/transformed/profileinstaller-1.3.0/AndroidManifest.xml:47:17-88
+111-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/runner/.gradle/caches/transforms-3/7942e93d79becacc12044b16db88e6ab/transformed/profileinstaller-1.3.0/AndroidManifest.xml:47:25-85
+112            </intent-filter>
+113            <intent-filter>
+113-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/runner/.gradle/caches/transforms-3/7942e93d79becacc12044b16db88e6ab/transformed/profileinstaller-1.3.0/AndroidManifest.xml:49:13-51:29
+114                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+114-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/runner/.gradle/caches/transforms-3/7942e93d79becacc12044b16db88e6ab/transformed/profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
+114-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/runner/.gradle/caches/transforms-3/7942e93d79becacc12044b16db88e6ab/transformed/profileinstaller-1.3.0/AndroidManifest.xml:50:25-92
+115            </intent-filter>
+116        </receiver>
+117    </application>
+118
+119</manifest>

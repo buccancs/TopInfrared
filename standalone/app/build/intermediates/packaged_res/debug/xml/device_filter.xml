@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- USB device filter for TC001 -->
+    <usb-device vendor-id="1234" product-id="5678" />
+    
+    <!-- Alternative filter for UVC devices during development -->
+    <usb-device class="14" />
+    
+</resources>

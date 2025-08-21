@@ -1,0 +1,15 @@
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        flatDir {
+            dirs 'libir-standalone/libs'
+        }
+    }
+}
+
+rootProject.name = "TC001-Standalone"
+include ':app'
+include ':libir-standalone'
+include ':common'
