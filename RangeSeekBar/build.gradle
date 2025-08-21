@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 group='com.github.Jay-Goo'
 
 android {
+    namespace 'com.jaygoo.widget'
     compileSdk rootProject.ext.android.compileSdk
 
 
@@ -35,7 +36,7 @@ tasks.withType(JavaCompile) {
 // 打包源码
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
+    archiveClassifier = 'sources'
 }
 
 

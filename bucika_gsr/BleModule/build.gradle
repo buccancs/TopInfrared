@@ -3,6 +3,7 @@ plugins {
 }
 
 android {
+    namespace 'com.topdon.ble'
     compileSdkVersion 34
     buildToolsVersion "30.0.3"
 

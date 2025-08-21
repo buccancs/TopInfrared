@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
     id 'kotlin-kapt'
 }
 
@@ -11,6 +10,7 @@ kapt {
     }
 }
 android {
+    namespace 'com.infisense.usbir'
     compileSdk rootProject.ext.android.compileSdk
 
     defaultConfig {

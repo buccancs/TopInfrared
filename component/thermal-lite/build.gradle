@@ -13,6 +13,10 @@ kapt {
 
 android {
     namespace = "com.example.thermal_lite"
+    buildFeatures {
+        buildConfig true
+        viewBinding true
+    }
     compileSdk rootProject.ext.android.compileSdk
 
     defaultConfig {
