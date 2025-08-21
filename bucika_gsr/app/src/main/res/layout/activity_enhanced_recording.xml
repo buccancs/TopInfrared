@@ -124,12 +124,12 @@
                         android:textAllCaps="false" />
 
                     <Button
-                        android:id="@+id/btn_rad_wnd_level3"
+                        android:id="@+id/btn_rad_dng_level3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:background="?android:attr/selectableItemBackground"
-                        android:text="RAD WND Level 3 30FPS"
+                        android:text="RAD DNG Level 3 30FPS"
                         android:textAllCaps="false" />
 
                     <Button

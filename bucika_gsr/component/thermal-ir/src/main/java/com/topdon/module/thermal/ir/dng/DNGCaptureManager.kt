@@ -19,7 +19,7 @@ import java.util.concurrent.Semaphore
 import java.util.concurrent.TimeUnit
 
 /**
- * DNG (Digital Negative) Capture Manager for RAD WND Level 3 recording
+ * DNG (Digital Negative) Capture Manager for RAD DNG Level 3 recording
  * Captures RAW sensor data at 30FPS and saves as DNG files
  */
 @SuppressLint("MissingPermission")
@@ -129,7 +129,7 @@ class DNGCaptureManager(
     
     private fun setupCaptureDirectory() {
         val timestamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
-        val dirName = "rad_wnd_level3_dng_$timestamp"
+        val dirName = "rad_dng_level3_dng_$timestamp"
         
         val baseDir = File(FileConfig.lineGalleryDir, "dng_captures")
         if (!baseDir.exists()) {
@@ -297,13 +297,13 @@ class DNGCaptureManager(
             val captureBuilder = cameraDevice?.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE)
             captureBuilder?.addTarget(imageReader?.surface!!)
             
-            // RAD WND Level 3 optimized settings
+            // RAD DNG Level 3 optimized settings
             captureBuilder?.set(CaptureRequest.CONTROL_MODE, CaptureRequest.CONTROL_MODE_AUTO)
             captureBuilder?.set(CaptureRequest.CONTROL_AF_MODE, CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE)
             captureBuilder?.set(CaptureRequest.CONTROL_AE_MODE, CaptureRequest.CONTROL_AE_MODE_ON)
             captureBuilder?.set(CaptureRequest.JPEG_QUALITY, 100.toByte())
             
-            // Set high quality for RAD WND Level 3
+            // Set high quality for RAD DNG Level 3
             captureBuilder?.set(CaptureRequest.COLOR_CORRECTION_MODE, CaptureRequest.COLOR_CORRECTION_MODE_HIGH_QUALITY)
             captureBuilder?.set(CaptureRequest.EDGE_MODE, CaptureRequest.EDGE_MODE_HIGH_QUALITY)
             captureBuilder?.set(CaptureRequest.NOISE_REDUCTION_MODE, CaptureRequest.NOISE_REDUCTION_MODE_HIGH_QUALITY)
@@ -318,7 +318,7 @@ class DNGCaptureManager(
                 cameraCaptureSession?.setRepeatingRequest(it, captureCallback, backgroundHandler)
             }
             
-            XLog.i(TAG, "Started RAD WND Level 3 DNG capture at 30 FPS")
+            XLog.i(TAG, "Started RAD DNG Level 3 DNG capture at 30 FPS")
             
         } catch (e: Exception) {
             XLog.e(TAG, "Failed to start repeating capture: ${e.message}", e)
@@ -440,7 +440,7 @@ class DNGCaptureManager(
         
         // Camera make/model
         val make = "TOPDON"
-        val model = "TC001 RAD WND Level 3"
+        val model = "TC001 RAD DNG Level 3"
         
         metadata.put(make.toByteArray())
         metadata.put(model.toByteArray())

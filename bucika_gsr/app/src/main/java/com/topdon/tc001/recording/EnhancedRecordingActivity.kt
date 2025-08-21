@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_enhanced_recording.*
 
 /**
  * Enhanced Recording Activity for bucika_gsr
- * Integrates Samsung 4K30FPS recording, RAD WND Level 3 recording, and GSR monitoring
+ * Integrates Samsung 4K30FPS recording, RAD DNG Level 3 recording, and GSR monitoring
  */
 class EnhancedRecordingActivity : BaseActivity(), GSRManager.GSRDataListener {
 
@@ -72,8 +72,8 @@ class EnhancedRecordingActivity : BaseActivity(), GSRManager.GSRDataListener {
             updateRecordingModeUI()
         }
         
-        btn_rad_wnd_level3.setOnClickListener {
-            currentRecordingMode = EnhancedVideoRecorder.RecordingMode.RAD_WND_LEVEL3_30FPS_DNG
+        btn_rad_dng_level3.setOnClickListener {
+            currentRecordingMode = EnhancedVideoRecorder.RecordingMode.RAD_DNG_LEVEL3_30FPS
             updateRecordingModeUI()
         }
         
@@ -126,7 +126,7 @@ class EnhancedRecordingActivity : BaseActivity(), GSRManager.GSRDataListener {
             if (success) {
                 val modeText = when (currentRecordingMode) {
                     EnhancedVideoRecorder.RecordingMode.SAMSUNG_4K_30FPS -> "Samsung 4K 30FPS"
-                    EnhancedVideoRecorder.RecordingMode.RAD_WND_LEVEL3_30FPS_DNG -> "RAD WND Level 3 DNG 30FPS"
+                    EnhancedVideoRecorder.RecordingMode.RAD_DNG_LEVEL3_30FPS -> "RAD DNG Level 3 30FPS"
                     EnhancedVideoRecorder.RecordingMode.PARALLEL_DUAL_STREAM -> "Parallel Dual Stream"
                 }
                 Toast.makeText(this, "$modeText recording started", Toast.LENGTH_SHORT).show()
@@ -158,7 +158,7 @@ class EnhancedRecordingActivity : BaseActivity(), GSRManager.GSRDataListener {
                 val fileList = recordedFiles.joinToString("\n") { it.name }
                 
                 // Show DNG capture stats if applicable
-                if (currentRecordingMode == EnhancedVideoRecorder.RecordingMode.RAD_WND_LEVEL3_30FPS_DNG) {
+                if (currentRecordingMode == EnhancedVideoRecorder.RecordingMode.RAD_DNG_LEVEL3_30FPS) {
                     val dngStats = videoRecorder.getDNGCaptureStats()
                     val framesCaptured = dngStats["framesCaptured"] as? Int ?: 0
                     val actualFPS = dngStats["actualFPS"] as? Double ?: 0.0
@@ -196,14 +196,14 @@ class EnhancedRecordingActivity : BaseActivity(), GSRManager.GSRDataListener {
     private fun updateRecordingModeUI() {
         // Update UI to show selected recording mode
         btn_samsung_4k.isSelected = (currentRecordingMode == EnhancedVideoRecorder.RecordingMode.SAMSUNG_4K_30FPS)
-        btn_rad_wnd_level3.isSelected = (currentRecordingMode == EnhancedVideoRecorder.RecordingMode.RAD_WND_LEVEL3_30FPS_DNG)
+        btn_rad_dng_level3.isSelected = (currentRecordingMode == EnhancedVideoRecorder.RecordingMode.RAD_DNG_LEVEL3_30FPS)
         btn_parallel_recording.isSelected = (currentRecordingMode == EnhancedVideoRecorder.RecordingMode.PARALLEL_DUAL_STREAM)
         
         val modeDescription = when (currentRecordingMode) {
             EnhancedVideoRecorder.RecordingMode.SAMSUNG_4K_30FPS -> 
                 "Samsung optimized 4K recording at 30FPS with 20Mbps bitrate"
-            EnhancedVideoRecorder.RecordingMode.RAD_WND_LEVEL3_30FPS_DNG -> 
-                "Professional RAD WND Level 3 DNG capture at 30FPS with RAW sensor data"
+            EnhancedVideoRecorder.RecordingMode.RAD_DNG_LEVEL3_30FPS -> 
+                "Professional RAD DNG Level 3 capture at 30FPS with RAW sensor data"
             EnhancedVideoRecorder.RecordingMode.PARALLEL_DUAL_STREAM -> 
                 "Simultaneous thermal and visual stream recording"
         }
@@ -219,7 +219,7 @@ class EnhancedRecordingActivity : BaseActivity(), GSRManager.GSRDataListener {
         
         // Recording mode selection (disable during recording)
         btn_samsung_4k.isEnabled = !isRecording
-        btn_rad_wnd_level3.isEnabled = !isRecording
+        btn_rad_dng_level3.isEnabled = !isRecording
         btn_parallel_recording.isEnabled = !isRecording
         
         // GSR controls

@@ -28,7 +28,7 @@ import java.util.concurrent.TimeUnit
 
 /**
  * Enhanced Video Recorder for bucika_gsr
- * Supports Samsung specific 4K30FPS recording and STAGE 3/LEVEL 3 RAD WND recording
+ * Supports Samsung specific 4K30FPS recording and STAGE 3/LEVEL 3 RAD DNG recording
  */
 @SuppressLint("MissingPermission")
 class EnhancedVideoRecorder(
@@ -40,7 +40,7 @@ class EnhancedVideoRecorder(
     // Recording modes
     enum class RecordingMode {
         SAMSUNG_4K_30FPS,
-        RAD_WND_LEVEL3_30FPS_DNG,  // Updated to DNG format
+        RAD_DNG_LEVEL3_30FPS,  // Updated to DNG format
         PARALLEL_DUAL_STREAM
     }
 
@@ -61,12 +61,12 @@ class EnhancedVideoRecorder(
     private var thermalRecorder: MediaRecorder? = null
     private var visualRecorder: MediaRecorder? = null
     
-    // DNG Capture Manager for RAD WND Level 3
+    // DNG Capture Manager for RAD DNG Level 3
     private var dngCaptureManager: DNGCaptureManager? = null
 
     // Recording parameters
     private val samsung4KSize = Size(3840, 2160) // 4K UHD
-    private val radWndSize = Size(1920, 1080)    // Full HD for RAD WND
+    private val radDngSize = Size(1920, 1080)    // Full HD for RAD DNG
     private val targetFps = 30
 
     // File paths
@@ -82,8 +82,8 @@ class EnhancedVideoRecorder(
         // Samsung specific camera characteristics
         private const val SAMSUNG_CAMERA_ID = "0"
         
-        // STAGE 3/LEVEL 3 RAD WND specifications
-        private const val RAD_WND_BITRATE = 8000000 // 8 Mbps for high quality
+        // STAGE 3/LEVEL 3 RAD DNG specifications
+        private const val RAD_DNG_BITRATE = 8000000 // 8 Mbps for high quality
         private const val SAMSUNG_4K_BITRATE = 20000000 // 20 Mbps for 4K
     }
 
@@ -108,7 +108,7 @@ class EnhancedVideoRecorder(
             
             when (mode) {
                 RecordingMode.SAMSUNG_4K_30FPS -> startSamsung4KRecording()
-                RecordingMode.RAD_WND_LEVEL3_30FPS_DNG -> startRadWndDNGRecording()  // Updated method
+                RecordingMode.RAD_DNG_LEVEL3_30FPS -> startRadDngRecording()  // Updated method
                 RecordingMode.PARALLEL_DUAL_STREAM -> startParallelRecording()
             }
         } catch (e: Exception) {
@@ -161,23 +161,20 @@ class EnhancedVideoRecorder(
         return false
     }
 
-    /**
-     * Start STAGE 3/LEVEL 3 RAD WND DNG recording at 30FPS
-     */
-    private fun startRadWndDNGRecording(): Boolean {
-        XLog.i(TAG, "Starting STAGE 3/LEVEL 3 RAD WND DNG recording at 30FPS")
+    private fun startRadDngRecording(): Boolean {
+        XLog.i(TAG, "Starting STAGE 3/LEVEL 3 RAD DNG recording at 30FPS")
         
         return try {
             val success = dngCaptureManager?.startDNGCapture() ?: false
             if (success) {
                 isRecording = true
-                XLog.i(TAG, "RAD WND Level 3 DNG capture started successfully")
+                XLog.i(TAG, "RAD DNG Level 3 capture started successfully")
             } else {
-                XLog.e(TAG, "Failed to start RAD WND DNG capture")
+                XLog.e(TAG, "Failed to start RAD DNG capture")
             }
             success
         } catch (e: Exception) {
-            XLog.e(TAG, "Failed to start RAD WND DNG recording: ${e.message}", e)
+            XLog.e(TAG, "Failed to start RAD DNG recording: ${e.message}", e)
             false
         }
     }
@@ -201,9 +198,9 @@ class EnhancedVideoRecorder(
             setOutputFile(thermalFile.absolutePath)
             
             setVideoEncoder(VideoEncoder.H264)
-            setVideoSize(radWndSize.width, radWndSize.height)
+            setVideoSize(radDngSize.width, radDngSize.height)
             setVideoFrameRate(targetFps)
-            setVideoEncodingBitRate(RAD_WND_BITRATE)
+            setVideoEncodingBitRate(RAD_DNG_BITRATE)
         }
         
         // Setup visual stream recorder
@@ -252,7 +249,7 @@ class EnhancedVideoRecorder(
         return try {
             when (recordingMode) {
                 RecordingMode.PARALLEL_DUAL_STREAM -> stopParallelRecording()
-                RecordingMode.RAD_WND_LEVEL3_30FPS_DNG -> stopDNGRecording()  // Updated method
+                RecordingMode.RAD_DNG_LEVEL3_30FPS -> stopDNGRecording()  // Updated method
                 else -> stopSingleRecording()
             }
             
@@ -310,7 +307,7 @@ class EnhancedVideoRecorder(
     ): Bitmap {
         val mode = when (recordingMode) {
             RecordingMode.SAMSUNG_4K_30FPS -> "Samsung 4K"
-            RecordingMode.RAD_WND_LEVEL3_30FPS_DNG -> "RAD WND Level 3 DNG"
+            RecordingMode.RAD_DNG_LEVEL3_30FPS -> "RAD DNG Level 3"
             RecordingMode.PARALLEL_DUAL_STREAM -> "Parallel Dual"
         }
         
@@ -356,7 +353,7 @@ class EnhancedVideoRecorder(
         currentThermalFile?.let { files.add(it) }
         
         // Add DNG files if in DNG recording mode
-        if (recordingMode == RecordingMode.RAD_WND_LEVEL3_30FPS_DNG) {
+        if (recordingMode == RecordingMode.RAD_DNG_LEVEL3_30FPS) {
             val dngFiles = dngCaptureManager?.getCapturedFiles() ?: emptyList()
             files.addAll(dngFiles)
         }

@@ -187,7 +187,7 @@ class TemperatureOverlayManager {
     private fun drawRecordingMode(canvas: Canvas, mode: String) {
         val modeText = when (mode) {
             "Samsung 4K" -> "● REC Samsung 4K 30FPS"
-            "RAD WND Level 3" -> "● REC RAD WND L3 30FPS"
+            "RAD DNG Level 3" -> "● REC RAD DNG L3 30FPS"
             "Parallel Dual" -> "● REC Parallel Dual Stream"
             else -> "● REC $mode"
         }

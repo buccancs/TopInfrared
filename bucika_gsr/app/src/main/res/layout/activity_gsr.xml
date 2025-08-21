@@ -222,7 +222,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:backgroundTint="#FFFF5722"
-                        android:text="Enhanced Recording (Samsung 4K + RAD WND)"
+                        android:text="Enhanced Recording (Samsung 4K + RAD DNG)"
                         android:textAllCaps="false"
                         android:textColor="@android:color/white" />
 
