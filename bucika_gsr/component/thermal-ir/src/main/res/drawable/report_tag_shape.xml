@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 图层1(oval) -->
+    <item>
+        <shape
+            android:shape="oval"
+            android:useLevel="true">
+            <size
+                android:width="80dp"
+                android:height="80dp" />
+            <solid android:color="#16131E" />
+        </shape>
+    </item>
+
+    <item
+        android:bottom="15dp"
+        android:left="15dp"
+        android:right="15dp"
+        android:top="15dp">
+        <shape android:shape="oval">
+            <solid android:color="#FFBA42" />
+        </shape>
+    </item>
+
+</layer-list>

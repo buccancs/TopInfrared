@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/item_color_lay"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="4dp">
+
+    <ImageView
+        android:id="@+id/item_color_img"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:background="@drawable/bg_color_select"
+        android:padding="1dp"
+        android:src="@color/color_select3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/item_color_check"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/item_color_img"
+        app:layout_constraintEnd_toEndOf="@id/item_color_img"
+        app:layout_constraintStart_toStartOf="@id/item_color_img"
+        app:layout_constraintTop_toTopOf="@id/item_color_img"
+        app:srcCompat="@drawable/ic_color_select_svg" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

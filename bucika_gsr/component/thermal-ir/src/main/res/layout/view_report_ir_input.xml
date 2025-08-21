@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="20dp"
+    tools:background="#16131e">
+
+    <!-- 标题 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:gravity="center_vertical"
+            android:textSize="15sp"
+            android:textColor="#FFBA42"
+            tools:text="这是一个标题"
+            android:background="@drawable/bg_corners_top_10_solid_20_ff"
+            app:layout_constraintDimensionRatio="335:49"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 分割线 -->
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/shape_stroke_1_5b5961_dash_5"
+        android:visibility="gone" />
+
+    <!-- 最高温 -->
+    <include
+        layout="@layout/item_report_ir_input"
+        android:id="@+id/cl_max" />
+
+    <!-- 最低温 -->
+    <include
+        layout="@layout/item_report_ir_input"
+        android:id="@+id/cl_min"
+        android:visibility="gone" />
+
+    <!-- 平均温 -->
+    <include
+        layout="@layout/item_report_ir_input"
+        android:id="@+id/cl_average"
+        android:visibility="gone" />
+
+    <!-- 注释 -->
+    <include
+        layout="@layout/item_report_ir_input"
+        android:id="@+id/cl_explain" />
+
+</LinearLayout>

@@ -1,0 +1,79 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+}
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+android {
+    compileSdk rootProject.ext.android.compileSdk
+
+    defaultConfig {
+        minSdk rootProject.ext.android.minSdk
+        targetSdk rootProject.ext.android.targetSdk
+        ndkVersion rootProject.ext.android.ndkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs', 'src/main/jnilibs']
+        }
+    }
+    flavorDimensions 'app'
+    productFlavors {
+        dev {
+            dimension 'app'
+        }
+        beta {
+            dimension 'app'
+        }
+        prod {
+            dimension 'app'
+        }
+        prodTopdon {
+            dimension 'app'
+        }
+        insideChina {
+            dimension 'app'
+        }
+        prodTopdonInsideChina {
+            dimension 'app'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+//    implementation(name: 'libusbirsdk_1.2.0', ext: 'aar')
+    api(name: 'libusbdualsdk_1.3.4_2406271906_standard', ext: 'aar')
+    implementation(name: 'opengl_1.3.2_standard', ext: 'aar')
+    api 'com.conghuahuadan:superlayout:1.1.0'
+    implementation project(':libapp')
+    api(project(":LocalRepo:libcommon"))
+    api(name: 'suplib-release', ext: 'aar')
+    api(name: 'ai-upscale-release', ext: 'aar')
+}

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/toolbar_16131E">
+
+        <View
+            android:id="@+id/space"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="375:132"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.topdon.menu.view.CameraMenuView
+            android:id="@+id/camera_menu_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 测温模式-菜单2-点线面 -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_fence"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/space"
+            app:layout_constraintBottom_toBottomOf="@id/space" />
+        <!-- 测温模式-菜单3-双光 -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_two_light"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/space"
+            app:layout_constraintBottom_toBottomOf="@id/space" />
+        <!-- 测温模式-菜单4-伪彩/观测模式-菜单3-伪彩 -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_color"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/space"
+            app:layout_constraintBottom_toBottomOf="@id/space" />
+        <!-- 测温模式-菜单5-设置 -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_setting_te"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/space"
+            app:layout_constraintBottom_toBottomOf="@id/space" />
+        <!-- 测温模式-菜单6-高低温档 -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_temp_level"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/space"
+            app:layout_constraintBottom_toBottomOf="@id/space" />
+
+
+        <!-- 观测模式-菜单2-高低温源 -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_temp_source"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/space"
+            app:layout_constraintBottom_toBottomOf="@id/space" />
+        <!-- 观测模式-菜单4-标靶 -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_target"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/space"
+            app:layout_constraintBottom_toBottomOf="@id/space" />
+        <!-- 观测模式-菜单5-高低温点 -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_temp_point"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/space"
+            app:layout_constraintBottom_toBottomOf="@id/space" />
+        <!-- 观测模式-菜单6-设置 -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_setting_ob"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/space"
+            app:layout_constraintBottom_toBottomOf="@id/space" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

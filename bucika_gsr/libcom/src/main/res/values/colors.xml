@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_select1">#FF000000</color>
+    <color name="color_select2">#FFFFFFFF</color>
+    <color name="color_select3">#FF2B79D8</color>
+    <color name="color_select4">#FFFF0000</color>
+    <color name="color_select5">#FF0FA752</color>
+    <color name="color_select6">#808080</color>
+
+    <color name="we_read_theme_color">#FFE9F1F9</color>
+
+</resources>

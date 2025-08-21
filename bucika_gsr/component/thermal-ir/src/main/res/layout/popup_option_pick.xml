@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="7dp"
+    android:paddingBottom="7dp"
+    android:background="@drawable/bg_corners05_solid_3b3e44">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>

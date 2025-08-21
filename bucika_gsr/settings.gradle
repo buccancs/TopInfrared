@@ -1,0 +1,32 @@
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        jcenter() // Warning: this repository is going to shut down soon
+        maven { url 'https://jitpack.io' }
+        maven {
+            url 'https://maven.zohodl.com'
+        }
+        maven {
+            url 'https://maven.aliyun.com/repository/public/'
+        }
+        flatDir {
+            dirs 'libir/libs'
+        }
+    }
+}
+rootProject.name = "BucikaGSR"
+include ':app'
+include ':commonlibrary'
+include ':component:CommonComponent'
+include ':component:thermal-ir'
+include ':libapp'
+include ':libcom'
+include ':libir'
+include ':libmenu'
+include ':libui'
+include ':BleModule'
+include ':LocalRepo:libcommon'
+include ':LocalRepo:libirutils'
+include ':RangeSeekBar'

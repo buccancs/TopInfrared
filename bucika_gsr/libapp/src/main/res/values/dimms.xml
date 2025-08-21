@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="app_font">16sp</dimen>
+    <dimen name="app_small_font">14sp</dimen>
+    <dimen name="app_smaller_font">12sp</dimen>
+    <dimen name="app_font_10">10sp</dimen>
+    <dimen name="app_font_11">11sp</dimen>
+    <dimen name="app_font_13">13sp</dimen>
+    <dimen name="app_font_15">15sp</dimen>
+    <dimen name="main_item_font">14sp</dimen>
+    <dimen name="app_title_font">20sp</dimen>
+    <dimen name="app_btn_corners">2dp</dimen>
+
+    <!--    ui-->
+    <dimen name="login_btn_height">42dp</dimen>
+    <dimen name="app_btn_big_height">42dp</dimen>
+    <dimen name="app_btn_height">36dp</dimen>
+    <dimen name="tab_second_img_height">62dp</dimen>
+
+    <!--    thermal-->
+    <dimen name="menu_height">112dp</dimen>
+    <item name="setting_wp" format="float" type="dimen">0.2</item>
+    <item name="model_line_start" format="float" type="dimen">0.03</item>
+    <item name="model_line_end" format="float" type="dimen">0.96</item>
+    <dimen name="setting_item_top">8dp</dimen>
+    <dimen name="temperature_padding_top">2dp</dimen>
+    <dimen name="temperature_padding_start">5dp</dimen>
+    <dimen name="temperature_padding_end">14dp</dimen>
+    <dimen name="temperature_unit_end">4dp</dimen>
+
+    <!--    main-->
+    <dimen name="dp_24">24dp</dimen>
+</resources>

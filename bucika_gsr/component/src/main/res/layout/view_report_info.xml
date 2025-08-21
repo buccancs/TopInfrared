@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:background="#16131e">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:paddingBottom="32dp">
+
+        <!-- 报告名称 -->
+        <TextView
+            android:id="@+id/tv_report_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:textSize="24sp"
+            android:textColor="#ffffff"
+            tools:text="TCVIEW"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 作者 -->
+        <TextView
+            android:id="@+id/tv_report_author"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#ffffff"
+            tools:text="This is name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_report_name" />
+
+        <!-- 时间 -->
+        <TextView
+            android:id="@+id/tv_report_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#ffffff"
+            tools:text="2013-11-08 14:15:30"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_report_author" />
+
+        <!-- 地址 -->
+        <ImageView
+            android:id="@+id/iv_report_place"
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+            android:src="@drawable/svg_report_preview_location"
+            android:contentDescription="@null"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_report_date" />
+        <TextView
+            android:id="@+id/tv_report_place"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#ffffff"
+            tools:text="深圳市南山区前海"
+            app:layout_constraintStart_toEndOf="@id/iv_report_place"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_report_date" />
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_report_place"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:constraint_referenced_ids="iv_report_place,tv_report_place" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 检测条件 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_report_condition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/bg_corners10_solid_1f2125_stroke_5b5961"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/tv_condition_title"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:gravity="center_vertical"
+            android:text="@string/album_report_condition"
+            android:textSize="15sp"
+            android:textColor="#ffffff"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:background="@drawable/bg_report_preview_title"
+            app:layout_constraintDimensionRatio="335:49"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 环境温度 -->
+        <TextView
+            android:id="@+id/tv_ambient_temperature_title"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:gravity="center_vertical"
+            android:text="@string/thermal_config_environment"
+            android:textSize="15sp"
+            android:textColor="#e8e8e8"
+            android:maxLines="1"
+            android:ellipsize="end"
+            app:layout_constraintDimensionRatio="335:49"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_condition_title" />
+        <TextView
+            android:id="@+id/tv_ambient_temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:textSize="15sp"
+            android:textColor="#e8e8e8"
+            tools:text="26°C"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_ambient_temperature_title"
+            app:layout_constraintBottom_toBottomOf="@id/tv_ambient_temperature_title" />
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_ambient_temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:constraint_referenced_ids="tv_ambient_temperature_title,tv_ambient_temperature" />
+
+        <View
+            android:id="@+id/view_line_1"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/shape_stroke_1_5b5961_dash_5"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/tv_ambient_temperature_title" />
+
+        <!-- 环境湿度 -->
+        <TextView
+            android:id="@+id/tv_ambient_humidity_title"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:gravity="center_vertical"
+            android:text="@string/album_report_ambient_humidity"
+            android:textSize="15sp"
+            android:textColor="#e8e8e8"
+            android:maxLines="1"
+            android:ellipsize="end"
+            app:layout_constraintDimensionRatio="335:49"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_ambient_temperature_title" />
+        <TextView
+            android:id="@+id/tv_ambient_humidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:textSize="15sp"
+            android:textColor="#e8e8e8"
+            tools:text="50%"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_ambient_humidity_title"
+            app:layout_constraintBottom_toBottomOf="@id/tv_ambient_humidity_title" />
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_ambient_humidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:constraint_referenced_ids="tv_ambient_humidity_title,tv_ambient_humidity" />
+
+        <View
+            android:id="@+id/view_line_2"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/shape_stroke_1_5b5961_dash_5"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/tv_ambient_humidity_title" />
+
+        <!-- 测试距离 -->
+        <TextView
+            android:id="@+id/tv_test_distance_title"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:gravity="center_vertical"
+            android:text="@string/album_report_test_distance"
+            android:textSize="15sp"
+            android:textColor="#e8e8e8"
+            android:maxLines="1"
+            android:ellipsize="end"
+            app:layout_constraintDimensionRatio="335:49"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_ambient_humidity_title" />
+        <TextView
+            android:id="@+id/tv_test_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:textSize="15sp"
+            android:textColor="#e8e8e8"
+            tools:text="0.5m"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_test_distance_title"
+            app:layout_constraintBottom_toBottomOf="@id/tv_test_distance_title" />
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_test_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:constraint_referenced_ids="tv_test_distance_title,tv_test_distance" />
+
+        <View
+            android:id="@+id/view_line_3"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/shape_stroke_1_5b5961_dash_5"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/tv_test_distance_title" />
+
+        <!-- 发射率 -->
+        <TextView
+            android:id="@+id/tv_emissivity_title"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:gravity="center_vertical"
+            android:text="@string/album_report_emissivity"
+            android:textSize="15sp"
+            android:textColor="#e8e8e8"
+            android:maxLines="1"
+            android:ellipsize="end"
+            app:layout_constraintDimensionRatio="335:49"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_test_distance_title" />
+        <TextView
+            android:id="@+id/tv_emissivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:textSize="15sp"
+            android:textColor="#e8e8e8"
+            tools:text="ε=0.95"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_emissivity_title"
+            app:layout_constraintBottom_toBottomOf="@id/tv_emissivity_title" />
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_emissivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:constraint_referenced_ids="tv_emissivity_title,tv_emissivity" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

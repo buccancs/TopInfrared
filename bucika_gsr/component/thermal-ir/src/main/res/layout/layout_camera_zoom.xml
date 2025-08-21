@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    >
+
+    <View
+        android:id="@+id/view_bg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/dp_10"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/bg_corners08_solid_50_23"
+        />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="30dp"
+        android:paddingBottom="30dp"
+        android:paddingLeft="24dp"
+        app:layout_constraintLeft_toLeftOf="@id/view_bg"
+        app:layout_constraintTop_toTopOf="@id/view_bg"
+        app:layout_constraintBottom_toBottomOf="@id/view_bg"
+        android:text="@string/ios_zoomIn"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        />
+
+    <ImageView
+        android:id="@+id/img_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="24dp"
+        android:padding="@dimen/dp_10"
+        app:layout_constraintEnd_toEndOf="@id/view_bg"
+        app:layout_constraintTop_toTopOf="@id/view_bg"
+        app:layout_constraintBottom_toBottomOf="@id/view_bg"
+        android:src="@drawable/ic_add_nor"/>
+
+    <TextView
+        android:id="@+id/tv_zoom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/view_bg"
+        app:layout_constraintBottom_toBottomOf="@id/view_bg"
+        app:layout_constraintEnd_toStartOf="@id/img_up"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="1"
+        android:textColor="#ffffffff"
+        android:textSize="16sp"
+        />
+
+    <ImageView
+        android:id="@+id/img_down"
+        app:layout_constraintEnd_toStartOf="@id/tv_zoom"
+        app:layout_constraintTop_toTopOf="@id/view_bg"
+        app:layout_constraintBottom_toBottomOf="@id/view_bg"
+        android:padding="@dimen/dp_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_reduce_nor"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

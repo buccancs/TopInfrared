@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#FFBA42</color>
+
+    <color name="font_color">#333333</color>
+    <color name="font_second_color">#666666</color>
+    <color name="font_third_color">#999999</color>
+    <color name="toastTextColor">#FFFFFF</color>
+
+    <color name="chart_bg">#16131E</color>
+    <color name="chart_text">#ffffff</color>
+    <color name="chart_axis">#4cf9f9f9</color>
+
+    <color name="chart_line_max">#FFFF4747</color>
+    <color name="chart_point_max">#D18888</color>
+    <color name="chart_bg_top_max">#ffD13F3F</color>
+    <color name="chart_bg_bottom_max">#00D13F3F</color>
+
+    <color name="chart_line_min">#FF06aaff</color>
+    <color name="chart_point_min">#7EA0CA</color>
+    <color name="chart_bg_top_min">#ff3f7ad1</color>
+    <color name="chart_bg_bottom_min">#003f7ad1</color>
+
+    <color name="chart_line_center">#4ea83a</color>
+    <color name="chart_point_center">#97CC8C</color>
+    <color name="chart_bg_top_center">#3E8A2D</color>
+    <color name="chart_bg_bottom_center">#00DF9A24</color>
+
+    <color name="black">#ff000000</color>
+    <color name="white">#ffffffff</color>
+    <color name="white_80">#ccffffff</color>
+
+    <color name="circle_white">#80ffffff</color>
+
+    <color name="grey">#FFE9EEF4</color>
+
+    <color name="tx_333">#FFFFFFFF</color>
+    <color name="color_FFBA42">#FFFFBA42</color>
+    <color name="color_E74380">#FFE74380</color>
+    <color name="color_16131E">#FF16131E</color>
+    <color name="color_8A898E">#8A898E</color>
+    <color name="color_23202E">#23202E</color>
+    <color name="color_06AAFF">#06AAFF</color>
+
+    <color name="c_bg_white">#FF16131E</color>
+    <color name="color_font">#ffffff</color>
+    <color name="color_bg_min">#ffffff</color>
+    <color name="dialog_line_color">#3B3E44</color>
+    <color name="dialog_font_third_color">#EEEEEE</color>
+    <color name="color_font_five">#9Bffffff</color>
+    <color name="color_img_calibration_normal">#ffffff</color>
+    <color name="color_img_calibration_left">#66ffffff</color>
+    <color name="color_img_calibration_right">#FFBA42</color>
+    <color name="color_img_calibration_button">#55272F</color>
+
+    <color name="toolbar_8A898E">#FF8A898E</color>
+    <color name="toolbar_16131E">#FF16131E</color>
+    <color name="color_B3FFFFFF">#B3FFFFFF</color>
+    <color name="toolbar_5F16131E">#5F16131E</color>
+
+</resources>

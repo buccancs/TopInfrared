@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="20dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="24dp"
+    android:background="@drawable/bg_corners10_solid_3b3e44">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        tools:text="环境温度 (-10~55°C)"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/view_input_bg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:paddingVertical="10dp"
+        android:textSize="12sp"
+        android:background="@drawable/bg_corners06_solid_626569"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title" />
+    <TextView
+        android:id="@+id/tv_unit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="0dp"
+        android:paddingEnd="12dp"
+        android:textSize="12sp"
+        android:textColor="#eeeeee"
+        tools:text="°C"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/view_input_bg"
+        app:layout_constraintBottom_toBottomOf="@id/view_input_bg" />
+    <EditText
+        android:id="@+id/et_input"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingHorizontal="12dp"
+        android:textSize="12sp"
+        android:textColor="#eeeeee"
+        android:digits="0123456789.-"
+        android:background="@null"
+        android:inputType="numberSigned|numberDecimal"
+        android:maxLines="1"
+        tools:text="25.00"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tv_unit"
+        app:layout_constraintTop_toTopOf="@id/view_input_bg"
+        app:layout_constraintBottom_toBottomOf="@id/view_input_bg" />
+
+    <!-- 取消 -->
+    <TextView
+        android:id="@+id/tv_cancel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:paddingVertical="12dp"
+        android:gravity="center_horizontal"
+        android:text="@string/app_cancel"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:background="@drawable/bg_corners05_solid_3b3e44_stroke_theme"
+        app:layout_constraintTop_toBottomOf="@id/et_input"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tv_confirm" />
+
+    <!-- 确定 -->
+    <TextView
+        android:id="@+id/tv_confirm"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:paddingVertical="12dp"
+        android:gravity="center_horizontal"
+        android:text="@string/app_ok"
+        android:textSize="16sp"
+        android:textColor="#55272F"
+        android:background="@drawable/bg_corners05_solid_theme"
+        app:layout_constraintTop_toTopOf="@id/tv_cancel"
+        app:layout_constraintStart_toEndOf="@id/tv_cancel"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

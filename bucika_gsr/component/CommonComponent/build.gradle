@@ -1,0 +1,64 @@
+plugins {
+    id 'com.android.library'
+}
+
+android {
+
+    namespace 'com.energy.commoncomponent'
+    compileSdk rootProject.ext.android.compileSdkVer
+    compileSdkVersion 33
+
+    defaultConfig {
+        minSdk rootProject.ext.android.minSdkVer
+        targetSdk rootProject.ext.android.targetSdkVer
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // 生成包含指定平台的so库的apk
+        ndk {
+            abiFilters 'arm64-v8a', 'armeabi-v7a'
+        }
+        externalNativeBuild {
+            cmake {
+                cppFlags "-frtti -fexceptions"
+                abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+}
+
+dependencies {
+    implementation Deps.appcompat
+    implementation Deps.material
+    implementation Deps.multidex
+    implementation Deps.utilcode
+
+    implementation Deps.lifecycle_runtime_ktx
+    implementation Deps.lifecycle_viewmodel_ktx
+    implementation Deps.lifecycle_livedata_ktx
+}

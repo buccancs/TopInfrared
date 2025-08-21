@@ -1,0 +1,76 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+}
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
+
+android {
+    compileSdk rootProject.ext.android.compileSdk
+
+    defaultConfig {
+        minSdk rootProject.ext.android.minSdk
+        targetSdk rootProject.ext.android.targetSdk
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    flavorDimensions 'app'
+    productFlavors {
+        dev {
+            dimension 'app'
+        }
+        beta {
+            dimension 'app'
+        }
+        prod {
+            dimension 'app'
+        }
+        prodTopdon {
+            dimension 'app'
+        }
+        insideChina {
+            dimension 'app'
+        }
+        prodTopdonInsideChina {
+            dimension 'app'
+        }
+    }
+}
+dependencies {
+    implementation project(':libapp')
+    implementation project(':libui')
+
+    kapt Deps.arouter_compiler
+    api Deps.colorpickerview
+    implementation Deps.brvah
+
+    implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '3.17'
+    implementation group: 'org.apache.xmlbeans', name: 'xmlbeans', version: '3.1.0'
+    implementation 'javax.xml.stream:stax-api:1.0'
+    implementation 'com.fasterxml:aalto-xml:1.2.2'
+    implementation project(':RangeSeekBar')
+
+}

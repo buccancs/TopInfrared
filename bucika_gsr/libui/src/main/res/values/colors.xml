@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <color name="color_default_max">#FFF3812F</color>
+    <color name="color_default_min">#FF28C445</color>
+    <color name="color_select1">#FF000000</color>
+    <color name="color_select2">#FFFFFFFF</color>
+    <color name="color_select3">#FF2B79D8</color>
+    <color name="color_select4">#FFFF0000</color>
+    <color name="color_select5">#FF0FA752</color>
+    <color name="color_select6">#808080</color>
+
+    <color name="wheel_select_bg">#1A2B79D7</color>
+    <color name="wheel_select_text">#FFFFFF</color>
+    <color name="wheel_unselect_text">#B2FFFFFF</color>
+    <color name="ui_main_custom_color">#8A898E</color>
+    <color name="color_green_point">#0CEB82</color>
+</resources>

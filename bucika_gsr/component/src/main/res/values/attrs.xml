@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TemperatureDualView">
+        <attr name="temperature_count" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="ColorBarView">
+        <attr name="color_bar_borderSize" format="dimension" />
+        <attr name="color_bar_borderColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="ReportIRInputView">
+        <attr name="index" format="integer" />
+        <attr name="type" format="enum">
+            <enum name="full" value="0" /> <!-- 全图 -->
+            <enum name="point" value="1" /><!-- 点 -->
+            <enum name="line" value="2" /> <!-- 线 -->
+            <enum name="rect" value="3" /> <!-- 面 -->
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="TemperatureBaseView">
+        <attr name="maxCount" format="integer" />       <!-- 点线面最大数量，默认3 -->
+    </declare-styleable>
+
+    <declare-styleable name="LinearCompassView">
+        <attr name="backgroundColor" format="color" />
+        <attr name="lineColor" format="color" />
+        <attr name="textSize" format="dimension" />
+        <!--文本颜色 textColor 不能将format值设置为integer，应该设置为color，否则将h会报错-->
+        <!--Illegal char <:> at index 54: com.llw.myapplicationkotlin.app-mergeDebugResources-42:/values/values.xml-->
+        <attr name="textColor" format="color" />
+        <attr name="shortLineSize" format="dimension" />
+        <attr name="shortLineColor" format="color" />
+        <attr name="longLineSize" format="dimension" />
+        <attr name="longLineColor" format="color" />
+        <!--底部方位文本size-->
+        <attr name="positionSize" format="dimension" />
+        <attr name="positionColor" format="color" />
+        <attr name="markerColor" format="color" />
+        <attr name="markerSize" format="dimension" />
+    </declare-styleable>
+
+</resources>

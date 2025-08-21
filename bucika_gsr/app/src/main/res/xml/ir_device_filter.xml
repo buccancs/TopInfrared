@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <usb-device
+        product-id="0x5840"
+        vendor-id="0x0BDA" />
+    <usb-device
+        product-id="0x5830"
+        vendor-id="0x0BDA" />
+    <usb-device
+        product-id="17185"
+        vendor-id="13428" />
+    <usb-device class="14" />
+    <usb-device
+        class="239"
+        subclass="2" />    <!-- all device of UVC, change to other -->
+    <!-- a few android 9.0 -->
+    <usb-device
+        class="14"
+        subclass="9" />
+    <usb-device
+        class="2"
+        subclass="0" />
+    <usb-device
+        class="6"
+        subclass="-1" />
+    <usb-device
+        class="39"
+        subclass="0" />
+    <!-- vid若为0A0A会影响到模组重新插拔之后的数据格式转换 -->
+    <usb-device
+        product-id="9730"
+        vendor-id="2570" />
+    <usb-device
+        product-id="4836"
+        vendor-id="9573" />
+    <usb-device
+        product-id="2229"
+        vendor-id="1133" />
+    <usb-device
+        product-id="640"
+        vendor-id="1409" />
+    <usb-device
+        product-id="258"
+        vendor-id="9228" />
+
+    <!-- 海康 256 -->
+    <usb-device product-id="258" vendor-id="11231" />
+</resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="7dp"
+    android:orientation="vertical"
+    tools:ignore="MissingDefaultResource">
+
+    <com.topdon.lib.ui.widget.RoundImageView
+        android:id="@+id/riv_photo"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop"
+        app:round_radius="6dp" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="地板"/>
+
+</LinearLayout>

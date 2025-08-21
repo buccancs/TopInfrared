@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ir_bg_color">
+
+    <com.topdon.lib.core.view.TitleView
+        android:id="@+id/title_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:titleText="@string/dual_light_correction"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <!-- 提示文字 -->
+    <TextView
+        android:id="@+id/tv_tips"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/dual_light_correction_tips_2"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_view" />
+
+    <!-- 提示图片 -->
+    <ImageView
+        android:id="@+id/iv_tips"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="6dp"
+        android:src="@drawable/ic_manual_tips"
+        android:contentDescription="@null"
+        app:layout_constraintDimensionRatio="335:100"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_tips" />
+
+    <!-- 拍照或确认 -->
+    <TextView
+        android:id="@+id/tv_photo_or_confirm"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="60dp"
+        android:gravity="center"
+        android:text="@string/person_headshot_camera"
+        android:textSize="17sp"
+        android:textColor="@color/color_img_calibration_button"
+        android:background="@drawable/bg_corners05_solid_theme"
+        app:layout_constraintWidth_percent="0.8"
+        app:layout_constraintDimensionRatio="304:42"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <LinearLayout
+        android:id="@+id/ll_seek_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/cl_dual"
+        app:layout_constraintEnd_toEndOf="@+id/cl_dual"
+        app:layout_constraintBottom_toTopOf="@id/tv_photo_or_confirm">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-10°"
+            android:textSize="13sp"
+            android:textColor="@color/white" />
+        <SeekBar
+            android:id="@+id/seek_bar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:maxHeight="6dp"
+            android:thumbOffset="0dp"
+            android:thumb="@drawable/oval_ff_stroke_2_2b79d8"
+            android:progressDrawable="@drawable/progress_dual_align" />
+        <TextView
+            android:id="@+id/tv_seek_bar_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10°"
+            android:textSize="13sp"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/cl_dual"
+            app:layout_constraintTop_toTopOf="@id/seek_bar"
+            app:layout_constraintBottom_toBottomOf="@id/seek_bar" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/cl_dual"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
+        app:layout_goneMarginTop="16dp"
+        app:layout_goneMarginBottom="13dp"
+        app:layout_constraintDimensionRatio="480:640"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_tips"
+        app:layout_constraintBottom_toTopOf="@id/ll_seek_bar">
+
+
+        <!-- 双光融合图层 -->
+        <SurfaceView
+            android:id="@+id/dualTextureView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="end" />
+        <com.topdon.module.thermal.ir.view.MoveImageView
+            android:id="@+id/moveImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

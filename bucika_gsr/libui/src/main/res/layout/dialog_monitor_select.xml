@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="24dp"
+    android:background="@drawable/bg_corners10_solid_3b3e44"
+    tools:context="com.topdon.lib.ui.dialog.MonitorSelectDialog">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
+        android:text="@string/select_monitor_type_step1"
+        android:textSize="@dimen/app_font_15"
+        android:textColor="#ffffff"
+        app:layout_constraintWidth_percent="0.82"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 第1步：选择类型 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_first_step"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintWidth_percent="0.82"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title">
+
+        <!-- 点 -->
+        <TextView
+            android:id="@+id/tv_point"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:gravity="center_vertical"
+            android:text="@string/select_monitor_point"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:background="@drawable/selector_monitor_type_item_bg"
+            app:layout_constraintDimensionRatio="263:36"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/svg_monitor_type_point"
+            android:contentDescription="@null"
+            app:layout_constraintWidth_percent="0.09"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_point"
+            app:layout_constraintBottom_toBottomOf="@id/tv_point" />
+
+        <!-- 线 -->
+        <TextView
+            android:id="@+id/tv_line"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:layout_marginTop="12dp"
+            android:gravity="center_vertical"
+            android:text="@string/select_monitor_line"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:background="@drawable/selector_monitor_type_item_bg"
+            app:layout_constraintDimensionRatio="263:36"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_point" />
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/svg_monitor_type_line"
+            android:contentDescription="@null"
+            app:layout_constraintWidth_percent="0.09"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_line"
+            app:layout_constraintBottom_toBottomOf="@id/tv_line" />
+
+        <!-- 面 -->
+        <TextView
+            android:id="@+id/tv_rect"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:layout_marginTop="12dp"
+            android:gravity="center_vertical"
+            android:text="@string/select_monitor_area"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:background="@drawable/selector_monitor_type_item_bg"
+            app:layout_constraintDimensionRatio="263:36"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_line" />
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/svg_monitor_type_rect"
+            android:contentDescription="@null"
+            app:layout_constraintWidth_percent="0.09"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_rect"
+            app:layout_constraintBottom_toBottomOf="@id/tv_rect" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 第2步：选择位置 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_second_step"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:background="#3b3e44"
+        android:visibility="gone"
+        tools:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/cl_first_step"
+        app:layout_constraintBottom_toBottomOf="@id/cl_first_step">
+
+        <Button
+            android:id="@+id/btn_select_location"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/select_monitor_position"
+            android:textSize="16sp"
+            android:textColor="#55272F"
+            android:background="@drawable/bg_corners50_solid_theme"
+            app:layout_constraintWidth_percent="0.74"
+            app:layout_constraintDimensionRatio="235:50"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/space_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintWidth_percent="0.74"
+        app:layout_constraintDimensionRatio="235:44"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cl_first_step" />
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/app_cancel"
+        android:textSize="16sp"
+        android:textColor="#ffffff"
+        android:background="@drawable/bg_corners05_solid_3b3e44_stroke_theme"
+        android:visibility="gone"
+        tools:visibility="gone"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@id/space_btn"
+        app:layout_constraintEnd_toStartOf="@+id/btn_confirm_or_back"
+        app:layout_constraintTop_toTopOf="@id/space_btn"
+        app:layout_constraintBottom_toBottomOf="@id/space_btn" />
+
+    <Button
+        android:id="@+id/btn_confirm_or_back"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:gravity="center"
+        android:text="@string/app_confirm"
+        android:textSize="16sp"
+        android:textColor="#55272F"
+        android:background="@drawable/bg_corners05_solid_theme"
+        app:layout_goneMarginStart="0dp"
+        app:layout_constraintStart_toEndOf="@id/btn_cancel"
+        app:layout_constraintEnd_toEndOf="@id/space_btn"
+        app:layout_constraintTop_toTopOf="@id/space_btn"
+        app:layout_constraintBottom_toBottomOf="@id/space_btn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

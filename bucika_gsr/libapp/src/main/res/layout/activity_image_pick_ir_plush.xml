@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#16131e">
+
+    <com.topdon.lib.core.view.TitleView
+        android:id="@+id/title_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:titleText="@string/ir_camera_take_photo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 为适配平板，这两个 View 的尺寸在 Activity 里去动态算 -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container_view"
+        android:layout_width="192dp"
+        android:layout_height="256dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_view" />
+    <com.topdon.lib.core.view.ImageEditView
+        android:id="@+id/image_edit_view"
+        android:layout_width="192dp"
+        android:layout_height="256dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_view" />
+
+    <ImageView
+        android:id="@+id/img_pick"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_camera_grey_svg"
+        android:contentDescription="@null"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_container_view" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_edit_menu"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#16131e"
+        android:visibility="gone"
+        tools:visibility="gone"
+        app:layout_constraintDimensionRatio="384:75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_edit_view">
+        <ImageView
+            android:id="@+id/iv_edit_color"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/svg_image_pick_color"
+            android:contentDescription="@null"
+            app:layout_constraintWidth_percent="0.1"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/iv_edit_circle" />
+        <View
+            android:id="@+id/view_color"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="3dp"
+            android:background="#e22400"
+            app:layout_constraintDimensionRatio="32:6"
+            app:layout_constraintStart_toStartOf="@id/iv_edit_color"
+            app:layout_constraintEnd_toEndOf="@id/iv_edit_color"
+            app:layout_constraintBottom_toBottomOf="@id/iv_edit_color" />
+        <ImageView
+            android:id="@+id/iv_edit_circle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/selector_image_pick_circle"
+            android:contentDescription="@null"
+            app:layout_constraintWidth_percent="0.1"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_edit_color"
+            app:layout_constraintEnd_toStartOf="@+id/iv_edit_rect" />
+        <ImageView
+            android:id="@+id/iv_edit_rect"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/selector_image_pick_rect"
+            android:contentDescription="@null"
+            app:layout_constraintWidth_percent="0.1"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_edit_circle"
+            app:layout_constraintEnd_toStartOf="@+id/iv_edit_arrow" />
+        <ImageView
+            android:id="@+id/iv_edit_arrow"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/selector_image_pick_arrow"
+            android:contentDescription="@null"
+            app:layout_constraintWidth_percent="0.1"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_edit_rect"
+            app:layout_constraintEnd_toStartOf="@+id/iv_edit_clear" />
+        <ImageView
+            android:id="@+id/iv_edit_clear"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/svg_image_pick_clear"
+            android:contentDescription="@null"
+            app:layout_constraintWidth_percent="0.1"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_edit_arrow"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

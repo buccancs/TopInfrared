@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/svg_image_pick_circle_select_yes" android:state_selected="true" />
+    <item android:drawable="@drawable/svg_image_pick_circle_select_yes" android:state_checked="true" />
+    <item android:drawable="@drawable/svg_image_pick_circle_select_not" />
+</selector>

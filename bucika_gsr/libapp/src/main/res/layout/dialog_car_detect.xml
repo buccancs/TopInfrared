@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/toolbar_16131E"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <com.topdon.lib.core.view.TitleView
+        android:id="@+id/title_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleText="@string/car_detection" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcy_detect"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:layout_marginBottom="28dp"
+        android:scrollbars="none"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:itemCount="3"
+        tools:listitem="@layout/item_car_detect_layout" />
+
+</LinearLayout>

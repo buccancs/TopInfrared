@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "724326654384",
+    "project_id": "tc-topinfrared",
+    "storage_bucket": "tc-topinfrared.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:724326654384:android:bc30b37ed2852d2ea73675",
+        "android_client_info": {
+          "package_name": "com.csl.irCamera"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "724326654384-pqttfcrs0ht9rvir3nt730h27cvn2d9m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAowgmoVeQxKxTUVWgbly4CS9W2j6kShpw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "724326654384-pqttfcrs0ht9rvir3nt730h27cvn2d9m.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "724326654384-lq0chbp7v4q3aik9pc4n8t3rlmt79gnh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.tc.topinfrared"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

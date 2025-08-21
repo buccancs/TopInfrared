@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_bottom"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#23202e"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintDimensionRatio="375:49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- 下载 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_download"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:layout_constraintWidth_percent="0.12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <ImageView
+                android:id="@+id/iv_download"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/selector_download"
+                android:contentDescription="@null"
+                app:layout_constraintWidth_percent="0.5"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- 分享 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_share"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/cl_download"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/svg_gallery_action_share"
+                android:contentDescription="@null"
+                app:layout_constraintWidth_percent="0.5"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- 删除 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_delete"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.12"
+            app:layout_constraintStart_toEndOf="@id/cl_download"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/svg_gallery_action_delete"
+                android:contentDescription="@null"
+                app:layout_constraintWidth_percent="0.5"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        android:id="@+id/refresh_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/cl_bottom">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ir_gallery_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

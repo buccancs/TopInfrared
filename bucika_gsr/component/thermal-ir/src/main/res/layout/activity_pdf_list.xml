@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#16131e">
+
+    <com.topdon.lib.core.view.TitleView
+        android:id="@+id/title_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleText="@string/app_report" />
+
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        android:id="@+id/fragment_pdf_recycler_lay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fragment_pdf_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:scrollbars="none" />
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+
+</LinearLayout>

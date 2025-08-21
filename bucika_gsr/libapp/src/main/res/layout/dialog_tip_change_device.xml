@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_tip_shutter_card"
+    android:paddingStart="20dp"
+    android:paddingTop="24dp"
+    android:paddingEnd="20dp"
+    android:paddingBottom="24dp">
+
+    <ImageView
+        android:id="@+id/img_close"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:contentDescription="@null"
+        android:src="@drawable/dialog_tip_shutter_close"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ts004_device_change"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_horizontal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintDimensionRatio="319:90"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/setting_item_left"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/ic_setting_ts001_svg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/guideline_1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_left_device_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="13dp"
+                android:text="@string/tc_has_line_device"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:maxLines="2"
+                android:ellipsize="end"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/tv_left_point"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="4dp"
+                app:layout_constraintLeft_toLeftOf="@+id/tv_left_device_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_left_device_name"
+                android:background="@drawable/bg_connect_green_point"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_left_connect_device_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:text="@string/app_connect"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_left_device_name"
+                app:layout_constraintLeft_toRightOf="@+id/tv_left_point"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/setting_item_right"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/ic_setting_ts004_active_svg"
+            app:layout_constraintBottom_toBottomOf="@id/setting_item_left"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guideline_1"
+            app:layout_constraintTop_toTopOf="@id/setting_item_left">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_right_device_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="13dp"
+                android:text="TS004"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:maxLines="2"
+                android:ellipsize="end"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <View
+                android:id="@+id/tv_right_point"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="4dp"
+                app:layout_constraintLeft_toLeftOf="@+id/tv_right_device_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_right_device_name"
+                android:background="@drawable/bg_connect_green_point"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_right_connect_device_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:text="@string/app_connect"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_right_device_name"
+                app:layout_constraintLeft_toRightOf="@+id/tv_right_point"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <CheckBox
+        android:id="@+id/dialog_tip_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:button="@drawable/ic_check"
+        android:text="@string/tip_otg_no_show"
+        android:textColor="@color/white"
+        android:textSize="@dimen/app_font_15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cl_horizontal" />
+
+    <TextView
+        android:id="@+id/tv_i_know"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_corners05_solid_theme"
+        android:gravity="center"
+        android:text="@string/app_got_it"
+        android:textColor="#55272F"
+        android:textSize="16sp"
+        app:layout_constraintDimensionRatio="235:44"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dialog_tip_check" />
+</androidx.constraintlayout.widget.ConstraintLayout>

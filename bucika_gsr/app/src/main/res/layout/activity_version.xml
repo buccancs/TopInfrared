@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_16131E"
+    android:fitsSystemWindows="true"
+    tools:context=".VersionActivity">
+
+    <com.topdon.lib.core.view.TitleView
+        android:id="@+id/title_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:titleText="@string/setting_version"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/setting_version_img"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:adjustViewBounds="true"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintWidth_percent="0.25" />
+
+    <TextView
+        android:id="@+id/setting_version_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/app_title_font"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting_version_img" />
+
+    <TextView
+        android:id="@+id/version_code_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="@string/version_code"
+        android:textColor="#e8e8e8"
+        android:textSize="@dimen/app_small_font"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting_version_txt" />
+
+    <include layout="@layout/item_new_version"
+        app:layout_constraintTop_toBottomOf="@id/version_code_text"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="60dp"
+        />
+
+    <TextView
+        android:id="@+id/version_year_txt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:gravity="center_horizontal"
+        android:textColor="#d1d1d1"
+        android:textSize="@dimen/app_smaller_font"
+        tools:text="Copyright %s2023-2024 %s公司名 Technology Co.,Ltd.\nAll Rights Reserved."
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.8" />
+
+    <View
+        android:id="@+id/version_line"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="12dp"
+        android:background="#80ffffff"
+        app:layout_constraintBottom_toTopOf="@id/version_year_txt"
+        app:layout_constraintEnd_toEndOf="@id/version_year_txt"
+        app:layout_constraintStart_toStartOf="@id/version_year_txt" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/version_line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/version_statement_private_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/user_services_agreement"
+            android:textColor="#FFBA42"
+            android:textSize="@dimen/app_small_font" />
+
+        <TextView
+            android:id="@+id/version_statement_policy_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/privacy_policy"
+            android:textColor="#FFBA42"
+            android:textSize="@dimen/app_small_font" />
+
+        <TextView
+            android:id="@+id/version_statement_copyright_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/third_party_components"
+            android:textColor="#FFBA42"
+            android:textSize="@dimen/app_small_font" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

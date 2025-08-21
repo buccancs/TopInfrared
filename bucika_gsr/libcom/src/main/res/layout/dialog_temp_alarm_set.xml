@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide_line_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.13" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide_line_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.87" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_corners10_solid_3b3e44"
+        app:layout_constraintWidth_percent="0.74"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guide_line_top"
+        app:layout_constraintBottom_toBottomOf="@id/guide_line_bottom">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="24dp">
+
+            <!-- 关闭 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_close"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintWidth_percent="0.16"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/svg_x_cc"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintWidth_percent="0.4"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- 标题 -->
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/temp_alarm_alarm"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/cl_close"
+                app:layout_constraintBottom_toBottomOf="@id/cl_close" />
+
+            <com.topdon.lib.core.view.MyTextView
+                android:id="@+id/tv_alarm_high"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:text="@string/temp_alarm_high_alarm"
+                android:textSize="13sp"
+                android:textColor="#ffffff"
+                android:drawablePadding="6dp"
+                tools:drawableStart="@drawable/svg_temperature_alarm_high"
+                app:start_height="16sp"
+                app:drawableStartCompat="@drawable/svg_temperature_alarm_high"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_title" />
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_alarm_high"
+                style="@style/cameraSetSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_alarm_high"
+                app:layout_constraintBottom_toBottomOf="@id/tv_alarm_high" />
+            <View
+                android:id="@+id/view_high_input_bg"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_corners06_solid_626569"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintDimensionRatio="235:36"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_alarm_high" />
+            <TextView
+                android:id="@+id/tv_alarm_high_unit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="0dp"
+                android:paddingEnd="10dp"
+                android:textSize="13sp"
+                android:textColor="#d2d2d2"
+                tools:text="°C"
+                app:layout_constraintEnd_toEndOf="@id/view_high_input_bg"
+                app:layout_constraintTop_toTopOf="@id/view_high_input_bg"
+                app:layout_constraintBottom_toBottomOf="@id/view_high_input_bg" />
+            <EditText
+                android:id="@+id/et_alarm_high"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:inputType="numberDecimal|numberSigned"
+                android:maxLength="7"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textSize="13sp"
+                android:textColor="#ffffff"
+                android:background="@null"
+                tools:text="56"
+                app:layout_constraintStart_toStartOf="@id/view_high_input_bg"
+                app:layout_constraintEnd_toStartOf="@id/tv_alarm_high_unit"
+                app:layout_constraintTop_toTopOf="@id/view_high_input_bg"
+                app:layout_constraintBottom_toBottomOf="@id/view_high_input_bg" />
+
+
+            <com.topdon.lib.core.view.MyTextView
+                android:id="@+id/tv_alarm_low"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:text="@string/temp_alarm_low_alarm"
+                android:textSize="13sp"
+                android:textColor="#ffffff"
+                android:drawablePadding="6dp"
+                tools:drawableStart="@drawable/svg_temperature_alarm_low"
+                app:start_height="16sp"
+                app:drawableStartCompat="@drawable/svg_temperature_alarm_low"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_alarm_high" />
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_alarm_low"
+                style="@style/cameraSetSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_alarm_low"
+                app:layout_constraintBottom_toBottomOf="@id/tv_alarm_low" />
+            <View
+                android:id="@+id/view_low_input_bg"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_corners06_solid_626569"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintDimensionRatio="235:36"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_alarm_low" />
+            <TextView
+                android:id="@+id/tv_alarm_low_unit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="0dp"
+                android:paddingEnd="10dp"
+                android:textSize="13sp"
+                android:textColor="#d2d2d2"
+                tools:text="°C"
+                app:layout_constraintEnd_toEndOf="@id/view_low_input_bg"
+                app:layout_constraintTop_toTopOf="@id/view_low_input_bg"
+                app:layout_constraintBottom_toBottomOf="@id/view_low_input_bg" />
+            <EditText
+                android:id="@+id/et_alarm_low"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:inputType="numberDecimal|numberSigned"
+                android:maxLength="7"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textSize="13sp"
+                android:textColor="#ffffff"
+                android:background="@null"
+                tools:text="56"
+                app:layout_constraintStart_toStartOf="@id/view_low_input_bg"
+                app:layout_constraintEnd_toStartOf="@id/tv_alarm_low_unit"
+                app:layout_constraintTop_toTopOf="@id/view_low_input_bg"
+                app:layout_constraintBottom_toBottomOf="@id/view_low_input_bg" />
+
+            <View
+                android:id="@+id/view_line_low"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="#33ffffff"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_alarm_low" />
+
+            <com.topdon.lib.core.view.MyTextView
+                android:id="@+id/tv_alarm_mark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="14dp"
+                android:gravity="center_vertical"
+                android:text="@string/temp_alarm_area_markers"
+                android:textSize="13sp"
+                android:textColor="#ffffff"
+                android:drawablePadding="6dp"
+                tools:drawableStart="@drawable/svg_temperature_alarm_mark"
+                app:start_height="16sp"
+                app:drawableStartCompat="@drawable/svg_temperature_alarm_mark"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view_line_low" />
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_alarm_mark"
+                style="@style/cameraSetSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_alarm_mark"
+                app:layout_constraintBottom_toBottomOf="@id/tv_alarm_mark" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_alarm_mark"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/bg_corners10_solid_626569"
+                android:visibility="gone"
+                tools:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_alarm_mark">
+                <ImageView
+                    android:id="@+id/img_mark_high"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:contentDescription="@null"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_report_more"
+                    app:layout_constraintBottom_toTopOf="@id/img_mark_low"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="spread" />
+                <ImageView
+                    android:id="@+id/img_c_alarm_high"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:contentDescription="@null"
+                    app:layout_constraintEnd_toStartOf="@id/img_mark_high"
+                    app:layout_constraintTop_toTopOf="@id/img_mark_high"
+                    app:layout_constraintBottom_toBottomOf="@id/img_mark_high" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="18dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/thermal_high_temperature"
+                    android:textSize="13sp"
+                    android:textColor="#ffffff"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/img_mark_high"
+                    app:layout_constraintBottom_toBottomOf="@id/img_mark_high" />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="#33ffffff"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/img_mark_high" />
+
+                <ImageView
+                    android:id="@+id/img_mark_low"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:contentDescription="@null"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_report_more"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/img_mark_high" />
+                <ImageView
+                    android:id="@+id/img_c_alarm_low"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:contentDescription="@null"
+                    app:layout_constraintBottom_toBottomOf="@id/img_mark_low"
+                    app:layout_constraintRight_toLeftOf="@id/img_mark_low"
+                    app:layout_constraintTop_toTopOf="@id/img_mark_low" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="18dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/app_Low_temperature"
+                    android:textSize="13sp"
+                    android:textColor="#ffffff"
+                    app:layout_constraintBottom_toBottomOf="@id/img_mark_low"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/img_mark_low" />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="#33ffffff"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/img_mark_low" />
+
+                <ImageView
+                    android:id="@+id/iv_check_stoke"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="10dp"
+                    android:src="@drawable/selector_checkbox_alarm"
+                    android:contentDescription="@null"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/img_mark_low" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="18dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/temp_alarm_mark_stroke"
+                    android:textSize="13sp"
+                    android:textColor="#ffffff"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/iv_check_stoke"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_check_stoke" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="#33ffffff"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_check_stoke" />
+
+                <ImageView
+                    android:id="@+id/iv_check_matrix"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="10dp"
+                    android:src="@drawable/selector_checkbox_alarm"
+                    android:contentDescription="@null"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_check_stoke" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="18dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/temp_alarm_mark_matrix"
+                    android:textSize="13sp"
+                    android:textColor="#ffffff"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/iv_check_matrix"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_check_matrix" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.topdon.lib.core.view.MyTextView
+                android:id="@+id/tv_alarm_ringtone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="14dp"
+                android:gravity="center_vertical"
+                android:text="@string/temp_alarm_alarm_ringtone"
+                android:textSize="13sp"
+                android:textColor="#ffffff"
+                android:drawablePadding="6dp"
+                app:drawableStartCompat="@drawable/svg_temperature_alarm_ringtone"
+                tools:drawableStart="@drawable/svg_temperature_alarm_ringtone"
+                app:start_height="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cl_alarm_mark" />
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_alarm_ringtone"
+                style="@style/cameraSetSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_alarm_ringtone"
+                app:layout_constraintBottom_toBottomOf="@id/tv_alarm_ringtone" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_ringtone_select"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/bg_corners10_solid_626569"
+                android:visibility="gone"
+                tools:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_alarm_ringtone">
+
+                <ImageView
+                    android:id="@+id/iv_ringtone1"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="10dp"
+                    android:src="@drawable/selector_checkbox_alarm"
+                    android:contentDescription="@null"
+                    app:layout_constraintBottom_toTopOf="@+id/iv_ringtone2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="spread" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="18dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/temp_alarm_ringtone1"
+                    android:textSize="13sp"
+                    android:textColor="#ccffffff"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_ringtone1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/iv_ringtone1" />
+
+                <ImageView
+                    android:id="@+id/iv_ringtone2"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:contentDescription="@null"
+                    android:padding="10dp"
+                    android:src="@drawable/selector_checkbox_alarm"
+                    app:layout_constraintBottom_toTopOf="@+id/iv_ringtone3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_ringtone1" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="18dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/temp_alarm_ringtone2"
+                    android:textSize="13sp"
+                    android:textColor="#ccffffff"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_ringtone2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/iv_ringtone2" />
+
+                <ImageView
+                    android:id="@+id/iv_ringtone3"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:contentDescription="@null"
+                    android:padding="10dp"
+                    android:src="@drawable/selector_checkbox_alarm"
+                    app:layout_constraintBottom_toTopOf="@id/iv_ringtone4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_ringtone2" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="18dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/temp_alarm_ringtone3"
+                    android:textSize="13sp"
+                    android:textColor="#ccffffff"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_ringtone3"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/iv_ringtone3" />
+
+                <ImageView
+                    android:id="@+id/iv_ringtone4"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:contentDescription="@null"
+                    android:padding="10dp"
+                    android:src="@drawable/selector_checkbox_alarm"
+                    app:layout_constraintBottom_toTopOf="@id/iv_ringtone5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_ringtone3" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="18dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/temp_alarm_ringtone4"
+                    android:textSize="13sp"
+                    android:textColor="#ccffffff"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_ringtone4"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/iv_ringtone4" />
+
+                <ImageView
+                    android:id="@+id/iv_ringtone5"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:contentDescription="@null"
+                    android:padding="10dp"
+                    android:src="@drawable/selector_checkbox_alarm"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_ringtone4" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="18dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/temp_alarm_ringtone5"
+                    android:textSize="13sp"
+                    android:textColor="#ccffffff"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_ringtone5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/iv_ringtone5" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="#33ffffff"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_ringtone1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="#33ffffff"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_ringtone2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="#33ffffff"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_ringtone3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="#33ffffff"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_ringtone4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/tv_save"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="center"
+                android:text="@string/person_save"
+                android:textSize="16sp"
+                android:textColor="#55272F"
+                android:background="@drawable/bg_corners05_solid_theme"
+                app:layout_constraintDimensionRatio="235:44"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cl_ringtone_select" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

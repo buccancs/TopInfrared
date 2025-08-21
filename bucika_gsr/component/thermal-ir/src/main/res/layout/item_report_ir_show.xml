@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!-- 温度、最低温~最高温 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_range"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/layer_report_ir_show_item_bg">
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="16dp"
+            android:textSize="16sp"
+            android:textColor="#FFBA42"
+            tools:text="点(P)"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_range_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:textSize="14sp"
+            android:textColor="#e8e8e8"
+            tools:text="最低温-最高温"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title" />
+        <TextView
+            android:id="@+id/tv_range_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:gravity="end"
+            android:textSize="14sp"
+            android:textColor="#e8e8e8"
+            tools:text="23℃~33℃"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_range_title" />
+        <View
+            android:id="@+id/view_line_range"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/shape_stroke_1_5b5961_dash_5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 平均温 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_average"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:background="@drawable/layer_report_ir_show_item_bg"
+        tools:visibility="visible">
+        <TextView
+            android:id="@+id/tv_average_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:textSize="14sp"
+            android:textColor="#e8e8e8"
+            tools:text="L1 平均温"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/tv_average_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:gravity="end"
+            android:textSize="14sp"
+            android:textColor="#e8e8e8"
+            tools:text="33℃"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+        <View
+            android:id="@+id/view_line_average"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/shape_stroke_1_5b5961_dash_5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 注释 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_explain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/layer_report_ir_show_item_bg">
+        <TextView
+            android:id="@+id/tv_explain_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:textSize="14sp"
+            android:textColor="#e8e8e8"
+            tools:text="L1 注释"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/tv_explain_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp"
+            android:textSize="14sp"
+            android:textColor="#e8e8e8"
+            tools:text="打开阀门"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_explain_title" />
+        <View
+            android:id="@+id/view_line_explain"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/shape_stroke_1_5b5961_dash_5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

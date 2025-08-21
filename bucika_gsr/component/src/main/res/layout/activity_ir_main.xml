@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:clipChildren="false"
+    android:background="#16131e"
+    tools:context=".activity.IRMainActivity">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_page"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/cl_bottom" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_bottom"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="375:56"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_main_bg"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_ir_main_bg_disconnect"
+            android:contentDescription="@null"
+            app:layout_constraintDimensionRatio="1125:255"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <View
+            android:id="@+id/view_main_thermal"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <!-- 功能 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_icon_monitor"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/cl_icon_gallery">
+            <ImageView
+                android:id="@+id/iv_icon_monitor"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/selector_monitor"
+                android:contentDescription="@null"
+                app:layout_constraintWidth_percent="0.24"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/tv_icon_monitor" />
+            <TextView
+                android:id="@+id/tv_icon_monitor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="@string/vehicle_function"
+                android:textSize="@dimen/app_font_11"
+                android:textColor="@color/tab_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_icon_monitor"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- 图库 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_icon_gallery"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cl_icon_monitor"
+            app:layout_constraintEnd_toStartOf="@+id/view_main_thermal">
+            <ImageView
+                android:id="@+id/iv_icon_gallery"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/selector_gallery"
+                android:contentDescription="@null"
+                app:layout_constraintWidth_percent="0.24"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/tv_icon_gallery" />
+            <TextView
+                android:id="@+id/tv_icon_gallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="@string/app_gallery"
+                android:textSize="@dimen/app_font_11"
+                android:textColor="@color/tab_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_icon_gallery"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- 报告 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_icon_report"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/view_main_thermal"
+            app:layout_constraintEnd_toStartOf="@+id/cl_icon_mine">
+            <ImageView
+                android:id="@+id/iv_icon_report"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/selector_report"
+                android:contentDescription="@null"
+                app:layout_constraintWidth_percent="0.24"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/tv_icon_report" />
+            <TextView
+                android:id="@+id/tv_icon_report"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="@string/app_report"
+                android:textSize="@dimen/app_font_11"
+                android:textColor="@color/tab_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_icon_report"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- 我的 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_icon_mine"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cl_icon_report"
+            app:layout_constraintEnd_toEndOf="parent">
+            <ImageView
+                android:id="@+id/iv_icon_mine"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/selector_more"
+                android:contentDescription="@null"
+                app:layout_constraintWidth_percent="0.24"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/tv_icon_mine" />
+            <TextView
+                android:id="@+id/tv_icon_mine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="@string/search_learn_more"
+                android:textSize="@dimen/app_font_11"
+                android:textColor="@color/tab_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_icon_mine"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

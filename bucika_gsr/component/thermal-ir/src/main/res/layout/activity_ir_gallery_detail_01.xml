@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#16131e"
+    android:fitsSystemWindows="true">
+
+    <com.topdon.lib.core.view.TitleView
+        android:id="@+id/title_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:rightDrawable="@drawable/ic_toolbar_info_svg"
+        app:right2Drawable="@drawable/ic_toolbar_share_svg"
+        app:right3Drawable="@drawable/ic_toolbar_delete_svg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/ir_gallery_viewpager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/ll_bottom"
+        app:layout_constraintTop_toBottomOf="@id/title_view" />
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal"
+        android:background="#16131e"
+        app:layout_constraintDimensionRatio="375:52"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ll_ir_edit_2D"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/iv_2d"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_gallery_bottom_2d_svg"
+                android:contentDescription="@null"
+                app:layout_constraintWidth_percent="0.24"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/tv_2d" />
+            <TextView
+                android:id="@+id/tv_2d"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/album_menu_2d"
+                android:textSize="@dimen/app_font_13"
+                android:textColor="#8a898e"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_2d"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ll_ir_edit_3D"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/iv_3d"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_gallery_bottom_3d_svg"
+                android:contentDescription="@null"
+                app:layout_constraintWidth_percent="0.24"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/tv_3d" />
+            <TextView
+                android:id="@+id/tv_3d"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/album_menu_3d"
+                android:textSize="@dimen/app_font_13"
+                android:textColor="#8a898e"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_3d"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ll_ir_report"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/iv_report"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_gallery_bottom_report_svg"
+                android:contentDescription="@null"
+                app:layout_constraintWidth_percent="0.24"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/tv_report" />
+            <TextView
+                android:id="@+id/tv_report"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/album_edit_report"
+                android:textSize="@dimen/app_font_13"
+                android:textColor="#8a898e"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_report"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ll_ir_ex"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/iv_ir_ex"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_gallery_bottom_excel_svg"
+                android:contentDescription="@null"
+                app:layout_constraintWidth_percent="0.24"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/tv_ir_ex" />
+            <TextView
+                android:id="@+id/tv_ir_ex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/album_menu_excel"
+                android:textSize="@dimen/app_font_13"
+                android:textColor="#8a898e"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_ir_ex"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

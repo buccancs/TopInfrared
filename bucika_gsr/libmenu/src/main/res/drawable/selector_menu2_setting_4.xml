@@ -1,0 +1,6 @@
+<level-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/svg_menu2_setting_4_rotate0" android:maxLevel="0"/>
+    <item android:drawable="@drawable/svg_menu2_setting_4_rotate90" android:maxLevel="90"/>
+    <item android:drawable="@drawable/svg_menu2_setting_4_rotate180" android:maxLevel="180"/>
+    <item android:drawable="@drawable/svg_menu2_setting_4_rotate270" android:maxLevel="270"/>
+</level-list>

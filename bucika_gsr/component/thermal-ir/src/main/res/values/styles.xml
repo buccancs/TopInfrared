@@ -1,0 +1,18 @@
+<resources>
+
+    <style name="SeekBarAnimation">
+        <item name="android:windowEnterAnimation">@anim/default_dialog_in</item>
+        <item name="android:windowExitAnimation">@anim/default_dialog_out</item>
+    </style>
+
+    <style name="TempTitleStyle">
+        <item name="android:textColor">@color/temp_font_color</item>
+        <item name="android:textSize">@dimen/app_font_15</item>
+    </style>
+
+    <style name="TempNormalStyle">
+        <item name="android:textColor">@color/temp_font_second_color</item>
+        <item name="android:textSize">@dimen/app_font_13</item>
+    </style>
+
+</resources>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_root"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:contentDescription="@null"
+            tools:src="@drawable/selector_menu2_fence_point"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 仅温度档位菜单所用，温度档位范围文字 -->
+        <TextView
+            android:id="@+id/tv_icon_text"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="5dp"
+            android:gravity="center_vertical"
+            android:textSize="12sp"
+            android:textColor="@color/temp_level_text"
+            tools:text="-20\n~\n50°C"
+            app:layout_constraintStart_toStartOf="@id/iv_icon"
+            app:layout_constraintEnd_toEndOf="@id/iv_icon"
+            app:layout_constraintTop_toTopOf="@id/iv_icon"
+            app:layout_constraintBottom_toBottomOf="@id/iv_icon" />
+
+        <TextView
+            android:id="@+id/tv_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingVertical="4dp"
+            android:gravity="center_horizontal"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textSize="12sp"
+            android:textColor="@color/second_menu_text"
+            tools:text="@string/thermal_point"
+            app:layout_constraintStart_toStartOf="@id/iv_icon"
+            app:layout_constraintEnd_toEndOf="@id/iv_icon"
+            app:layout_constraintTop_toBottomOf="@id/iv_icon" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

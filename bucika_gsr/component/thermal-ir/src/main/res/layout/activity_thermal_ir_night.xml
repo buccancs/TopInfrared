@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/toolbar_16131E"
+    android:fitsSystemWindows="true"
+    tools:context=".activity.IRThermalNightActivity">
+
+    <com.topdon.lib.core.view.MainTitleView
+        android:id="@+id/title_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:isInitLeft="false"
+        app:leftDrawable="@drawable/ic_back_white_night_svg"
+        app:rightDrawable="@drawable/ic_info_svg"
+        app:right2Drawable="@drawable/svg_tisr_off"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.topdon.lib.core.view.MyTextView
+        android:id="@+id/tv_title_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/toolbar_temperature"
+        android:gravity="center"
+        android:maxLines="2"
+        android:maxWidth="100dp"
+        android:textSize="16sp"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="10sp"
+        android:autoSizeMaxTextSize="16sp"
+        android:textColor="@color/tab_text"
+        android:drawablePadding="5dp"
+        android:drawableBottom="@drawable/selector_oval_ts001_title"
+        android:visibility="gone"
+        tools:visibility="visible"
+        tools:textColor="#ffffff"
+        tools:drawableBottom="@drawable/bg_oval_solid_ff"
+        app:drawable_height="4dp"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tv_title_observe"
+        app:layout_constraintTop_toTopOf="@id/title_view"
+        app:layout_constraintBottom_toBottomOf="@id/title_view" />
+    <com.topdon.lib.core.view.MyTextView
+        android:id="@+id/tv_title_observe"
+        android:layout_width="wrap_content"
+        android:maxWidth="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="10sp"
+        android:autoSizeMaxTextSize="16sp"
+        android:text="@string/toolbar_observe"
+        android:textSize="16sp"
+        android:maxLines="2"
+        android:textColor="@color/tab_text"
+        android:drawablePadding="5dp"
+        android:drawableBottom="@drawable/selector_oval_ts001_title"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:drawable_height="4dp"
+        app:layout_constraintStart_toEndOf="@id/tv_title_temp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/title_view"
+        app:layout_constraintBottom_toBottomOf="@id/title_view" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/thermal_menu_lay"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/toolbar_16131E"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.topdon.menu.MenuFirstTabView
+            android:id="@+id/view_menu_first"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <com.topdon.menu.MenuSecondView
+            android:id="@+id/thermal_recycler_night"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            app:deviceType="single_light"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/view_menu_first" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 中间部分 -->
+    <FrameLayout
+        android:id="@+id/thermal_lay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="192:256"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_view"
+        app:layout_constraintBottom_toTopOf="@id/thermal_menu_lay">
+
+        <!-- 红外出图图层 -->
+        <com.infisense.usbir.view.CameraView
+            android:id="@+id/cameraView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <!-- 双光融合图层 native camera use -->
+        <SurfaceView
+            android:id="@+id/dualTextureViewNativeCamera"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <com.topdon.lib.ui.camera.CameraPreView
+            android:id="@+id/cameraPreview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+        <!-- 温度图层 -->
+        <com.infisense.usbir.view.TemperatureView
+            android:id="@+id/temperatureView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <com.topdon.module.thermal.ir.view.compass.LinearCompassView
+            android:id="@+id/compassView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            app:backgroundColor="#00ffffff"
+            app:markerColor="@color/color_select3"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/thermal_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+
+        <com.topdon.libcom.view.TempLayout
+            android:id="@+id/temp_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.topdon.module.thermal.ir.view.DistanceMeasureView
+            android:id="@+id/distance_measure_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <com.infisense.usbir.view.ZoomCaliperView
+            android:id="@+id/zoomView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <com.topdon.lib.ui.widget.SteeringWheelView
+            android:id="@+id/thermal_steering_view"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <!-- 趋势图 -->
+    <Space
+        android:id="@+id/space_chart"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintWidth_percent="0.7"
+        app:layout_constraintDimensionRatio="264:158"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/thermal_menu_lay" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_trend_open"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#e616131e"
+        android:visibility="gone"
+        app:layout_constraintWidth_percent="0.7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/space_chart">
+        <ImageView
+            android:id="@+id/iv_trend_close"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:padding="6dp"
+            android:src="@drawable/svg_ir_trend_close"
+            android:contentDescription="@null"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+        <com.topdon.module.thermal.ir.view.ChartTrendView
+            android:id="@+id/view_chart_trend"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="264:158"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_trend_close"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/ll_trend_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="2dp"
+        android:orientation="horizontal"
+        android:background="@drawable/bg_corners_t_r_4_solid_16131e"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/space_chart">
+        <ImageView
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:padding="6dp"
+            android:src="@drawable/svg_ir_trend_icon"
+            android:contentDescription="@null"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+        <ImageView
+            android:id="@+id/iv_trend_open"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="4dp"
+            android:padding="6dp"
+            android:src="@drawable/svg_ir_trend_open"
+            android:contentDescription="@null"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </LinearLayout>
+
+    <!-- 伪彩条 -->
+    <com.topdon.lib.ui.widget.BitmapConstraintLayout
+        android:id="@+id/cl_seek_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/thermal_lay"
+        app:layout_constraintRight_toRightOf="@id/thermal_lay"
+        app:layout_constraintTop_toTopOf="@id/thermal_lay">
+
+        <ImageView
+            android:id="@+id/temperature_iv_lock"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="6dp"
+            android:padding="8dp"
+            android:src="@drawable/svg_pseudo_bar_unlock"
+            android:contentDescription="@null"
+            app:layout_constraintBottom_toTopOf="@id/temperature_seekbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_temp_content"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:gravity="end"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/temperature_iv_input"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="22dp"
+            android:padding="8dp"
+            android:src="@drawable/ic_color_edit"
+            android:contentDescription="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/temperature_seekbar"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <com.topdon.lib.ui.widget.seekbar.VerticalRangeSeekBar
+            android:id="@+id/temperature_seekbar"
+            android:layout_width="80dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="-12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="-12dp"
+            app:layout_constraintBottom_toTopOf="@id/temperature_iv_input"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/temperature_iv_lock"
+            app:rsb_gravity="bottom"
+            app:rsb_indicator_background_color="#00000000"
+            app:rsb_indicator_height="wrap_content"
+            app:rsb_indicator_padding_bottom="6dp"
+            app:rsb_indicator_padding_left="6dp"
+            app:rsb_indicator_padding_right="6dp"
+            app:rsb_indicator_padding_top="6dp"
+            app:rsb_indicator_radius="3dp"
+            app:rsb_indicator_show_mode="alwaysShow"
+            app:rsb_indicator_width="wrap_content"
+            app:rsb_max="0"
+            app:rsb_min="0"
+            app:rsb_min_interval="0.1"
+            app:rsb_mode="range"
+            app:rsb_orientation="left"
+            app:rsb_progress_drawable="@drawable/ic_seekbar_progress"
+            app:rsb_progress_height="16dp"
+            app:rsb_progress_radius="16dp"
+            app:rsb_thumb_height="24dp"
+            app:rsb_thumb_width="24dp"
+            app:rsb_tick_mark_mode="number" />
+    </com.topdon.lib.ui.widget.BitmapConstraintLayout>
+
+    <com.topdon.module.thermal.ir.view.TimeDownView
+        android:id="@+id/time_down_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@id/thermal_lay"
+        app:layout_constraintEnd_toEndOf="@id/thermal_lay"
+        app:layout_constraintTop_toTopOf="@id/thermal_lay"
+        app:layout_constraintBottom_toBottomOf="@id/thermal_lay" />
+
+    <TextView
+        android:id="@+id/tv_type_ind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/bg_time_shape"
+        android:paddingStart="5dp"
+        android:paddingTop="3dp"
+        android:paddingEnd="5dp"
+        android:paddingBottom="3dp"
+        android:text="@string/app_auto_photo"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/thermal_menu_lay" />
+
+    <!-- 拍照-更多 5 选项菜单 -->
+    <ViewStub
+        android:id="@+id/view_stub_camera"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout="@layout/layout_camera_setting"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/thermal_menu_lay" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/pop_time_lay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_time_shape"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/thermal_menu_lay">
+
+        <TextView
+            android:id="@+id/pop_time_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginBottom="8dp"
+            android:text="00:00"
+            android:textColor="@color/white"
+            android:textSize="@dimen/app_font_15"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:src="@drawable/pop_time_red"
+            app:layout_constraintBottom_toBottomOf="@id/pop_time_text"
+            app:layout_constraintEnd_toStartOf="@id/pop_time_text"
+            app:layout_constraintHorizontal_bias="0.65"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/pop_time_text" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/lay_car_detect_prompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/thermal_lay"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:orientation="horizontal">
+
+        <include
+            android:id="@+id/view_car_detect"
+            layout="@layout/layout_car_detect_prompt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="80dp"
+            android:layout_marginStart="16dp"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

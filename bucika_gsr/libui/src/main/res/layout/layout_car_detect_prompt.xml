@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/ll_car_detect_info"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:background="@drawable/bg_corners6_solid_b3_00"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_car_detect_prompt" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:background="@drawable/bg_corners6_solid_b3_00">
+
+        <TextView
+            android:id="@+id/tv_detect_prompt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_arrow_right_white"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="5dp"
+            android:textColor="@color/white"
+            android:drawablePadding="8dp"
+            android:textSize="13sp"
+            tools:text="Temperature 90℃-100℃ " />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

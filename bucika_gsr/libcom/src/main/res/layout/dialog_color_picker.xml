@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:paddingBottom="10dp"
+        android:layout_marginRight="25dp"
+        android:background="@drawable/bg_card"
+        android:paddingTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/dialog_tip_msg_lay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintEnd_toEndOf="@id/tip_end_line"
+            app:layout_constraintStart_toStartOf="@id/tip_start_line"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/color_board"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/img_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:src="@drawable/dialog_close"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.skydoves.colorpickerview.ColorPickerView
+                android:id="@+id/color_picker_view"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="10dp"
+                app:actionMode="last"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+            <View
+                android:id="@+id/color_picker_line"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="#33ffffff"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/color_picker_view" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/color_picker_recycler"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:overScrollMode="never"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/color_picker_line"
+                tools:itemCount="1"
+                tools:listitem="@layout/d_ui_item_color_select" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/dialog_tip_line"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:background="#33ffffff"
+            app:layout_constraintBottom_toTopOf="@id/dialog_tip_success_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dialog_tip_msg_lay" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/tip_start_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.06" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/tip_end_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.94" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/tip_center_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+
+        <Button
+            android:id="@+id/dialog_tip_cancel_btn"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:text="@string/app_cancel"
+            android:textAllCaps="false"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/app_small_font"
+            android:background="@drawable/bg_corners05_solid_3b3e44_stroke_theme"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@id/dialog_tip_success_btn"
+            app:layout_constraintEnd_toStartOf="@+id/tip_center_line"
+            app:layout_constraintHorizontal_bias="0.5"
+            android:layout_marginRight="5dp"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="@id/tip_start_line"
+            app:layout_constraintTop_toTopOf="@+id/dialog_tip_success_btn" />
+
+        <Button
+            android:id="@+id/dialog_tip_success_btn"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/app_btn_big_height"
+            android:background="@drawable/bg_corners05_solid_theme"
+            android:gravity="center"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:text="@string/app_ok"
+            android:textAllCaps="false"
+            android:textColor="#55272F"
+            android:textSize="@dimen/app_small_font"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="@id/tip_end_line"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintHorizontal_weight="1"
+            android:layout_marginLeft="5dp"
+            app:layout_constraintStart_toEndOf="@+id/tip_center_line"
+            app:layout_constraintTop_toBottomOf="@+id/dialog_tip_line" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

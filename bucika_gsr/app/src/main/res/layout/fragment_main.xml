@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="#16131e">
+
+    <!-- 未连接过任何设备界面 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_no_device"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="visible"
+        tools:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/tv_no_device_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/top_infrared_up_case"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintVertical_bias="0.1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/see_more_than"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_no_device_title" />
+
+        <ImageView
+            android:id="@+id/iv_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/ic_main_device_bg_not"
+            android:contentDescription="@null"
+            app:layout_constraintVertical_bias="0.42"
+            app:layout_constraintDimensionRatio="1125:1020"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <!-- 连接设备 -->
+        <TextView
+            android:id="@+id/tv_connect_device"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/tc_connect_device"
+            android:textSize="16sp"
+            android:textColor="#55272f"
+            android:background="@drawable/bg_corners50_solid_theme"
+            app:layout_constraintWidth_percent="0.75"
+            app:layout_constraintDimensionRatio="2825:440"
+            app:layout_constraintVertical_bias="0.3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_image"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 连接过任何设备界面 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_has_device"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/ic_main_device_bg_has"
+            android:contentDescription="@null"
+            app:layout_constraintDimensionRatio="1125:1358"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_add"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:padding="20dp"
+            android:src="@drawable/svg_main_device_add"
+            android:contentDescription="@null"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_has_device_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/top_infrared_up_case"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/iv_add"
+            app:layout_constraintTop_toTopOf="@id/iv_add"
+            app:layout_constraintBottom_toBottomOf="@id/iv_add" />
+        <TextView
+            android:id="@+id/tv_has_device_sub_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/see_more_than"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintStart_toStartOf="@id/tv_has_device_title"
+            app:layout_constraintEnd_toEndOf="@id/tv_has_device_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_has_device_title" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_has_device_sub_title"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

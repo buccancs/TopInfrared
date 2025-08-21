@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    android:paddingBottom="16dp"
+    tools:background="#16131e">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="17dp"
+        android:paddingBottom="12dp"
+        android:textSize="16sp"
+        android:textColor="#ffffff"
+        tools:text="有线连接"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/iv_bg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/selector_device_connect_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_image"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_image" />
+
+    <ImageView
+        android:id="@+id/iv_image"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@null"
+        tools:src="@drawable/ic_main_device_line_connect"
+        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintDimensionRatio="503:390"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+    <TextView
+        android:id="@+id/tv_device_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="20dp"
+        android:textSize="20sp"
+        android:textColor="@color/device_connect_name"
+        android:maxLines="2"
+        android:ellipsize="end"
+        tools:text="有线设备"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/iv_image"
+        app:layout_constraintTop_toTopOf="@id/iv_image"
+        app:layout_constraintBottom_toTopOf="@+id/tv_device_state" />
+
+    <TextView
+        android:id="@+id/tv_battery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="#83808c"
+        tools:text="100%"
+        app:layout_constraintEnd_toStartOf="@id/iv_image"
+        app:layout_constraintTop_toTopOf="@+id/tv_device_state" />
+
+    <com.topdon.lib.ui.widget.BatteryView
+        android:id="@+id/battery_view"
+        android:layout_width="wrap_content"
+        android:layout_height="12sp"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintEnd_toStartOf="@id/tv_battery"
+        app:layout_constraintTop_toTopOf="@id/tv_battery"
+        app:layout_constraintBottom_toBottomOf="@id/tv_battery" />
+
+    <View
+        android:id="@+id/view_device_state"
+        android:layout_width="8sp"
+        android:layout_height="8sp"
+        android:background="@drawable/selector_device_connect_state"
+        app:layout_constraintStart_toStartOf="@id/tv_device_name"
+        app:layout_constraintTop_toTopOf="@+id/tv_device_state"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_device_state" />
+    <TextView
+        android:id="@+id/tv_device_state"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:textSize="12sp"
+        android:textColor="@color/device_connect_state"
+        tools:text="offline"
+        app:layout_constraintStart_toEndOf="@id/view_device_state"
+        app:layout_constraintEnd_toStartOf="@id/battery_view"
+        app:layout_constraintTop_toBottomOf="@id/tv_device_name"
+        app:layout_constraintBottom_toBottomOf="@id/iv_image" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

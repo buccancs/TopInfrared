@@ -1,0 +1,152 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+}
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+//        arg("AROUTER_GENERATE_DOC", "enable")//生成doc文档
+        arg("room.schemaLocation", "$projectDir/schemas".toString())
+        arg("room.incremental", "true")
+        arg("room.expandProjection", "true")
+    }
+}
+
+android {
+    compileSdk rootProject.ext.android.compileSdk
+
+    defaultConfig {
+        minSdk rootProject.ext.android.minSdk
+        targetSdk rootProject.ext.android.targetSdk
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures{
+        dataBinding = true
+    }
+
+    flavorDimensions 'app'
+    productFlavors {
+        dev {
+            dimension 'app'
+        }
+        beta {
+            dimension 'app'
+        }
+        prod {
+            dimension 'app'
+        }
+        prodTopdon {
+            dimension 'app'
+        }
+
+        insideChina {
+            dimension 'app'
+        }
+        prodTopdonInsideChina {
+            dimension 'app'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['src/main/jniLibs']
+        }
+    }
+}
+
+//kotlin {
+//    experimental {
+//        coroutines 'enable'
+//    }
+//}
+
+dependencies {
+    api fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+    api Deps.appcompat
+    api Deps.fragment_ktx
+    api Deps.material
+
+    api Deps.lifecycle_runtime_ktx
+    api Deps.lifecycle_viewmodel_ktx
+    api Deps.lifecycle_livedata_ktx
+
+    kapt Deps.room_compiler
+    api Deps.room_ktx
+
+    api Deps.work_runtime_ktx
+
+    api Deps.retrofit2
+    api Deps.converter_gson
+    api Deps.adapter_rxjava2
+
+    api Deps.eventbus
+
+    api Deps.glide
+    kapt Deps.glide_compiler
+
+    api Deps.rxjava2
+    api Deps.rxandroid
+    api Deps.rxpermissions
+    api Deps.rxlifecycle
+    api Deps.rxlifecycle_android
+    api Deps.rxlifecycle_components
+    api Deps.rxlifecycle_ktx
+    api Deps.rxlifecycle_android_lifecycle_ktx
+
+    api Deps.arouter_api
+    kapt Deps.arouter_compiler
+
+    api Deps.utilcode
+    api Deps.XXPermissions
+    api Deps.xlog
+    api Deps.PhotoView
+    api Deps.android_pdf_viewr
+    api Deps.lottie
+
+    api Deps.brvah
+    api Deps.refresh_layout_kernel
+    api Deps.refresh_header_classics
+    api Deps.refresh_header_material
+
+    api Deps.logging_interceptor
+    api Deps.colorpickerview
+    api Deps.MNImageBrowser
+    api Deps.nifty
+    api Deps.nifty_effect
+
+//    devApi Deps.lms2
+//    betaApi Deps.lms2
+//    prodApi Deps.lms2
+//    prodTopdonApi Deps.lms2
+//    insideChinaApi Deps.lms3
+//    prodTopdonInsideChinaApi Deps.lms3
+
+
+
+    //javacv
+    api Deps.javacv
+    api Deps.javacpp
+    api files('libs\\abtest-1.0.1.aar')
+    api files('libs\\auth-number-2.13.2.1.aar')
+    api files('libs\\lms_international-3.90.009.0.aar')
+    api files('libs\\logger-2.2.1-release.aar')
+    api files('libs\\main-2.2.1-release.aar')
+}

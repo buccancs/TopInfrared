@@ -1,0 +1,93 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+}
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
+android {
+    compileSdk rootProject.ext.android.compileSdk
+
+    defaultConfig {
+        minSdk rootProject.ext.android.minSdk
+        targetSdk rootProject.ext.android.targetSdk
+
+        buildConfigField "String", "VERSION_NAME", "\"$rootProject.ext.android.versionName\""
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures{
+        dataBinding = true
+    }
+//    repositories {
+//        flatDir {
+//            dirs '../../libir/libs'
+//        }
+//    }
+
+    flavorDimensions 'app'
+    productFlavors {
+        dev {
+            dimension 'app'
+        }
+        beta {
+            dimension 'app'
+        }
+        prod {
+            dimension 'app'
+        }
+        prodTopdon {
+            dimension 'app'
+        }
+        insideChina {
+            dimension 'app'
+        }
+        prodTopdonInsideChina {
+            dimension 'app'
+        }
+    }
+}
+
+dependencies {
+    implementation(name: 'opengl_1.3.2_standard', ext: 'aar')
+    implementation(name: 'library_1.0', ext: 'aar')
+
+    implementation project(':libapp')
+    implementation project(':libcom')
+    implementation project(':libir')
+    implementation project(':libmenu')
+    implementation project(':libui')
+    implementation project(':component:house')
+    implementation project(':component:pseudo')
+
+    kapt Deps.arouter_compiler
+    api Deps.lottie
+    api 'com.github.anzaizai:EasySwipeMenuLayout:1.1.4'
+
+    api Deps.compass_sense
+    api Deps.compass_core
+
+    // gsy player
+    implementation "com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer-java:v8.1.4"
+    implementation "com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer-exo_player2:v8.1.4"
+    implementation "com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer-armv64:v8.1.4"
+}

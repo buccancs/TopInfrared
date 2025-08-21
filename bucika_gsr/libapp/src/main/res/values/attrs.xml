@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- drawable 高度可控 TextView -->
+    <declare-styleable name="MyTextView">
+        <attr name="drawable_height" format="dimension">
+            <enum name="wrap_content" value="-2" />
+        </attr>
+        <attr name="top_height" format="dimension">
+            <enum name="wrap_content" value="-2" />
+        </attr>
+        <attr name="bottom_height" format="dimension">
+            <enum name="wrap_content" value="-2" />
+        </attr>
+        <attr name="start_height" format="dimension">
+            <enum name="wrap_content" value="-2" />
+        </attr>
+        <attr name="end_height" format="dimension">
+            <enum name="wrap_content" value="-2" />
+        </attr>
+        <attr name="left_height" format="dimension">
+            <enum name="wrap_content" value="-2" />
+        </attr>
+        <attr name="right_height" format="dimension">
+            <enum name="wrap_content" value="-2" />
+        </attr>
+    </declare-styleable>
+
+    <!-- 标题栏 -->
+    <declare-styleable name="TitleView">
+        <attr name="titleText" format="string"/>
+        <attr name="leftText" format="string"/>
+        <attr name="rightText" format="string"/>
+        <attr name="leftDrawable" format="reference"/>
+        <attr name="rightDrawable" format="reference"/>
+        <attr name="right2Drawable" format="reference" />
+        <attr name="right3Drawable" format="reference" />
+        <attr name="leftTextColor" format="reference|color" />
+        <attr name="rightTextColor" format="reference|color" />
+        <attr name="isInitLeft" format="boolean" />   <!-- 是否将左侧 View 设置为返回箭头 -->
+        <attr name="isTitleCenter" format="boolean" /><!-- 标题文字是否居中 true-居中 false-居左 -->
+    </declare-styleable>
+
+
+</resources>
