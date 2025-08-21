@@ -6,31 +6,146 @@ This document provides a comprehensive overview of TopInfrared's technical archi
 
 TopInfrared follows a modular Android architecture based on Clean Architecture principles with clear separation between presentation, domain, and data layers.
 
+### Clean Architecture Overview
+
+```mermaid
+graph TB
+    subgraph "Presentation Layer"
+        UI[UI Components]
+        VM[ViewModels]
+        VIEWS[Activities & Fragments]
+    end
+    
+    subgraph "Domain Layer"
+        UC[Use Cases]
+        REPO_INT[Repository Interfaces]
+        MODELS[Domain Models]
+        BUSINESS[Business Logic]
+    end
+    
+    subgraph "Data Layer"
+        REPO_IMPL[Repository Implementations]
+        
+        subgraph "Data Sources"
+            REMOTE[Remote Data Source]
+            LOCAL[Local Data Source]
+            HARDWARE[Hardware Abstraction]
+        end
+        
+        subgraph "External"
+            API[REST APIs]
+            DB[Room Database]
+            BLE[BLE Devices]
+            HIK[HIK SDK]
+            FIREBASE[Firebase]
+        end
+    end
+    
+    UI --> VM
+    VM --> UC
+    UC --> REPO_INT
+    REPO_INT --> REPO_IMPL
+    REPO_IMPL --> REMOTE
+    REPO_IMPL --> LOCAL
+    REPO_IMPL --> HARDWARE
+    
+    REMOTE --> API
+    REMOTE --> FIREBASE
+    LOCAL --> DB
+    HARDWARE --> BLE
+    HARDWARE --> HIK
+    
+    UC --> BUSINESS
+    BUSINESS --> MODELS
+    
+    style UI fill:#e3f2fd
+    style UC fill:#f3e5f5
+    style REPO_IMPL fill:#e8f5e8
+    style API fill:#fff3e0
+    style DB fill:#fff3e0
+    style BLE fill:#fff3e0
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    Presentation Layer                        │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────┐  │
-│  │     UI      │  │  ViewModels │  │    Activities/      │  │
-│  │ Components  │  │             │  │    Fragments        │  │
-│  └─────────────┘  └─────────────┘  └─────────────────────┘  │
-└─────────────────────────────────────────────────────────────┘
-                               │
-┌─────────────────────────────────────────────────────────────┐
-│                     Domain Layer                            │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────┐  │
-│  │  Use Cases  │  │ Repositories│  │      Models         │  │
-│  │             │  │ (Interfaces)│  │                     │  │
-│  └─────────────┘  └─────────────┘  └─────────────────────┘  │
-└─────────────────────────────────────────────────────────────┘
-                               │
-┌─────────────────────────────────────────────────────────────┐
-│                      Data Layer                             │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────┐  │
-│  │   Remote    │  │    Local    │  │    Hardware         │  │
-│  │ Data Source │  │ Data Source │  │   Abstraction       │  │
-│  │ (API/Cloud) │  │ (Room DB)   │  │     Layer           │  │
-│  └─────────────┘  └─────────────┘  └─────────────────────┘  │
-└─────────────────────────────────────────────────────────────┘
+
+### Data Flow Architecture
+
+```mermaid
+flowchart TD
+    subgraph "External Inputs"
+        THERMAL[Thermal Devices]
+        USER[User Input]
+        CLOUD[Cloud Services]
+    end
+    
+    subgraph "Hardware Abstraction Layer"
+        HIK_HAL[HIK Abstraction]
+        IR_HAL[IR Abstraction]
+        BLE_HAL[BLE Abstraction]
+    end
+    
+    subgraph "Data Processing Pipeline"
+        RAW[Raw Data Ingestion]
+        VALIDATE[Data Validation]
+        TRANSFORM[Data Transformation]
+        PROCESS[Thermal Processing]
+        CACHE[Data Caching]
+    end
+    
+    subgraph "Business Logic Layer"
+        TEMP_CALC[Temperature Calculation]
+        IMAGE_PROC[Image Processing]
+        ANALYSIS[Thermal Analysis]
+        REPORT_GEN[Report Generation]
+    end
+    
+    subgraph "Presentation Layer"
+        LIVE_VIEW[Live View]
+        GALLERY[Image Gallery]
+        ANALYTICS[Analytics Dashboard]
+        EXPORT[Export Functions]
+    end
+    
+    subgraph "Storage Layer"
+        DB_LOCAL[Local Database]
+        FILE_SYS[File System]
+        CLOUD_STORE[Cloud Storage]
+    end
+    
+    THERMAL --> HIK_HAL
+    THERMAL --> IR_HAL
+    THERMAL --> BLE_HAL
+    
+    HIK_HAL --> RAW
+    IR_HAL --> RAW
+    BLE_HAL --> RAW
+    USER --> RAW
+    CLOUD --> RAW
+    
+    RAW --> VALIDATE
+    VALIDATE --> TRANSFORM
+    TRANSFORM --> PROCESS
+    PROCESS --> CACHE
+    
+    CACHE --> TEMP_CALC
+    CACHE --> IMAGE_PROC
+    TEMP_CALC --> ANALYSIS
+    IMAGE_PROC --> ANALYSIS
+    ANALYSIS --> REPORT_GEN
+    
+    ANALYSIS --> LIVE_VIEW
+    REPORT_GEN --> GALLERY
+    ANALYSIS --> ANALYTICS
+    REPORT_GEN --> EXPORT
+    
+    CACHE --> DB_LOCAL
+    IMAGE_PROC --> FILE_SYS
+    REPORT_GEN --> FILE_SYS
+    EXPORT --> CLOUD_STORE
+    
+    style THERMAL fill:#ffeb3b
+    style RAW fill:#ff9800
+    style PROCESS fill:#2196f3
+    style ANALYSIS fill:#4caf50
+    style LIVE_VIEW fill:#9c27b0
 ```
 
 ## 📦 Module Architecture
@@ -225,31 +340,129 @@ object ImageEnhancement {
 
 ### Thermal Image Processing Pipeline
 
+```mermaid
+flowchart TD
+    RAW[Raw Sensor Data] --> CAPTURE[Data Capture]
+    CAPTURE --> CALIB[Calibration]
+    CALIB --> PROC[Processing]
+    PROC --> TEMP[Temperature Conversion]
+    TEMP --> VIZ[Visualization]
+    VIZ --> OUTPUT[Display/Export]
+    
+    subgraph "Hardware Abstraction Layer"
+        CAPTURE
+        HIK_HAL[HIK Hardware]
+        IR_HAL[IR Hardware]
+        BLE_HAL[BLE Hardware]
+    end
+    
+    subgraph "Data Processing Pipeline"
+        CALIB
+        PROC
+        TEMP
+        
+        CALIB --> CAL_DATA[Apply Device-Specific Calibration]
+        PROC --> NUC[Non-Uniformity Correction]
+        PROC --> FILTER[Filtering & Enhancement]
+        TEMP --> TEMP_CALC[Temperature Calculation]
+    end
+    
+    subgraph "Visualization Pipeline"
+        VIZ
+        PALETTE[Color Palette Application]
+        OVERLAY[Measurement Overlays]
+        UI_COMP[UI Components]
+        
+        VIZ --> PALETTE
+        PALETTE --> OVERLAY
+        OVERLAY --> UI_COMP
+    end
+    
+    subgraph "Output Destinations"
+        OUTPUT
+        DISPLAY[Live Display]
+        SAVE[Save to Gallery]
+        EXPORT[Export Functions]
+        PDF[PDF Reports]
+        
+        OUTPUT --> DISPLAY
+        OUTPUT --> SAVE
+        OUTPUT --> EXPORT
+        OUTPUT --> PDF
+    end
+    
+    HIK_HAL --> CAPTURE
+    IR_HAL --> CAPTURE
+    BLE_HAL --> CAPTURE
+    
+    style RAW fill:#ffeb3b
+    style CAPTURE fill:#ff9800
+    style CALIB fill:#2196f3
+    style TEMP fill:#4caf50
+    style VIZ fill:#9c27b0
+    style OUTPUT fill:#f44336
 ```
-Raw Sensor Data
-       ↓
-┌─────────────────┐
-│  Data Capture   │ ← Hardware abstraction layer
-└─────────────────┘
-       ↓
-┌─────────────────┐
-│   Calibration   │ ← Apply device-specific calibration
-└─────────────────┘
-       ↓
-┌─────────────────┐
-│   Processing    │ ← NUC, filtering, enhancement
-└─────────────────┘
-       ↓
-┌─────────────────┐
-│ Temperature     │ ← Convert to temperature values
-│ Conversion      │
-└─────────────────┘
-       ↓
-┌─────────────────┐
-│ Visualization   │ ← Apply color palettes, overlays
-└─────────────────┘
-       ↓
-    Display/Export
+
+### Component Interaction Diagram
+
+```mermaid
+graph TB
+    subgraph "Feature Modules Layer"
+        TH[thermal-hik]
+        TIR[thermal-ir]
+        TL[thermal-lite]
+        E3D[edit3d]
+        PSEUDO[pseudo]
+        USER[user]
+    end
+    
+    subgraph "Service Layer"
+        BLE_SERVICE[BLE Communication Service]
+        DATA_SERVICE[Data Processing Service]
+        FILE_SERVICE[File Management Service]
+        REPORT_SERVICE[Report Generation Service]
+    end
+    
+    subgraph "Repository Layer"
+        THERMAL_REPO[Thermal Repository]
+        USER_REPO[User Repository]
+        DEVICE_REPO[Device Repository]
+        IMAGE_REPO[Image Repository]
+    end
+    
+    subgraph "Data Sources"
+        ROOM_DB[Room Database]
+        FILE_SYSTEM[File System]
+        SHARED_PREFS[Shared Preferences]
+        CLOUD[Firebase/Cloud]
+    end
+    
+    TH --> DATA_SERVICE
+    TIR --> DATA_SERVICE
+    TL --> DATA_SERVICE
+    E3D --> FILE_SERVICE
+    PSEUDO --> DATA_SERVICE
+    USER --> USER_REPO
+    
+    TH --> BLE_SERVICE
+    TIR --> BLE_SERVICE
+    
+    DATA_SERVICE --> THERMAL_REPO
+    FILE_SERVICE --> IMAGE_REPO
+    REPORT_SERVICE --> IMAGE_REPO
+    BLE_SERVICE --> DEVICE_REPO
+    
+    THERMAL_REPO --> ROOM_DB
+    THERMAL_REPO --> FILE_SYSTEM
+    USER_REPO --> SHARED_PREFS
+    USER_REPO --> CLOUD
+    DEVICE_REPO --> SHARED_PREFS
+    IMAGE_REPO --> FILE_SYSTEM
+    
+    style TH fill:#e3f2fd
+    style DATA_SERVICE fill:#f3e5f5
+    style THERMAL_REPO fill:#e8f5e8
+    style ROOM_DB fill:#fff3e0
 ```
 
 ### Reactive Programming with RxJava
@@ -306,18 +519,145 @@ interface ThermalImageDao {
 }
 ```
 
-### File System Organization
+## 🗄️ Data Persistence Architecture
 
+### Database Schema Visualization
+
+```mermaid
+erDiagram
+    THERMAL_IMAGES {
+        string id PK
+        long timestamp
+        string deviceId FK
+        string filePath
+        json thermalData
+        string userId FK
+        float minTemp
+        float maxTemp
+        string colorPalette
+    }
+    
+    MEASUREMENTS {
+        string id PK
+        string imageId FK
+        string type
+        json coordinates
+        float temperature
+        long timestamp
+        string notes
+    }
+    
+    DEVICES {
+        string id PK
+        string name
+        string type
+        json calibrationData
+        boolean isConnected
+        long lastSeen
+    }
+    
+    USERS {
+        string id PK
+        string username
+        string email
+        json preferences
+        long createdAt
+        long lastLogin
+    }
+    
+    REPORTS {
+        string id PK
+        string imageId FK
+        string filePath
+        string template
+        json metadata
+        long generatedAt
+    }
+    
+    THERMAL_IMAGES }|--|| DEVICES : "captured_with"
+    THERMAL_IMAGES ||--o{ MEASUREMENTS : "contains"
+    THERMAL_IMAGES }|--|| USERS : "belongs_to"
+    THERMAL_IMAGES ||--o{ REPORTS : "generates"
 ```
-/Android/data/com.topdon.tc001/files/
-├── ThermalImages/          # Thermal image files
-│   ├── {userid}/
-│   │   ├── Gallery/        # User gallery images
-│   │   ├── DataLog/        # Measurement data logs
-│   │   └── Pdf/            # Generated reports
-├── Cache/                  # Temporary processing files
-├── Backup/                 # Backup data
-└── Config/                 # Configuration files
+
+### File System Architecture
+
+```mermaid
+graph TD
+    ROOT[/Android/data/com.topdon.tc001/files/]
+    
+    subgraph "User Data"
+        ROOT --> THERMAL[ThermalImages/]
+        THERMAL --> USER_DIR[{userid}/]
+        USER_DIR --> GALLERY[Gallery/]
+        USER_DIR --> DATALOG[DataLog/]
+        USER_DIR --> PDF[Pdf/]
+    end
+    
+    subgraph "System Data"
+        ROOT --> CACHE[Cache/]
+        ROOT --> BACKUP[Backup/]
+        ROOT --> CONFIG[Config/]
+    end
+    
+    subgraph "File Types"
+        GALLERY --> IMG_RAW[.thermal files]
+        GALLERY --> IMG_JPEG[.jpg preview]
+        DATALOG --> CSV[.csv data]
+        DATALOG --> JSON[.json metadata]
+        PDF --> REPORTS[.pdf reports]
+        CACHE --> TEMP[Temporary processing]
+        BACKUP --> SYNC[Sync data]
+        CONFIG --> SETTINGS[App settings]
+    end
+    
+    subgraph "Access Patterns"
+        IMG_RAW --> READ_FAST[Fast Read Access]
+        CSV --> APPEND[Append-Only Logs]
+        REPORTS --> SHARE[Shareable Format]
+        TEMP --> AUTO_CLEANUP[Auto Cleanup]
+    end
+    
+    style ROOT fill:#e3f2fd
+    style USER_DIR fill:#f3e5f5
+    style CACHE fill:#fff3e0
+    style REPORTS fill:#e8f5e8
+```
+
+### Data Flow in Storage Layer
+
+```mermaid
+sequenceDiagram
+    participant App as Application
+    participant Repo as Repository
+    participant Room as Room DB
+    participant FileSystem as File System
+    participant Cloud as Cloud Storage
+    
+    App->>Repo: Save thermal image
+    Repo->>FileSystem: Store image file
+    FileSystem-->>Repo: File path
+    Repo->>Room: Save metadata
+    Room-->>Repo: Database ID
+    
+    par Background Sync
+        Repo->>Cloud: Upload metadata
+        Repo->>Cloud: Upload image (if enabled)
+    end
+    
+    Repo-->>App: Save complete
+    
+    Note over App,Cloud: Query Flow
+    App->>Repo: Get thermal images
+    Repo->>Room: Query metadata
+    Room-->>Repo: Image metadata list
+    
+    loop For each image
+        Repo->>FileSystem: Load thumbnail
+        FileSystem-->>Repo: Thumbnail data
+    end
+    
+    Repo-->>App: Complete image list
 ```
 
 ## 🔧 Build System Architecture
@@ -380,43 +720,176 @@ target_link_libraries(thermal-native
 
 ## 🔐 Security Architecture
 
-### Data Encryption
+### Security Layers Overview
 
-```kotlin
-// Thermal data encryption
-class ThermalDataEncryption {
-    private val keyAlias = "thermal_data_key"
+```mermaid
+graph TB
+    subgraph "Application Layer Security"
+        APP_AUTH[User Authentication]
+        APP_PERM[Permission Management]
+        APP_VALIDATE[Input Validation]
+        APP_CRYPTO[Data Encryption]
+    end
     
-    fun encryptThermalData(data: ByteArray): EncryptedData {
-        val cipher = Cipher.getInstance(KeyProperties.KEY_ALGORITHM_AES)
-        cipher.init(Cipher.ENCRYPT_MODE, getOrCreateKey())
-        // Encrypt sensitive thermal measurements
-    }
-}
-
-// Secure storage for device credentials
-class SecureCredentialStorage {
-    fun storeDeviceCredentials(deviceId: String, credentials: Credentials) {
-        // Use Android Keystore for secure credential storage
-    }
-}
+    subgraph "Network Layer Security"
+        TLS[TLS 1.3]
+        CERT_PIN[Certificate Pinning]
+        API_AUTH[API Authentication]
+        FIREWALL[Network Firewall]
+    end
+    
+    subgraph "Device Layer Security"
+        KEYSTORE[Android Keystore]
+        BIO_AUTH[Biometric Auth]
+        SECURE_STORAGE[Secure Storage]
+        ROOT_DETECT[Root Detection]
+    end
+    
+    subgraph "Data Layer Security"
+        DB_ENCRYPT[Database Encryption]
+        FILE_ENCRYPT[File Encryption]
+        BACKUP_SECURE[Secure Backup]
+        DATA_MASKING[Data Masking]
+    end
+    
+    APP_AUTH --> BIO_AUTH
+    APP_CRYPTO --> KEYSTORE
+    APP_AUTH --> API_AUTH
+    API_AUTH --> TLS
+    TLS --> CERT_PIN
+    
+    KEYSTORE --> SECURE_STORAGE
+    SECURE_STORAGE --> DB_ENCRYPT
+    SECURE_STORAGE --> FILE_ENCRYPT
+    
+    style APP_AUTH fill:#4caf50
+    style KEYSTORE fill:#2196f3
+    style TLS fill:#ff9800
+    style DB_ENCRYPT fill:#9c27b0
 ```
 
-### Network Security
+### Authentication Flow
 
-```kotlin
-// Certificate pinning for API communications
-class NetworkSecurityConfig {
-    fun createSecureOkHttpClient(): OkHttpClient {
-        return OkHttpClient.Builder()
-            .certificatePinner(
-                CertificatePinner.Builder()
-                    .add("api.topdon.com", "sha256/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=")
-                    .build()
-            )
-            .build()
-    }
-}
+```mermaid
+sequenceDiagram
+    participant User as User
+    participant App as TopInfrared App
+    participant Bio as Biometric System
+    participant Keystore as Android Keystore
+    participant Server as Auth Server
+    
+    User->>App: Launch Application
+    App->>App: Check authentication state
+    
+    alt First Launch
+        App->>User: Setup biometric authentication
+        User->>Bio: Register fingerprint/face
+        Bio-->>App: Biometric registered
+        App->>Keystore: Generate authentication key
+        Keystore-->>App: Key generated
+    end
+    
+    App->>User: Request authentication
+    User->>Bio: Provide biometric
+    Bio->>Keystore: Unlock authentication key
+    Keystore-->>App: Authentication key
+    
+    App->>Server: Authenticate with token
+    Server-->>App: Authentication response
+    
+    alt Success
+        App->>User: Grant access to thermal features
+    else Failure
+        App->>User: Authentication failed
+        App->>App: Lock sensitive features
+    end
+```
+
+### Data Encryption Architecture
+
+```mermaid
+graph TD
+    subgraph "Encryption Keys"
+        MASTER_KEY[Master Key - Keystore]
+        DEK[Data Encryption Keys]
+        KEK[Key Encryption Key]
+    end
+    
+    subgraph "Encrypted Data Types"
+        THERMAL_DATA[Thermal Image Data]
+        USER_DATA[User Credentials]
+        DEVICE_CONFIG[Device Configuration]
+        MEASUREMENT_DATA[Temperature Measurements]
+    end
+    
+    subgraph "Encryption Methods"
+        AES_256[AES-256-GCM]
+        RSA_2048[RSA-2048]
+        PBKDF2[PBKDF2]
+    end
+    
+    subgraph "Storage Locations"
+        SECURE_DB[Encrypted Database]
+        SECURE_FILES[Encrypted Files]
+        KEYSTORE_STORAGE[Android Keystore]
+    end
+    
+    MASTER_KEY --> KEK
+    KEK --> DEK
+    DEK --> AES_256
+    
+    THERMAL_DATA --> AES_256
+    USER_DATA --> RSA_2048
+    DEVICE_CONFIG --> AES_256
+    MEASUREMENT_DATA --> AES_256
+    
+    AES_256 --> SECURE_DB
+    AES_256 --> SECURE_FILES
+    RSA_2048 --> KEYSTORE_STORAGE
+    
+    style MASTER_KEY fill:#4caf50
+    style AES_256 fill:#2196f3
+    style SECURE_DB fill:#ff9800
+```
+
+### Network Security Implementation
+
+```mermaid
+flowchart LR
+    subgraph "Client Side"
+        APP[TopInfrared App]
+        CERT_STORE[Certificate Store]
+        PIN_CONFIG[Certificate Pins]
+    end
+    
+    subgraph "Network Layer"
+        TLS_HANDSHAKE[TLS Handshake]
+        CERT_VALIDATION[Certificate Validation]
+        PINNING_CHECK[Certificate Pinning Check]
+    end
+    
+    subgraph "Server Side"
+        API_SERVER[API Server]
+        SSL_CERT[SSL Certificate]
+        FIREWALL[WAF/Firewall]
+    end
+    
+    APP --> TLS_HANDSHAKE
+    TLS_HANDSHAKE --> CERT_VALIDATION
+    CERT_VALIDATION --> CERT_STORE
+    CERT_VALIDATION --> PINNING_CHECK
+    PINNING_CHECK --> PIN_CONFIG
+    
+    TLS_HANDSHAKE <--> SSL_CERT
+    SSL_CERT --> API_SERVER
+    FIREWALL --> API_SERVER
+    
+    TLS_HANDSHAKE -.->|"Reject if pinning fails"| APP
+    PINNING_CHECK -.->|"Validate against known pins"| PIN_CONFIG
+    
+    style APP fill:#e3f2fd
+    style PINNING_CHECK fill:#fff3e0
+    style FIREWALL fill:#ffebee
 ```
 
 ## 📊 Performance Optimization
@@ -525,6 +998,172 @@ jobs:
       - name: Build APK
         run: ./gradlew assembleProdRelease
 ```
+
+## 🔄 Complete System Architecture Overview
+
+### Comprehensive System Diagram
+
+```mermaid
+graph TB
+    subgraph "User Interface Layer"
+        UI[UI Components]
+        VM[ViewModels]
+        ACTIVITIES[Activities & Fragments]
+    end
+    
+    subgraph "Business Logic Layer"
+        UC_THERMAL[Thermal Use Cases]
+        UC_USER[User Use Cases]
+        UC_DEVICE[Device Use Cases]
+        UC_REPORT[Report Use Cases]
+    end
+    
+    subgraph "Feature Modules"
+        THERMAL_HIK[thermal-hik]
+        THERMAL_IR[thermal-ir]
+        EDIT3D[edit3d]
+        PSEUDO[pseudo]
+        USER_MODULE[user]
+    end
+    
+    subgraph "Service Layer"
+        BLE_SERVICE[BLE Service]
+        DATA_SERVICE[Data Processing Service]
+        FILE_SERVICE[File Management Service]
+        REPORT_SERVICE[Report Generation Service]
+        SYNC_SERVICE[Cloud Sync Service]
+    end
+    
+    subgraph "Repository Layer"
+        THERMAL_REPO[Thermal Repository]
+        USER_REPO[User Repository]
+        DEVICE_REPO[Device Repository]
+        IMAGE_REPO[Image Repository]
+    end
+    
+    subgraph "Data Sources"
+        ROOM_DB[(Room Database)]
+        FILE_SYSTEM[File System]
+        SHARED_PREFS[SharedPreferences]
+        FIREBASE[Firebase]
+    end
+    
+    subgraph "Hardware Layer"
+        HIK_DEVICE[HIK Thermal Camera]
+        IR_SENSOR[IR Sensors]
+        BLE_THERMAL[BLE Thermal Tools]
+    end
+    
+    subgraph "External Services"
+        FIREBASE_ANALYTICS[Firebase Analytics]
+        FIREBASE_CRASHLYTICS[Firebase Crashlytics]
+        CLOUD_STORAGE[Cloud Storage]
+        API_SERVER[API Server]
+    end
+    
+    UI --> VM
+    VM --> ACTIVITIES
+    ACTIVITIES --> UC_THERMAL
+    ACTIVITIES --> UC_USER
+    ACTIVITIES --> UC_DEVICE
+    ACTIVITIES --> UC_REPORT
+    
+    UC_THERMAL --> THERMAL_HIK
+    UC_THERMAL --> THERMAL_IR
+    UC_USER --> USER_MODULE
+    UC_REPORT --> EDIT3D
+    UC_THERMAL --> PSEUDO
+    
+    THERMAL_HIK --> BLE_SERVICE
+    THERMAL_IR --> DATA_SERVICE
+    USER_MODULE --> SYNC_SERVICE
+    EDIT3D --> FILE_SERVICE
+    PSEUDO --> REPORT_SERVICE
+    
+    BLE_SERVICE --> DEVICE_REPO
+    DATA_SERVICE --> THERMAL_REPO
+    FILE_SERVICE --> IMAGE_REPO
+    SYNC_SERVICE --> USER_REPO
+    
+    THERMAL_REPO --> ROOM_DB
+    THERMAL_REPO --> FILE_SYSTEM
+    USER_REPO --> SHARED_PREFS
+    USER_REPO --> FIREBASE
+    DEVICE_REPO --> SHARED_PREFS
+    IMAGE_REPO --> FILE_SYSTEM
+    
+    BLE_SERVICE --> HIK_DEVICE
+    BLE_SERVICE --> IR_SENSOR
+    BLE_SERVICE --> BLE_THERMAL
+    
+    SYNC_SERVICE --> FIREBASE_ANALYTICS
+    SYNC_SERVICE --> FIREBASE_CRASHLYTICS
+    FILE_SERVICE --> CLOUD_STORAGE
+    UC_USER --> API_SERVER
+    
+    style UI fill:#e3f2fd
+    style UC_THERMAL fill:#f3e5f5
+    style THERMAL_REPO fill:#e8f5e8
+    style HIK_DEVICE fill:#fff3e0
+    style FIREBASE fill:#ffebee
+```
+
+### Technology Stack Visualization
+
+```mermaid
+mindmap
+  root((TopInfrared
+  Technology Stack))
+    Android Platform
+      Android SDK 34
+      Kotlin & Java
+      Android Architecture Components
+      Material Design 3
+    Hardware Integration
+      HIK SDK
+      IR Sensors
+      Bluetooth LE
+      USB Host API
+      NDK/Native Code
+    Data & Storage
+      Room Database
+      SharedPreferences
+      File System
+      SQLite
+      JSON Processing
+    Networking
+      OkHttp
+      Retrofit
+      Firebase SDK
+      TLS/SSL
+      Certificate Pinning
+    Image Processing
+      OpenCV
+      Custom Thermal Algorithms
+      Bitmap Processing
+      3D Rendering
+      Color Space Conversion
+    UI & UX
+      Jetpack Compose
+      Custom Views
+      Charts & Graphs
+      3D Visualization
+      Multi-language Support
+    Testing & Quality
+      JUnit & Mockito
+      Espresso
+      Firebase Test Lab
+      Static Analysis
+      Code Coverage
+    Build & DevOps
+      Gradle
+      Multi-flavor Builds
+      ProGuard/R8
+      GitHub Actions
+      Firebase Distribution
+```
+
+This comprehensive architecture documentation provides detailed insights into TopInfrared's modular design, data flow patterns, security implementations, and technology stack. The visual diagrams help developers understand the complex interactions between different system components and facilitate easier maintenance and future development.
 
 ### Release Pipeline
 

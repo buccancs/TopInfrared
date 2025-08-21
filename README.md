@@ -59,6 +59,177 @@
 
 TopInfrared follows a modular Android architecture with clear separation of concerns:
 
+### System Architecture Overview
+
+```mermaid
+graph TB
+    subgraph "User Interface Layer"
+        UI[UI Components]
+        VM[ViewModels]
+        AF[Activities & Fragments]
+    end
+    
+    subgraph "Feature Modules"
+        TH[thermal-hik]
+        TIR[thermal-ir]
+        TL[thermal-lite]
+        T04[thermal04]
+        T07[thermal07]
+        E3D[edit3d]
+        HOUSE[house]
+        PSEUDO[pseudo]
+        TRANSFER[transfer]
+        USER[user]
+    end
+    
+    subgraph "Library Modules"
+        LIBAPP[libapp]
+        LIBCOM[libcom]
+        LIBHIK[libhik]
+        LIBIR[libir]
+        LIBMENU[libmenu]
+        LIBUI[libui]
+    end
+    
+    subgraph "Core Libraries"
+        COMMON[commonlibrary]
+        BLE[BleModule]
+        COMP[CommonComponent]
+    end
+    
+    subgraph "External Dependencies"
+        HIK[HIK SDK]
+        IR[IR Sensors]
+        FB[Firebase]
+        BT[Bluetooth LE]
+    end
+    
+    UI --> VM
+    VM --> AF
+    AF --> TH
+    AF --> TIR
+    AF --> TL
+    AF --> T04
+    AF --> T07
+    AF --> E3D
+    
+    TH --> LIBHIK
+    TIR --> LIBIR
+    TL --> LIBIR
+    T04 --> LIBIR
+    T07 --> LIBIR
+    
+    LIBHIK --> HIK
+    LIBIR --> IR
+    BLE --> BT
+    
+    TH --> COMMON
+    TIR --> COMMON
+    TL --> COMMON
+    HOUSE --> COMMON
+    PSEUDO --> COMMON
+    TRANSFER --> COMMON
+    USER --> COMMON
+    
+    COMMON --> LIBAPP
+    COMMON --> LIBCOM
+    COMMON --> LIBUI
+    COMMON --> FB
+    
+    style UI fill:#e1f5fe
+    style TH fill:#f3e5f5
+    style TIR fill:#f3e5f5
+    style COMMON fill:#e8f5e8
+    style HIK fill:#fff3e0
+    style IR fill:#fff3e0
+```
+
+### Module Dependency Graph
+
+```mermaid
+graph LR
+    subgraph "Application Core"
+        APP[app]
+    end
+    
+    subgraph "Feature Components"
+        TH[thermal-hik]
+        TIR[thermal-ir]
+        TL[thermal-lite]
+        T04[thermal04]
+        T07[thermal07]
+        E3D[edit3d]
+        HOUSE[house]
+        PSEUDO[pseudo]
+        TRANSFER[transfer]
+        USER[user]
+        CC[CommonComponent]
+    end
+    
+    subgraph "Library Modules"
+        CL[commonlibrary]
+        LIBAPP[libapp]
+        LIBCOM[libcom]
+        LIBHIK[libhik]
+        LIBIR[libir]
+        LIBMENU[libmenu]
+        LIBUI[libui]
+        BLE[BleModule]
+    end
+    
+    subgraph "Local Repository"
+        LAC[libac020]
+        LC[libcommon]
+        LIR[libirutils]
+    end
+    
+    APP --> TH
+    APP --> TIR
+    APP --> TL
+    APP --> T04
+    APP --> T07
+    APP --> E3D
+    APP --> HOUSE
+    APP --> PSEUDO
+    APP --> TRANSFER
+    APP --> USER
+    APP --> CC
+    
+    TH --> CL
+    TIR --> CL
+    TL --> CL
+    T04 --> CL
+    T07 --> CL
+    E3D --> CL
+    HOUSE --> CL
+    PSEUDO --> CL
+    TRANSFER --> CL
+    USER --> CL
+    CC --> CL
+    
+    TH --> LIBHIK
+    TIR --> LIBIR
+    TL --> LIBIR
+    T04 --> LIBIR
+    T07 --> LIBIR
+    
+    CL --> LIBAPP
+    CL --> LIBCOM
+    CL --> LIBUI
+    CL --> LIBMENU
+    CL --> BLE
+    
+    LIBIR --> LAC
+    LIBIR --> LC
+    LIBIR --> LIR
+    
+    style APP fill:#ff9800
+    style CL fill:#4caf50
+    style TH fill:#2196f3
+    style TIR fill:#2196f3
+```
+
+### Directory Structure
 ```
 TopInfrared/
 ├── app/                          # Main application module
@@ -80,6 +251,155 @@ TopInfrared/
 ├── libmatrix/                   # Matrix operations for image processing
 ├── libmenu/                     # Menu and navigation components
 └── LocalRepo/                   # Local dependencies and utilities
+```
+
+### Application Flow Diagram
+
+```mermaid
+flowchart TD
+    START([App Launch]) --> INIT[Initialize Components]
+    INIT --> PERM{Check Permissions}
+    PERM -->|Missing| REQ[Request Permissions]
+    REQ --> PERM
+    PERM -->|Granted| MAIN[Main Dashboard]
+    
+    MAIN --> SCAN[Scan for Devices]
+    MAIN --> VIEW[View Saved Images]
+    MAIN --> SETTINGS[Settings]
+    
+    SCAN --> DEV{Device Found?}
+    DEV -->|Yes| CONNECT[Connect to Device]
+    DEV -->|No| SCAN
+    
+    CONNECT --> SUCCESS{Connection Success?}
+    SUCCESS -->|Yes| LIVE[Live Thermal Feed]
+    SUCCESS -->|No| ERROR[Show Error]
+    ERROR --> SCAN
+    
+    LIVE --> CAPTURE[Capture Image]
+    LIVE --> MEASURE[Temperature Measurement]
+    LIVE --> ANALYZE[Analysis Tools]
+    
+    CAPTURE --> SAVE[Save to Gallery]
+    MEASURE --> REPORT[Generate Report]
+    ANALYZE --> VISUALIZE[3D Visualization]
+    
+    SAVE --> EXPORT[Export Options]
+    REPORT --> PDF[Generate PDF]
+    VISUALIZE --> EDIT[Edit & Annotate]
+    
+    EXPORT --> SHARE[Share/Cloud Upload]
+    PDF --> SHARE
+    EDIT --> SAVE
+    
+    style START fill:#4caf50
+    style MAIN fill:#2196f3
+    style LIVE fill:#ff9800
+    style ERROR fill:#f44336
+```
+
+### Thermal Data Processing Pipeline
+
+```mermaid
+graph TD
+    subgraph "Data Acquisition"
+        HIK_DEV[HIK Device] --> RAW_HIK[Raw HIK Data]
+        IR_DEV[IR Sensor] --> RAW_IR[Raw IR Data]
+        BLE_DEV[BLE Thermal Tool] --> RAW_BLE[Raw BLE Data]
+    end
+    
+    subgraph "Data Processing"
+        RAW_HIK --> NORMALIZE[Data Normalization]
+        RAW_IR --> NORMALIZE
+        RAW_BLE --> NORMALIZE
+        
+        NORMALIZE --> CALIB[Calibration]
+        CALIB --> FILTER[Noise Filtering]
+        FILTER --> ENHANCE[Image Enhancement]
+    end
+    
+    subgraph "Analysis & Visualization"
+        ENHANCE --> TEMP_MAP[Temperature Mapping]
+        TEMP_MAP --> PSEUDO[Pseudo-color Mapping]
+        PSEUDO --> ANALYSIS[Temperature Analysis]
+        
+        ANALYSIS --> POINT[Point Analysis]
+        ANALYSIS --> LINE[Line Analysis] 
+        ANALYSIS --> AREA[Area Analysis]
+        ANALYSIS --> POLY[Polygon Analysis]
+    end
+    
+    subgraph "Output Generation"
+        POINT --> REPORT[Report Generation]
+        LINE --> REPORT
+        AREA --> REPORT
+        POLY --> REPORT
+        
+        PSEUDO --> DISPLAY[Live Display]
+        PSEUDO --> SAVE_IMG[Save Image]
+        PSEUDO --> EXPORT_3D[3D Export]
+        
+        REPORT --> PDF_OUT[PDF Report]
+        SAVE_IMG --> GALLERY[Image Gallery]
+        EXPORT_3D --> MODEL_3D[3D Model]
+    end
+    
+    style HIK_DEV fill:#e3f2fd
+    style IR_DEV fill:#e3f2fd
+    style BLE_DEV fill:#e3f2fd
+    style NORMALIZE fill:#f3e5f5
+    style ANALYSIS fill:#e8f5e8
+    style PDF_OUT fill:#fff3e0
+```
+
+### BLE Device Communication Flow
+
+```mermaid
+sequenceDiagram
+    participant App as TopInfrared App
+    participant BLE as BLE Module
+    participant Device as Thermal Device
+    participant UI as User Interface
+    
+    App->>BLE: Initialize BLE Scanner
+    BLE->>BLE: Start device discovery
+    BLE-->>App: Device found callback
+    
+    App->>UI: Show discovered devices
+    UI->>App: User selects device
+    
+    App->>BLE: Connect to selected device
+    BLE->>Device: Connection request
+    Device-->>BLE: Connection response
+    BLE-->>App: Connection established
+    
+    loop Data Streaming
+        Device->>BLE: Thermal data packet
+        BLE->>App: Raw thermal data
+        App->>App: Process thermal data
+        App->>UI: Update live thermal display
+    end
+    
+    App->>BLE: Request device info
+    BLE->>Device: Get device parameters
+    Device-->>BLE: Device info response
+    BLE-->>App: Device information
+    
+    App->>BLE: Send configuration
+    BLE->>Device: Update device settings
+    Device-->>BLE: Configuration confirmed
+    
+    Note over App,Device: Temperature measurement mode
+    App->>BLE: Request temperature data
+    BLE->>Device: Temperature measurement
+    Device-->>BLE: Temperature readings
+    BLE-->>App: Processed temperature data
+    App->>UI: Display temperature analysis
+    
+    App->>BLE: Disconnect device
+    BLE->>Device: Disconnection request
+    Device-->>BLE: Disconnection confirmed
+    BLE-->>App: Device disconnected
 ```
 
 ## 🔧 Setup and Installation
@@ -126,7 +446,126 @@ TopInfrared/
    ./gradlew installProdRelease
    ```
 
+### Development Setup Flow
+
+```mermaid
+flowchart TD
+    START([Start Setup]) --> PREREQ[Check Prerequisites]
+    PREREQ --> AS{Android Studio Installed?}
+    AS -->|No| INSTALL_AS[Install Android Studio]
+    INSTALL_AS --> AS
+    AS -->|Yes| JDK{JDK 8/11 Installed?}
+    
+    JDK -->|No| INSTALL_JDK[Install JDK]
+    INSTALL_JDK --> JDK
+    JDK -->|Yes| CLONE[Clone Repository]
+    
+    CLONE --> OPEN[Open in Android Studio]
+    OPEN --> SYNC{Gradle Sync Success?}
+    SYNC -->|No| DEPS[Install Dependencies]
+    DEPS --> SYNC
+    SYNC -->|Yes| NDK{NDK 21.3.6528147?}
+    
+    NDK -->|No| INSTALL_NDK[Install NDK via SDK Manager]
+    INSTALL_NDK --> NDK
+    NDK -->|Yes| BUILD[Build Project]
+    
+    BUILD --> SUCCESS{Build Success?}
+    SUCCESS -->|No| DEBUG[Debug Build Issues]
+    DEBUG --> BUILD
+    SUCCESS -->|Yes| RUN[Run on Device]
+    
+    RUN --> COMPLETE([Setup Complete])
+    
+    style START fill:#4caf50
+    style COMPLETE fill:#4caf50
+    style BUILD fill:#2196f3
+    style DEBUG fill:#ff9800
+```
+
 ## 📦 Build Variants
+
+TopInfrared supports multiple build variants to target different markets and Android versions:
+
+### Build Variants Architecture
+
+```mermaid
+graph TB
+    subgraph "Build Types"
+        DEBUG[Debug]
+        RELEASE[Release]
+    end
+    
+    subgraph "Product Flavors"
+        DEV[dev]
+        BETA[beta] 
+        PROD[prod]
+        PRODTOP[prodTopdon]
+        CHINA[insideChina]
+        CHINATOP[prodTopdonInsideChina]
+    end
+    
+    subgraph "Generated Variants"
+        DEBUG --> DEVDEBUG[devDebug]
+        DEBUG --> BETADEBUG[betaDebug]
+        DEBUG --> PRODDEBUG[prodDebug]
+        
+        RELEASE --> DEVREL[devRelease]
+        RELEASE --> BETAREL[betaRelease]
+        RELEASE --> PRODREL[prodRelease]
+        RELEASE --> PRODTOPREL[prodTopdonRelease]
+        RELEASE --> CHINAREL[insideChinaRelease]
+        RELEASE --> CHINATOPREL[prodTopdonInsideChinaRelease]
+    end
+    
+    subgraph "Target Markets"
+        PRODREL --> INTL[International Market]
+        PRODTOPREL --> ANDROID10[Android 10 Devices]
+        CHINAREL --> DOMESTIC[Chinese Market]
+        CHINATOPREL --> CHINA_ANDROID10[China + Android 10]
+    end
+    
+    style DEV fill:#4caf50
+    style BETA fill:#ff9800
+    style PROD fill:#2196f3
+    style CHINA fill:#f44336
+```
+
+### Deployment Pipeline
+
+```mermaid
+flowchart LR
+    subgraph "Source Code"
+        CODE[Code Repository]
+    end
+    
+    subgraph "Build Process"
+        CODE --> BUILD{Build Type}
+        BUILD -->|Debug| DEBUG_BUILD[Debug Build]
+        BUILD -->|Release| RELEASE_BUILD[Release Build]
+        
+        DEBUG_BUILD --> DEV_APK[Development APK]
+        RELEASE_BUILD --> SIGN[Code Signing]
+        SIGN --> PROD_APK[Production APK]
+        SIGN --> AAB[Android App Bundle]
+    end
+    
+    subgraph "Distribution"
+        DEV_APK --> TESTING[Internal Testing]
+        PROD_APK --> STORE[App Stores]
+        AAB --> PLAYSTORE[Google Play Store]
+        
+        TESTING --> FIREBASE[Firebase Distribution]
+        STORE --> HUAWEI[Huawei AppGallery]
+        STORE --> XIAOMI[Xiaomi GetApps]
+        PLAYSTORE --> MARKETS[Global Markets]
+    end
+    
+    style CODE fill:#e3f2fd
+    style SIGN fill:#fff3e0
+    style PLAYSTORE fill:#4caf50
+    style MARKETS fill:#4caf50
+```
 
 TopInfrared supports multiple build variants to target different markets and Android versions:
 
@@ -339,6 +778,79 @@ TopInfrared supports multiple build variants to target different markets and And
 - **Storage**: Thermal data and report storage
 - **Internet**: Cloud features and analytics
 - **Location**: Geo-tagging thermal measurements (optional)
+
+## 👤 User Journey & Workflows
+
+### Complete User Journey Map
+
+```mermaid
+journey
+    title TopInfrared User Experience Journey
+    section App Discovery & Setup
+      Download App: 5: User
+      Grant Permissions: 4: User
+      Create Account: 4: User
+      Setup Preferences: 3: User
+    section Device Connection
+      Scan for Devices: 3: User
+      Pair Thermal Device: 4: User
+      Calibrate Device: 3: User
+      Test Connection: 5: User
+    section Thermal Imaging
+      Start Live Feed: 5: User
+      Adjust Settings: 4: User
+      Capture Image: 5: User
+      Take Measurements: 5: User
+    section Analysis & Reporting
+      Analyze Temperature: 5: User
+      Add Annotations: 4: User
+      Generate Report: 5: User
+      Export Data: 4: User
+    section Data Management
+      Browse Gallery: 4: User
+      Organize Files: 3: User
+      Share Results: 5: User
+      Backup Data: 3: User
+```
+
+### Thermal Imaging Workflow
+
+```mermaid
+stateDiagram-v2
+    [*] --> DeviceDiscovery
+    
+    DeviceDiscovery --> DeviceSelection: Device Found
+    DeviceSelection --> Connection: User Selects Device
+    Connection --> LiveFeed: Connection Success
+    Connection --> DeviceDiscovery: Connection Failed
+    
+    LiveFeed --> Capturing: User Triggers Capture
+    LiveFeed --> Settings: Adjust Parameters
+    Settings --> LiveFeed: Apply Changes
+    
+    Capturing --> Processing: Image Captured
+    Processing --> Analysis: Processing Complete
+    
+    Analysis --> Measurement: Add Temperature Points
+    Analysis --> Annotation: Add Notes/Drawings
+    Analysis --> Visualization: 3D View
+    
+    Measurement --> ReportGeneration
+    Annotation --> ReportGeneration
+    Visualization --> ReportGeneration
+    
+    ReportGeneration --> Gallery: Save to Gallery
+    ReportGeneration --> Export: Export/Share
+    ReportGeneration --> Print: Generate PDF
+    
+    Gallery --> Analysis: Re-analyze Image
+    Export --> [*]
+    Print --> [*]
+    
+    note right of LiveFeed : Real-time thermal feed\nwith measurement overlays
+    note right of Analysis : Temperature analysis\nwith multiple measurement types
+    note right of ReportGeneration : Professional PDF reports\nwith detailed analysis
+```
 
 ## 🤝 Contributing
 
