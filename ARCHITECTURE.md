@@ -676,18 +676,12 @@ productFlavors {
         buildConfigField("String", "API_BASE_URL", "\"https://api.topdon.com\"")
         buildConfigField("boolean", "DEBUG_MODE", "false")
     }
-    
-    insideChina {
-        buildConfigField("String", "API_BASE_URL", "\"https://cn-api.topdon.com\"")
-        // China-specific configurations
-    }
 }
 
 // Feature-specific build configurations
 dependencies {
     // Flavor-specific dependencies
     prodImplementation 'com.google.firebase:firebase-analytics'
-    insideChinaImplementation 'com.umeng.umsdk:analytics'
     
     // Debug tools only in development
     debugImplementation 'com.squareup.leakcanary:leakcanary-android'

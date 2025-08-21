@@ -27,7 +27,7 @@
 - **Multi-format Support**: Export thermal data in various formats (PDF, images, data logs)
 
 ### User Experience
-- **Multi-language Support**: Available in multiple languages including English and Chinese
+- **Multi-language Support**: Available in multiple languages
 - **Responsive UI**: Modern, intuitive interface optimized for thermal imaging workflows
 - **Offline Capabilities**: Core features work without internet connectivity
 - **User Account Management**: Secure user authentication and profile management
@@ -501,8 +501,6 @@ graph TB
         BETA[beta] 
         PROD[prod]
         PRODTOP[prodTopdon]
-        CHINA[insideChina]
-        CHINATOP[prodTopdonInsideChina]
     end
     
     subgraph "Generated Variants"
@@ -514,21 +512,16 @@ graph TB
         RELEASE --> BETAREL[betaRelease]
         RELEASE --> PRODREL[prodRelease]
         RELEASE --> PRODTOPREL[prodTopdonRelease]
-        RELEASE --> CHINAREL[insideChinaRelease]
-        RELEASE --> CHINATOPREL[prodTopdonInsideChinaRelease]
     end
     
     subgraph "Target Markets"
         PRODREL --> INTL[International Market]
         PRODTOPREL --> ANDROID10[Android 10 Devices]
-        CHINAREL --> DOMESTIC[Chinese Market]
-        CHINATOPREL --> CHINA_ANDROID10[China + Android 10]
     end
     
     style DEV fill:#4caf50
     style BETA fill:#ff9800
     style PROD fill:#2196f3
-    style CHINA fill:#f44336
 ```
 
 ### Deployment Pipeline
@@ -576,8 +569,6 @@ TopInfrared supports multiple build variants to target different markets and And
 - **`beta`**: Beta testing version
 - **`prod`**: Production release for international markets
 - **`prodTopdon`**: Production build for Android 10 compatibility
-- **`insideChina`**: Localized version for Chinese market (热视界)
-- **`prodTopdonInsideChina`**: Chinese version with Android 10 compatibility
 
 ### Build Commands
 
@@ -592,10 +583,6 @@ TopInfrared supports multiple build variants to target different markets and And
 ./gradlew assembleBetaRelease       # Beta release
 ./gradlew assembleProdRelease       # Production release
 ./gradlew assembleProdTopdonRelease # Android 10 production
-
-# Chinese market builds
-./gradlew assembleInsideChinaRelease
-./gradlew assembleProdTopdonInsideChinaRelease
 
 # Generate AAB (Android App Bundle)
 ./gradlew bundleProdRelease

@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - **3D Thermal Visualization**: New 3D representation module for thermal data
 - **Enhanced PDF Reports**: Improved report generation with watermarks and professional layouts
-- **Multi-language Support**: Extended localization for Chinese market (热视界)
+- **Multi-language Support**: Extended localization capabilities
 - **Advanced Temperature Analysis**: New polygon and area-based temperature measurement tools
 - **Cloud Integration**: Firebase analytics and crash reporting for better user experience
 - **Hardware Support**: Extended compatibility with newer thermal imaging devices
@@ -108,7 +108,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.7.0] - 2023-10-05
 
 ### Added
-- **Multi-language Support**: Initial localization for Chinese, Spanish, and German
+- **Multi-language Support**: Initial localization for Spanish and German
 - **Thermal Video Recording**: Record thermal video sessions
 - **Advanced Filters**: New thermal image enhancement filters
 - **Data Export**: Export thermal data in CSV format
