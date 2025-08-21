@@ -2,13 +2,11 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-android-extensions'
-    id 'kotlin-kapt'
+    id 'com.google.devtools.ksp'
 }
 
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.getName())
-    }
+ksp {
+    arg("AROUTER_MODULE_NAME", project.getName())
 }
 
 android {
@@ -70,7 +68,7 @@ dependencies {
     implementation project(':component:thermal-ir')
     implementation project(':component:thermal04')
 
-    kapt Deps.arouter_compiler
+    ksp Deps.arouter_compiler
 
     //艾睿手持设备API接口SDK
     api(name: 'jetified-tas_api-1.0.4.0', ext: 'aar')

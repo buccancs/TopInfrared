@@ -1,16 +1,14 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-kapt'
+    id 'com.google.devtools.ksp'
     // Commented out until proper Google services setup
     // id 'com.google.gms.google-services'
     // id 'com.google.firebase.crashlytics'
 }
 
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.getName())
-    }
+ksp {
+    arg("AROUTER_MODULE_NAME", project.getName())
 }
 
 android {
@@ -336,7 +334,7 @@ dependencies {
     // Note: ShimmerAndroidAPI dependency to be added when proper repository access is available
     // implementation 'com.github.ShimmerEngineering:Shimmer-Android-API:1.2.0'
 
-    kapt 'com.alibaba:arouter-compiler:1.5.2'
+    ksp 'com.alibaba:arouter-compiler:1.5.2'
 
     implementation 'com.github.lzyzsd:jsbridge:1.0.4'
     implementation 'com.alibaba:fastjson:1.2.78'

@@ -1,13 +1,11 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
-    id 'kotlin-kapt'
+    id 'com.google.devtools.ksp'
 }
 
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.getName())
-    }
+ksp {
+    arg("AROUTER_MODULE_NAME", project.getName())
 }
 
 android {
@@ -80,7 +78,7 @@ dependencies {
     // implementation project(':component:house')
     implementation project(':component:CommonComponent')
 
-    kapt "com.alibaba:arouter-compiler:1.5.2"
+    ksp "com.alibaba:arouter-compiler:1.5.2"
     api "com.airbnb.android:lottie:3.0.7"
     api 'com.github.anzaizai:EasySwipeMenuLayout:1.1.4'
 

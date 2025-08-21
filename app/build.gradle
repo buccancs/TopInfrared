@@ -1,15 +1,13 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-kapt'
+    id 'com.google.devtools.ksp'
     id 'com.google.gms.google-services'
     id 'com.google.firebase.crashlytics'
 }
 
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.getName())
-    }
+ksp {
+    arg("AROUTER_MODULE_NAME", project.getName())
 }
 
 android {
@@ -337,7 +335,7 @@ dependencies {
     implementation project(':libmenu')
     implementation project(':libui')
 
-    kapt Deps.arouter_compiler
+    ksp Deps.arouter_compiler
 
     implementation 'com.github.lzyzsd:jsbridge:1.0.4'
     implementation 'com.alibaba:fastjson:1.2.78'

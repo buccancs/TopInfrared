@@ -1,13 +1,11 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
-    id 'kotlin-kapt'
+    id 'com.google.devtools.ksp'
 }
 
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.getName())
-    }
+ksp {
+    arg("AROUTER_MODULE_NAME", project.getName())
 }
 
 
@@ -62,5 +60,5 @@ android {
 dependencies {
     implementation project(':libapp')
     implementation project(':libmenu') //伪彩条用着 PseudoColorConfig
-    kapt Deps.arouter_compiler
+    ksp Deps.arouter_compiler
 }

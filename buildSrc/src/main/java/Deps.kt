@@ -10,6 +10,9 @@ object Deps {
 
     const val room_compiler = "androidx.room:room-compiler:2.6.1"
     const val room_ktx = "androidx.room:room-ktx:2.6.1"
+    
+    // KSP processors (replacing KAPT)
+    const val glide_ksp = "com.github.bumptech.glide:ksp:4.16.0"
 
     const val work_runtime_ktx = "androidx.work:work-runtime-ktx:2.7.1"
 
@@ -19,8 +22,8 @@ object Deps {
 
     const val eventbus = "org.greenrobot:eventbus:3.2.0"
 
-    const val glide = "com.github.bumptech.glide:glide:4.11.0"
-    const val glide_compiler = "com.github.bumptech.glide:compiler:4.11.0"
+    const val glide = "com.github.bumptech.glide:glide:4.16.0"
+    const val glide_compiler = "com.github.bumptech.glide:compiler:4.16.0"
 
     const val rxjava2 = "io.reactivex.rxjava2:rxjava:2.2.20"
     const val rxandroid = "io.reactivex.rxjava2:rxandroid:2.1.1"

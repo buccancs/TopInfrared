@@ -1,17 +1,14 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
-    id 'kotlin-kapt'
+    id 'com.google.devtools.ksp'
 }
 
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.getName())
-//        arg("AROUTER_GENERATE_DOC", "enable")//生成doc文档
-        arg("room.schemaLocation", "$projectDir/schemas".toString())
-        arg("room.incremental", "true")
-        arg("room.expandProjection", "true")
-    }
+ksp {
+    arg("AROUTER_MODULE_NAME", project.getName())
+    arg("room.schemaLocation", "$projectDir/schemas".toString())
+    arg("room.incremental", "true")
+    arg("room.expandProjection", "true")
 }
 
 android {
@@ -88,7 +85,7 @@ dependencies {
     api Deps.lifecycle_viewmodel_ktx
     api Deps.lifecycle_livedata_ktx
 
-    kapt Deps.room_compiler
+    ksp Deps.room_compiler
     api Deps.room_ktx
 
     api Deps.work_runtime_ktx
@@ -100,7 +97,7 @@ dependencies {
     api Deps.eventbus
 
     api Deps.glide
-    kapt Deps.glide_compiler
+    ksp Deps.glide_ksp
 
     api Deps.rxjava2
     api Deps.rxandroid
@@ -112,7 +109,7 @@ dependencies {
     api Deps.rxlifecycle_android_lifecycle_ktx
 
     api Deps.arouter_api
-    kapt Deps.arouter_compiler
+    ksp Deps.arouter_compiler
 
     api Deps.utilcode
     api Deps.XXPermissions
