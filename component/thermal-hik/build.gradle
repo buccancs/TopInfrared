@@ -1,13 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-    id 'kotlin-kapt'
-}
-
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.getName())
-    }
+    id 'com.google.devtools.ksp'
 }
 
 android {
@@ -68,5 +62,4 @@ dependencies {
     implementation project(':libmenu')
     implementation project(':libui')
 
-    kapt Deps.arouter_compiler
 }

@@ -1,20 +1,18 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
-    id 'kotlin-kapt'
+    id 'com.google.devtools.ksp'
     // Commented out until proper Google services setup
     // id 'com.google.gms.google-services'
     // id 'com.google.firebase.crashlytics'
 }
 
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.getName())
-    }
-}
-
 android {
+    namespace 'com.topdon.tc001'
+    buildFeatures {
+        buildConfig true
+        viewBinding true
+    }
     compileSdk rootProject.ext.android.compileSdk
     defaultConfig {
         applicationId rootProject.ext.android.applicationId
@@ -82,8 +80,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     packagingOptions {
         //解决第三方so依赖冲突 merge（合并）  pickFirst（选取第一个）
@@ -113,7 +111,7 @@ android {
         doNotStrip "**/*.so"
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
     buildFeatures{
         dataBinding = true
@@ -332,7 +330,8 @@ dependencies {
     // Note: ShimmerAndroidAPI dependency to be added when proper repository access is available
     // implementation 'com.github.ShimmerEngineering:Shimmer-Android-API:1.2.0'
 
-    kapt 'com.alibaba:arouter-compiler:1.5.2'
+    // Removed ARouter dependency - replaced with ModernRouter in libapp
+    // ksp 'com.alibaba:arouter-compiler:1.5.2'
 
     implementation 'com.github.lzyzsd:jsbridge:1.0.4'
     implementation 'com.alibaba:fastjson:1.2.78'

@@ -1,0 +1,39 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+        maven { url = uri("https://maven.aliyun.com/repository/gradle-plugin") }
+        maven { url = uri("https://maven.aliyun.com/repository/central") }
+        maven { url = uri("https://maven.aliyun.com/repository/public") }
+        maven { url = uri("https://maven.aliyun.com/repository/google") }
+        google()
+        mavenCentral()
+        maven { url = uri("https://www.jitpack.io") }
+        // hms服务推送注册作为海外通用推送渠道直接添加
+        maven { url = uri("https://developer.huawei.com/repo/") }
+        // fcm服务 推送作为 FCM 通用推送渠道直接添加
+        maven { url = uri("https://maven.google.com") }
+        maven { url = uri("https://repo1.maven.org/maven2/") }
+        maven {
+            url = uri("https://maven.zohodl.com")
+        }
+    }
+    dependencies {
+        classpath("com.android.tools.build:gradle:8.1.4")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.0")
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+//        classpath("com.alibaba:arouter-register:1.0.2")
+        classpath("com.google.gms:google-services:4.4.0")
+        classpath("com.google.firebase:firebase-crashlytics-gradle:2.9.9")
+        classpath("com.google.gms:google-services:4.3.8")
+        // hms服务推送注册作为海外通用推送渠道直接添加
+        classpath("com.huawei.agconnect:agcp:1.9.1.301")
+    }
+}
+
+apply(from = "depend.gradle")
+
+tasks.register<Delete>("clean") {
+    delete(rootProject.buildDir)
+}

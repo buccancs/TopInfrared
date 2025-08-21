@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="24"
-        android:targetSdkVersion="34" />
+        android:targetSdkVersion="35" />
 
     <!-- USB permissions for TC001 device -->
     <uses-permission android:name="android.permission.USB_PERMISSION" />

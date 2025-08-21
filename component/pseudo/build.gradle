@@ -1,17 +1,11 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-    id 'kotlin-android-extensions'
-    id 'kotlin-kapt'
-}
-
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.getName())
-    }
+    id 'com.google.devtools.ksp'
 }
 
 android {
+    namespace 'com.topdon.pseudo'
     compileSdk rootProject.ext.android.compileSdk
 
     defaultConfig {
@@ -60,5 +54,4 @@ dependencies {
     implementation project(':libapp')
     implementation project(':libui')
 
-    kapt Deps.arouter_compiler
 }

@@ -1,18 +1,15 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
-    id 'kotlin-kapt'
-}
-
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.getName())
-    }
+    id 'com.google.devtools.ksp'
 }
 
 android {
     namespace = "com.example.thermal_lite"
+    buildFeatures {
+        buildConfig true
+        viewBinding true
+    }
     compileSdk rootProject.ext.android.compileSdk
 
     defaultConfig {
@@ -77,7 +74,6 @@ dependencies {
     implementation project(':component:pseudo')
     implementation project(':component:thermal-ir')
 
-    kapt Deps.arouter_compiler
     api(project(":LocalRepo:libac020"))
     api(project(":LocalRepo:libirutils"))
     api(project(":LocalRepo:libcommon"))

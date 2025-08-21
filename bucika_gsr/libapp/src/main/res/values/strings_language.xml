@@ -41,6 +41,7 @@
     <string name="privacy_statement">Privacy Statement</string>
     <string name="app_report">Report</string>
     <string name="http_time_out">Request timed out</string>
+    <string name="http_code_z5004">Abnormal data</string>
     <string name="person_save">Save</string>
     <string name="tip_save_success">Saved</string>
     <string name="report_select_all">Select All</string>

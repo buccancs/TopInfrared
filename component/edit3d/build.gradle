@@ -1,16 +1,16 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-    id 'kotlin-android-extensions'
-    id 'kotlin-kapt'
-}
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.getName())
-    }
+    id 'com.google.devtools.ksp'
 }
 android {
+    namespace 'com.topdon.lib.menu'
     compileSdk rootProject.ext.android.compileSdk
+    
+    buildFeatures {
+        buildConfig true
+        viewBinding true
+    }
 
     defaultConfig {
         minSdk rootProject.ext.android.minSdk
@@ -24,11 +24,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
     sourceSets {
         main {
@@ -60,7 +60,6 @@ android {
 }
 
 dependencies {
-    kapt Deps.arouter_compiler
     implementation project(':libapp')
     implementation project(':libui') //需要使用 BarPickView
     implementation(name: 'opengl_1.3.2_standard', ext: 'aar')

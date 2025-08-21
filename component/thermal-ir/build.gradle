@@ -1,17 +1,15 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
-    id 'kotlin-kapt'
-}
-
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.getName())
-    }
+    id 'com.google.devtools.ksp'
 }
 
 android {
+    namespace 'com.topdon.module.thermal.ir'
+    buildFeatures {
+        buildConfig true
+        viewBinding true
+    }
     compileSdk rootProject.ext.android.compileSdk
 
     defaultConfig {
@@ -79,7 +77,6 @@ dependencies {
     implementation project(':component:house')
     implementation project(':component:pseudo')
 
-    kapt Deps.arouter_compiler
     api Deps.lottie
     api 'com.github.anzaizai:EasySwipeMenuLayout:1.1.4'
 

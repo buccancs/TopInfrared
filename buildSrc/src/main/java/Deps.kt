@@ -4,12 +4,15 @@ object Deps {
     const val material = "com.google.android.material:material:1.4.0"
     const val multidex = "androidx.multidex:multidex:2.0.1"
 
-    const val lifecycle_runtime_ktx = "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
-    const val lifecycle_viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
-    const val lifecycle_livedata_ktx = "androidx.lifecycle:lifecycle-livedata-ktx:2.5.1"
+    const val lifecycle_runtime_ktx = "androidx.lifecycle:lifecycle-runtime-ktx:2.7.0"
+    const val lifecycle_viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0"
+    const val lifecycle_livedata_ktx = "androidx.lifecycle:lifecycle-livedata-ktx:2.7.0"
 
     const val room_compiler = "androidx.room:room-compiler:2.6.1"
     const val room_ktx = "androidx.room:room-ktx:2.6.1"
+    
+    // KSP processors (replacing KAPT)
+    const val glide_ksp = "com.github.bumptech.glide:ksp:4.16.0"
 
     const val work_runtime_ktx = "androidx.work:work-runtime-ktx:2.7.1"
 
@@ -19,8 +22,8 @@ object Deps {
 
     const val eventbus = "org.greenrobot:eventbus:3.2.0"
 
-    const val glide = "com.github.bumptech.glide:glide:4.11.0"
-    const val glide_compiler = "com.github.bumptech.glide:compiler:4.11.0"
+    const val glide = "com.github.bumptech.glide:glide:4.16.0"
+    const val glide_compiler = "com.github.bumptech.glide:compiler:4.16.0"
 
     const val rxjava2 = "io.reactivex.rxjava2:rxjava:2.2.20"
     const val rxandroid = "io.reactivex.rxjava2:rxandroid:2.1.1"
@@ -31,8 +34,14 @@ object Deps {
     const val rxlifecycle_ktx = "com.trello.rxlifecycle2:rxlifecycle-kotlin:2.2.2"
     const val rxlifecycle_android_lifecycle_ktx = "com.trello.rxlifecycle2:rxlifecycle-android-lifecycle-kotlin:2.2.2"
 
-    const val arouter_api = "com.alibaba:arouter-api:1.5.2"
-    const val arouter_compiler = "com.alibaba:arouter-compiler:1.5.2"
+    // Navigation Component (replaces ARouter)
+    const val navigation_fragment_ktx = "androidx.navigation:navigation-fragment-ktx:2.7.6"
+    const val navigation_ui_ktx = "androidx.navigation:navigation-ui-ktx:2.7.6"
+    const val navigation_dynamic_features = "androidx.navigation:navigation-dynamic-features-fragment:2.7.6"
+    
+    // Deprecated ARouter (replaced with ModernRouter)
+    // const val arouter_api = "com.alibaba:arouter-api:1.5.2" 
+    // const val arouter_compiler = "com.alibaba:arouter-compiler:1.5.2"
 
     const val utilcode = "com.blankj:utilcodex:1.31.0"
     const val XXPermissions = "com.github.getActivity:XXPermissions:20.0"

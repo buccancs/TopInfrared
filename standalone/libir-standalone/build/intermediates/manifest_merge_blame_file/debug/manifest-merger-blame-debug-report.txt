@@ -3,6 +3,5 @@
 3    package="com.topinfrared.tc001.libir" >
 4
 5    <uses-sdk android:minSdkVersion="24" />
-5-->/home/runner/work/TopInfrared/TopInfrared/standalone/libir-standalone/src/main/AndroidManifest.xml
 6
 7</manifest>

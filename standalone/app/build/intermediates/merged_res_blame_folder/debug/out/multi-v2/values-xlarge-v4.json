@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.topinfrared.tc001.standalone.app-mergeDebugResources-38:/values-xlarge-v4/values-xlarge-v4.xml",
+            "outputFile": "com.topinfrared.tc001.standalone.app-mergeDebugResources-37:/values-xlarge-v4/values-xlarge-v4.xml",
             "map": [
                 {
-                    "source": "/home/runner/.gradle/caches/transforms-3/3e050352d50c5db8d7ab581b0a5992da/transformed/appcompat-1.6.1/res/values-xlarge-v4/values-xlarge-v4.xml",
+                    "source": "/home/runner/.gradle/caches/transforms-3/3641186fd280654eed82a751ebea9012/transformed/appcompat-1.6.1/res/values-xlarge-v4/values-xlarge-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7",
                         "startColumns": "4,4,4,4,4,4",

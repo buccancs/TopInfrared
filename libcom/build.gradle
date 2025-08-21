@@ -1,18 +1,11 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
-    id 'kotlin-kapt'
+    id 'com.google.devtools.ksp'
 }
-
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.getName())
-    }
-}
-
 
 android {
+    namespace 'com.topdon.libcom'
     compileSdk rootProject.ext.android.compileSdk
 
     defaultConfig {
@@ -63,7 +56,6 @@ dependencies {
     implementation project(':libapp')
     implementation project(':libui')
 
-    kapt Deps.arouter_compiler
     api Deps.colorpickerview
     implementation Deps.brvah
 
