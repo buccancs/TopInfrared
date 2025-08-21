@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:background="#16131e">
+
+        <!-- 用于实现左右滑动切换 拍照/录像 的 ViewPager2 -->
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="375:132"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 中间开始拍照、拍照中、开始录像、停止录像按钮 -->
+        <ImageView
+            android:id="@+id/iv_action"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/svg_camera_photo_normal"
+            android:contentDescription="@null"
+            app:layout_constraintWidth_percent="0.15"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintVertical_bias="0.7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/view_pager2"
+            app:layout_constraintBottom_toBottomOf="@id/view_pager2" />
+        <!-- 左侧圆形图库封面 -->
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/iv_gallery"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/shape_oval_33"
+            app:roundPercent="1"
+            app:layout_constraintWidth_percent="0.1"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/iv_action"
+            app:layout_constraintTop_toTopOf="@id/iv_action"
+            app:layout_constraintBottom_toBottomOf="@id/iv_action" />
+        <!-- 右侧更多菜单按钮 -->
+        <ImageView
+            android:id="@+id/iv_more"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/svg_camera_more"
+            android:contentDescription="@null"
+            app:layout_constraintWidth_percent="0.1"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toEndOf="@id/iv_action"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_action"
+            app:layout_constraintBottom_toBottomOf="@id/iv_action" />
+
+        <!-- 拍照/录像 切换及指示文字 -->
+        <TextView
+            android:id="@+id/tv_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:paddingHorizontal="14dp"
+            android:gravity="center_vertical"
+            android:text="@string/person_headshot_camera"
+            android:textColor="@color/camera_text"
+            tools:textColor="#ffffff"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/iv_action" />
+        <TextView
+            android:id="@+id/tv_video"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:paddingHorizontal="14dp"
+            android:gravity="center_vertical"
+            android:text="@string/app_video"
+            android:textColor="@color/camera_text"
+            app:layout_constraintStart_toEndOf="@id/tv_photo"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/iv_action" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

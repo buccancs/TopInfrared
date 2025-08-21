@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingTop="37dp"
+    android:paddingBottom="27dp"
+    android:background="@drawable/bg_corners15_solid_80_00">
+
+    <com.topdon.lms.sdk.weiget.LmsLoadView
+        android:id="@+id/lms_load_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:lms_dot_radius="5dp"
+        app:lms_dot_spacing="6dp"
+        app:lms_dot_move_rate="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_tips"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:gravity="center_horizontal"
+        android:textSize="12sp"
+        android:textColor="@color/white"
+        tools:text="这是提示文字"
+        tools:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lms_load_view" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

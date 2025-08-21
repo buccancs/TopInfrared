@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="temp_label">温度:</string>
+    <string name="temp_max">最大:</string>
+    <string name="temp_min">最小:</string>
+    <string name="temp_avg">平均:</string>
+
+
+    <string name="text_button_play">演示</string>
+</resources>

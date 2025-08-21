@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="top_infrared_up_case" translatable="false">TOPINFRARED</string>
+    <string name="see_more_than" translatable="false">See More Than Human Eye Can</string>
+
+    <string name="version_code" translatable="false">Version %s</string>
+    <string name="version_year" translatable="false">Copyright %s TOPDON Technology Co.,Ltd.\nAll Rights Reserved.</string>
+    <string name="splash_title_1" translatable="false">See More</string>
+    <string name="splash_title_2" translatable="false">Than Human Eye Can</string>
+
+
+    <string name="china" translatable="false">中文简体</string>
+    <string name="china_tw" translatable="false">中文繁体</string>
+    <string name="english" translatable="false">English</string>
+    <!--    俄语-->
+    <string name="russian" translatable="false">русский</string>
+    <!--    日语-->
+    <string name="japanese" translatable="false">日本語</string>
+    <!--    西班牙语-->
+    <string name="espanol" translatable="false">Español</string>
+    <!--    德语-->
+    <string name="deutsch" translatable="false">Deutsch</string>
+    <!--    葡萄牙语-->
+    <string name="portugues" translatable="false">Português</string>
+    <!--    法语-->
+    <string name="french" translatable="false">français</string>
+    <!--    意大利语-->
+    <string name="italian" translatable="false">Italian</string>
+    <!--    波兰语-->
+    <string name="polish" translatable="false">Polski</string>
+    <!--    捷克语-->
+    <string name="czech" translatable="false">čeština</string>
+    <!--    乌克兰语-->
+    <string name="ukrainian" translatable="false">українська</string>
+    <!--    荷兰语-->
+    <string name="dutch" translatable="false">Nederlands</string>
+
+    <string-array name="setting_language_list">
+        <item>@string/english</item>
+        <item>@string/russian</item>
+        <item>@string/japanese</item>
+        <item>@string/deutsch</item>
+        <item>@string/french</item>
+        <item>@string/portugues</item>
+        <item>@string/espanol</item>
+        <item>@string/italian</item>
+        <item>@string/polish</item>
+        <item>@string/czech</item>
+        <item>@string/ukrainian</item>
+        <item>@string/dutch</item>
+        <item>@string/china</item>
+        <item>@string/china_tw</item>
+    </string-array>
+
+</resources>

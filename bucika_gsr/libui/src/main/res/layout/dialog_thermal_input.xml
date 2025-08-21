@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="360dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_card">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dialog_tip_msg_lay"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@id/dialog_tip_line"
+        app:layout_constraintEnd_toEndOf="@id/tip_end_line"
+        app:layout_constraintStart_toStartOf="@id/tip_start_line"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/dialog_tip_msg_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="@string/app_message"
+            android:textColor="@color/white"
+            android:textSize="@dimen/app_font_15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/content_start_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.06" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/content_end_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.94" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/dialog_input_lay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="@id/content_end_line"
+            app:layout_constraintStart_toStartOf="@id/content_start_line"
+            app:layout_constraintTop_toBottomOf="@id/dialog_tip_msg_text">
+
+            <TextView
+                android:id="@+id/dialog_up_head_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="@string/temperature_limit_upper"
+                android:textColor="@color/white"
+                android:textSize="@dimen/app_font_13"
+                app:layout_constraintBottom_toBottomOf="@id/dialog_up_edit"
+                app:layout_constraintEnd_toStartOf="@id/dialog_up_edit"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/dialog_up_edit"
+                app:layout_constraintWidth_percent="0.28" />
+
+            <EditText
+                android:id="@+id/dialog_up_edit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/ui_dialog_input_selector_bg"
+                android:inputType="numberDecimal|numberSigned"
+                android:maxLength="6"
+                android:paddingStart="6dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:textColor="@color/font_color"
+                android:textSize="@dimen/app_font_13"
+                app:layout_constraintEnd_toStartOf="@id/dialog_up_color"
+                app:layout_constraintStart_toEndOf="@id/dialog_up_head_text"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/dialog_up_unit_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="°C"
+                android:textColor="@color/font_second_color"
+                android:textSize="@dimen/app_small_font"
+                app:layout_constraintBottom_toBottomOf="@id/dialog_up_edit"
+                app:layout_constraintEnd_toEndOf="@id/dialog_up_edit"
+                app:layout_constraintTop_toTopOf="@id/dialog_up_edit" />
+
+            <ImageView
+                android:id="@+id/dialog_up_color"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/bg_color_select"
+                android:padding="1dp"
+                android:src="@color/color_default_max"
+                app:layout_constraintBottom_toBottomOf="@id/dialog_up_edit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/dialog_up_edit"
+                app:layout_constraintTop_toTopOf="@id/dialog_up_edit" />
+
+            <TextView
+                android:id="@+id/dialog_down_head_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="@string/temperature_limit_lower"
+                android:textColor="@color/white"
+                android:textSize="@dimen/app_font_13"
+                app:layout_constraintBottom_toBottomOf="@id/dialog_down_edit"
+                app:layout_constraintEnd_toStartOf="@id/dialog_down_edit"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/dialog_down_edit"
+                app:layout_constraintWidth_percent="0.28" />
+
+            <EditText
+                android:id="@+id/dialog_down_edit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/ui_dialog_input_selector_bg"
+                android:inputType="numberDecimal|numberSigned"
+                android:maxLength="6"
+                android:paddingStart="6dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:textColor="@color/font_color"
+                android:textSize="@dimen/app_font_13"
+                app:layout_constraintEnd_toStartOf="@id/dialog_down_color"
+                app:layout_constraintStart_toEndOf="@id/dialog_down_head_text"
+                app:layout_constraintTop_toBottomOf="@id/dialog_up_edit" />
+
+            <TextView
+                android:id="@+id/dialog_down_unit_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="°C"
+                android:textColor="@color/font_second_color"
+                android:textSize="@dimen/app_small_font"
+                app:layout_constraintBottom_toBottomOf="@id/dialog_down_edit"
+                app:layout_constraintEnd_toEndOf="@id/dialog_down_edit"
+                app:layout_constraintTop_toTopOf="@id/dialog_down_edit" />
+
+            <ImageView
+                android:id="@+id/dialog_down_color"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/bg_color_select"
+                android:padding="1dp"
+                android:src="@color/color_default_min"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/dialog_down_edit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/dialog_down_edit"
+                app:layout_constraintTop_toTopOf="@id/dialog_down_edit" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/color_picker_view_lay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/content_end_line"
+            app:layout_constraintStart_toStartOf="@id/content_start_line"
+            app:layout_constraintTop_toBottomOf="@id/dialog_tip_msg_text">
+
+            <com.skydoves.colorpickerview.ColorPickerView
+                android:id="@+id/color_picker_view"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                app:actionMode="last"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:selector="@mipmap/ic_selector_wheel" />
+
+            <View
+                android:id="@+id/color_picker_line"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="#F5F5F5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/color_picker_view" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/color_picker_recycler"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:overScrollMode="never"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/color_picker_line"
+                tools:itemCount="1"
+                tools:listitem="@layout/ui_item_color_select" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/dialog_tip_line"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:background="#F5F5F5"
+        app:layout_constraintBottom_toTopOf="@id/dialog_tip_success_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dialog_tip_msg_lay" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tip_start_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.06" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tip_end_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.94" />
+
+    <Button
+        android:id="@+id/dialog_tip_cancel_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#3B3E44"
+        android:gravity="center"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:text="@string/app_cancel"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/app_small_font"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@id/dialog_tip_success_btn"
+        app:layout_constraintEnd_toStartOf="@+id/dialog_tip_success_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="@id/tip_start_line"
+        app:layout_constraintTop_toTopOf="@+id/dialog_tip_success_btn" />
+
+    <Button
+        android:id="@+id/dialog_tip_success_btn"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/app_btn_big_height"
+        android:background="#3B3E44"
+        android:gravity="center"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:text="@string/app_ok"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/app_small_font"
+        app:layout_constraintEnd_toEndOf="@id/tip_end_line"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/dialog_tip_cancel_btn"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_tip_line" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

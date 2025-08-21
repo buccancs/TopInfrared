@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 热成像菜单 -->
+    <declare-styleable name="MenuSecondView">
+        <attr name="deviceType" format="enum">
+            <enum name="single_light" value="0" /> <!-- 单光 -->
+            <enum name="double_light" value="1" /> <!-- 双光 -->
+            <enum name="lite" value="2" />         <!-- Lite -->
+            <enum name="tc007" value="3" />        <!-- TC007 -->
+            <enum name="gallery_edit" value="4" /> <!-- 2D编辑 -->
+        </attr>
+    </declare-styleable>
+</resources>

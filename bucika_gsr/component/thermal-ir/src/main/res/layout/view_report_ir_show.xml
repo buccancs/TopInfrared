@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:orientation="vertical">
+
+    <!-- 红外数据 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:paddingTop="20dp">
+
+        <View
+            android:id="@+id/view_image_bg"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:background="@drawable/layer_report_ir_show_top_bg" />
+
+        <TextView
+            android:id="@+id/tv_head"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:gravity="center_vertical"
+            android:text="@string/album_report_infrared"
+            android:textSize="15sp"
+            android:textColor="#ffffff"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:background="@drawable/bg_report_preview_title"
+            app:layout_constraintDimensionRatio="335:49"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/view_image_bg" />
+
+        <View
+            android:id="@+id/view_not_head"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#0ff5f5f5"
+            android:visibility="gone"
+            app:layout_constraintDimensionRatio="335:30"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/view_image_bg" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_head"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="tv_head,view_not_head" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/iv_image"
+            android:layout_width="175dp"
+            android:layout_height="235dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@null"
+            app:lottie_rawRes="@raw/ic_report_image_loading"
+            app:lottie_loop="true"
+            app:lottie_autoPlay="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/barrier_head" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 全图 -->
+    <include
+        android:id="@+id/cl_full"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        tools:visibility="visible"
+        layout="@layout/item_report_ir_show" />
+
+    <!-- 点1 -->
+    <include
+        android:id="@+id/cl_point1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        layout="@layout/item_report_ir_show" />
+    <!-- 点2 -->
+    <include
+        android:id="@+id/cl_point2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        layout="@layout/item_report_ir_show" />
+    <!-- 点3 -->
+    <include
+        android:id="@+id/cl_point3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        layout="@layout/item_report_ir_show" />
+    <!-- 点4 -->
+    <include
+        android:id="@+id/cl_point4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        layout="@layout/item_report_ir_show" />
+    <!-- 点5 -->
+    <include
+        android:id="@+id/cl_point5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        layout="@layout/item_report_ir_show" />
+
+    <!-- 线1 -->
+    <include
+        android:id="@+id/cl_line1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        layout="@layout/item_report_ir_show" />
+    <!-- 线2 -->
+    <include
+        android:id="@+id/cl_line2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        layout="@layout/item_report_ir_show" />
+    <!-- 线3 -->
+    <include
+        android:id="@+id/cl_line3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        layout="@layout/item_report_ir_show" />
+    <!-- 线4 -->
+    <include
+        android:id="@+id/cl_line4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        layout="@layout/item_report_ir_show" />
+    <!-- 线5 -->
+    <include
+        android:id="@+id/cl_line5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        layout="@layout/item_report_ir_show" />
+
+    <!-- 面1 -->
+    <include
+        android:id="@+id/cl_rect1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        layout="@layout/item_report_ir_show" />
+    <!-- 面2 -->
+    <include
+        android:id="@+id/cl_rect2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        layout="@layout/item_report_ir_show" />
+    <!-- 面3 -->
+    <include
+        android:id="@+id/cl_rect3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        layout="@layout/item_report_ir_show" />
+    <!-- 面4 -->
+    <include
+        android:id="@+id/cl_rect4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        layout="@layout/item_report_ir_show" />
+    <!-- 面5 -->
+    <include
+        android:id="@+id/cl_rect5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        layout="@layout/item_report_ir_show" />
+
+</LinearLayout>

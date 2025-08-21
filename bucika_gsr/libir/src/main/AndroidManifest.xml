@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.infisense.usbir">
+    <!-- 覆盖libusbirsdk.aar android:minSdkVersion="23"-->
+    <uses-sdk
+        tools:overrideLibrary="com.infisense.iruvc" />
+
+    <application android:extractNativeLibs="true" />
+</manifest>

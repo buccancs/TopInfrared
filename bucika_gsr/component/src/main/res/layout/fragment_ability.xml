@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:background="#16131e">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/vehicle_function"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- 冬季特辑入口 -->
+    <ImageView
+        android:id="@+id/iv_winter"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="25dp"
+        android:src="@drawable/ic_ir_winter_bg"
+        android:contentDescription="@null"
+        app:layout_constraintDimensionRatio="1029:390"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title" />
+    <!-- 右侧图标占位 -->
+    <View
+        android:id="@+id/space_winter_right"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="W,128:130"
+        app:layout_constraintEnd_toEndOf="@id/iv_winter"
+        app:layout_constraintTop_toTopOf="@id/iv_winter"
+        app:layout_constraintBottom_toBottomOf="@id/iv_winter" />
+    <!-- 标题 -->
+    <TextView
+        android:id="@+id/tv_winter_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/testing_guidance"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:maxLines="2"
+        android:ellipsize="end"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@id/iv_winter"
+        app:layout_constraintEnd_toStartOf="@+id/space_winter_right"
+        app:layout_constraintTop_toTopOf="@id/iv_winter"
+        app:layout_constraintBottom_toTopOf="@+id/tv_winter_sub_title" />
+    <!-- 副标题 -->
+    <TextView
+        android:id="@+id/tv_winter_sub_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/unlock_professional_perspectives"
+        android:textSize="14sp"
+        android:textColor="#99ffffff"
+        android:maxLines="2"
+        android:ellipsize="end"
+        app:layout_constraintStart_toStartOf="@id/tv_winter_title"
+        app:layout_constraintEnd_toEndOf="@id/tv_winter_title"
+        app:layout_constraintTop_toBottomOf="@id/tv_winter_title"
+        app:layout_constraintBottom_toBottomOf="@id/iv_winter" />
+
+
+    <!-- 温度监控 -->
+    <ImageView
+        android:id="@+id/iv_monitory"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/ic_ability_monitory"
+        android:contentDescription="@null"
+        app:layout_constraintWidth_percent="0.3"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_winter" />
+    <TextView
+        android:id="@+id/tv_monitory_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/main_thermal_motion"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:maxLines="2"
+        android:ellipsize="end"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@id/iv_monitory"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/iv_monitory"
+        app:layout_constraintBottom_toTopOf="@+id/tv_monitory_desc" />
+    <TextView
+        android:id="@+id/tv_monitory_desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="@string/ability_monitory"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:textColor="#80ffffff"
+        android:maxLines="2"
+        android:ellipsize="end"
+        app:layout_constraintStart_toStartOf="@id/tv_monitory_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_monitory_title"
+        app:layout_constraintBottom_toBottomOf="@id/iv_monitory" />
+    <View
+        android:id="@+id/view_monitory"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/iv_monitory"
+        app:layout_constraintBottom_toBottomOf="@id/iv_monitory" />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="#19ffffff"
+        app:layout_constraintTop_toBottomOf="@id/iv_monitory"
+        app:layout_constraintStart_toStartOf="@id/tv_monitory_title"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- 房屋检测 -->
+    <ImageView
+        android:id="@+id/iv_house"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_ability_house"
+        android:contentDescription="@null"
+        app:layout_constraintWidth_percent="0.3"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_monitory" />
+    <TextView
+        android:id="@+id/tv_house_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/house_detection"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:maxLines="2"
+        android:ellipsize="end"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@id/iv_house"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/iv_house"
+        app:layout_constraintBottom_toTopOf="@+id/tv_house_desc" />
+    <TextView
+        android:id="@+id/tv_house_desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="@string/ability_house"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:textColor="#80ffffff"
+        android:maxLines="2"
+        android:ellipsize="end"
+        app:layout_constraintStart_toStartOf="@id/tv_house_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_house_title"
+        app:layout_constraintBottom_toBottomOf="@id/iv_house" />
+    <View
+        android:id="@+id/view_house"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/iv_house"
+        app:layout_constraintBottom_toBottomOf="@id/iv_house" />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="#19ffffff"
+        app:layout_constraintTop_toBottomOf="@id/iv_house"
+        app:layout_constraintStart_toStartOf="@id/tv_house_title"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- 汽车检测 -->
+    <ImageView
+        android:id="@+id/iv_car"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_ability_car"
+        android:contentDescription="@null"
+        app:layout_constraintWidth_percent="0.3"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_house" />
+    <TextView
+        android:id="@+id/tv_car_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/car_detection"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:maxLines="2"
+        android:ellipsize="end"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@id/iv_car"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/iv_car"
+        app:layout_constraintBottom_toTopOf="@+id/tv_car_desc" />
+    <TextView
+        android:id="@+id/tv_car_desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="@string/ability_car"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:textColor="#80ffffff"
+        android:maxLines="2"
+        android:ellipsize="end"
+        app:layout_constraintStart_toStartOf="@id/tv_car_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_car_title"
+        app:layout_constraintBottom_toBottomOf="@id/iv_car" />
+    <View
+        android:id="@+id/view_car"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/iv_car"
+        app:layout_constraintBottom_toBottomOf="@id/iv_car" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

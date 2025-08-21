@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:ignore="MissingDefaultResource">
+
+    <LinearLayout
+        android:id="@+id/rly_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#23202E"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/view_top_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#322F38" />
+
+        <LinearLayout
+            android:id="@+id/lly_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="#322F38"
+                tools:ignore="Suspicious0dp" />
+
+            <TextView
+                android:id="@+id/tv_project"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp"
+                android:text="@string/pdf_project_item"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="#322F38"
+                tools:ignore="Suspicious0dp" />
+
+            <RelativeLayout
+                android:id="@+id/rly_problem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="16dp">
+
+                <TextView
+                    android:id="@+id/tv_problem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="8dp"
+                    android:text="@string/house_state_good"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"/>
+
+                <ImageView
+                    android:id="@+id/iv_problem"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_room_detect_state_no_problem"
+                    android:visibility="gone"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="#322F38"
+                tools:ignore="Suspicious0dp" />
+
+            <RelativeLayout
+                android:id="@+id/rly_repair"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="16dp">
+
+                <TextView
+                    android:id="@+id/tv_repair"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="8dp"
+                    android:text="@string/house_state_repair"
+                    android:textColor="@color/white"
+                    android:visibility="gone"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:id="@+id/iv_repair"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_room_detect_state_repair" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="#322F38"
+                tools:ignore="Suspicious0dp" />
+
+            <RelativeLayout
+                android:id="@+id/rly_replace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="16dp">
+
+                <TextView
+                    android:id="@+id/tv_replace"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="8dp"
+                    android:text="@string/house_state_replace"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:visibility="gone"/>
+
+                <ImageView
+                    android:id="@+id/iv_replace"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_room_detect_state_replace" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="#322F38"
+                tools:ignore="Suspicious0dp" />
+
+            <TextView
+                android:id="@+id/tv_remark"
+                android:layout_width="228dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp"
+                android:text="@string/report_remark"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="#322F38"
+                tools:ignore="Suspicious0dp" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_bottom_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#322F38" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#16131e">
+
+    <com.topdon.lib.core.view.TitleView
+        android:id="@+id/title_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:titleText="@string/album_edit_creatReport"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_bottom"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:background="#23202e"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- 预览 -->
+        <TextView
+            android:id="@+id/tv_preview"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:gravity="center"
+            android:text="@string/album_edit_preview"
+            android:textSize="14sp"
+            android:textColor="#ffffff"
+            android:background="@drawable/bg_corners05_solid_23202e_stroke_theme"
+            app:layout_constraintDimensionRatio="325:88"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_next" />
+
+        <!-- 下一步 -->
+        <TextView
+            android:id="@+id/tv_next"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="20dp"
+            android:gravity="center"
+            android:text="@string/app_next"
+            android:textSize="14sp"
+            android:textColor="#55272F"
+            android:background="@drawable/bg_corners05_solid_theme"
+            app:layout_constraintDimensionRatio="325:88"
+            app:layout_constraintTop_toTopOf="@id/tv_preview"
+            app:layout_constraintStart_toEndOf="@id/tv_preview"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_view"
+        app:layout_constraintBottom_toTopOf="@id/cl_bottom">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp">
+
+            <!-- 报告信息 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_report_info"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:paddingBottom="28dp"
+                android:background="@drawable/bg_corners10_stroke_5b5961"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <!-- 报告信息 -->
+                <TextView
+                    android:id="@+id/tv_report_info_title"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/album_report_info"
+                    android:textSize="15sp"
+                    android:textColor="#ffffff"
+                    android:background="@drawable/bg_corners_top_10_solid_20_ff"
+                    app:layout_constraintDimensionRatio="335:49"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- 报告名称 -->
+                <TextView
+                    android:id="@+id/tv_report_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/album_report_name"
+                    android:textSize="15sp"
+                    android:textColor="#e8e8e8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_report_info_title" />
+                <EditText
+                    android:id="@+id/et_report_name"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="7dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textSize="13sp"
+                    android:textColor="#ffffff"
+                    android:gravity="center_vertical"
+                    android:inputType="text"
+                    android:maxLength="30"
+                    android:background="@drawable/bg_corners04_solid_626569"
+                    app:layout_constraintDimensionRatio="303:44"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_report_name" />
+
+                <!-- 作者名称 -->
+                <TextView
+                    android:id="@+id/tv_report_author"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/album_report_author"
+                    android:textSize="15sp"
+                    android:textColor="#e8e8e8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/et_report_name" />
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_report_author"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:checked="true"
+                    style="@style/cameraSetSwitch"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_report_author"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_report_author" />
+                <EditText
+                    android:id="@+id/et_report_author"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="7dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textSize="13sp"
+                    android:textColor="#ffffff"
+                    android:gravity="center_vertical"
+                    android:inputType="text"
+                    android:maxLength="30"
+                    android:background="@drawable/bg_corners04_solid_626569"
+                    app:layout_constraintDimensionRatio="303:44"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_report_author" />
+
+                <!-- 报告日期 -->
+                <TextView
+                    android:id="@+id/tv_report_date_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/album_report_date"
+                    android:textSize="15sp"
+                    android:textColor="#e8e8e8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/et_report_author" />
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_report_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:checked="true"
+                    style="@style/cameraSetSwitch"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_report_date_title"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_report_date_title" />
+                <TextView
+                    android:id="@+id/tv_report_date"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="7dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textSize="13sp"
+                    android:textColor="#ffffff"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/bg_corners04_solid_626569"
+                    app:layout_constraintDimensionRatio="303:44"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_report_date_title" />
+
+                <!-- 报告地点 -->
+                <TextView
+                    android:id="@+id/tv_report_place"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/album_report_location"
+                    android:textSize="15sp"
+                    android:textColor="#e8e8e8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_report_date" />
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_report_place"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:checked="true"
+                    style="@style/cameraSetSwitch"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_report_place"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_report_place" />
+                <EditText
+                    android:id="@+id/et_report_place"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="7dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="30dp"
+                    android:textSize="13sp"
+                    android:textColor="#ffffff"
+                    android:gravity="center_vertical"
+                    android:inputType="text"
+                    android:maxLength="80"
+                    android:background="@drawable/bg_corners04_solid_626569"
+                    app:layout_constraintDimensionRatio="303:44"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_report_place" />
+                <ImageView
+                    android:id="@+id/img_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:src="@drawable/ic_location_svg"
+                    android:contentDescription="@null"
+                    app:layout_constraintTop_toTopOf="@id/et_report_place"
+                    app:layout_constraintBottom_toBottomOf="@id/et_report_place"
+                    app:layout_constraintRight_toRightOf="@id/et_report_place" />
+
+                <!-- 水印 -->
+                <TextView
+                    android:id="@+id/tv_report_watermark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/app_watemarking"
+                    android:textSize="15sp"
+                    android:textColor="#e8e8e8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/et_report_place" />
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_report_watermark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:checked="true"
+                    style="@style/cameraSetSwitch"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_report_watermark"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_report_watermark" />
+                <EditText
+                    android:id="@+id/et_report_watermark"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="7dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textSize="13sp"
+                    android:textColor="#ffffff"
+                    android:gravity="center_vertical"
+                    android:inputType="text"
+                    android:maxLength="10"
+                    android:background="@drawable/bg_corners04_solid_626569"
+                    app:layout_constraintDimensionRatio="303:44"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_report_watermark" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- 检测条件 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="20dp"
+                android:paddingBottom="28dp"
+                android:background="@drawable/bg_corners10_stroke_5b5961"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cl_report_info">
+
+                <!-- 检测条件 -->
+                <TextView
+                    android:id="@+id/tv_detection_condition_title"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/album_report_condition"
+                    android:textSize="15sp"
+                    android:textColor="#ffffff"
+                    android:background="@drawable/bg_corners_top_10_solid_20_ff"
+                    app:layout_constraintDimensionRatio="335:49"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- 环境湿度 -->
+                <TextView
+                    android:id="@+id/tv_ambient_humidity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/album_report_ambient_humidity"
+                    android:textSize="15sp"
+                    android:textColor="#e8e8e8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_detection_condition_title" />
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_ambient_humidity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:checked="true"
+                    style="@style/cameraSetSwitch"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_ambient_humidity"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_ambient_humidity" />
+                <com.topdon.lib.ui.widget.TipsSeekBar
+                    android:id="@+id/tip_seek_humidity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:max="1000"
+                    android:maxHeight="4dp"
+                    app:minText="0%"
+                    app:maxText="100%"
+                    app:tipsPercent="12%"
+                    app:seekPercent="70%"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_ambient_humidity" />
+
+                <!-- 环境温度 -->
+                <TextView
+                    android:id="@+id/tv_ambient_temperature"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/thermal_config_environment"
+                    android:textSize="15sp"
+                    android:textColor="#e8e8e8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/switch_ambient_temperature"
+                    app:layout_constraintTop_toBottomOf="@id/tip_seek_humidity" />
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_ambient_temperature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:checked="true"
+                    style="@style/cameraSetSwitch"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_ambient_temperature"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_ambient_temperature" />
+                <EditText
+                    android:id="@+id/et_ambient_temperature"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="7dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textSize="13sp"
+                    android:textColor="#ffffff"
+                    android:gravity="center_vertical"
+                    android:inputType="numberSigned|numberDecimal"
+                    android:maxLength="6"
+                    android:background="@drawable/bg_corners04_solid_626569"
+                    app:layout_constraintDimensionRatio="303:44"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_ambient_temperature" />
+
+                <!-- 发射率 -->
+                <TextView
+                    android:id="@+id/tv_emissivity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/album_report_emissivity"
+                    android:textSize="15sp"
+                    android:textColor="#e8e8e8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/et_ambient_temperature" />
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_emissivity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:checked="true"
+                    style="@style/cameraSetSwitch"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_emissivity"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_emissivity" />
+                <com.topdon.lib.ui.widget.TipsSeekBar
+                    android:id="@+id/tip_seek_emissivity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:maxHeight="4dp"
+                    app:minText="0"
+                    app:maxText="1"
+                    app:tipsPercent="12%"
+                    app:seekPercent="70%"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_emissivity" />
+
+                <!-- 测试距离 -->
+                <TextView
+                    android:id="@+id/tv_test_distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/album_report_test_distance"
+                    android:textSize="15sp"
+                    android:textColor="#e8e8e8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tip_seek_emissivity" />
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_test_distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:checked="true"
+                    style="@style/cameraSetSwitch"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_test_distance"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_test_distance" />
+                <EditText
+                    android:id="@+id/et_test_distance"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="7dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textSize="13sp"
+                    android:textColor="#ffffff"
+                    android:gravity="center_vertical"
+                    android:inputType="text"
+                    android:maxLength="30"
+                    android:background="@drawable/bg_corners04_solid_626569"
+                    app:layout_constraintDimensionRatio="303:44"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_test_distance" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

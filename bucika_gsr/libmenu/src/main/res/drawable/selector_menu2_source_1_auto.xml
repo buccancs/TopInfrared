@@ -1,0 +1,5 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/svg_menu2_source_1_auto_select_yes" android:state_selected="true" />
+    <item android:drawable="@drawable/svg_menu2_source_1_auto_select_not" />
+</selector>

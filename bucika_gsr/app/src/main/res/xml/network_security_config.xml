@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 为了给测试抓包用的配置，允许用户自定 CA 证书、允许明文流量，仅可用于测试，不用正式发行！ -->
+<!-- 在 Manifests 文件 Application 中添加 android:networkSecurityConfig 则生效 -->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system" overridePins="true" />
+            <certificates src="user" overridePins="true" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

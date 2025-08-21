@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="temp_font_color">#ffffff</color>
+    <color name="temp_font_second_color">#ffffff</color>
+    <color name="temp_font_second_item_color">#96ffffff</color>
+    <color name="temp_font_title_item_color">#7Dffffff</color>
+    <color name="temp_bg_line_color">#5B5961</color>
+    <color name="font_four_unit_color">#EEEEEE</color>
+    <color name="ir_bg_color">#FF16131E</color>
+</resources>

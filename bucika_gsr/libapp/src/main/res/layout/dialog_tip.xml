@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_card"
+    android:paddingTop="8dp"
+    android:paddingBottom="24dp">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tip_start_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.08" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tip_end_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.92" />
+
+    <TextView
+        android:id="@+id/dialog_tip_title_msg_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:lineSpacingMultiplier="1.2"
+        android:text="@string/app_tip"
+        android:textSize="@dimen/app_font"
+        android:textColor="#ffffff"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintStart_toStartOf="@id/tip_start_line"
+        app:layout_constraintEnd_toEndOf="@id/tip_end_line"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dialog_tip_msg_lay"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        app:layout_constraintStart_toStartOf="@id/tip_start_line"
+        app:layout_constraintEnd_toEndOf="@id/tip_end_line"
+        app:layout_constraintTop_toBottomOf="@id/dialog_tip_title_msg_text">
+
+        <TextView
+            android:id="@+id/dialog_tip_msg_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:lineSpacingMultiplier="1.2"
+            android:text="@string/app_message"
+            android:textSize="@dimen/app_font"
+            android:textColor="#ffffff"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tv_restart_tips"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="@string/ts004_store_reset"
+        android:textSize="12sp"
+        android:textColor="#ccffffff"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintStart_toStartOf="@id/tip_start_line"
+        app:layout_constraintEnd_toEndOf="@id/tip_end_line"
+        app:layout_constraintTop_toBottomOf="@id/dialog_tip_msg_lay" />
+
+    <Space
+        android:id="@+id/space"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="45dp"
+        app:layout_constraintDimensionRatio="235:44"
+        app:layout_constraintStart_toStartOf="@id/tip_start_line"
+        app:layout_constraintEnd_toEndOf="@id/tip_end_line"
+        app:layout_constraintTop_toBottomOf="@id/tv_restart_tips" />
+
+    <Button
+        android:id="@+id/dialog_tip_cancel_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/app_cancel"
+        android:textSize="@dimen/app_font"
+        android:textColor="#ffffff"
+        android:textAllCaps="false"
+        android:background="@drawable/bg_corners05_solid_3b3e44_stroke_theme"
+        app:layout_constraintWidth_percent="0.38"
+        app:layout_constraintStart_toStartOf="@id/tip_start_line"
+        app:layout_constraintTop_toTopOf="@id/space"
+        app:layout_constraintBottom_toBottomOf="@id/space" />
+
+    <Space
+        android:id="@+id/space_margin"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.08"
+        app:layout_constraintStart_toEndOf="@id/dialog_tip_cancel_btn"
+        app:layout_constraintTop_toTopOf="@id/space"
+        app:layout_constraintBottom_toBottomOf="@id/space" />
+
+    <Button
+        android:id="@+id/dialog_tip_success_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/app_ok"
+        android:textSize="@dimen/app_font"
+        android:textColor="#55272F"
+        android:textAllCaps="false"
+        android:background="@drawable/bg_corners05_solid_theme"
+        app:layout_constraintStart_toEndOf="@id/space_margin"
+        app:layout_constraintEnd_toEndOf="@id/tip_end_line"
+        app:layout_constraintTop_toTopOf="@id/space"
+        app:layout_constraintBottom_toBottomOf="@id/space" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

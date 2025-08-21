@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    android:paddingBottom="15dp"
+    tools:background="#16131e">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="11dp"
+        android:paddingBottom="11dp"
+        android:textSize="16sp"
+        android:textColor="#ffffff"
+        tools:text="有线连接"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 两个 item 中间间隔 -->
+    <View
+        android:id="@+id/view_space"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+    <View
+        android:id="@+id/view_bg_item1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_corners10_solid_23202e"
+        app:layout_constraintDimensionRatio="160:120"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/view_space"
+        app:layout_constraintTop_toTopOf="@id/view_space" />
+    <ImageView
+        android:id="@+id/iv_item1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:contentDescription="@null"
+        tools:src="@drawable/ic_device_type_tc001"
+        app:layout_constraintWidth_percent="0.19"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="@id/view_bg_item1"
+        app:layout_constraintEnd_toEndOf="@id/view_bg_item1"
+        app:layout_constraintTop_toTopOf="@id/view_bg_item1" />
+    <TextView
+        android:id="@+id/tv_item1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        tools:text="TC001"
+        app:layout_constraintStart_toStartOf="@id/view_bg_item1"
+        app:layout_constraintEnd_toEndOf="@id/view_bg_item1"
+        app:layout_constraintTop_toBottomOf="@id/iv_item1" />
+
+    <View
+        android:id="@+id/view_bg_item2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_corners10_solid_23202e"
+        app:layout_constraintDimensionRatio="160:120"
+        app:layout_constraintStart_toEndOf="@id/view_space"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/view_space" />
+    <ImageView
+        android:id="@+id/iv_item2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:contentDescription="@null"
+        tools:src="@drawable/ic_device_type_tc001_plus"
+        app:layout_constraintWidth_percent="0.19"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="@id/view_bg_item2"
+        app:layout_constraintEnd_toEndOf="@id/view_bg_item2"
+        app:layout_constraintTop_toTopOf="@id/view_bg_item2" />
+    <TextView
+        android:id="@+id/tv_item2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        tools:text="TC001 Plus"
+        app:layout_constraintStart_toStartOf="@id/view_bg_item2"
+        app:layout_constraintEnd_toEndOf="@id/view_bg_item2"
+        app:layout_constraintTop_toBottomOf="@id/iv_item2" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_item2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:constraint_referenced_ids="view_bg_item2,iv_item2,tv_item2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

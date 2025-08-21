@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#16131e">
+
+    <com.topdon.lib.core.view.TitleView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleText="@string/main_thermal_motion" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabTextColor="#80ffffff"
+        app:tabSelectedTextColor="#ffffff"
+        app:tabIndicatorColor="#00000000"
+        app:tabIndicator="@drawable/tab_layout_indicator_theme"
+        app:tabIndicatorHeight="2dp"
+        app:tabIndicatorFullWidth="true" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

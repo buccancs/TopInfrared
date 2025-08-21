@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_menu1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingVertical="8dp">
+            <ImageView
+                android:id="@+id/iv_menu1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/selector_menu_first_1"
+                android:contentDescription="@null"
+                app:layout_constraintWidth_percent="0.36"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_menu2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingVertical="8dp">
+            <ImageView
+                android:id="@+id/iv_menu2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/selector_menu_first_2_5"
+                android:contentDescription="@null"
+                app:layout_constraintWidth_percent="0.36"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_menu3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingVertical="8dp">
+            <ImageView
+                android:id="@+id/iv_menu3"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/selector_menu_first_normal_3"
+                android:contentDescription="@null"
+                app:layout_constraintWidth_percent="0.36"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_menu4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingVertical="8dp">
+            <ImageView
+                android:id="@+id/iv_menu4"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/selector_menu_first_4_3"
+                android:contentDescription="@null"
+                app:layout_constraintWidth_percent="0.36"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_menu5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingVertical="8dp">
+            <ImageView
+                android:id="@+id/iv_menu5"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/selector_menu_first_5_6"
+                android:contentDescription="@null"
+                app:layout_constraintWidth_percent="0.36"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_menu6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingVertical="8dp">
+            <ImageView
+                android:id="@+id/iv_menu6"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/selector_menu_first_normal_6"
+                android:contentDescription="@null"
+                app:layout_constraintWidth_percent="0.36"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</layout>

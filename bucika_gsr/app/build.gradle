@@ -1,0 +1,345 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+    // Commented out until proper Google services setup
+    // id 'com.google.gms.google-services'
+    // id 'com.google.firebase.crashlytics'
+}
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
+android {
+    compileSdk rootProject.ext.android.compileSdk
+    defaultConfig {
+        applicationId rootProject.ext.android.applicationId
+        minSdk rootProject.ext.android.minSdk
+        targetSdk rootProject.ext.android.targetSdk
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+        ndkVersion rootProject.ext.android.ndkVersion
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        ndk {
+            abiFilters "arm64-v8a"
+//            abiFilters "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
+        }
+
+        buildConfigField "String", "VERSION_DATE", "\"${getDayStr()}\""
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : applicationId,
+                JPUSH_APPKEY : "cbd4eafc9049d751fc5a8c58",
+                JPUSH_CHANNEL : "developer-default",
+        ]
+
+        setProperty("archivesBaseName", "BucikaGSR-v${versionName}.google")
+    }
+
+    bundle {
+        language {
+            enableSplit = false
+        }
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file('artibox_key/ArtiBox.jks')
+            keyAlias 'Artibox'
+            storePassword 'artibox2017'
+            keyPassword 'artibox2017'
+        }
+        release {
+            storeFile file('artibox_key/ArtiBox.jks')
+            keyAlias 'Artibox'
+            storePassword 'artibox2017'
+            keyPassword 'artibox2017'
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
+
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    applicationVariants.all { variant ->
+        versionApk(variant, defaultConfig)
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    packagingOptions {
+        //解决第三方so依赖冲突 merge（合并）  pickFirst（选取第一个）
+        //如果合并不能解决问题就选择其中一个
+        merge 'META-INF/LICENSE-notice.md'
+        merge 'META-INF/LICENSE.md'
+        merge 'META-INF/proguard/androidx-annotations.pro'
+        merge 'META-INF/proguard/coroutines.pro'
+//        merge 'lib/arm64-v8a/libc++_shared.so'
+//        merge 'lib/armeabi-v7a/libc++_shared.so'
+        pickFirst 'lib/x86/libc++_shared.so'
+        pickFirst 'lib/x86_64/libc++_shared.so'
+        pickFirst 'lib/arm64-v8a/libc++_shared.so'
+        pickFirst 'lib/armeabi-v7a/libc++_shared.so'
+        pickFirst 'META-INF/LICENSE.md'
+        pickFirst 'META-INF/LICENSE-notice.md'
+        pickFirst 'lib/arm64-v8a/libnative-window.so'
+        pickFirst 'lib/armeabi-v7a/libnative-window.so'
+        pickFirst 'lib/armeabi-v7a/libyuv.so'
+        pickFirst 'lib/arm64-v8a/libyuv.so'
+        pickFirst 'lib/armeabi-v7a/libopencv_java4.so'
+        pickFirst 'lib/arm64-v8a/libopencv_java4.so'
+        pickFirst 'lib/armeabi-v7a/libomp.so'
+        pickFirst 'lib/arm64-v8a/libomp.so'
+        pickFirst 'lib/arm64-v8a/liblog.so'
+        pickFirst 'lib/armeabi-v7a/liblog.so'
+        doNotStrip "**/*.so"
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures{
+        dataBinding = true
+    }
+    flavorDimensions 'app'
+
+    productFlavors {
+        dev {
+            dimension 'app'
+            buildConfigField "int", "ENV_TYPE", "0"
+            buildConfigField("String", "SOFT_CODE", "\"${rootProject.ext.softCode.topInfrared}\"")
+            buildConfigField("String", "APP_KEY", "\"${rootProject.ext.appKey.topInfrared}\"")
+            buildConfigField("String", "APP_SECRET", "\"${rootProject.ext.appSecret.topInfrared}\"")
+            manifestPlaceholders = [
+                    app_name: "TopInfrared",
+            ]
+        }
+        beta {
+            dimension 'app'
+            buildConfigField "int", "ENV_TYPE", "0"
+            buildConfigField("String", "SOFT_CODE", "\"${rootProject.ext.softCode.topInfrared}\"")
+            buildConfigField("String", "APP_KEY", "\"${rootProject.ext.appKey.topInfrared}\"")
+            buildConfigField("String", "APP_SECRET", "\"${rootProject.ext.appSecret.topInfrared}\"")
+            manifestPlaceholders = [
+                    app_name: "IRCamera",
+            ]
+        }
+        prod {
+            dimension 'app'
+            buildConfigField "int", "ENV_TYPE", "0"
+            buildConfigField("String", "SOFT_CODE", "\"${rootProject.ext.softCode.topInfrared}\"")
+            buildConfigField("String", "APP_KEY", "\"${rootProject.ext.appKey.topInfrared}\"")
+            buildConfigField("String", "APP_SECRET", "\"${rootProject.ext.appSecret.topInfrared}\"")
+            manifestPlaceholders = [
+                    app_name: "IRCamera",
+            ]
+        }
+        prodTopdon {
+            dimension 'app'
+            targetSdk 27
+            buildConfigField "int", "ENV_TYPE", "0"
+            buildConfigField("String", "SOFT_CODE", "\"${rootProject.ext.softCode.topInfrared10}\"")
+            buildConfigField("String", "APP_KEY", "\"${rootProject.ext.appKey.topInfrared10}\"")
+            buildConfigField("String", "APP_SECRET", "\"${rootProject.ext.appSecret.topInfrared10}\"")
+//            versionCode rootProject.ext.android.versionCode + getYearStr().toInteger() * 10000
+            manifestPlaceholders = [
+                    app_name: "IRCamera",
+            ]
+        }
+
+        //国内版
+        insideChina {
+            dimension 'app'
+            buildConfigField "int", "ENV_TYPE", "1"
+            buildConfigField("String", "SOFT_CODE", "\"${rootProject.ext.softCode.topInfraredCN}\"")
+            buildConfigField("String", "APP_KEY", "\"${rootProject.ext.appKey.topInfraredCN}\"")
+            buildConfigField("String", "APP_SECRET", "\"${rootProject.ext.appSecret.topInfraredCN}\"")
+            manifestPlaceholders = [
+                    app_name: "热视界",
+            ]
+        }
+        //国内版 Android 10
+        prodTopdonInsideChina {
+            dimension 'app'
+            targetSdk 27
+            buildConfigField "int", "ENV_TYPE", "1"
+            buildConfigField("String", "SOFT_CODE", "\"${rootProject.ext.softCode.topInfraredCN10}\"")
+            buildConfigField("String", "APP_KEY", "\"${rootProject.ext.appKey.topInfraredCN10}\"")
+            buildConfigField("String", "APP_SECRET", "\"${rootProject.ext.appSecret.topInfraredCN10}\"")
+            versionCode rootProject.ext.android.versionCode + getYearStr().toInteger() * 10000
+            manifestPlaceholders = [
+                    app_name: "热视界",
+            ]
+        }
+    }
+}
+static def getYearStr() {
+    return new Date().format('yy')
+}
+static def getDayStr() {
+    return new Date().format('yyMMdd')
+}
+
+static def getTimeStr() {
+    return new Date().format('HHmm')
+}
+
+def versionApk(variant, defaultConfig) {
+    variant.outputs.all {
+        def appName = "BucikaGSR.apk"
+        def nameStr = "BucikaGSR_" + defaultConfig.versionName + "." + getDayStr()
+        if (variant.name == "devDebug") {
+            appName = "BucikaGSR-v" + defaultConfig.versionName + "-debug.apk"
+        } else if (variant.name == "devRelease") {
+            appName = nameStr + "-release.apk"
+        } else if (variant.name == "betaDebug") {
+            appName = nameStr + "_beta_debug.apk"
+        } else if (variant.name == "betaRelease") {
+            appName = nameStr + "_beta.apk"
+        } else if (variant.name == "prodDebug") {
+            appName = nameStr + "_debug.apk"
+        } else if (variant.name == "prodRelease") {
+            appName = nameStr + ".apk"
+        } else if (variant.name == "prodTopdonDebug") {
+            appName = "BucikaGSR_Android10_" + defaultConfig.versionName + "." + getDayStr() + "_debug.apk"
+        } else if (variant.name == "prodTopdonRelease") {
+            appName = "BucikaGSR_Android10_" + defaultConfig.versionName + "." + getDayStr() + ".apk"
+        } else if (variant.name == "insideChinaDebug") {
+            appName = nameStr + "_debug.apk"
+        } else if (variant.name == "insideChinaRelease") {
+            appName = nameStr + ".apk"
+        }else if (variant.name == "prodTopdonInsideChinaDebug") {
+            appName = nameStr + "_debug.apk"
+        } else if (variant.name == "prodTopdonInsideChinaRelease") {
+            appName = nameStr + ".apk"
+        }
+        outputFileName = appName
+    }
+}
+
+//复制apk
+def copyApk(type, flavor) {
+    copy {
+        from "build/outputs/apk/${flavor}/${type}"
+        into "../outputs/${type}/"
+        include '**/*.apk'
+        rename { String fileName ->
+            if (flavor.contains("Topdon")) {
+                fileName.substring(0, fileName.lastIndexOf(".apk")) + '_build' + getTimeStr() + '(Topdon).apk'
+            } else {
+                fileName.substring(0, fileName.lastIndexOf(".apk")) + '_build' + getTimeStr() + '.apk'
+            }
+        }
+    }
+}
+
+//复制aab
+def copyAab(type) {
+    copy {
+        from "build/outputs/bundle/${type}"
+        into "../outputs/bundle/${type}/"
+        include '**/*.aab'
+        rename { String fileName ->
+            fileName.substring(0, fileName.lastIndexOf(".google")) + "." + getDayStr() + "_" + type + '_build' + getTimeStr() + '.aab'
+        }
+    }
+}
+
+// APK copying functionality commented out to fix build issues
+// TODO: Re-enable APK copying when needed
+/*
+project.afterEvaluate {
+    assembleProdDebug.doLast {
+        println "===================== build prod Debug.apk copy ========================="
+        copyApk("debug", "prod")
+    }
+    assembleProdRelease.doLast {
+        println "===================== build prod Release.apk copy ======================="
+        copyApk("release", "prod")
+    }
+    assembleProdTopdonDebug.doLast {
+        println "===================== build prod Debug.apk copy ========================="
+        copyApk("debug", "prodTopdon")
+    }
+    assembleProdTopdonRelease.doLast {
+        println "===================== build prod Release.apk copy ======================="
+        copyApk("release", "prodTopdon")
+    }
+    assembleBetaDebug.doLast {
+        println "===================== build beta Debug.apk copy ========================="
+        copyApk("debug", "beta")
+    }
+    assembleBetaRelease.doLast {
+        println "===================== build beta Release.apk copy ======================="
+        copyApk("release", "beta")
+    }
+
+    assembleInsideChinaDebug.doLast {
+        println "===================== build beta Debug.apk copy ========================="
+        copyApk("debug", "insideChina")
+    }
+    assembleInsideChinaRelease.doLast {
+        println "===================== build beta Release.apk copy ======================="
+        copyApk("release", "insideChina")
+    }
+    assembleProdTopdonInsideChinaDebug.doLast {
+        println "===================== build beta Debug.apk copy ========================="
+        copyApk("debug", "prodTopdonInsideChina")
+    }
+    assembleProdTopdonInsideChinaRelease.doLast {
+        println "===================== build beta Release.apk copy ======================="
+        copyApk("release", "prodTopdonInsideChina")
+    }
+    bundleProdDebug.doLast {
+        println "===================== build prod Debug.aab copy ======================="
+        copyAab("prodDebug")
+    }
+    bundleProdRelease.doLast {
+        println "===================== build prod Release.aab copy ======================="
+        copyAab("prodRelease")
+    }
+
+}
+*/
+
+dependencies {
+    // Only essential components for bucika_gsr version - no house, edit3d modules
+    implementation project(':component:thermal-ir')
+    implementation project(':libapp')
+    implementation project(':libcom')
+    implementation project(':libir')
+    implementation project(':libmenu')
+    implementation project(':libui')
+    implementation project(':BleModule')
+    
+    // Note: ShimmerAndroidAPI dependency to be added when proper repository access is available
+    // implementation 'com.github.ShimmerEngineering:Shimmer-Android-API:1.2.0'
+
+    kapt 'com.alibaba:arouter-compiler:1.5.2'
+
+    implementation 'com.github.lzyzsd:jsbridge:1.0.4'
+    implementation 'com.alibaba:fastjson:1.2.78'
+    implementation 'com.github.yalantis:ucrop:2.2.4'
+    implementation 'com.gyf.immersionbar:immersionbar:3.0.0'
+    implementation 'com.github.li-xiaojun:XPopup:2.9.0'
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.3'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.3'
+
+}

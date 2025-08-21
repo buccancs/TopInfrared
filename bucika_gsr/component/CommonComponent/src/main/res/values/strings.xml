@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="temp_label">Temp :</string>
+    <string name="temp_max">Max :</string>
+    <string name="temp_min">Min :</string>
+    <string name="temp_avg">Moy :</string>
+
+    <string name="text_button_play">start</string>
+</resources>

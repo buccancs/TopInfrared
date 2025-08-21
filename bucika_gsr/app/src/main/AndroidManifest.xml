@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.topdon.tc001">
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VISUAL_USER_SELECTED" />
+    
+    <!-- GSR/Shimmer related permissions -->
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-feature
+        android:name="android.hardware.usb.host"
+        android:required="true" />
+
+    <application
+        android:name="com.topdon.tc001.app.App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="${app_name}"
+        android:requestLegacyExternalStorage="true"
+        android:hardwareAccelerated="true"
+        android:resizeableActivity="false"
+        android:allowNativeHeapPointerTagging="false"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:replace="android:hardwareAccelerated,android:label">
+
+        <uses-native-library android:name="libOpenCL.so" android:required="false" />
+        <uses-native-library android:name="libcutils.so" android:required="false" />
+
+        <meta-data
+            android:name="app_name"
+            android:value="${app_name}" />
+<!--        <service-->
+<!--            android:name="com.topdon.tc001.jpush.JPushService"-->
+<!--            android:enabled="true"-->
+<!--            android:exported="false">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="cn.jiguang.user.service.action" />-->
+<!--            </intent-filter>-->
+<!--        </service>-->
+
+<!--        <receiver-->
+<!--            android:name="com.topdon.tc001.jpush.PushMessageReceiver"-->
+<!--            android:enabled="true"-->
+<!--            android:exported="false">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="cn.jpush.android.intent.RECEIVE_MESSAGE" />-->
+<!--                <category android:name="com.topdon.tc001" />-->
+<!--            </intent-filter>-->
+<!--        </receiver>-->
+
+        <meta-data
+            android:name="ScopedStorage"
+            android:value="true" />
+        <activity
+            android:name="com.topdon.tc001.IRGalleryEditActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="userPortrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/Splash"
+            android:screenOrientation="userPortrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+
+
+        <activity
+            android:name=".BlankDevActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/Blank"
+            android:exported="true">
+            <!-- 监听USB设备的插拔 -->
+            <intent-filter>
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
+                android:resource="@xml/ir_device_filter" />
+        </activity>
+
+        <activity
+            android:name="com.topdon.tc001.MainActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="userPortrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name="com.topdon.tc001.ClauseActivity"
+            android:screenOrientation="userPortrait" />
+        <activity
+            android:name="com.topdon.tc001.PdfActivity"
+            android:screenOrientation="userPortrait" />
+        <activity
+            android:name="com.topdon.tc001.PolicyActivity"
+            android:screenOrientation="userPortrait" />
+        <activity
+            android:name="com.topdon.tc001.VersionActivity"
+            android:screenOrientation="userPortrait" />
+        <activity
+            android:name="com.topdon.tc001.DeviceTypeActivity"
+            android:screenOrientation="userPortrait" />
+        <activity
+            android:name="com.topdon.tc001.MoreHelpActivity"
+            android:screenOrientation="userPortrait" />
+        <activity
+            android:name="com.topdon.tc001.WebViewActivity"
+            android:screenOrientation="userPortrait" />
+        
+        <!-- GSR Activity for bucika_gsr -->
+        <activity
+            android:name="com.topdon.tc001.gsr.GSRActivity"
+            android:screenOrientation="userPortrait"
+            android:label="GSR Monitoring" />
+            
+        <!-- Enhanced Recording Activity for bucika_gsr -->
+        <activity
+            android:name="com.topdon.tc001.recording.EnhancedRecordingActivity"
+            android:screenOrientation="userPortrait"
+            android:label="Enhanced Recording" />
+            
+        <!-- Local File Browser Activity -->
+        <activity
+            android:name="com.topdon.tc001.recording.LocalFileBrowserActivity"
+            android:screenOrientation="userPortrait"
+            android:label="File Browser" />
+            
+        <!-- FileProvider for file sharing -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_provider_paths"
+                tools:replace="android:resource" />
+        </provider>
+    </application>
+
+</manifest>

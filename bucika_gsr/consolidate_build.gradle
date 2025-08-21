@@ -1,0 +1,169 @@
+// Consolidated build script for bucika_gsr with warning fixes and enhanced configuration
+// This script addresses common build issues and consolidates dependencies
+
+buildscript {
+    ext.kotlin_version = '1.7.20'
+    ext.gradle_version = '7.1.3'
+    
+    repositories {
+        // Optimized repository order for better performance
+        google()
+        mavenCentral()
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://www.jitpack.io' }
+        maven { url 'https://developer.huawei.com/repo/'}
+        maven { url "https://maven.google.com" }
+        maven { url 'https://repo1.maven.org/maven2/' }
+        maven { url 'https://maven.zohodl.com' }
+    }
+    
+    dependencies {
+        classpath "com.android.tools.build:gradle:$gradle_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+// Global configuration to suppress warnings
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://www.jitpack.io' }
+        maven { url 'https://developer.huawei.com/repo/'}
+        maven { url "https://maven.google.com" }
+        maven { url 'https://repo1.maven.org/maven2/' }
+        maven { url 'https://maven.zohodl.com' }
+    }
+    
+    // Suppress deprecation warnings
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+            options.deprecation = true
+        }
+        
+        tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile) {
+            kotlinOptions {
+                jvmTarget = "1.8"
+                freeCompilerArgs += [
+                    "-opt-in=kotlin.RequiresOptIn",
+                    "-Xjvm-default=all",
+                    "-Xsuppress-version-warnings"
+                ]
+            }
+        }
+    }
+    
+    // Fix annotation processor warnings
+    project.afterEvaluate {
+        if (plugins.hasPlugin('com.android.application') || plugins.hasPlugin('com.android.library')) {
+            android {
+                compileOptions {
+                    sourceCompatibility JavaVersion.VERSION_1_8
+                    targetCompatibility JavaVersion.VERSION_1_8
+                }
+                
+                // Suppress lint warnings for bucika_gsr specific issues
+                lintOptions {
+                    checkReleaseBuilds false
+                    abortOnError false
+                    disable 'MissingTranslation', 'ExtraTranslation'
+                    disable 'InvalidPackage'
+                    disable 'OldTargetApi'
+                    disable 'GradleCompatible'
+                }
+                
+                packagingOptions {
+                    exclude 'META-INF/DEPENDENCIES'
+                    exclude 'META-INF/LICENSE'
+                    exclude 'META-INF/LICENSE.txt'
+                    exclude 'META-INF/NOTICE'
+                    exclude 'META-INF/NOTICE.txt'
+                    exclude 'META-INF/*.kotlin_module'
+                }
+            }
+        }
+    }
+}
+
+// Custom task to check for missing dependencies
+task checkDependencies {
+    doLast {
+        println "Checking bucika_gsr dependencies..."
+        
+        subprojects.each { project ->
+            if (project.configurations.hasProperty('implementation')) {
+                project.configurations.implementation.allDependencies.each { dep ->
+                    if (dep.group == null || dep.name == null) {
+                        println "WARNING: Malformed dependency in ${project.name}: ${dep}"
+                    }
+                }
+            }
+        }
+        
+        println "Dependency check complete!"
+    }
+}
+
+// Task to clean all build artifacts
+task cleanAll(type: Delete) {
+    delete rootProject.buildDir
+    subprojects.each { project ->
+        delete project.buildDir
+    }
+}
+
+// Apply dependency configuration
+apply from: "depend.gradle"
+
+// RAD DNG Level 3 specific configuration
+ext {
+    // Samsung 4K30FPS recording specifications
+    samsung4KWidth = 3840
+    samsung4KHeight = 2160
+    samsung4KBitrate = 20000000 // 20 Mbps
+    
+    // RAD DNG Level 3 specifications  
+    radDngWidth = 1920
+    radDngHeight = 1080
+    radDngTargetFPS = 30
+    radDngBitrate = 8000000 // 8 Mbps for high quality
+    
+    // GSR integration parameters
+    gsrSamplingRate = 128 // Hz
+    gsrBufferSize = 1024
+}
+
+// Print configuration summary
+task printConfig {
+    doLast {
+        println """
+        =================================================
+        bucika_gsr Build Configuration Summary
+        =================================================
+        Kotlin Version: $kotlin_version
+        Gradle Plugin: $gradle_version
+        
+        Samsung 4K Recording:
+        - Resolution: ${samsung4KWidth}x${samsung4KHeight}
+        - Bitrate: ${samsung4KBitrate / 1000000} Mbps
+        
+        RAD DNG Level 3 Recording:
+        - Resolution: ${radDngWidth}x${radDngHeight} 
+        - Target FPS: ${radDngTargetFPS}
+        - Bitrate: ${radDngBitrate / 1000000} Mbps
+        
+        GSR Integration:
+        - Sampling Rate: ${gsrSamplingRate} Hz
+        - Buffer Size: ${gsrBufferSize}
+        =================================================
+        """
+    }
+}

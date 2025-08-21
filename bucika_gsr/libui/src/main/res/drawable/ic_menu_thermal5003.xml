@@ -1,0 +1,5 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/ic_menu_thermal5003_selected_svg" android:state_selected="true" />
+    <item android:drawable="@drawable/ic_menu_thermal5003_svg" />
+</selector>

@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#16131e">
+
+    <com.topdon.lib.core.view.TitleView
+        android:id="@+id/title_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:titleText="@string/album_edit_creatReport"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_bottom"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:background="#23202e"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- 添加图片 -->
+        <TextView
+            android:id="@+id/tv_add_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:gravity="center"
+            android:text="@string/album_report_add_image"
+            android:textSize="14sp"
+            android:textColor="#ffffff"
+            android:background="@drawable/bg_corners05_solid_23202e_stroke_theme"
+            app:layout_constraintDimensionRatio="325:88"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_preview" />
+
+        <!-- 预览 -->
+        <TextView
+            android:id="@+id/tv_preview"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="20dp"
+            android:gravity="center"
+            android:text="@string/album_edit_preview"
+            android:textSize="14sp"
+            android:textColor="#55272F"
+            android:background="@drawable/bg_corners05_solid_theme"
+            app:layout_constraintDimensionRatio="325:88"
+            app:layout_constraintTop_toTopOf="@id/tv_add_image"
+            app:layout_constraintStart_toEndOf="@id/tv_add_image"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_view"
+        app:layout_constraintBottom_toTopOf="@id/cl_bottom">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="25dp">
+
+            <ImageView
+                android:id="@+id/iv_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="@null" />
+
+            <!-- 全图 -->
+            <com.topdon.module.thermal.ir.report.view.ReportIRInputView
+                android:id="@+id/report_temp_view_full"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_corners10_stroke_5b5961"
+                android:visibility="gone"
+                app:type="full" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:background="@drawable/bg_corners10_stroke_5b5961">
+                <!-- 点1 -->
+                <com.topdon.module.thermal.ir.report.view.ReportIRInputView
+                    android:id="@+id/report_temp_view_point1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:index="0"
+                    app:type="point" />
+                <!-- 点2 -->
+                <com.topdon.module.thermal.ir.report.view.ReportIRInputView
+                    android:id="@+id/report_temp_view_point2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:index="1"
+                    app:type="point" />
+                <!-- 点3 -->
+                <com.topdon.module.thermal.ir.report.view.ReportIRInputView
+                    android:id="@+id/report_temp_view_point3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:index="2"
+                    app:type="point" />
+                <!-- 点4 -->
+                <com.topdon.module.thermal.ir.report.view.ReportIRInputView
+                    android:id="@+id/report_temp_view_point4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:index="3"
+                    app:type="point" />
+                <!-- 点5 -->
+                <com.topdon.module.thermal.ir.report.view.ReportIRInputView
+                    android:id="@+id/report_temp_view_point5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:index="4"
+                    app:type="point" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:background="@drawable/bg_corners10_stroke_5b5961">
+                <!-- 线1 -->
+                <com.topdon.module.thermal.ir.report.view.ReportIRInputView
+                    android:id="@+id/report_temp_view_line1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:index="0"
+                    app:type="line" />
+                <!-- 线2 -->
+                <com.topdon.module.thermal.ir.report.view.ReportIRInputView
+                    android:id="@+id/report_temp_view_line2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:index="1"
+                    app:type="line" />
+                <!-- 线3 -->
+                <com.topdon.module.thermal.ir.report.view.ReportIRInputView
+                    android:id="@+id/report_temp_view_line3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:index="2"
+                    app:type="line" />
+                <!-- 线4 -->
+                <com.topdon.module.thermal.ir.report.view.ReportIRInputView
+                    android:id="@+id/report_temp_view_line4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:index="3"
+                    app:type="line" />
+                <!-- 线5 -->
+                <com.topdon.module.thermal.ir.report.view.ReportIRInputView
+                    android:id="@+id/report_temp_view_line5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:index="4"
+                    app:type="line" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:background="@drawable/bg_corners10_stroke_5b5961">
+                <!-- 面1 -->
+                <com.topdon.module.thermal.ir.report.view.ReportIRInputView
+                    android:id="@+id/report_temp_view_rect1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:index="0"
+                    app:type="rect" />
+                <!-- 面2 -->
+                <com.topdon.module.thermal.ir.report.view.ReportIRInputView
+                    android:id="@+id/report_temp_view_rect2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:index="1"
+                    app:type="rect" />
+                <!-- 面3 -->
+                <com.topdon.module.thermal.ir.report.view.ReportIRInputView
+                    android:id="@+id/report_temp_view_rect3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:index="2"
+                    app:type="rect" />
+                <!-- 面4 -->
+                <com.topdon.module.thermal.ir.report.view.ReportIRInputView
+                    android:id="@+id/report_temp_view_rect4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:index="3"
+                    app:type="rect" />
+                <!-- 面5 -->
+                <com.topdon.module.thermal.ir.report.view.ReportIRInputView
+                    android:id="@+id/report_temp_view_rect5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:index="4"
+                    app:type="rect" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

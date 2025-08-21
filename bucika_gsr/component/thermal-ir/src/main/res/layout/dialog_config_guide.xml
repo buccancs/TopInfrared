@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="HardcodedText"
+    tools:background="#000000">
+
+    <!-- 低于 Android12 显示操作指引时模糊背景图片 -->
+    <ImageView
+        android:id="@+id/iv_blur_bg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@null"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#99000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- 从顶部到发射率的占位 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ll_space_top"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.topdon.lib.core.view.TitleView
+            android:id="@+id/title_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:isInitLeft="false"
+            app:titleText="@string/setting_model"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 默认模式 -->
+        <TextView
+            android:id="@+id/tv_default_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="0dp"
+            android:paddingVertical="15dp"
+            android:text="@string/thermal_default_model"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/title_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/iv_default_selector" />
+        <View
+            android:id="@+id/iv_default_selector"
+            android:layout_width="58dp"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_default_title"
+            app:layout_constraintBottom_toBottomOf="@id/tv_default_title" />
+
+        <!-- 环境温度 -->
+        <TextView
+            android:id="@+id/tv_default_temp_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp"
+            android:textSize="12sp"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@id/tv_default_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/view_default_temp_bg" />
+        <TextView
+            android:id="@+id/space_default_temp_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="10dp"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_default_temp_title"
+            app:layout_constraintBottom_toBottomOf="@id/tv_default_temp_title" />
+        <View
+            android:id="@+id/view_default_temp_bg"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintDimensionRatio="82:36"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/space_default_temp_title"
+            app:layout_constraintBottom_toBottomOf="@id/space_default_temp_title" />
+
+        <!-- 测温距离 -->
+        <TextView
+            android:id="@+id/tv_default_dis_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp"
+            android:textSize="12sp"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@id/tv_default_temp_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/view_default_dis_bg" />
+        <TextView
+            android:id="@+id/space_default_dis_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="10dp"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_default_dis_title"
+            app:layout_constraintBottom_toBottomOf="@id/tv_default_dis_title" />
+        <View
+            android:id="@+id/view_default_dis_bg"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintDimensionRatio="82:36"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/space_default_dis_title"
+            app:layout_constraintBottom_toBottomOf="@id/space_default_dis_title" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 发射率 -->
+    <TextView
+        android:id="@+id/tv_space_em_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
+        android:textSize="12sp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/ll_space_top"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tv_space_em_value" />
+    <TextView
+        android:id="@+id/space_space_em_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingVertical="10dp"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_space_em_title"
+        app:layout_constraintBottom_toBottomOf="@id/tv_space_em_title" />
+    <View
+        android:id="@+id/tv_space_em_value"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintDimensionRatio="82:36"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/space_space_em_title"
+        app:layout_constraintBottom_toBottomOf="@id/space_space_em_title" />
+
+    <TextView
+        android:id="@+id/tv_custom_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="15dp"
+        android:text="@string/thermal_custom_mode"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_space_em_title" />
+
+    <View
+        android:id="@+id/view_add"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintDimensionRatio="335:49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_custom_title" />
+
+    <!-- 第1步操作指引 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_step1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        tools:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_space_top">
+
+        <View
+            android:id="@+id/view_bg_16131e"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#16131e"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/space_em_bottom" />
+        <TextView
+            android:id="@+id/tv_default_em_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            tools:text="发射率 (0.01~1.00)"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_default_em_value" />
+        <TextView
+            android:id="@+id/space_default_em_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="10dp"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_default_em_title"
+            app:layout_constraintBottom_toBottomOf="@id/tv_default_em_title" />
+        <TextView
+            android:id="@+id/tv_default_em_value"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="20dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="10dp"
+            android:gravity="center_vertical"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_corners06_solid_626569"
+            tools:text="0.99"
+            app:layout_constraintDimensionRatio="W,82:36"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/space_default_em_title"
+            app:layout_constraintBottom_toBottomOf="@id/space_default_em_title" />
+        <Space
+            android:id="@+id/space_em_bottom"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_default_em_title" />
+        <Space
+            android:id="@+id/space_em_value_center"
+            android:layout_width="1px"
+            android:layout_height="100dp"
+            app:layout_constraintStart_toStartOf="@id/tv_default_em_value"
+            app:layout_constraintEnd_toEndOf="@id/tv_default_em_value"
+            app:layout_constraintTop_toBottomOf="@id/view_bg_16131e" />
+
+        <ImageView
+            android:id="@+id/iv_line1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/svg_home_guide_2_line"
+            android:contentDescription="@null"
+            app:layout_constraintWidth_percent="0.032"
+            app:layout_constraintDimensionRatio="H,24:142"
+            app:layout_constraintStart_toStartOf="@id/space_em_value_center"
+            app:layout_constraintEnd_toEndOf="@id/space_em_value_center"
+            app:layout_constraintTop_toBottomOf="@id/view_bg_16131e" />
+
+        <View
+            android:id="@+id/view_bg_theme1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/bg_corners06_solid_theme"
+            app:layout_constraintWidth_percent="0.74"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_line1"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_tips1"/>
+        <TextView
+            android:id="@+id/tv_count1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginTop="18dp"
+            android:text="1/2"
+            android:textSize="12sp"
+            android:textColor="#333333"
+            app:layout_constraintStart_toStartOf="@id/view_bg_theme1"
+            app:layout_constraintEnd_toEndOf="@id/view_bg_theme1"
+            app:layout_constraintTop_toTopOf="@id/view_bg_theme1" />
+        <TextView
+            android:id="@+id/tv_tips1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="18dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="18dp"
+            android:text="@string/tc_temp_guide_tips1"
+            android:textSize="14sp"
+            android:textColor="#55272F"
+            app:layout_constraintStart_toStartOf="@id/view_bg_theme1"
+            app:layout_constraintEnd_toEndOf="@id/view_bg_theme1"
+            app:layout_constraintTop_toBottomOf="@id/tv_count1" />
+
+        <!-- 下一步 -->
+        <TextView
+            android:id="@+id/tv_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:paddingStart="36dp"
+            android:paddingEnd="36dp"
+            android:text="@string/app_next"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_corners50_stroke_ff"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_bg_theme1" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 第2步操作指引-底部 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_step2_bottom"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#16131e"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_add">
+
+        <TextView
+            android:id="@+id/tv_all_emissivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:paddingVertical="12dp"
+            android:gravity="center_vertical"
+            android:text="@string/material_view_all"
+            android:textSize="11sp"
+            android:textColor="@color/white"
+            tools:drawableEnd="@drawable/svg_arrow_right_ff"
+            app:drawableEndCompat="@drawable/svg_arrow_right_ff"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/tv_emissivity_enter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:paddingVertical="12dp"
+            android:text="@string/thermal_model_tip"
+            android:textSize="11sp"
+            android:textColor="#80ffffff"
+            app:layout_constraintTop_toTopOf="@id/tv_all_emissivity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_all_emissivity" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_emissivity_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="tv_all_emissivity,tv_emissivity_enter" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/barrier_emissivity_bottom" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 第2步操作指引-顶部 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_step2_top"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/cl_step2_bottom">
+
+        <ImageView
+            android:id="@+id/iv_line2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/svg_home_guide_1_line"
+            android:contentDescription="@null"
+            app:layout_constraintWidth_percent="0.032"
+            app:layout_constraintDimensionRatio="24:142"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <View
+            android:id="@+id/view_bg_theme2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/bg_corners06_solid_theme"
+            app:layout_constraintWidth_percent="0.74"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_count2"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_tips2" />
+        <TextView
+            android:id="@+id/tv_tips2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="16dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="18dp"
+            android:text="@string/tc_temp_guide_tips2"
+            android:textSize="14sp"
+            android:textColor="#55272F"
+            app:layout_constraintStart_toStartOf="@id/view_bg_theme2"
+            app:layout_constraintEnd_toEndOf="@id/view_bg_theme2"
+            app:layout_constraintBottom_toTopOf="@id/iv_line2" />
+        <TextView
+            android:id="@+id/tv_count2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="18dp"
+            android:paddingTop="18dp"
+            android:text="2/2"
+            android:textSize="12sp"
+            android:textColor="#333333"
+            app:layout_constraintStart_toStartOf="@id/view_bg_theme2"
+            app:layout_constraintEnd_toEndOf="@id/view_bg_theme2"
+            app:layout_constraintBottom_toTopOf="@id/tv_tips2" />
+
+        <!-- 我知道了 -->
+        <TextView
+            android:id="@+id/tv_i_know"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:paddingStart="36dp"
+            android:paddingEnd="36dp"
+            android:text="@string/app_got_it"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_corners50_stroke_ff"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/view_bg_theme2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

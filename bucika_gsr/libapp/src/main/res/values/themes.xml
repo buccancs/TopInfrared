@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowAnimationStyle">@style/ActivitySwitchAnimation</item>
+        <item name="android:statusBarColor">@color/color_16131E</item>
+        <item name="buttonStyle">@style/Widget.AppCompat.Button.Borderless</item>
+    </style>
+
+    <style name="ActivitySwitchAnimation">
+        <item name="android:activityOpenEnterAnimation">@anim/abc_fade_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/abc_fade_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/abc_fade_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/abc_fade_out</item>
+    </style>
+</resources>

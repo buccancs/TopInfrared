@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="360dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_card"
+    android:paddingTop="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dialog_tip_msg_lay"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@id/dialog_tip_line"
+        app:layout_constraintEnd_toEndOf="@id/tip_end_line"
+        app:layout_constraintStart_toStartOf="@id/tip_start_line"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/dialog_tip_msg_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:lineSpacingMultiplier="1.2"
+            android:text="@string/tip_otg"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/app_font"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <CheckBox
+            android:id="@+id/dialog_tip_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:button="@drawable/ic_check"
+            android:text="@string/tip_otg_no_show"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/app_font_15"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dialog_tip_msg_text" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/dialog_tip_line"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:background="#F5F5F5"
+        app:layout_constraintBottom_toTopOf="@id/dialog_tip_success_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dialog_tip_msg_lay" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tip_start_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.06" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tip_end_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.94" />
+
+    <Button
+        android:id="@+id/dialog_tip_cancel_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#3B3E44"
+        android:gravity="center"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:text="@string/app_cancel"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/app_font"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@id/dialog_tip_success_btn"
+        app:layout_constraintEnd_toStartOf="@+id/dialog_tip_success_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="@id/tip_start_line"
+        app:layout_constraintTop_toTopOf="@+id/dialog_tip_success_btn" />
+
+    <Button
+        android:id="@+id/dialog_tip_success_btn"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/app_btn_big_height"
+        android:background="#3B3E44"
+        android:gravity="center"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:text="@string/app_ok"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/app_font"
+        app:layout_constraintEnd_toEndOf="@id/tip_end_line"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/dialog_tip_cancel_btn"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_tip_line" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

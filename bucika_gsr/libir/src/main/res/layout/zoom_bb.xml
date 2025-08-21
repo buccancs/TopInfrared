@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    >
+    <ImageView
+        android:id="@+id/camera_texture"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@color/transparent"
+        android:src="@drawable/svg_ic_target_horizontal_person_green"
+        />
+</LinearLayout>

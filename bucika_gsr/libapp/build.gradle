@@ -1,0 +1,156 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+}
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+//        arg("AROUTER_GENERATE_DOC", "enable")//生成doc文档
+        arg("room.schemaLocation", "$projectDir/schemas".toString())
+        arg("room.incremental", "true")
+        arg("room.expandProjection", "true")
+    }
+}
+
+android {
+    compileSdk rootProject.ext.android.compileSdk
+
+    defaultConfig {
+        minSdk rootProject.ext.android.minSdk
+        targetSdk rootProject.ext.android.targetSdk
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures{
+        dataBinding = true
+    }
+
+    flavorDimensions 'app'
+    productFlavors {
+        dev {
+            dimension 'app'
+        }
+        beta {
+            dimension 'app'
+        }
+        prod {
+            dimension 'app'
+        }
+        prodTopdon {
+            dimension 'app'
+        }
+
+        insideChina {
+            dimension 'app'
+        }
+        prodTopdonInsideChina {
+            dimension 'app'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['src/main/jniLibs']
+        }
+    }
+}
+
+//kotlin {
+//    experimental {
+//        coroutines 'enable'
+//    }
+//}
+
+dependencies {
+    api fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+    api "androidx.appcompat:appcompat:1.4.1"
+    api "androidx.fragment:fragment-ktx:1.4.1"
+    api "com.google.android.material:material:1.5.0"
+
+    api "androidx.lifecycle:lifecycle-runtime-ktx:2.4.1"
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
+    api "androidx.lifecycle:lifecycle-livedata-ktx:2.4.1"
+
+    kapt "androidx.room:room-compiler:2.4.2"
+    api "androidx.room:room-ktx:2.4.2"
+
+    api "androidx.work:work-runtime-ktx:2.7.1"
+
+    api "com.squareup.retrofit2:retrofit:2.9.0"
+    api "com.squareup.retrofit2:converter-gson:2.9.0"
+    api "com.squareup.retrofit2:adapter-rxjava2:2.9.0"
+
+    api "org.greenrobot:eventbus:3.2.0"
+
+    api "com.github.bumptech.glide:glide:4.12.0"
+    kapt "com.github.bumptech.glide:compiler:4.12.0"
+
+    api "io.reactivex.rxjava2:rxjava:2.2.21"
+    api "io.reactivex.rxjava2:rxandroid:2.1.1"
+    // Use alternative RxPermissions dependency
+    api "com.tbruyelle.rxpermissions2:rxpermissions:0.9.5"
+    api "com.trello.rxlifecycle2:rxlifecycle:2.2.2"
+    api "com.trello.rxlifecycle2:rxlifecycle-android:2.2.2"
+    api "com.trello.rxlifecycle2:rxlifecycle-components:2.2.2" 
+    // Temporarily remove problematic ktx dependencies for build stability
+    // api "com.trello.rxlifecycle2:rxlifecycle-ktx:2.2.2"
+    // api "com.trello.rxlifecycle2:rxlifecycle-android-lifecycle-ktx:2.2.2"
+
+    api "com.alibaba:arouter-api:1.5.2"
+    kapt "com.alibaba:arouter-compiler:1.5.2"
+
+    api "com.blankj:utilcodex:1.30.6"
+    api "com.github.getActivity:XXPermissions:13.2"
+    api "com.tencent.mars:mars-xlog:1.2.5"
+    api "com.elvishew:xlog:1.10.1"  // Add XLog dependency
+    api "com.github.chrisbanes:PhotoView:2.3.0" 
+    api "com.github.barteksc:android-pdf-viewer:3.2.0-beta.1"
+    api "com.airbnb.android:lottie:3.0.7"
+
+    api "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7"
+    api "com.scwang.smartrefresh:SmartRefreshLayout:1.1.3"
+    api "com.scwang.smartrefresh:SmartRefreshHeader:1.1.3"
+    api "com.scwang.smartrefresh:SmartRefreshHeader:1.1.3"
+
+    api "com.squareup.okhttp3:logging-interceptor:4.9.1"
+    api "com.github.skydoves:colorpickerview:2.2.4"
+    // Remove problematic dependencies for build stability
+    // api "com.github.maning0303:MNImageBrowser:v2.1.8" 
+    // api "com.github.sd6352051:nifty-slider:1.3"
+    // api "nifty-effect dependency not available"
+
+//    devApi Deps.lms2
+//    betaApi Deps.lms2
+//    prodApi Deps.lms2
+//    prodTopdonApi Deps.lms2
+//    insideChinaApi Deps.lms3
+//    prodTopdonInsideChinaApi Deps.lms3
+
+
+
+    //javacv
+    api "org.bytedeco:javacv:1.5.6"
+    api "org.bytedeco:javacpp:1.5.6"
+    api files('libs\\abtest-1.0.1.aar')
+    api files('libs\\auth-number-2.13.2.1.aar')
+    api files('libs\\lms_international-3.90.009.0.aar')
+    api files('libs\\logger-2.2.1-release.aar')
+    api files('libs\\main-2.2.1-release.aar')
+}

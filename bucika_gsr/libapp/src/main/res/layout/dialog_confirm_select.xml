@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="24dp"
+    android:paddingBottom="24dp"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    android:background="@drawable/bg_corners10_solid_3b3e44">
+
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/svg_info"
+        android:contentDescription="@null"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintWidth_percent="0.18"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        tools:text="是否删除此图片"
+        app:layout_constrainedWidth="true"
+        app:layout_goneMarginTop="45dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_icon" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rl_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title">
+        <ImageView
+            android:id="@+id/iv_select"
+            android:layout_width="14sp"
+            android:layout_height="14sp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/selector_radio"
+            android:contentDescription="@null"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_message"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+        <TextView
+            android:id="@+id/tv_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            tools:text="同时从手机相册中删除"
+            app:layout_goneMarginStart="0dp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintStart_toEndOf="@id/iv_select"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/view_space"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        app:layout_goneMarginTop="45dp"
+        app:layout_constraintDimensionRatio="235:44"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rl_message" />
+
+    <!-- 取消 -->
+    <TextView
+        android:id="@+id/tv_cancel"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/app_cancel"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:background="@drawable/bg_corners05_solid_3b3e44_stroke_theme"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tv_confirm"
+        app:layout_constraintTop_toTopOf="@id/view_space"
+        app:layout_constraintBottom_toBottomOf="@id/view_space" />
+
+    <!-- 确认 -->
+    <TextView
+        android:id="@+id/tv_confirm"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:gravity="center"
+        android:text="@string/report_delete"
+        android:textSize="16sp"
+        android:textColor="#55272F"
+        android:background="@drawable/bg_corners05_solid_theme"
+        app:layout_goneMarginStart="0dp"
+        app:layout_constraintStart_toEndOf="@id/tv_cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/view_space"
+        app:layout_constraintBottom_toBottomOf="@id/view_space" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

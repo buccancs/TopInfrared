@@ -1,0 +1,33 @@
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
+    repositories {
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/public' }  
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        google()
+        mavenCentral()
+        jcenter() // Warning: this repository is going to shut down soon
+        maven { url 'https://jitpack.io' }
+        maven {
+            url 'https://maven.zohodl.com'
+        }
+        maven { url 'https://repo1.maven.org/maven2/' }
+        flatDir {
+            dirs 'libir/libs'
+        }
+    }
+}
+rootProject.name = "BucikaGSR"
+include ':app'
+include ':commonlibrary'
+include ':component:CommonComponent'
+include ':component:thermal-ir'
+include ':libapp'
+include ':libcom'
+include ':libir'
+include ':libmenu'
+include ':libui'
+include ':BleModule'
+include ':LocalRepo:libcommon'
+include ':LocalRepo:libirutils'
+include ':RangeSeekBar'

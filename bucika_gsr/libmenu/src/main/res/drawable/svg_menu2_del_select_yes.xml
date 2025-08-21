@@ -1,0 +1,38 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="128dp"
+    android:height="128dp"
+    android:viewportWidth="128"
+    android:viewportHeight="128">
+    <path
+        android:pathData="M8,2L120,2A6,6 0,0 1,126 8L126,120A6,6 0,0 1,120 126L8,126A6,6 0,0 1,2 120L2,8A6,6 0,0 1,8 2z"
+        android:strokeWidth="3"
+        android:fillColor="#2A183E">
+        <aapt:attr name="android:strokeColor">
+            <gradient
+                android:startX="64"
+                android:startY="2"
+                android:endX="64"
+                android:endY="126"
+                android:type="linear">
+                <item android:offset="0" android:color="#FFFFBA42"/>
+                <item android:offset="1" android:color="#FFE74380"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+    <path
+        android:pathData="M44.4,46.49C44.4,47.63 45.2,47.63 46.47,47.63H81.88C83.15,47.63 84,47.63 84,46.49C84,45.36 83.15,45.36 81.88,45.36H70.33C70.33,43.67 68.95,42.3 67.25,42.3H61.1C59.4,42.3 58.02,43.67 58.02,45.36H46.47C45.2,45.36 44.4,45.36 44.4,46.49ZM73.41,85.2C76.81,85.2 79.57,82.46 79.57,79.07V53.02H48.78V79.07C48.78,82.46 51.54,85.2 54.94,85.2H73.41ZM61.1,61.45C61.1,60.18 60.06,59.15 58.79,59.15C57.51,59.15 56.48,60.18 56.48,61.45V75.24C56.48,76.51 57.51,77.54 58.79,77.54C60.06,77.54 61.1,76.51 61.1,75.24V61.45ZM69.56,59.15C70.84,59.15 71.87,60.18 71.87,61.45V75.24C71.87,76.51 70.84,77.54 69.56,77.54C68.29,77.54 67.25,76.51 67.25,75.24V61.45C67.25,60.18 68.29,59.15 69.56,59.15Z"
+        android:fillType="evenOdd">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="44.4"
+                android:startY="42.3"
+                android:endX="44.4"
+                android:endY="85.2"
+                android:type="linear">
+                <item android:offset="0" android:color="#FFFFBA42"/>
+                <item android:offset="1" android:color="#FFE74380"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+</vector>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    android:layout_weight="1"
+    android:gravity="center">
+    <ImageView
+        android:id="@+id/img"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/svg_camera_delay_0"/>
+    <com.topdon.lib.ui.widget.CountDownView
+        android:id="@+id/count_down_view"
+        app:layout_constraintTop_toTopOf="@id/img"
+        app:layout_constraintBottom_toBottomOf="@id/img"
+        app:layout_constraintStart_toStartOf="@id/img"
+        app:layout_constraintEnd_toEndOf="@id/img"
+        app:progressTextSize="12sp"
+        android:layout_margin="4dp"
+        app:progressTextColor="@color/white"
+        android:visibility="gone"
+        app:progressText="3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_corners03_solid_delayed"
+        app:ringWidth="3dp"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

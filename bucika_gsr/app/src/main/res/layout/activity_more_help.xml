@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
+    android:clipChildren="false"
+    android:background="#16131e">
+
+    <com.topdon.lib.core.view.TitleView
+        android:id="@+id/title_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@id/title_view"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="31dp"
+            android:paddingHorizontal="20dp">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:text="@string/ts004_guide_text8"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title">
+
+                <!--去连接-->
+                <com.topdon.tc001.view.ConnectionGuideView
+                    android:id="@+id/main_guide_tip1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:guide_text="@string/ts004_guide_text9"
+                    app:guide_icon_show="true"
+                    app:guide_icon="@drawable/ic_connection_tip4"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <com.topdon.tc001.view.ConnectionGuideView
+                    android:id="@+id/main_guide_tip2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:guide_icon_show="true"
+                    app:guide_text="@string/ts004_guide_text10"
+                    app:guide_icon="@drawable/ic_connection_tip5"
+                    app:layout_constraintTop_toBottomOf="@+id/main_guide_tip1"/>
+
+                <com.topdon.tc001.view.ConnectionGuideView
+                    android:id="@+id/main_guide_tip3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:visibility="gone"
+                    app:guide_icon_show="true"
+                    app:guide_text="@string/ts004_guide_text11"
+                    app:guide_icon="@drawable/ic_connect_tip6"
+                    app:layout_constraintTop_toBottomOf="@+id/main_guide_tip2"/>
+
+                <com.topdon.tc001.view.ConnectionGuideView
+                    android:id="@+id/main_guide_tip4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:guide_text="@string/ts004_guide_text12"
+                    app:guide_icon_show="false"
+                    app:layout_constraintTop_toBottomOf="@+id/main_guide_tip3"/>
+
+                <!--断开连接-->
+                <com.topdon.tc001.view.ConnectionGuideView
+                    android:id="@+id/disconnect_tip1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:guide_text="@string/ts004_disconnect_tips2"
+                    app:guide_icon_show="true"
+                    android:visibility="gone"
+                    app:guide_icon="@drawable/ic_disconnect_tip1"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <com.topdon.tc001.view.ConnectionGuideView
+                    android:id="@+id/disconnect_tip2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:guide_icon_show="true"
+                    android:visibility="gone"
+                    app:guide_text="@string/ts004_disconnect_tips3"
+                    app:guide_icon="@drawable/ic_disconnect_tip2"
+                    app:layout_constraintTop_toBottomOf="@+id/disconnect_tip1"/>
+
+                <TextView
+                    android:id="@+id/iv_tvSetting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:text="去设置"
+                    android:textColor="@color/chart_line_min"
+                    android:textSize="@dimen/app_small_font"
+                    android:layout_marginTop="30dp"
+                    app:layout_constraintTop_toBottomOf="@+id/disconnect_tip2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
