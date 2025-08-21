@@ -6,10 +6,6 @@ plugins {
     id 'com.google.firebase.crashlytics'
 }
 
-ksp {
-    arg("AROUTER_MODULE_NAME", project.getName())
-}
-
 android {
     namespace 'com.topdon.tc001'
     compileSdk rootProject.ext.android.compileSdk
@@ -335,7 +331,6 @@ dependencies {
     implementation project(':libmenu')
     implementation project(':libui')
 
-    ksp Deps.arouter_compiler
 
     implementation 'com.github.lzyzsd:jsbridge:1.0.4'
     implementation 'com.alibaba:fastjson:1.2.78'

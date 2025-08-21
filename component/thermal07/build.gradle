@@ -5,8 +5,6 @@ plugins {
     id 'com.google.devtools.ksp'
 }
 
-ksp {
-    arg("AROUTER_MODULE_NAME", project.getName())
 }
 
 android {
@@ -68,7 +66,6 @@ dependencies {
     implementation project(':component:thermal-ir')
     implementation project(':component:thermal04')
 
-    ksp Deps.arouter_compiler
 
     //艾睿手持设备API接口SDK
     api(name: 'jetified-tas_api-1.0.4.0', ext: 'aar')

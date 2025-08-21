@@ -4,8 +4,6 @@ plugins {
     id 'com.google.devtools.ksp'
 }
 
-ksp {
-    arg("AROUTER_MODULE_NAME", project.getName())
 }
 
 android {
@@ -58,5 +56,4 @@ dependencies {
     implementation project(':libapp')
     implementation project(':libui')
 
-    ksp Deps.arouter_compiler
 }

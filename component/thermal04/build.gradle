@@ -4,8 +4,6 @@ plugins {
     id 'com.google.devtools.ksp'
 }
 
-ksp {
-    arg("AROUTER_MODULE_NAME", project.getName())
 }
 
 android {
@@ -71,7 +69,6 @@ dependencies {
     implementation project(':libir')
 
     api(name: 'library_1.0', ext: 'aar')
-    ksp Deps.arouter_compiler
     // gsy player
     def gsy_version = "v8.1.4"
     implementation "com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer-java:$gsy_version"

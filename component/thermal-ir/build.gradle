@@ -4,8 +4,6 @@ plugins {
     id 'com.google.devtools.ksp'
 }
 
-ksp {
-    arg("AROUTER_MODULE_NAME", project.getName())
 }
 
 android {
@@ -81,7 +79,6 @@ dependencies {
     implementation project(':component:house')
     implementation project(':component:pseudo')
 
-    ksp Deps.arouter_compiler
     api Deps.lottie
     api 'com.github.anzaizai:EasySwipeMenuLayout:1.1.4'
 

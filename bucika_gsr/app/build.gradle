@@ -7,8 +7,6 @@ plugins {
     // id 'com.google.firebase.crashlytics'
 }
 
-ksp {
-    arg("AROUTER_MODULE_NAME", project.getName())
 }
 
 android {

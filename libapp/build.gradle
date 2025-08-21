@@ -5,7 +5,6 @@ plugins {
 }
 
 ksp {
-    arg("AROUTER_MODULE_NAME", project.getName())
     arg("room.schemaLocation", "$projectDir/schemas".toString())
     arg("room.incremental", "true")
     arg("room.expandProjection", "true")
@@ -108,8 +107,6 @@ dependencies {
     api Deps.rxlifecycle_ktx
     api Deps.rxlifecycle_android_lifecycle_ktx
 
-    api Deps.arouter_api
-    ksp Deps.arouter_compiler
 
     api Deps.utilcode
     api Deps.XXPermissions

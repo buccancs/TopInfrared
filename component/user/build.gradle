@@ -4,8 +4,6 @@ plugins {
     id 'com.google.devtools.ksp'
 }
 
-ksp {
-    arg("AROUTER_MODULE_NAME", project.getName())
 }
 
 android {
@@ -57,7 +55,6 @@ android {
 dependencies {
     implementation project(':libapp')
     implementation project(':libui')
-    ksp Deps.arouter_compiler
     implementation 'com.zoho.salesiq:mobilisten:7.0.0'
 
 }

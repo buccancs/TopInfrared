@@ -4,9 +4,6 @@ plugins {
     id 'kotlin-android-extensions'
     id 'com.google.devtools.ksp'
 }
-ksp {
-    arg("AROUTER_MODULE_NAME", project.getName())
-}
 android {
     namespace 'com.topdon.lib.menu'
     compileSdk rootProject.ext.android.compileSdk
@@ -59,7 +56,6 @@ android {
 }
 
 dependencies {
-    ksp Deps.arouter_compiler
     implementation project(':libapp')
     implementation project(':libui') //需要使用 BarPickView
     implementation(name: 'opengl_1.3.2_standard', ext: 'aar')

@@ -4,8 +4,6 @@ plugins {
     id 'com.google.devtools.ksp'
 }
 
-ksp {
-    arg("AROUTER_MODULE_NAME", project.getName())
 }
 
 
@@ -60,5 +58,4 @@ android {
 dependencies {
     implementation project(':libapp')
     implementation project(':libmenu') //伪彩条用着 PseudoColorConfig
-    ksp Deps.arouter_compiler
 }

@@ -39,9 +39,9 @@ object Deps {
     const val navigation_ui_ktx = "androidx.navigation:navigation-ui-ktx:2.7.6"
     const val navigation_dynamic_features = "androidx.navigation:navigation-dynamic-features-fragment:2.7.6"
     
-    // Deprecated ARouter (to be removed)
-    const val arouter_api = "com.alibaba:arouter-api:1.5.2"
-    const val arouter_compiler = "com.alibaba:arouter-compiler:1.5.2"
+    // Deprecated ARouter (replaced with ModernRouter)
+    // const val arouter_api = "com.alibaba:arouter-api:1.5.2" 
+    // const val arouter_compiler = "com.alibaba:arouter-compiler:1.5.2"
 
     const val utilcode = "com.blankj:utilcodex:1.31.0"
     const val XXPermissions = "com.github.getActivity:XXPermissions:20.0"

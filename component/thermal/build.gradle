@@ -4,8 +4,6 @@ plugins {
     id 'com.google.devtools.ksp'
 }
 
-ksp {
-    arg("AROUTER_MODULE_NAME", project.getName())
 }
 
 android {
@@ -39,5 +37,4 @@ dependencies {
     implementation project(':libui')
     implementation project(':libmatrix')
     implementation 'com.google.android.mediahome:video:1.0.0'
-    ksp Deps.arouter_compiler
 }
