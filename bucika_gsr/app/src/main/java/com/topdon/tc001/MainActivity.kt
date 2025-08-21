@@ -53,6 +53,7 @@ import com.topdon.module.thermal.ir.fragment.IRGalleryTabFragment
 import com.topdon.module.user.fragment.MineFragment
 import com.topdon.tc001.app.App
 import com.topdon.tc001.fragment.MainFragment
+import com.topdon.tc001.usb.USBHotPlugManager
 import com.topdon.tc001.utils.AppVersionUtil
 import com.zoho.commons.LauncherModes
 import com.zoho.commons.LauncherProperties
@@ -70,9 +71,10 @@ import java.io.OutputStream
 
 
 @Route(path = RouterConfig.MAIN)
-class MainActivity : BaseActivity(), View.OnClickListener {
+class MainActivity : BaseActivity(), View.OnClickListener, USBHotPlugManager.USBDeviceListener {
 
     private val versionViewModel: VersionViewModel by viewModels()
+    private lateinit var usbHotPlugManager: USBHotPlugManager
 
     private var checkPermissionType: Int = -1 //0 initData数据 1 图库  2 connect方法
     override fun initContentView() = R.layout.activity_main
@@ -125,6 +127,11 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         view_main.setOnClickListener(this)
         cl_icon_mine.setOnClickListener(this)
         App.instance.initWebSocket()
+        
+        // Initialize USB hot-plug manager for enhanced device detection
+        usbHotPlugManager = USBHotPlugManager.getInstance(this)
+        usbHotPlugManager.setUSBDeviceListener(this)
+        
         copyFile("SR.pb", File(filesDir, "SR.pb"))
         BaseApplication.instance.clearDb()
         if (BaseApplication.instance.isDomestic()) {
@@ -271,11 +278,15 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     override fun onResume() {
         super.onResume()
         LMS.getInstance().language = SharedManager.getLanguage(this)
+        // Start USB hot-plug monitoring when activity becomes active
+        usbHotPlugManager.startMonitoring()
 //        DeviceTools.isConnect(true)
     }
 
     override fun onPause() {
         super.onPause()
+        // Stop USB hot-plug monitoring when activity is paused
+        usbHotPlugManager.stopMonitoring()
     }
 
     override fun onClick(v: View?) {
@@ -597,5 +608,72 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             })
         }
         appVersionUtil?.checkVersion(isShow)
+    }
+
+    // USB Hot-Plug Manager Listener implementations
+    override fun onDeviceAttached(device: android.hardware.usb.UsbDevice) {
+        XLog.i("MainActivity", "USB device attached: ${device.deviceName}")
+        // Refresh device list in MainFragment if needed
+        runOnUiThread {
+            // Could notify MainFragment to refresh device list
+        }
+    }
+
+    override fun onDeviceDetached(device: android.hardware.usb.UsbDevice) {
+        XLog.i("MainActivity", "USB device detached: ${device.deviceName}")
+        // Handle device disconnection
+        runOnUiThread {
+            // Could notify MainFragment to update UI
+        }
+    }
+
+    override fun onSupportedDeviceDetected(device: android.hardware.usb.UsbDevice, deviceType: USBHotPlugManager.DeviceType) {
+        XLog.i("MainActivity", "Supported device detected: ${device.deviceName}, type: $deviceType")
+        
+        runOnUiThread {
+            when (deviceType) {
+                USBHotPlugManager.DeviceType.TC001_THERMAL -> {
+                    // Handle TC001 thermal camera connection
+                    SharedManager.hasTcLine = true
+                    // Could automatically navigate to thermal camera interface
+                }
+                USBHotPlugManager.DeviceType.FTDI_SERIAL -> {
+                    // Handle FTDI serial device connection
+                    XLog.i("MainActivity", "FTDI serial device connected")
+                }
+                else -> {
+                    XLog.i("MainActivity", "Other supported device connected")
+                }
+            }
+        }
+    }
+
+    override fun onDevicePermissionGranted(device: android.hardware.usb.UsbDevice) {
+        XLog.i("MainActivity", "Permission granted for: ${device.deviceName}")
+        
+        runOnUiThread {
+            android.widget.Toast.makeText(
+                this,
+                "USB device ready: ${device.deviceName}",
+                android.widget.Toast.LENGTH_SHORT
+            ).show()
+            
+            // Could automatically initiate device connection
+            if (DeviceTools.isConnect()) {
+                SharedManager.hasTcLine = true
+            }
+        }
+    }
+
+    override fun onDevicePermissionDenied(device: android.hardware.usb.UsbDevice) {
+        XLog.w("MainActivity", "Permission denied for: ${device.deviceName}")
+        
+        runOnUiThread {
+            android.widget.Toast.makeText(
+                this,
+                "USB permission required for: ${device.deviceName}",
+                android.widget.Toast.LENGTH_LONG
+            ).show()
+        }
     }
 }
