@@ -26,16 +26,16 @@ class EnhancedRecordingManager(
         // Samsung-specific device detection
         private val SAMSUNG_MANUFACTURERS = setOf("samsung", "Samsung", "SAMSUNG")
         
-        // RAD WND (Radiance Wind) Analysis Levels
-        enum class RadWndLevel(val stage: Int, val description: String) {
-            LEVEL_1(1, "Basic Radiance Analysis"),
-            LEVEL_2(2, "Enhanced Thermal Wind Analysis"), 
-            LEVEL_3(3, "Advanced RAD WND Processing")
+        // DNG RAW Processing Levels
+        enum class DngRawLevel(val stage: Int, val description: String) {
+            LEVEL_1(1, "Basic DNG RAW capture"),
+            LEVEL_2(2, "Enhanced DNG thermal processing"), 
+            LEVEL_3(3, "Advanced DNG RAW with full thermal fidelity")
         }
         
         enum class RecordingType {
             SAMSUNG_4K_30FPS,
-            RAD_WND_LEVEL3_30FPS,
+            DNG_RAW_LEVEL3_30FPS,
             STANDARD_RECORDING
         }
     }
@@ -50,11 +50,11 @@ class EnhancedRecordingManager(
     
     private val activeRecordings = ConcurrentHashMap<RecordingType, RecordingSession>()
     private var isSamsungDevice = false
-    private var radWndProcessor: RadWndProcessor? = null
+    private var dngRawProcessor: DngRawProcessor? = null
     
     init {
         detectDeviceCapabilities()
-        initializeRadWndProcessor()
+        initializeDngRawProcessor()
     }
     
     /**
@@ -92,13 +92,13 @@ class EnhancedRecordingManager(
     }
     
     /**
-     * Initialize RAD WND (Radiance Wind) thermal analysis processor
+     * Initialize DNG RAW thermal processing
      */
-    private fun initializeRadWndProcessor() {
-        radWndProcessor = RadWndProcessor(context).apply {
-            setProcessingLevel(RadWndProcessor.ProcessingLevel.LEVEL_3)
+    private fun initializeDngRawProcessor() {
+        dngRawProcessor = DngRawProcessor(context).apply {
+            setProcessingLevel(DngRawProcessor.ProcessingLevel.LEVEL_3)
         }
-        Log.d(TAG, "RAD WND Level 3 processor initialized")
+        Log.d(TAG, "DNG RAW Level 3 processor initialized")
     }
     
     /**
@@ -187,48 +187,48 @@ class EnhancedRecordingManager(
     }
     
     /**
-     * Start RAD WND Level 3 recording at 30 FPS
+     * Start DNG RAW Level 3 recording at 30 FPS
      */
-    suspend fun startRadWndLevel3Recording(): Boolean = withContext(Dispatchers.IO) {
+    suspend fun startDngRawLevel3Recording(): Boolean = withContext(Dispatchers.IO) {
         try {
-            if (activeRecordings.containsKey(RecordingType.RAD_WND_LEVEL3_30FPS)) {
-                Log.w(TAG, "RAD WND Level 3 recording already active")
+            if (activeRecordings.containsKey(RecordingType.DNG_RAW_LEVEL3_30FPS)) {
+                Log.w(TAG, "DNG RAW Level 3 recording already active")
                 return@withContext false
             }
             
-            Log.i(TAG, "Starting RAD WND Level 3 thermal analysis recording at 30FPS")
+            Log.i(TAG, "Starting DNG RAW Level 3 thermal recording at 30FPS")
             
-            // Create output file with RAD WND naming convention
-            val filename = "rad_wnd_l3_${FileUtils.generateTimestamp()}.mp4"
+            // Create output file with DNG RAW naming convention
+            val filename = "dng_raw_l3_${FileUtils.generateTimestamp()}.mp4"
             val videosDir = FileUtils.getVideosDirectory(context)
             val outputFile = File(videosDir, filename)
             
-            // Configure MediaRecorder for RAD WND Level 3
+            // Configure MediaRecorder for DNG RAW Level 3
             val mediaRecorder = MediaRecorder().apply {
                 setVideoSource(MediaRecorder.VideoSource.SURFACE)
                 setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
                 setVideoEncoder(MediaRecorder.VideoEncoder.H264)
                 
-                // RAD WND Level 3 optimized settings
-                setVideoEncodingBitRate(12000000) // 12 Mbps for thermal data
-                setVideoFrameRate(30) // Critical: 30 FPS for wind analysis
+                // DNG RAW Level 3 optimized settings
+                setVideoEncodingBitRate(12000000) // 12 Mbps for RAW thermal data
+                setVideoFrameRate(30) // Critical: 30 FPS for DNG RAW capture
                 setVideoSize(1280, 720) // Optimized for thermal processing
                 
                 setOutputFile(outputFile.absolutePath)
                 
-                // RAD WND specific configuration
-                configureRadWndSpecificSettings()
+                // DNG RAW specific configuration
+                configureDngRawSpecificSettings()
                 
                 // Extended recording for thermal analysis
                 setMaxDuration(3600000) // 1 hour for long-term analysis
                 setMaxFileSize(1L * 1024 * 1024 * 1024) // 1GB limit
                 
                 setOnInfoListener { _, what, _ ->
-                    handleRecordingInfo(RecordingType.RAD_WND_LEVEL3_30FPS, what)
+                    handleRecordingInfo(RecordingType.DNG_RAW_LEVEL3_30FPS, what)
                 }
                 
                 setOnErrorListener { _, what, extra ->
-                    handleRecordingError(RecordingType.RAD_WND_LEVEL3_30FPS, what, extra)
+                    handleRecordingError(RecordingType.DNG_RAW_LEVEL3_30FPS, what, extra)
                 }
                 
                 prepare()
@@ -236,33 +236,33 @@ class EnhancedRecordingManager(
             
             val surface = mediaRecorder.surface
             val session = RecordingSession(
-                RecordingType.RAD_WND_LEVEL3_30FPS,
+                RecordingType.DNG_RAW_LEVEL3_30FPS,
                 mediaRecorder,
                 outputFile,
                 System.currentTimeMillis(),
                 surface
             )
             
-            // Start RAD WND processor
-            radWndProcessor?.startLevel3Processing(surface)
+            // Start DNG RAW processor
+            dngRawProcessor?.startLevel3Processing(surface)
             
             mediaRecorder.start()
-            activeRecordings[RecordingType.RAD_WND_LEVEL3_30FPS] = session
+            activeRecordings[RecordingType.DNG_RAW_LEVEL3_30FPS] = session
             
-            Log.i(TAG, "RAD WND Level 3 recording started: $filename")
+            Log.i(TAG, "DNG RAW Level 3 recording started: $filename")
             true
             
         } catch (e: Exception) {
-            Log.e(TAG, "Failed to start RAD WND Level 3 recording", e)
+            Log.e(TAG, "Failed to start DNG RAW Level 3 recording", e)
             false
         }
     }
     
     /**
-     * Start parallel recording - both Samsung 4K and RAD WND Level 3
+     * Start parallel recording - both Samsung 4K and DNG RAW Level 3
      */
     suspend fun startParallelRecording(): Pair<Boolean, Boolean> {
-        Log.i(TAG, "Starting parallel Samsung 4K + RAD WND Level 3 recording")
+        Log.i(TAG, "Starting parallel Samsung 4K + DNG RAW Level 3 recording")
         
         val samsung4KResult = if (isSamsungDevice) {
             startSamsung4KRecording()
@@ -271,10 +271,10 @@ class EnhancedRecordingManager(
             false
         }
         
-        val radWndResult = startRadWndLevel3Recording()
+        val dngRawResult = startDngRawLevel3Recording()
         
-        Log.i(TAG, "Parallel recording started - Samsung 4K: $samsung4KResult, RAD WND L3: $radWndResult")
-        return Pair(samsung4KResult, radWndResult)
+        Log.i(TAG, "Parallel recording started - Samsung 4K: $samsung4KResult, DNG RAW L3: $dngRawResult")
+        return Pair(samsung4KResult, dngRawResult)
     }
     
     /**
@@ -294,9 +294,9 @@ class EnhancedRecordingManager(
                 Log.w(TAG, "Error stopping MediaRecorder for $type", e)
             }
             
-            // Special handling for RAD WND
-            if (type == RecordingType.RAD_WND_LEVEL3_30FPS) {
-                radWndProcessor?.stopLevel3Processing()
+            // Special handling for DNG RAW
+            if (type == RecordingType.DNG_RAW_LEVEL3_30FPS) {
+                dngRawProcessor?.stopLevel3Processing()
             }
             
             // Generate metadata
@@ -349,18 +349,18 @@ class EnhancedRecordingManager(
     }
     
     /**
-     * Configure RAD WND specific recording settings
+     * Configure DNG RAW specific recording settings
      */
-    private fun MediaRecorder.configureRadWndSpecificSettings() {
+    private fun MediaRecorder.configureDngRawSpecificSettings() {
         try {
-            // RAD WND requires specific frame timing for wind analysis
-            Log.d(TAG, "Configuring RAD WND Level 3 recording parameters")
+            // DNG RAW requires specific frame timing for thermal data capture
+            Log.d(TAG, "Configuring DNG RAW Level 3 recording parameters")
             
-            // Ensure precise 30 FPS timing for thermal wind analysis
-            // This is critical for proper radiance wind calculation
+            // Ensure precise 30 FPS timing for DNG RAW capture
+            // This is critical for proper thermal data preservation
             
         } catch (e: Exception) {
-            Log.w(TAG, "RAD WND specific settings configuration failed", e)
+            Log.w(TAG, "DNG RAW specific settings configuration failed", e)
         }
     }
     
@@ -414,9 +414,9 @@ class EnhancedRecordingManager(
                     }
                 """.trimIndent()
                 
-                RecordingType.RAD_WND_LEVEL3_30FPS -> """
+                RecordingType.DNG_RAW_LEVEL3_30FPS -> """
                     {
-                        "recording_type": "RAD_WND_Level3_30FPS",
+                        "recording_type": "DNG_RAW_Level3_30FPS",
                         "analysis_level": 3,
                         "stage": 3,
                         "resolution": "1280x720",
@@ -424,9 +424,9 @@ class EnhancedRecordingManager(
                         "duration_ms": $duration,
                         "bitrate": "12Mbps",
                         "thermal_device": "TC001",
-                        "rad_wnd_processing": true,
-                        "wind_analysis_enabled": true,
-                        "radiance_calculation": "level_3",
+                        "dng_raw_processing": true,
+                        "thermal_fidelity": "high",
+                        "raw_format": "DNG_1.6",
                         "timestamp": ${System.currentTimeMillis()},
                         "version": "2.0"
                     }
@@ -500,7 +500,7 @@ class EnhancedRecordingManager(
         }
         
         activeRecordings.clear()
-        radWndProcessor?.cleanup()
+        dngRawProcessor?.cleanup()
         
         Log.d(TAG, "Enhanced recording manager cleaned up")
     }

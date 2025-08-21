@@ -402,14 +402,14 @@ class TC001ThermalManager(
     }
     
     /**
-     * Start RAD WND Level 3 recording at 30 FPS  
+     * Start DNG RAW Level 3 recording at 30 FPS  
      */
-    suspend fun startRadWndLevel3Recording(): Boolean {
-        return enhancedRecordingManager?.startRadWndLevel3Recording() ?: false
+    suspend fun startDngRawLevel3Recording(): Boolean {
+        return enhancedRecordingManager?.startDngRawLevel3Recording() ?: false
     }
     
     /**
-     * Start parallel Samsung 4K + RAD WND Level 3 recording
+     * Start parallel Samsung 4K + DNG RAW Level 3 recording
      */
     suspend fun startParallelRecording(): Pair<Boolean, Boolean> {
         return enhancedRecordingManager?.startParallelRecording() ?: Pair(false, false)

@@ -106,8 +106,8 @@ class ThermalActivity : AppCompatActivity() {
                 toggleSamsung4KRecording()
             }
             
-            btnRadWndL3?.setOnClickListener {
-                toggleRadWndLevel3Recording()
+            btnDngRawL3?.setOnClickListener {
+                toggleDngRawLevel3Recording()
             }
             
             btnParallelRec?.setOnClickListener {
@@ -318,51 +318,51 @@ class ThermalActivity : AppCompatActivity() {
         }
     }
     
-    private fun toggleRadWndLevel3Recording() {
+    private fun toggleDngRawLevel3Recording() {
         lifecycleScope.launch {
             try {
-                val type = EnhancedRecordingManager.Companion.RecordingType.RAD_WND_LEVEL3_30FPS
+                val type = EnhancedRecordingManager.Companion.RecordingType.DNG_RAW_LEVEL3_30FPS
                 val isRecording = thermalManager.isEnhancedRecordingActive(type)
                 
                 if (isRecording) {
                     val filename = thermalManager.stopEnhancedRecording(type)
-                    binding.btnRadWndL3.text = "RAD WND L3"
-                    binding.btnRadWndL3.backgroundTintList = getColorStateList(R.color.purple_700)
-                    binding.tvRadWndStatus.visibility = View.GONE
+                    binding.btnDngRawL3.text = "DNG RAW L3"
+                    binding.btnDngRawL3.backgroundTintList = getColorStateList(R.color.purple_700)
+                    binding.tvDngRawStatus.visibility = View.GONE
                     updateEnhancedRecordingVisibility()
                     
                     Toast.makeText(
                         this@ThermalActivity,
-                        "RAD WND Level 3 recording saved: $filename",
+                        "DNG RAW Level 3 recording saved: $filename",
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                    val started = thermalManager.startRadWndLevel3Recording()
+                    val started = thermalManager.startDngRawLevel3Recording()
                     if (started) {
-                        binding.btnRadWndL3.text = "Stop RAD"
-                        binding.btnRadWndL3.backgroundTintList = getColorStateList(android.R.color.holo_red_dark)
-                        binding.tvRadWndStatus.visibility = View.VISIBLE
+                        binding.btnDngRawL3.text = "Stop DNG"
+                        binding.btnDngRawL3.backgroundTintList = getColorStateList(android.R.color.holo_red_dark)
+                        binding.tvDngRawStatus.visibility = View.VISIBLE
                         updateEnhancedRecordingVisibility()
                         startEnhancedRecordingTimer()
                         
                         Toast.makeText(
                             this@ThermalActivity,
-                            "RAD WND Level 3 30FPS recording started",
+                            "DNG RAW Level 3 30FPS recording started",
                             Toast.LENGTH_SHORT
                         ).show()
                     } else {
                         Toast.makeText(
                             this@ThermalActivity,
-                            "RAD WND Level 3 recording failed to start",
+                            "DNG RAW Level 3 recording failed to start",
                             Toast.LENGTH_SHORT
                         ).show()
                     }
                 }
             } catch (e: Exception) {
-                Log.e(TAG, "RAD WND Level 3 recording toggle failed", e)
+                Log.e(TAG, "DNG RAW Level 3 recording toggle failed", e)
                 Toast.makeText(
                     this@ThermalActivity,
-                    "RAD WND error: ${e.message}",
+                    "DNG RAW error: ${e.message}",
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -382,12 +382,12 @@ class ThermalActivity : AppCompatActivity() {
                     // Reset individual buttons
                     binding.btnSamsung4K.text = "Samsung 4K"
                     binding.btnSamsung4K.backgroundTintList = getColorStateList(R.color.purple_700)
-                    binding.btnRadWndL3.text = "RAD WND L3"
-                    binding.btnRadWndL3.backgroundTintList = getColorStateList(R.color.purple_700)
+                    binding.btnDngRawL3.text = "DNG RAW L3"
+                    binding.btnDngRawL3.backgroundTintList = getColorStateList(R.color.purple_700)
                     
                     // Hide status indicators
                     binding.tvSamsung4KStatus.visibility = View.GONE
-                    binding.tvRadWndStatus.visibility = View.GONE
+                    binding.tvDngRawStatus.visibility = View.GONE
                     updateEnhancedRecordingVisibility()
                     
                     val message = if (filenames.isNotEmpty()) {
@@ -399,9 +399,9 @@ class ThermalActivity : AppCompatActivity() {
                     Toast.makeText(this@ThermalActivity, message, Toast.LENGTH_SHORT).show()
                     
                 } else {
-                    val (samsung4KStarted, radWndStarted) = thermalManager.startParallelRecording()
+                    val (samsung4KStarted, dngRawStarted) = thermalManager.startParallelRecording()
                     
-                    if (samsung4KStarted || radWndStarted) {
+                    if (samsung4KStarted || dngRawStarted) {
                         binding.btnParallelRec.text = "Stop All"
                         binding.btnParallelRec.backgroundTintList = getColorStateList(android.R.color.holo_red_dark)
                         
@@ -411,19 +411,19 @@ class ThermalActivity : AppCompatActivity() {
                             binding.tvSamsung4KStatus.visibility = View.VISIBLE
                         }
                         
-                        if (radWndStarted) {
-                            binding.btnRadWndL3.text = "Stop RAD"
-                            binding.btnRadWndL3.backgroundTintList = getColorStateList(android.R.color.holo_red_dark)
-                            binding.tvRadWndStatus.visibility = View.VISIBLE
+                        if (dngRawStarted) {
+                            binding.btnDngRawL3.text = "Stop DNG"
+                            binding.btnDngRawL3.backgroundTintList = getColorStateList(android.R.color.holo_red_dark)
+                            binding.tvDngRawStatus.visibility = View.VISIBLE
                         }
                         
                         updateEnhancedRecordingVisibility()
                         startEnhancedRecordingTimer()
                         
                         val message = when {
-                            samsung4KStarted && radWndStarted -> "Parallel recording: Samsung 4K + RAD WND L3 at 30FPS"
+                            samsung4KStarted && dngRawStarted -> "Parallel recording: Samsung 4K + DNG RAW L3 at 30FPS"
                             samsung4KStarted -> "Samsung 4K recording started at 30FPS"
-                            radWndStarted -> "RAD WND Level 3 recording started at 30FPS"
+                            dngRawStarted -> "DNG RAW Level 3 recording started at 30FPS"
                             else -> "No recordings started"
                         }
                         
@@ -466,13 +466,13 @@ class ThermalActivity : AppCompatActivity() {
                         binding.tvSamsung4KStatus.text = String.format("Samsung 4K: %02d:%02d", minutes, seconds)
                     }
                     
-                    // Update RAD WND status
-                    val radWndType = EnhancedRecordingManager.Companion.RecordingType.RAD_WND_LEVEL3_30FPS
-                    if (thermalManager.isEnhancedRecordingActive(radWndType)) {
-                        val duration = thermalManager.getEnhancedRecordingDuration(radWndType)
+                    // Update DNG RAW status
+                    val dngRawType = EnhancedRecordingManager.Companion.RecordingType.DNG_RAW_LEVEL3_30FPS
+                    if (thermalManager.isEnhancedRecordingActive(dngRawType)) {
+                        val duration = thermalManager.getEnhancedRecordingDuration(dngRawType)
                         val minutes = duration / 60
                         val seconds = duration % 60
-                        binding.tvRadWndStatus.text = String.format("RAD WND L3: %02d:%02d", minutes, seconds)
+                        binding.tvDngRawStatus.text = String.format("DNG RAW L3: %02d:%02d", minutes, seconds)
                     }
                     
                     delay(1000) // Update every second

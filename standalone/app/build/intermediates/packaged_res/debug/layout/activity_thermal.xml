@@ -175,13 +175,13 @@
                 android:textSize="10sp" />
 
             <Button
-                android:id="@+id/btnRadWndL3"
+                android:id="@+id/btnDngRawL3"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="1"
                 android:backgroundTint="#E91E63"
-                android:text="RAD WND L3"
+                android:text="DNG RAW L3"
                 android:textColor="@android:color/white"
                 android:textSize="10sp" />
 
@@ -218,11 +218,11 @@
                 android:visibility="gone" />
 
             <TextView
-                android:id="@+id/tvRadWndStatus"
+                android:id="@+id/tvDngRawStatus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="RAD WND L3: 00:00"
+                android:text="DNG RAW L3: 00:00"
                 android:textColor="#E91E63"
                 android:textSize="12sp"
                 android:visibility="gone" />

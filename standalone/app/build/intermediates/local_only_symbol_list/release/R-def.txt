@@ -2,6 +2,8 @@ R_DEF: Internal format may change without notice
 local
 color button_background
 color button_disabled
+color design_default_color_primary
+color purple_700
 color tc001_error
 color tc001_on_surface
 color tc001_primary
@@ -32,9 +34,12 @@ id btnClearAll
 id btnClearHistory
 id btnConnectTC001
 id btnDeleteSelected
+id btnDngRawL3
 id btnLocalFiles
+id btnParallelRec
 id btnRecord
 id btnRefresh
+id btnSamsung4K
 id btnShareSelected
 id btnTempModeArea
 id btnTempModeLine
@@ -45,6 +50,7 @@ id cbFileSelect
 id chipAll
 id chipImages
 id chipVideos
+id enhancedRecordingStatus
 id ivFileType
 id ivTC001Logo
 id ivThermalView
@@ -60,6 +66,7 @@ id thermalOverlay
 id tvAppTitle
 id tvConnectionStatus
 id tvDeviceInfo
+id tvDngRawStatus
 id tvEmptyState
 id tvFileDate
 id tvFileName
@@ -67,6 +74,7 @@ id tvFileSize
 id tvFileType
 id tvFilesCount
 id tvRecordingDuration
+id tvSamsung4KStatus
 id tvSelectionCount
 id tvStatusMessage
 id tvStorageUsed

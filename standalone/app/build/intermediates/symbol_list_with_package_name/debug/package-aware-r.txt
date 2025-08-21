@@ -3186,9 +3186,9 @@ id btnClearAll
 id btnClearHistory
 id btnConnectTC001
 id btnDeleteSelected
+id btnDngRawL3
 id btnLocalFiles
 id btnParallelRec
-id btnRadWndL3
 id btnRecord
 id btnRefresh
 id btnSamsung4K
@@ -3603,13 +3603,13 @@ id triangle
 id tvAppTitle
 id tvConnectionStatus
 id tvDeviceInfo
+id tvDngRawStatus
 id tvEmptyState
 id tvFileDate
 id tvFileName
 id tvFileSize
 id tvFileType
 id tvFilesCount
-id tvRadWndStatus
 id tvRecordingDuration
 id tvSamsung4KStatus
 id tvSelectionCount

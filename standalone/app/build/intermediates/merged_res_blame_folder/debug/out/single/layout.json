@@ -1,22 +1,18 @@
 [
     {
-        "merged": "/home/runner/.gradle/daemon/7.5/com.topinfrared.tc001.standalone.app-mergeDebugResources-39:/layout/activity_main.xml",
-        "source": "/home/runner/.gradle/daemon/7.5/com.topinfrared.tc001.standalone.app-main-42:/layout/activity_main.xml"
+        "merged": "com.topinfrared.tc001.standalone.app-mergeDebugResources-39:/layout/activity_main.xml",
+        "source": "com.topinfrared.tc001.standalone.app-main-42:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.topinfrared.tc001.standalone.app-mergeDebugResources-39:/layout/item_local_file.xml",
+        "source": "com.topinfrared.tc001.standalone.app-main-42:/layout/item_local_file.xml"
+    },
+    {
+        "merged": "com.topinfrared.tc001.standalone.app-mergeDebugResources-39:/layout/activity_local_files.xml",
+        "source": "com.topinfrared.tc001.standalone.app-main-42:/layout/activity_local_files.xml"
     },
     {
         "merged": "com.topinfrared.tc001.standalone.app-mergeDebugResources-39:/layout/activity_thermal.xml",
         "source": "com.topinfrared.tc001.standalone.app-main-42:/layout/activity_thermal.xml"
-    },
-    {
-        "merged": "/home/runner/.gradle/daemon/7.5/com.topinfrared.tc001.standalone.app-mergeDebugResources-39:/layout/activity_local_files.xml",
-        "source": "/home/runner/.gradle/daemon/7.5/com.topinfrared.tc001.standalone.app-main-42:/layout/activity_local_files.xml"
-    },
-    {
-        "merged": "/home/runner/.gradle/daemon/7.5/com.topinfrared.tc001.standalone.app-mergeDebugResources-39:/layout/item_local_file.xml",
-        "source": "/home/runner/.gradle/daemon/7.5/com.topinfrared.tc001.standalone.app-main-42:/layout/item_local_file.xml"
-    },
-    {
-        "merged": "/home/runner/.gradle/daemon/7.5/com.topinfrared.tc001.standalone.app-mergeDebugResources-39:/layout/activity_thermal.xml",
-        "source": "/home/runner/.gradle/daemon/7.5/com.topinfrared.tc001.standalone.app-main-42:/layout/activity_thermal.xml"
     }
 ]

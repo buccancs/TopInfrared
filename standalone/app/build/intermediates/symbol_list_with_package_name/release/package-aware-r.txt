@@ -2055,6 +2055,7 @@ color primary_text_default_material_dark
 color primary_text_default_material_light
 color primary_text_disabled_material_dark
 color primary_text_disabled_material_light
+color purple_700
 color ripple_material_dark
 color ripple_material_light
 color secondary_text_default_material_dark
@@ -3185,9 +3186,12 @@ id btnClearAll
 id btnClearHistory
 id btnConnectTC001
 id btnDeleteSelected
+id btnDngRawL3
 id btnLocalFiles
+id btnParallelRec
 id btnRecord
 id btnRefresh
+id btnSamsung4K
 id btnShareSelected
 id btnTempModeArea
 id btnTempModeLine
@@ -3277,6 +3281,7 @@ id elastic
 id embed
 id end
 id endToStart
+id enhancedRecordingStatus
 id enterAlways
 id enterAlwaysCollapsed
 id exitUntilCollapsed
@@ -3598,6 +3603,7 @@ id triangle
 id tvAppTitle
 id tvConnectionStatus
 id tvDeviceInfo
+id tvDngRawStatus
 id tvEmptyState
 id tvFileDate
 id tvFileName
@@ -3605,6 +3611,7 @@ id tvFileSize
 id tvFileType
 id tvFilesCount
 id tvRecordingDuration
+id tvSamsung4KStatus
 id tvSelectionCount
 id tvStatusMessage
 id tvStorageUsed

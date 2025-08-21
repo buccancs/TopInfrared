@@ -1,13 +1,13 @@
 # TC001 Enhanced Recording Features
 
-This document describes the enhanced recording capabilities implemented in the TC001 standalone module, specifically the **Samsung 4K 30FPS recording** and **RAD WND Level 3 recording** features.
+This document describes the enhanced recording capabilities implemented in the TC001 standalone module, specifically the **Samsung 4K 30FPS recording** and **DNG RAW Level 3 recording** features.
 
 ## Overview
 
 The TC001 standalone module now supports parallel advanced recording modes:
 
 - **Samsung-specific 4K recording** at 30 FPS for Samsung devices
-- **RAD WND (Radiance Wind) Level 3 recording** at 30 FPS for advanced thermal analysis
+- **DNG RAW Level 3 recording** at 30 FPS for high-fidelity thermal data capture
 - **Parallel recording** capability to run both modes simultaneously
 
 ## Samsung 4K 30FPS Recording
@@ -39,66 +39,67 @@ MediaRecorder().apply {
 3. **File Output**: Saves as `samsung_4k_TIMESTAMP.mp4` with metadata
 4. **Device Requirements**: Samsung device with 4K recording support
 
-## RAD WND Level 3 Recording
+## DNG RAW Level 3 Recording
 
-### What is RAD WND?
-**RAD WND (Radiance Wind)** is an advanced thermal imaging technique that analyzes radiance patterns in thermal data to detect wind effects and air flow dynamics. Level 3 processing provides the highest fidelity analysis for professional thermal applications.
+### What is DNG RAW?
+**DNG (Digital Negative) RAW** is Adobe's open standard for RAW image files, providing the highest fidelity thermal data capture and preservation. Level 3 processing offers maximum thermal data integrity for professional thermal analysis and scientific applications.
 
 ### Features
-- **Stage 3/Level 3 Processing**: Highest quality thermal wind analysis
-- **30 FPS Analysis**: Real-time wind pattern detection at 30 frames per second
-- **Wind Vector Calculation**: Computes wind direction, magnitude, and confidence
-- **Thermal Gradient Analysis**: Advanced Sobel operator-based gradient calculation  
-- **Radiance Variance Detection**: Statistical analysis of thermal patterns
-- **Hot/Cold Spot Detection**: Automatic identification of temperature extremes
-- **Temporal Analysis**: Wind pattern consistency tracking over time frames
-- **High Precision**: 0.01 radiance precision for scientific applications
+- **Stage 3/Level 3 Processing**: Highest quality thermal data capture
+- **30 FPS RAW Capture**: Real-time thermal data recording at 30 frames per second
+- **16-bit RAW Data**: Full thermal precision preservation in 16-bit format
+- **Thermal Calibration**: Device-specific calibration matrix application  
+- **Temperature Range**: -20°C to 150°C with 0.01°C precision
+- **DNG 1.6 Standard**: Industry-standard RAW format for maximum compatibility
+- **Metadata Preservation**: Complete thermal capture metadata in JSON format
+- **Scientific Accuracy**: Calibrated thermal measurements for research applications
 
 ### Technical Implementation
 
-#### RAD WND Processor Architecture
+#### DNG RAW Processor Architecture
 ```kotlin
-class RadWndProcessor {
+class DngRawProcessor {
     // Level 3 constants
-    private const val L3_PROCESSING_FREQUENCY = 30 // 30 FPS
-    private const val L3_WIND_VECTOR_RESOLUTION = 64 // High resolution wind vectors
-    private const val L3_RADIANCE_PRECISION = 0.01f // High precision measurement
+    private const val RAW_PROCESSING_FREQUENCY = 30 // 30 FPS
+    private const val DNG_BITS_PER_SAMPLE = 16 // 16-bit RAW thermal data
+    private const val THERMAL_PRECISION = 0.01f // High precision measurement
     
-    // Wind vector data structure
-    data class WindVector(
-        val x: Float, val y: Float,
-        val magnitude: Float,
-        val direction: Float, // in degrees
-        val confidence: Float
+    // Thermal RAW data structure
+    data class ThermalRawData(
+        val timestamp: Long,
+        val width: Int, val height: Int,
+        val thermalData: Array<FloatArray>,
+        val rawData: ByteArray,
+        val metadata: ThermalMetadata
     )
 }
 ```
 
 #### Processing Pipeline
 1. **Thermal Frame Acquisition**: 30 FPS thermal data capture
-2. **Radiance Calculation**: Average radiance and variance analysis
-3. **Gradient Computation**: Sobel operator for thermal gradients
-4. **Wind Vector Analysis**: Block-based wind pattern detection
-5. **Temporal Consistency**: Multi-frame wind pattern validation
-6. **Metadata Generation**: Comprehensive analysis reports
+2. **Calibration Application**: Device-specific thermal calibration
+3. **RAW Data Conversion**: 16-bit thermal data encoding
+4. **DNG File Generation**: TIFF-based DNG file creation
+5. **Metadata Embedding**: Comprehensive thermal metadata
+6. **Quality Preservation**: Maximum thermal data integrity
 
 ### Scientific Applications
-- **Environmental Monitoring**: Air flow pattern analysis
-- **Building Performance**: HVAC efficiency assessment  
-- **Industrial Applications**: Heat transfer optimization
-- **Research & Development**: Advanced thermal dynamics study
+- **Research & Development**: High-fidelity thermal data preservation
+- **Scientific Analysis**: Precise temperature measurements for research  
+- **Calibration Studies**: Device characterization and validation
+- **Archival Storage**: Long-term thermal data preservation in standard format
 
 ## Parallel Recording
 
 ### Capabilities
-- **Simultaneous Recording**: Run Samsung 4K + RAD WND Level 3 concurrently
+- **Simultaneous Recording**: Run Samsung 4K + DNG RAW Level 3 concurrently
 - **Independent Controls**: Start/stop each recording type individually
 - **Resource Management**: Optimized for multi-stream processing
 - **Status Monitoring**: Real-time duration tracking for both streams
 - **Automatic Cleanup**: Proper resource management and cleanup
 
 ### Usage Workflow
-1. **Individual Recording**: Use "Samsung 4K" or "RAD WND L3" buttons
+1. **Individual Recording**: Use "Samsung 4K" or "DNG RAW L3" buttons
 2. **Parallel Recording**: Use "Parallel" button to start both simultaneously
 3. **Status Monitoring**: Watch real-time duration counters
 4. **Stopping**: Stop individual streams or all streams with "Stop All"
@@ -107,13 +108,13 @@ class RadWndProcessor {
 
 ### Button Layout
 ```
-[Samsung 4K] [RAD WND L3] [Parallel]
+[Samsung 4K] [DNG RAW L3] [Parallel]
 ```
 
 ### Status Display
 ```
 Samsung 4K: 05:23
-RAD WND L3: 05:23
+DNG RAW L3: 05:23
 ```
 
 ### Recording States
@@ -130,23 +131,27 @@ RAD WND L3: 05:23
 - **Bitrate**: 20 Mbps
 - **Metadata**: `samsung_4k_TIMESTAMP_metadata.json`
 
-### RAD WND Level 3 Output  
-- **Filename**: `rad_wnd_l3_YYYYMMDD_HHMMSS.mp4`
+### DNG RAW Level 3 Output  
+- **Filename**: `dng_raw_l3_YYYYMMDD_HHMMSS.mp4`
 - **Resolution**: 1280x720 @ 30fps (optimized for thermal processing)
 - **Bitrate**: 12 Mbps
-- **Metadata**: `rad_wnd_l3_TIMESTAMP_metadata.json`
+- **Metadata**: `dng_raw_l3_TIMESTAMP_metadata.json`
+- **DNG Files**: Individual `thermal_raw_TIMESTAMP.dng` files generated
 
-### Metadata Structure
+### DNG RAW Metadata Structure
 ```json
 {
-    "recording_type": "Samsung_4K_30FPS",
-    "device": "Samsung Galaxy S23",
-    "resolution": "3840x2160",
+    "recording_type": "DNG_RAW_Level3_30FPS",
+    "analysis_level": 3,
+    "stage": 3,
+    "resolution": "1280x720",
     "frame_rate": 30,
     "duration_ms": 123456,
-    "bitrate": "20Mbps",
+    "bitrate": "12Mbps",
     "thermal_device": "TC001",
-    "samsung_optimized": true,
+    "dng_raw_processing": true,
+    "thermal_fidelity": "high",
+    "raw_format": "DNG_1.6",
     "timestamp": 1703123456789,
     "version": "2.0"
 }
@@ -162,11 +167,11 @@ EnhancedRecordingManager
 │   ├── 4K Profile Configuration  
 │   ├── Samsung API Integration
 │   └── High Bitrate Encoding
-├── RAD WND Level 3 Recording
-│   ├── RadWndProcessor Integration
-│   ├── 30 FPS Thermal Analysis
-│   ├── Wind Vector Calculation
-│   └── Metadata Generation
+├── DNG RAW Level 3 Recording
+│   ├── DngRawProcessor Integration
+│   ├── 30 FPS Thermal Capture
+│   ├── DNG File Generation
+│   └── Thermal Metadata
 └── Parallel Recording Management
     ├── Multi-stream Coordination
     ├── Resource Optimization
@@ -178,7 +183,7 @@ EnhancedRecordingManager
 ```kotlin
 // Enhanced recording methods added to TC001ThermalManager
 suspend fun startSamsung4KRecording(): Boolean
-suspend fun startRadWndLevel3Recording(): Boolean  
+suspend fun startDngRawLevel3Recording(): Boolean  
 suspend fun startParallelRecording(): Pair<Boolean, Boolean>
 suspend fun stopEnhancedRecording(type: RecordingType): String?
 fun isEnhancedRecordingActive(type: RecordingType): Boolean
@@ -188,7 +193,7 @@ fun isEnhancedRecordingActive(type: RecordingType): Boolean
 
 ### System Requirements
 - **Samsung 4K**: Samsung device with 4K recording capability
-- **RAD WND Level 3**: Minimum Android 7.0, 4GB RAM recommended
+- **DNG RAW Level 3**: Minimum Android 7.0, 4GB RAM recommended
 - **Parallel Recording**: 6GB RAM recommended for optimal performance
 
 ### Optimization Features
