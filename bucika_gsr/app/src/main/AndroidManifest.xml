@@ -31,7 +31,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-        tools:replace="android:label">
+        tools:replace="android:hardwareAccelerated,android:label">
 
         <uses-native-library android:name="libOpenCL.so" android:required="false" />
         <uses-native-library android:name="libcutils.so" android:required="false" />

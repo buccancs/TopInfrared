@@ -1,5 +1,6 @@
 package com.topdon.lib.core.tools
 
+import android.Manifest
 import android.content.Context
 import android.os.Build
 import com.blankj.utilcode.util.AppUtils
@@ -52,13 +53,13 @@ object PermissionTool {
             Type.RECORD_AUDIO -> listOf(Permission.RECORD_AUDIO)
             Type.CAMERA -> listOf(Permission.CAMERA)
             Type.LOCATION -> listOf(Permission.ACCESS_COARSE_LOCATION, Permission.ACCESS_FINE_LOCATION)
-            Type.IMAGE -> listOf(if (context.applicationInfo.targetSdkVersion < 33) Permission.READ_EXTERNAL_STORAGE else Permission.READ_MEDIA_IMAGES)
+            Type.IMAGE -> listOf(if (context.applicationInfo.targetSdkVersion < 33) Permission.READ_EXTERNAL_STORAGE else Manifest.permission.READ_MEDIA_IMAGES)
             Type.FILE -> if (context.applicationInfo.targetSdkVersion < 30) {//Android 10及以下
                 listOf(Permission.READ_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE)
             } else if (context.applicationInfo.targetSdkVersion < 33) {//Android 13以下
                 listOf(Permission.READ_EXTERNAL_STORAGE)
             } else {//Android 13及以上
-                listOf(Permission.READ_MEDIA_VIDEO, Permission.READ_MEDIA_IMAGES)
+                listOf(Manifest.permission.READ_MEDIA_VIDEO, Manifest.permission.READ_MEDIA_IMAGES)
             }
         }
 

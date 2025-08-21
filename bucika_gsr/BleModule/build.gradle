@@ -11,7 +11,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        flavorDimensions "versionCode"
+        flavorDimensions "app"
     }
 
     buildTypes {
@@ -26,29 +26,30 @@ android {
     }
 
     productFlavors {
-        nj1000pro {
-
+        dev {
+            dimension 'app'
         }
-        //AD900
-        ultradiag {
+        beta {
+            dimension 'app'
         }
-        //ArtiDiag900 ArtiDiag900Lite
-        //ArtiDiag900 ArtiDiag900Lite 打包时需要修改DiagnoseModule和BluetoothModule 中的进程名称 进程名：com.topdon.diagnose.adliteservice  Constants.mAppVersion  此字段也需要修改
-        artidiag900lite {
+        prod {
+            dimension 'app'
         }
-
-        topscan{
-
+        prodTopdon {
+            dimension 'app'
         }
-
-        keynow{
-
+        insideChina {
+            dimension 'app'
+        }
+        prodTopdonInsideChina {
+            dimension 'app'
         }
     }
 }
 
 dependencies {
-    api 'com.topdon.lms.sdk2:lms:3.80.005'
+    // Use local LMS SDK instead of remote dependency for bucika_gsr
+    implementation files('../libapp/libs/lms_international-3.90.009.0.aar')
     api 'androidx.appcompat:appcompat:1.2.0'
     api 'org.greenrobot:eventbus:3.2.0'
     api 'com.blankj:utilcodex:1.30.6'//工具包
