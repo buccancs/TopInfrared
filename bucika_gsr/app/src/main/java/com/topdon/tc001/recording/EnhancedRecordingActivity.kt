@@ -1,6 +1,7 @@
 package com.topdon.tc001.recording
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.TextureView
@@ -11,6 +12,7 @@ import com.topdon.lib.core.ktbase.BaseActivity
 import com.topdon.module.thermal.ir.video.EnhancedVideoRecorder
 import com.topdon.tc001.R
 import com.topdon.tc001.gsr.GSRManager
+import com.topdon.tc001.LocalFileBrowserActivity
 import kotlinx.android.synthetic.main.activity_enhanced_recording.*
 
 /**
@@ -71,7 +73,7 @@ class EnhancedRecordingActivity : BaseActivity(), GSRManager.GSRDataListener {
         }
         
         btn_rad_wnd_level3.setOnClickListener {
-            currentRecordingMode = EnhancedVideoRecorder.RecordingMode.RAD_WND_LEVEL3_30FPS
+            currentRecordingMode = EnhancedVideoRecorder.RecordingMode.RAD_WND_LEVEL3_30FPS_DNG
             updateRecordingModeUI()
         }
         
@@ -124,7 +126,7 @@ class EnhancedRecordingActivity : BaseActivity(), GSRManager.GSRDataListener {
             if (success) {
                 val modeText = when (currentRecordingMode) {
                     EnhancedVideoRecorder.RecordingMode.SAMSUNG_4K_30FPS -> "Samsung 4K 30FPS"
-                    EnhancedVideoRecorder.RecordingMode.RAD_WND_LEVEL3_30FPS -> "RAD WND Level 3 30FPS"
+                    EnhancedVideoRecorder.RecordingMode.RAD_WND_LEVEL3_30FPS_DNG -> "RAD WND Level 3 DNG 30FPS"
                     EnhancedVideoRecorder.RecordingMode.PARALLEL_DUAL_STREAM -> "Parallel Dual Stream"
                 }
                 Toast.makeText(this, "$modeText recording started", Toast.LENGTH_SHORT).show()
@@ -154,7 +156,18 @@ class EnhancedRecordingActivity : BaseActivity(), GSRManager.GSRDataListener {
                 // Show recorded files
                 val recordedFiles = videoRecorder.getRecordedFiles()
                 val fileList = recordedFiles.joinToString("\n") { it.name }
-                Toast.makeText(this, "Saved files:\n$fileList", Toast.LENGTH_LONG).show()
+                
+                // Show DNG capture stats if applicable
+                if (currentRecordingMode == EnhancedVideoRecorder.RecordingMode.RAD_WND_LEVEL3_30FPS_DNG) {
+                    val dngStats = videoRecorder.getDNGCaptureStats()
+                    val framesCaptured = dngStats["framesCaptured"] as? Int ?: 0
+                    val actualFPS = dngStats["actualFPS"] as? Double ?: 0.0
+                    Toast.makeText(this, 
+                        "DNG Recording Complete!\nFrames: $framesCaptured\nActual FPS: %.2f\nFiles: $fileList".format(actualFPS), 
+                        Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(this, "Saved files:\n$fileList", Toast.LENGTH_LONG).show()
+                }
             } else {
                 Toast.makeText(this, "Failed to stop recording", Toast.LENGTH_SHORT).show()
             }
@@ -183,14 +196,14 @@ class EnhancedRecordingActivity : BaseActivity(), GSRManager.GSRDataListener {
     private fun updateRecordingModeUI() {
         // Update UI to show selected recording mode
         btn_samsung_4k.isSelected = (currentRecordingMode == EnhancedVideoRecorder.RecordingMode.SAMSUNG_4K_30FPS)
-        btn_rad_wnd_level3.isSelected = (currentRecordingMode == EnhancedVideoRecorder.RecordingMode.RAD_WND_LEVEL3_30FPS)
+        btn_rad_wnd_level3.isSelected = (currentRecordingMode == EnhancedVideoRecorder.RecordingMode.RAD_WND_LEVEL3_30FPS_DNG)
         btn_parallel_recording.isSelected = (currentRecordingMode == EnhancedVideoRecorder.RecordingMode.PARALLEL_DUAL_STREAM)
         
         val modeDescription = when (currentRecordingMode) {
             EnhancedVideoRecorder.RecordingMode.SAMSUNG_4K_30FPS -> 
                 "Samsung optimized 4K recording at 30FPS with 20Mbps bitrate"
-            EnhancedVideoRecorder.RecordingMode.RAD_WND_LEVEL3_30FPS -> 
-                "Professional RAD WND Level 3 recording at 30FPS with enhanced audio"
+            EnhancedVideoRecorder.RecordingMode.RAD_WND_LEVEL3_30FPS_DNG -> 
+                "Professional RAD WND Level 3 DNG capture at 30FPS with RAW sensor data"
             EnhancedVideoRecorder.RecordingMode.PARALLEL_DUAL_STREAM -> 
                 "Simultaneous thermal and visual stream recording"
         }

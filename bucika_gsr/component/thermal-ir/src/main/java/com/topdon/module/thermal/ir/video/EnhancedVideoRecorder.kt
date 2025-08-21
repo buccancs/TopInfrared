@@ -20,6 +20,7 @@ import android.view.TextureView
 import com.elvishew.xlog.XLog
 import com.topdon.lib.core.config.FileConfig
 import com.topdon.module.thermal.ir.overlay.TemperatureOverlayManager
+import com.topdon.module.thermal.ir.dng.DNGCaptureManager
 import java.io.File
 import java.util.*
 import java.util.concurrent.Semaphore
@@ -39,7 +40,7 @@ class EnhancedVideoRecorder(
     // Recording modes
     enum class RecordingMode {
         SAMSUNG_4K_30FPS,
-        RAD_WND_LEVEL3_30FPS,
+        RAD_WND_LEVEL3_30FPS_DNG,  // Updated to DNG format
         PARALLEL_DUAL_STREAM
     }
 
@@ -59,6 +60,9 @@ class EnhancedVideoRecorder(
     private var mediaRecorder: MediaRecorder? = null
     private var thermalRecorder: MediaRecorder? = null
     private var visualRecorder: MediaRecorder? = null
+    
+    // DNG Capture Manager for RAD WND Level 3
+    private var dngCaptureManager: DNGCaptureManager? = null
 
     // Recording parameters
     private val samsung4KSize = Size(3840, 2160) // 4K UHD
@@ -85,6 +89,7 @@ class EnhancedVideoRecorder(
 
     init {
         cameraManager = context.getSystemService(Context.CAMERA_SERVICE) as CameraManager
+        dngCaptureManager = DNGCaptureManager(context)
     }
 
     /**
@@ -103,7 +108,7 @@ class EnhancedVideoRecorder(
             
             when (mode) {
                 RecordingMode.SAMSUNG_4K_30FPS -> startSamsung4KRecording()
-                RecordingMode.RAD_WND_LEVEL3_30FPS -> startRadWndRecording()
+                RecordingMode.RAD_WND_LEVEL3_30FPS_DNG -> startRadWndDNGRecording()  // Updated method
                 RecordingMode.PARALLEL_DUAL_STREAM -> startParallelRecording()
             }
         } catch (e: Exception) {
@@ -157,56 +162,24 @@ class EnhancedVideoRecorder(
     }
 
     /**
-     * Start STAGE 3/LEVEL 3 RAD WND recording at 30FPS
+     * Start STAGE 3/LEVEL 3 RAD WND DNG recording at 30FPS
      */
-    private fun startRadWndRecording(): Boolean {
-        XLog.i(TAG, "Starting STAGE 3/LEVEL 3 RAD WND recording at 30FPS")
+    private fun startRadWndDNGRecording(): Boolean {
+        XLog.i(TAG, "Starting STAGE 3/LEVEL 3 RAD WND DNG recording at 30FPS")
         
-        val videoFile = createVideoFile("rad_wnd_level3_${Date().time}.mp4")
-        currentVideoFile = videoFile
-        
-        mediaRecorder = MediaRecorder().apply {
-            // RAD WND Level 3 optimized settings
-            setVideoSource(MediaRecorder.VideoSource.SURFACE)
-            setAudioSource(MediaRecorder.AudioSource.MIC)
-            
-            setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
-            setOutputFile(videoFile.absolutePath)
-            
-            // RAD WND Level 3 specifications
-            setVideoEncoder(VideoEncoder.H264)
-            setVideoSize(radWndSize.width, radWndSize.height)
-            setVideoFrameRate(targetFps)
-            setVideoEncodingBitRate(RAD_WND_BITRATE)
-            
-            // Enhanced audio for professional recording
-            setAudioEncoder(AudioEncoder.AAC)
-            setAudioSamplingRate(48000) // Professional audio sampling
-            setAudioEncodingBitRate(192000)
-            
-            // Level 3 quality settings
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                setVideoEncodingProfileLevel(
-                    MediaRecorder.VideoEncoder.H264,
-                    CamcorderProfile.H264_HIGH,
-                    CamcorderProfile.H264_LEVEL_4_1
-                )
-            }
-            
-            try {
-                prepare()
-                start()
+        return try {
+            val success = dngCaptureManager?.startDNGCapture() ?: false
+            if (success) {
                 isRecording = true
-                XLog.i(TAG, "RAD WND Level 3 recording started successfully")
-                return true
-            } catch (e: Exception) {
-                XLog.e(TAG, "Failed to start RAD WND recording: ${e.message}", e)
-                releaseMediaRecorder()
-                return false
+                XLog.i(TAG, "RAD WND Level 3 DNG capture started successfully")
+            } else {
+                XLog.e(TAG, "Failed to start RAD WND DNG capture")
             }
+            success
+        } catch (e: Exception) {
+            XLog.e(TAG, "Failed to start RAD WND DNG recording: ${e.message}", e)
+            false
         }
-        
-        return false
     }
 
     /**
@@ -279,6 +252,7 @@ class EnhancedVideoRecorder(
         return try {
             when (recordingMode) {
                 RecordingMode.PARALLEL_DUAL_STREAM -> stopParallelRecording()
+                RecordingMode.RAD_WND_LEVEL3_30FPS_DNG -> stopDNGRecording()  // Updated method
                 else -> stopSingleRecording()
             }
             
@@ -290,6 +264,15 @@ class EnhancedVideoRecorder(
         } catch (e: Exception) {
             XLog.e(TAG, "Failed to stop recording: ${e.message}", e)
             false
+        }
+    }
+
+    private fun stopDNGRecording() {
+        val success = dngCaptureManager?.stopDNGCapture() ?: false
+        if (success) {
+            XLog.i(TAG, "DNG capture stopped successfully")
+        } else {
+            XLog.w(TAG, "Failed to stop DNG capture cleanly")
         }
     }
 
@@ -327,7 +310,7 @@ class EnhancedVideoRecorder(
     ): Bitmap {
         val mode = when (recordingMode) {
             RecordingMode.SAMSUNG_4K_30FPS -> "Samsung 4K"
-            RecordingMode.RAD_WND_LEVEL3_30FPS -> "RAD WND Level 3"
+            RecordingMode.RAD_WND_LEVEL3_30FPS_DNG -> "RAD WND Level 3 DNG"
             RecordingMode.PARALLEL_DUAL_STREAM -> "Parallel Dual"
         }
         
@@ -365,13 +348,27 @@ class EnhancedVideoRecorder(
     fun getRecordingMode(): RecordingMode = recordingMode
 
     /**
-     * Get recorded files
+     * Get recorded files (includes both video files and DNG files)
      */
     fun getRecordedFiles(): List<File> {
         val files = mutableListOf<File>()
         currentVideoFile?.let { files.add(it) }
         currentThermalFile?.let { files.add(it) }
+        
+        // Add DNG files if in DNG recording mode
+        if (recordingMode == RecordingMode.RAD_WND_LEVEL3_30FPS_DNG) {
+            val dngFiles = dngCaptureManager?.getCapturedFiles() ?: emptyList()
+            files.addAll(dngFiles)
+        }
+        
         return files
+    }
+    
+    /**
+     * Get DNG capture statistics (frames captured, FPS, etc.)
+     */
+    fun getDNGCaptureStats(): Map<String, Any> {
+        return dngCaptureManager?.getCaptureStats() ?: emptyMap()
     }
 
     private fun createVideoFile(filename: String): File {
@@ -418,6 +415,7 @@ class EnhancedVideoRecorder(
     fun cleanup() {
         stopRecording()
         releaseAllRecorders()
+        dngCaptureManager?.cleanup()
         stopBackgroundThread()
     }
 }
