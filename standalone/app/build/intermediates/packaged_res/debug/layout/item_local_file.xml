@@ -13,14 +13,31 @@
         android:orientation="horizontal"
         android:padding="16dp">
 
-        <!-- File Type Icon -->
-        <ImageView
-            android:id="@+id/ivFileType"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center_vertical"
-            android:contentDescription="File Type"
-            android:src="@android:drawable/ic_menu_gallery" />
+        <!-- Thumbnail Image -->
+        <FrameLayout
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_gravity="center_vertical">
+            
+            <!-- File Type Icon -->
+            <ImageView
+                android:id="@+id/ivFileType"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:contentDescription="File Type"
+                android:src="@android:drawable/ic_menu_gallery" />
+            
+            <!-- Thumbnail Image -->
+            <ImageView
+                android:id="@+id/ivThumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="File Thumbnail"
+                android:scaleType="centerCrop"
+                android:visibility="gone" />
+                
+        </FrameLayout>
 
         <!-- File Info -->
         <LinearLayout
@@ -82,6 +99,15 @@
                 android:textSize="12sp" />
 
         </LinearLayout>
+        
+        <!-- Selection Checkbox -->
+        <CheckBox
+            android:id="@+id/cbFileSelect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="8dp"
+            android:visibility="gone" />
 
     </LinearLayout>
 

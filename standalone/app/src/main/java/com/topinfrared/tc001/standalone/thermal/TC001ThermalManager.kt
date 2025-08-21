@@ -5,10 +5,14 @@ import android.graphics.Bitmap
 import android.media.MediaRecorder
 import android.os.Environment
 import android.util.Log
+import android.view.Surface
+import android.media.CamcorderProfile
+import android.media.MediaMetadataRetriever
 import com.topinfrared.tc001.ir.camera.TC001CameraHandler
 import com.topinfrared.tc001.common.utils.FileUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.delay
 import java.io.File
 import java.io.FileOutputStream
 
@@ -33,6 +37,8 @@ class TC001ThermalManager(
     private var currentThermalBitmap: Bitmap? = null
     private var mediaRecorder: MediaRecorder? = null
     private var currentVideoFile: File? = null
+    private var recordingSurface: Surface? = null
+    private var recordingStartTime: Long = 0
     
     suspend fun startThermalCapture(): Boolean = withContext(Dispatchers.IO) {
         try {
@@ -114,29 +120,77 @@ class TC001ThermalManager(
         try {
             if (isRecording) return@withContext false
             
-            Log.d(TAG, "Starting thermal recording")
+            Log.d(TAG, "Starting enhanced thermal recording with MediaRecorder")
             
-            // Create video file
+            // Create video file with proper naming
             val filename = FileUtils.generateVideoFilename()
             val videosDir = FileUtils.getVideosDirectory(context)
             currentVideoFile = File(videosDir, filename)
             
-            // Setup MediaRecorder for mock recording
-            // In real implementation, this would record from TC001 thermal stream
+            // Initialize MediaRecorder with proper configuration
             mediaRecorder = MediaRecorder().apply {
-                // For mock implementation, we'll just create an empty video file
-                // Real TC001 integration would configure video source, format, etc.
-                Log.d(TAG, "MediaRecorder configured for thermal video recording")
+                // Set video source - for thermal camera, we'd use Camera or Surface
+                setVideoSource(MediaRecorder.VideoSource.SURFACE)
+                
+                // Set output format
+                setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
+                
+                // Set video encoder and configuration
+                setVideoEncoder(MediaRecorder.VideoEncoder.H264)
+                setVideoEncodingBitRate(8000000) // 8 Mbps for good quality
+                setVideoFrameRate(30) // 30 FPS for smooth playback
+                setVideoSize(640, 480) // TC001 resolution
+                
+                // Set output file
+                setOutputFile(currentVideoFile!!.absolutePath)
+                
+                // Set maximum duration (10 minutes) and file size (500MB)
+                setMaxDuration(600000) // 10 minutes in milliseconds
+                setMaxFileSize(500 * 1024 * 1024) // 500MB
+                
+                setOnInfoListener { _, what, _ ->
+                    when (what) {
+                        MediaRecorder.MEDIA_RECORDER_INFO_MAX_DURATION_REACHED -> {
+                            Log.w(TAG, "Maximum recording duration reached")
+                            // Signal that recording should be stopped
+                            isRecording = false
+                        }
+                        MediaRecorder.MEDIA_RECORDER_INFO_MAX_FILESIZE_REACHED -> {
+                            Log.w(TAG, "Maximum file size reached")
+                            // Signal that recording should be stopped
+                            isRecording = false
+                        }
+                    }
+                }
+                
+                setOnErrorListener { _, what, extra ->
+                    Log.e(TAG, "MediaRecorder error: what=$what, extra=$extra")
+                    // Handle recording error
+                    isRecording = false
+                }
+                
+                // Prepare the recorder
+                prepare()
+                
+                // Get the surface for recording
+                recordingSurface = surface
             }
             
+            // Start recording
+            mediaRecorder?.start()
+            recordingStartTime = System.currentTimeMillis()
             isRecording = true
-            Log.i(TAG, "Thermal recording started: $filename")
+            
+            Log.i(TAG, "Enhanced thermal recording started: $filename")
             true
             
         } catch (e: Exception) {
-            Log.e(TAG, "Failed to start recording", e)
+            Log.e(TAG, "Failed to start enhanced recording", e)
             mediaRecorder?.release()
             mediaRecorder = null
+            recordingSurface = null
+            currentVideoFile?.delete()
+            currentVideoFile = null
             false
         }
     }
@@ -145,29 +199,48 @@ class TC001ThermalManager(
         try {
             if (!isRecording) return@withContext null
             
+            val recordingDuration = System.currentTimeMillis() - recordingStartTime
+            Log.d(TAG, "Stopping recording after ${recordingDuration}ms")
+            
             isRecording = false
             
             mediaRecorder?.apply {
                 try {
                     stop()
                     release()
+                    Log.d(TAG, "MediaRecorder stopped and released successfully")
                 } catch (e: Exception) {
                     Log.w(TAG, "Error stopping MediaRecorder", e)
                 }
             }
             mediaRecorder = null
+            recordingSurface = null
             
             val filename = currentVideoFile?.name
+            val videoFile = currentVideoFile
             currentVideoFile = null
             
-            Log.i(TAG, "Thermal recording stopped: $filename")
+            // Verify the recorded file
+            if (videoFile != null && videoFile.exists() && videoFile.length() > 0) {
+                // Add metadata to the video file
+                try {
+                    addVideoMetadata(videoFile, recordingDuration)
+                } catch (e: Exception) {
+                    Log.w(TAG, "Failed to add metadata to video", e)
+                }
+                
+                Log.i(TAG, "Enhanced thermal recording completed: $filename (${FileUtils.formatFileSize(videoFile.length())})")
+            } else {
+                Log.w(TAG, "Recording file is empty or missing")
+            }
             
             filename
             
         } catch (e: Exception) {
-            Log.e(TAG, "Failed to stop recording", e)
+            Log.e(TAG, "Failed to stop enhanced recording", e)
             mediaRecorder?.release()
             mediaRecorder = null
+            recordingSurface = null
             currentVideoFile = null
             null
         }
@@ -177,23 +250,83 @@ class TC001ThermalManager(
     
     fun cleanup() {
         isCapturing = false
-        isRecording = false
         
-        mediaRecorder?.apply {
-            try {
-                if (isRecording) stop()
-                release()
-            } catch (e: Exception) {
-                Log.w(TAG, "Error releasing MediaRecorder", e)
+        // Stop recording if active
+        if (isRecording) {
+            isRecording = false
+            mediaRecorder?.apply {
+                try {
+                    stop()
+                    release()
+                } catch (e: Exception) {
+                    Log.w(TAG, "Error stopping MediaRecorder during cleanup", e)
+                }
             }
         }
+        
+        mediaRecorder?.release()
         mediaRecorder = null
+        recordingSurface = null
         
         cameraHandler?.cleanup()
         cameraHandler = null
         currentThermalBitmap?.recycle()
         currentThermalBitmap = null
         currentVideoFile = null
+        recordingStartTime = 0
         Log.d(TAG, "TC001 thermal manager cleaned up")
+    }
+    
+    /**
+     * Get the recording surface for thermal data input
+     */
+    fun getRecordingSurface(): Surface? = recordingSurface
+    
+    /**
+     * Get current recording duration in seconds
+     */
+    fun getRecordingDuration(): Long {
+        return if (isRecording) {
+            (System.currentTimeMillis() - recordingStartTime) / 1000
+        } else 0
+    }
+    
+    /**
+     * Add metadata to recorded video file
+     */
+    private fun addVideoMetadata(videoFile: File, durationMs: Long) {
+        try {
+            // Use MediaMetadataRetriever to add thermal-specific metadata
+            val retriever = MediaMetadataRetriever()
+            retriever.setDataSource(videoFile.absolutePath)
+            
+            // Log video properties
+            val width = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH)
+            val height = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT)
+            val duration = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)
+            
+            Log.d(TAG, "Video metadata - Width: $width, Height: $height, Duration: $duration ms")
+            
+            retriever.release()
+            
+            // Create a companion metadata file for thermal-specific info
+            val metadataFile = File(videoFile.parent, "${videoFile.nameWithoutExtension}.json")
+            val metadata = """
+                {
+                    "device": "TC001",
+                    "recording_duration_ms": $durationMs,
+                    "temperature_mode": "$currentTempMode",
+                    "timestamp": ${System.currentTimeMillis()},
+                    "thermal_format": "mock_data",
+                    "version": "1.0"
+                }
+            """.trimIndent()
+            
+            metadataFile.writeText(metadata)
+            Log.d(TAG, "Thermal metadata written to: ${metadataFile.name}")
+            
+        } catch (e: Exception) {
+            Log.w(TAG, "Failed to process video metadata", e)
+        }
     }
 }

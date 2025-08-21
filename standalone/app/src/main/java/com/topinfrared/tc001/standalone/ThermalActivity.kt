@@ -56,7 +56,7 @@ class ThermalActivity : AppCompatActivity() {
                 toggleRecording()
             }
             
-            // Thermal controls
+            // Enhanced thermal controls with overlay configuration
             btnTempModePoint.setOnClickListener {
                 thermalManager.setTemperatureMeasureMode(TC001ThermalManager.TempMode.POINT)
                 binding.thermalOverlay.setTemperatureMeasureMode(TC001ThermalManager.TempMode.POINT)
@@ -73,6 +73,28 @@ class ThermalActivity : AppCompatActivity() {
                 thermalManager.setTemperatureMeasureMode(TC001ThermalManager.TempMode.AREA)
                 binding.thermalOverlay.setTemperatureMeasureMode(TC001ThermalManager.TempMode.AREA)
                 updateTempModeUI(TC001ThermalManager.TempMode.AREA)
+            }
+            
+            // Additional overlay controls
+            btnToggleGradient?.setOnClickListener {
+                val currentState = (it.tag as? Boolean) ?: true
+                val newState = !currentState
+                it.tag = newState
+                binding.thermalOverlay.setShowTemperatureGradient(newState)
+                it.alpha = if (newState) 1.0f else 0.5f
+            }
+            
+            btnToggleHistory?.setOnClickListener {
+                val currentState = (it.tag as? Boolean) ?: false
+                val newState = !currentState
+                it.tag = newState
+                binding.thermalOverlay.setShowMeasurementHistory(newState)
+                it.alpha = if (newState) 1.0f else 0.5f
+            }
+            
+            btnClearHistory?.setOnClickListener {
+                binding.thermalOverlay.clearMeasurementHistory()
+                Toast.makeText(this@ThermalActivity, "Measurement history cleared", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -141,6 +163,9 @@ class ThermalActivity : AppCompatActivity() {
                 if (isRecording) {
                     val filename = thermalManager.stopRecording()
                     binding.btnRecord.text = "Start Recording"
+                    binding.tvRecordingDuration.visibility = View.GONE
+                    stopRecordingTimer()
+                    
                     Toast.makeText(
                         this@ThermalActivity,
                         "Recording saved: $filename",
@@ -150,6 +175,9 @@ class ThermalActivity : AppCompatActivity() {
                     val started = thermalManager.startRecording()
                     if (started) {
                         binding.btnRecord.text = "Stop Recording"
+                        binding.tvRecordingDuration.visibility = View.VISIBLE
+                        startRecordingTimer()
+                        
                         Toast.makeText(
                             this@ThermalActivity,
                             "Recording started",
@@ -166,6 +194,27 @@ class ThermalActivity : AppCompatActivity() {
                 ).show()
             }
         }
+    }
+    
+    private var recordingTimer: Runnable? = null
+    
+    private fun startRecordingTimer() {
+        recordingTimer = object : Runnable {
+            override fun run() {
+                val duration = thermalManager.getRecordingDuration()
+                val minutes = duration / 60
+                val seconds = duration % 60
+                binding.tvRecordingDuration.text = String.format("Recording: %02d:%02d", minutes, seconds)
+                
+                binding.tvRecordingDuration.postDelayed(this, 1000)
+            }
+        }
+        recordingTimer?.let { binding.tvRecordingDuration.post(it) }
+    }
+    
+    private fun stopRecordingTimer() {
+        recordingTimer?.let { binding.tvRecordingDuration.removeCallbacks(it) }
+        recordingTimer = null
     }
     
     private fun updateTempModeUI(mode: TC001ThermalManager.TempMode) {
@@ -196,6 +245,7 @@ class ThermalActivity : AppCompatActivity() {
     
     override fun onDestroy() {
         super.onDestroy()
+        stopRecordingTimer()
         thermalManager.cleanup()
     }
 }

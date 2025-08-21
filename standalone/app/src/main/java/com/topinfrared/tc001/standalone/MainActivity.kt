@@ -50,17 +50,30 @@ class MainActivity : AppCompatActivity() {
     }
     
     private fun initializeUSB() {
-        usbManager = TC001UsbManager(this) { isConnected ->
-            runOnUiThread {
-                updateConnectionStatus(isConnected)
-                if (isConnected) {
-                    binding.btnConnectTC001.text = "Open Thermal View"
-                    binding.btnConnectTC001.setOnClickListener {
-                        openThermalActivity()
+        usbManager = TC001UsbManager(
+            activity = this,
+            connectionCallback = { isConnected, device ->
+                runOnUiThread {
+                    updateConnectionStatus(isConnected, device)
+                    if (isConnected) {
+                        binding.btnConnectTC001.text = "Open Thermal View"
+                        binding.btnConnectTC001.setOnClickListener {
+                            openThermalActivity()
+                        }
+                    } else {
+                        binding.btnConnectTC001.text = "Connect to TC001"
+                        binding.btnConnectTC001.setOnClickListener {
+                            connectToTC001()
+                        }
                     }
                 }
+            },
+            statusCallback = { status ->
+                runOnUiThread {
+                    updateStatusMessage(status)
+                }
             }
-        }
+        )
     }
     
     private fun connectToTC001() {
@@ -85,14 +98,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
     
-    private fun updateConnectionStatus(isConnected: Boolean) {
+    private fun updateConnectionStatus(isConnected: Boolean, device: android.hardware.usb.UsbDevice? = null) {
         binding.apply {
-            tvConnectionStatus.text = if (isConnected) {
+            val statusText = if (isConnected && device != null) {
+                "TC001 Connected: ${device.deviceName}"
+            } else if (isConnected) {
                 "TC001 Connected"
             } else {
                 "TC001 Not Connected"
             }
             
+            tvConnectionStatus.text = statusText
             tvConnectionStatus.setTextColor(
                 getColor(
                     if (isConnected) android.R.color.holo_green_dark 
@@ -100,13 +116,32 @@ class MainActivity : AppCompatActivity() {
                 )
             )
             
-            btnConnectTC001.text = if (isConnected) {
-                "Open Thermal View"
+            // Show/hide additional connection info
+            if (isConnected && device != null) {
+                val deviceInfo = "VID: ${String.format("0x%04X", device.vendorId)}, " +
+                              "PID: ${String.format("0x%04X", device.productId)}"
+                tvDeviceInfo.text = deviceInfo
+                tvDeviceInfo.visibility = android.view.View.VISIBLE
             } else {
-                "Connect TC001"
+                tvDeviceInfo.visibility = android.view.View.GONE
             }
             
+            // Update button availability
             btnConnectTC001.isEnabled = true
+        }
+    }
+    
+    private fun updateStatusMessage(status: String) {
+        binding.apply {
+            tvStatusMessage.text = status
+            tvStatusMessage.visibility = android.view.View.VISIBLE
+            
+            // Auto-hide status messages after a delay
+            tvStatusMessage.postDelayed({
+                if (tvStatusMessage.text == status) {
+                    tvStatusMessage.visibility = android.view.View.GONE
+                }
+            }, 3000) // Hide after 3 seconds
         }
     }
     

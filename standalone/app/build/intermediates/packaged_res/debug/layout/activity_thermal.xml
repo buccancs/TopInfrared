@@ -141,6 +141,65 @@
                 android:textSize="14sp" />
 
         </LinearLayout>
+        
+        <!-- Recording Duration -->
+        <TextView
+            android:id="@+id/tvRecordingDuration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="Recording: 00:00"
+            android:textColor="#F44336"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+        
+        <!-- Additional Overlay Controls -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnToggleGradient"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:backgroundTint="#607D8B"
+                android:tag="true"
+                android:text="Gradient"
+                android:textColor="@android:color/white"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/btnToggleHistory"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_marginHorizontal="4dp"
+                android:layout_weight="1"
+                android:alpha="0.5"
+                android:backgroundTint="#607D8B"
+                android:tag="false"
+                android:text="History"
+                android:textColor="@android:color/white"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/btnClearHistory"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="4dp"
+                android:layout_weight="1"
+                android:backgroundTint="#607D8B"
+                android:text="Clear"
+                android:textColor="@android:color/white"
+                android:textSize="10sp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
