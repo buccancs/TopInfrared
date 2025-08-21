@@ -4,9 +4,6 @@ plugins {
     id 'com.google.devtools.ksp'
 }
 
-}
-
-
 android {
     namespace 'com.topdon.lib.ui'
     compileSdk rootProject.ext.android.compileSdk
