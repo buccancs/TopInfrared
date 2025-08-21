@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    
+    <!-- Base application theme -->
+    <style name="Theme.TC001Standalone" parent="Theme.Material3.DayNight">
+        <item name="colorPrimary">@color/tc001_primary</item>
+        <item name="colorPrimaryVariant">@color/tc001_primary_variant</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+        
+        <item name="colorSecondary">@color/tc001_secondary</item>
+        <item name="colorSecondaryVariant">@color/tc001_secondary_variant</item>
+        <item name="colorOnSecondary">@android:color/white</item>
+        
+        <item name="colorError">@color/tc001_error</item>
+        <item name="colorOnError">@android:color/white</item>
+        
+        <item name="colorSurface">@color/tc001_surface</item>
+        <item name="colorOnSurface">@color/tc001_on_surface</item>
+        
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+    </style>
+    
+</resources>
