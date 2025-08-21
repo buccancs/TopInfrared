@@ -76,6 +76,16 @@ object FileUtils {
     }
     
     /**
+     * Generate simple timestamp for enhanced recordings
+     */
+    fun generateTimestamp(): String {
+        return SimpleDateFormat(
+            TC001Constants.DATE_FORMAT, 
+            Locale.getDefault()
+        ).format(Date())
+    }
+    
+    /**
      * Get all thermal images from the images directory
      */
     fun getAllThermalImages(context: Context): List<File> {

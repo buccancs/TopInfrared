@@ -24,4 +24,8 @@
     <color name="text_primary">#333333</color>
     <color name="text_secondary">#666666</color>
     
+    <!-- Enhanced recording colors -->
+    <color name="purple_700">#673AB7</color>
+    <color name="design_default_color_primary">#FF5722</color>
+
 </resources>

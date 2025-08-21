@@ -34,7 +34,16 @@ public final class ActivityThermalBinding implements ViewBinding {
   public final Button btnClearHistory;
 
   @NonNull
+  public final Button btnParallelRec;
+
+  @NonNull
+  public final Button btnRadWndL3;
+
+  @NonNull
   public final Button btnRecord;
+
+  @NonNull
+  public final Button btnSamsung4K;
 
   @NonNull
   public final Button btnTempModeArea;
@@ -52,6 +61,9 @@ public final class ActivityThermalBinding implements ViewBinding {
   public final Button btnToggleHistory;
 
   @NonNull
+  public final LinearLayout enhancedRecordingStatus;
+
+  @NonNull
   public final ImageView ivThermalView;
 
   @NonNull
@@ -64,30 +76,45 @@ public final class ActivityThermalBinding implements ViewBinding {
   public final ThermalOverlayView thermalOverlay;
 
   @NonNull
+  public final TextView tvRadWndStatus;
+
+  @NonNull
   public final TextView tvRecordingDuration;
 
+  @NonNull
+  public final TextView tvSamsung4KStatus;
+
   private ActivityThermalBinding(@NonNull ConstraintLayout rootView, @NonNull Button btnBack,
-      @NonNull Button btnCapture, @NonNull Button btnClearHistory, @NonNull Button btnRecord,
+      @NonNull Button btnCapture, @NonNull Button btnClearHistory, @NonNull Button btnParallelRec,
+      @NonNull Button btnRadWndL3, @NonNull Button btnRecord, @NonNull Button btnSamsung4K,
       @NonNull Button btnTempModeArea, @NonNull Button btnTempModeLine,
       @NonNull Button btnTempModePoint, @NonNull Button btnToggleGradient,
-      @NonNull Button btnToggleHistory, @NonNull ImageView ivThermalView,
-      @NonNull ProgressBar progressLoading, @NonNull LinearLayout thermalControls,
-      @NonNull ThermalOverlayView thermalOverlay, @NonNull TextView tvRecordingDuration) {
+      @NonNull Button btnToggleHistory, @NonNull LinearLayout enhancedRecordingStatus,
+      @NonNull ImageView ivThermalView, @NonNull ProgressBar progressLoading,
+      @NonNull LinearLayout thermalControls, @NonNull ThermalOverlayView thermalOverlay,
+      @NonNull TextView tvRadWndStatus, @NonNull TextView tvRecordingDuration,
+      @NonNull TextView tvSamsung4KStatus) {
     this.rootView = rootView;
     this.btnBack = btnBack;
     this.btnCapture = btnCapture;
     this.btnClearHistory = btnClearHistory;
+    this.btnParallelRec = btnParallelRec;
+    this.btnRadWndL3 = btnRadWndL3;
     this.btnRecord = btnRecord;
+    this.btnSamsung4K = btnSamsung4K;
     this.btnTempModeArea = btnTempModeArea;
     this.btnTempModeLine = btnTempModeLine;
     this.btnTempModePoint = btnTempModePoint;
     this.btnToggleGradient = btnToggleGradient;
     this.btnToggleHistory = btnToggleHistory;
+    this.enhancedRecordingStatus = enhancedRecordingStatus;
     this.ivThermalView = ivThermalView;
     this.progressLoading = progressLoading;
     this.thermalControls = thermalControls;
     this.thermalOverlay = thermalOverlay;
+    this.tvRadWndStatus = tvRadWndStatus;
     this.tvRecordingDuration = tvRecordingDuration;
+    this.tvSamsung4KStatus = tvSamsung4KStatus;
   }
 
   @Override
@@ -135,9 +162,27 @@ public final class ActivityThermalBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.btnParallelRec;
+      Button btnParallelRec = ViewBindings.findChildViewById(rootView, id);
+      if (btnParallelRec == null) {
+        break missingId;
+      }
+
+      id = R.id.btnRadWndL3;
+      Button btnRadWndL3 = ViewBindings.findChildViewById(rootView, id);
+      if (btnRadWndL3 == null) {
+        break missingId;
+      }
+
       id = R.id.btnRecord;
       Button btnRecord = ViewBindings.findChildViewById(rootView, id);
       if (btnRecord == null) {
+        break missingId;
+      }
+
+      id = R.id.btnSamsung4K;
+      Button btnSamsung4K = ViewBindings.findChildViewById(rootView, id);
+      if (btnSamsung4K == null) {
         break missingId;
       }
 
@@ -171,6 +216,12 @@ public final class ActivityThermalBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.enhancedRecordingStatus;
+      LinearLayout enhancedRecordingStatus = ViewBindings.findChildViewById(rootView, id);
+      if (enhancedRecordingStatus == null) {
+        break missingId;
+      }
+
       id = R.id.ivThermalView;
       ImageView ivThermalView = ViewBindings.findChildViewById(rootView, id);
       if (ivThermalView == null) {
@@ -195,16 +246,29 @@ public final class ActivityThermalBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tvRadWndStatus;
+      TextView tvRadWndStatus = ViewBindings.findChildViewById(rootView, id);
+      if (tvRadWndStatus == null) {
+        break missingId;
+      }
+
       id = R.id.tvRecordingDuration;
       TextView tvRecordingDuration = ViewBindings.findChildViewById(rootView, id);
       if (tvRecordingDuration == null) {
         break missingId;
       }
 
+      id = R.id.tvSamsung4KStatus;
+      TextView tvSamsung4KStatus = ViewBindings.findChildViewById(rootView, id);
+      if (tvSamsung4KStatus == null) {
+        break missingId;
+      }
+
       return new ActivityThermalBinding((ConstraintLayout) rootView, btnBack, btnCapture,
-          btnClearHistory, btnRecord, btnTempModeArea, btnTempModeLine, btnTempModePoint,
-          btnToggleGradient, btnToggleHistory, ivThermalView, progressLoading, thermalControls,
-          thermalOverlay, tvRecordingDuration);
+          btnClearHistory, btnParallelRec, btnRadWndL3, btnRecord, btnSamsung4K, btnTempModeArea,
+          btnTempModeLine, btnTempModePoint, btnToggleGradient, btnToggleHistory,
+          enhancedRecordingStatus, ivThermalView, progressLoading, thermalControls, thermalOverlay,
+          tvRadWndStatus, tvRecordingDuration, tvSamsung4KStatus);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

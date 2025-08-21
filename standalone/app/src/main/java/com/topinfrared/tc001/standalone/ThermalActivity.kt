@@ -8,13 +8,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.topinfrared.tc001.standalone.databinding.ActivityThermalBinding
 import com.topinfrared.tc001.standalone.thermal.TC001ThermalManager
+import com.topinfrared.tc001.standalone.thermal.EnhancedRecordingManager
 import com.topinfrared.tc001.standalone.ui.ThermalOverlayView
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.delay
 
 class ThermalActivity : AppCompatActivity() {
     
     private lateinit var binding: ActivityThermalBinding
     private lateinit var thermalManager: TC001ThermalManager
+    private var isStandardRecording = false
+    private var enhancedRecordingUpdateJob: kotlinx.coroutines.Job? = null
     
     companion object {
         private const val TAG = "ThermalActivity"
@@ -95,6 +99,19 @@ class ThermalActivity : AppCompatActivity() {
             btnClearHistory?.setOnClickListener {
                 binding.thermalOverlay.clearMeasurementHistory()
                 Toast.makeText(this@ThermalActivity, "Measurement history cleared", Toast.LENGTH_SHORT).show()
+            }
+            
+            // Enhanced recording controls
+            btnSamsung4K?.setOnClickListener {
+                toggleSamsung4KRecording()
+            }
+            
+            btnRadWndL3?.setOnClickListener {
+                toggleRadWndLevel3Recording()
+            }
+            
+            btnParallelRec?.setOnClickListener {
+                toggleParallelRecording()
             }
         }
     }
@@ -246,6 +263,225 @@ class ThermalActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         stopRecordingTimer()
+        enhancedRecordingUpdateJob?.cancel()
         thermalManager.cleanup()
+    }
+    
+    private fun toggleSamsung4KRecording() {
+        lifecycleScope.launch {
+            try {
+                val type = EnhancedRecordingManager.Companion.RecordingType.SAMSUNG_4K_30FPS
+                val isRecording = thermalManager.isEnhancedRecordingActive(type)
+                
+                if (isRecording) {
+                    val filename = thermalManager.stopEnhancedRecording(type)
+                    binding.btnSamsung4K.text = "Samsung 4K"
+                    binding.btnSamsung4K.backgroundTintList = getColorStateList(R.color.purple_700)
+                    binding.tvSamsung4KStatus.visibility = View.GONE
+                    updateEnhancedRecordingVisibility()
+                    
+                    Toast.makeText(
+                        this@ThermalActivity,
+                        "Samsung 4K recording saved: $filename",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    val started = thermalManager.startSamsung4KRecording()
+                    if (started) {
+                        binding.btnSamsung4K.text = "Stop 4K"
+                        binding.btnSamsung4K.backgroundTintList = getColorStateList(android.R.color.holo_red_dark)
+                        binding.tvSamsung4KStatus.visibility = View.VISIBLE
+                        updateEnhancedRecordingVisibility()
+                        startEnhancedRecordingTimer()
+                        
+                        Toast.makeText(
+                            this@ThermalActivity,
+                            "Samsung 4K 30FPS recording started",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        Toast.makeText(
+                            this@ThermalActivity,
+                            "Samsung 4K recording not available on this device",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "Samsung 4K recording toggle failed", e)
+                Toast.makeText(
+                    this@ThermalActivity,
+                    "Samsung 4K error: ${e.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+    
+    private fun toggleRadWndLevel3Recording() {
+        lifecycleScope.launch {
+            try {
+                val type = EnhancedRecordingManager.Companion.RecordingType.RAD_WND_LEVEL3_30FPS
+                val isRecording = thermalManager.isEnhancedRecordingActive(type)
+                
+                if (isRecording) {
+                    val filename = thermalManager.stopEnhancedRecording(type)
+                    binding.btnRadWndL3.text = "RAD WND L3"
+                    binding.btnRadWndL3.backgroundTintList = getColorStateList(R.color.purple_700)
+                    binding.tvRadWndStatus.visibility = View.GONE
+                    updateEnhancedRecordingVisibility()
+                    
+                    Toast.makeText(
+                        this@ThermalActivity,
+                        "RAD WND Level 3 recording saved: $filename",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    val started = thermalManager.startRadWndLevel3Recording()
+                    if (started) {
+                        binding.btnRadWndL3.text = "Stop RAD"
+                        binding.btnRadWndL3.backgroundTintList = getColorStateList(android.R.color.holo_red_dark)
+                        binding.tvRadWndStatus.visibility = View.VISIBLE
+                        updateEnhancedRecordingVisibility()
+                        startEnhancedRecordingTimer()
+                        
+                        Toast.makeText(
+                            this@ThermalActivity,
+                            "RAD WND Level 3 30FPS recording started",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        Toast.makeText(
+                            this@ThermalActivity,
+                            "RAD WND Level 3 recording failed to start",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "RAD WND Level 3 recording toggle failed", e)
+                Toast.makeText(
+                    this@ThermalActivity,
+                    "RAD WND error: ${e.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+    
+    private fun toggleParallelRecording() {
+        lifecycleScope.launch {
+            try {
+                val isAnyRecording = thermalManager.isAnyEnhancedRecordingActive()
+                
+                if (isAnyRecording) {
+                    val filenames = thermalManager.stopAllEnhancedRecordings()
+                    binding.btnParallelRec.text = "Parallel"
+                    binding.btnParallelRec.backgroundTintList = getColorStateList(R.color.design_default_color_primary)
+                    
+                    // Reset individual buttons
+                    binding.btnSamsung4K.text = "Samsung 4K"
+                    binding.btnSamsung4K.backgroundTintList = getColorStateList(R.color.purple_700)
+                    binding.btnRadWndL3.text = "RAD WND L3"
+                    binding.btnRadWndL3.backgroundTintList = getColorStateList(R.color.purple_700)
+                    
+                    // Hide status indicators
+                    binding.tvSamsung4KStatus.visibility = View.GONE
+                    binding.tvRadWndStatus.visibility = View.GONE
+                    updateEnhancedRecordingVisibility()
+                    
+                    val message = if (filenames.isNotEmpty()) {
+                        "Parallel recording saved: ${filenames.size} files"
+                    } else {
+                        "Parallel recording stopped"
+                    }
+                    
+                    Toast.makeText(this@ThermalActivity, message, Toast.LENGTH_SHORT).show()
+                    
+                } else {
+                    val (samsung4KStarted, radWndStarted) = thermalManager.startParallelRecording()
+                    
+                    if (samsung4KStarted || radWndStarted) {
+                        binding.btnParallelRec.text = "Stop All"
+                        binding.btnParallelRec.backgroundTintList = getColorStateList(android.R.color.holo_red_dark)
+                        
+                        if (samsung4KStarted) {
+                            binding.btnSamsung4K.text = "Stop 4K"
+                            binding.btnSamsung4K.backgroundTintList = getColorStateList(android.R.color.holo_red_dark)
+                            binding.tvSamsung4KStatus.visibility = View.VISIBLE
+                        }
+                        
+                        if (radWndStarted) {
+                            binding.btnRadWndL3.text = "Stop RAD"
+                            binding.btnRadWndL3.backgroundTintList = getColorStateList(android.R.color.holo_red_dark)
+                            binding.tvRadWndStatus.visibility = View.VISIBLE
+                        }
+                        
+                        updateEnhancedRecordingVisibility()
+                        startEnhancedRecordingTimer()
+                        
+                        val message = when {
+                            samsung4KStarted && radWndStarted -> "Parallel recording: Samsung 4K + RAD WND L3 at 30FPS"
+                            samsung4KStarted -> "Samsung 4K recording started at 30FPS"
+                            radWndStarted -> "RAD WND Level 3 recording started at 30FPS"
+                            else -> "No recordings started"
+                        }
+                        
+                        Toast.makeText(this@ThermalActivity, message, Toast.LENGTH_LONG).show()
+                    } else {
+                        Toast.makeText(
+                            this@ThermalActivity,
+                            "Parallel recording failed to start",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "Parallel recording toggle failed", e)
+                Toast.makeText(
+                    this@ThermalActivity,
+                    "Parallel recording error: ${e.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+    
+    private fun updateEnhancedRecordingVisibility() {
+        val hasActiveRecording = thermalManager.isAnyEnhancedRecordingActive()
+        binding.enhancedRecordingStatus.visibility = if (hasActiveRecording) View.VISIBLE else View.GONE
+    }
+    
+    private fun startEnhancedRecordingTimer() {
+        enhancedRecordingUpdateJob?.cancel()
+        enhancedRecordingUpdateJob = lifecycleScope.launch {
+            while (thermalManager.isAnyEnhancedRecordingActive()) {
+                try {
+                    // Update Samsung 4K status
+                    val samsung4KType = EnhancedRecordingManager.Companion.RecordingType.SAMSUNG_4K_30FPS
+                    if (thermalManager.isEnhancedRecordingActive(samsung4KType)) {
+                        val duration = thermalManager.getEnhancedRecordingDuration(samsung4KType)
+                        val minutes = duration / 60
+                        val seconds = duration % 60
+                        binding.tvSamsung4KStatus.text = String.format("Samsung 4K: %02d:%02d", minutes, seconds)
+                    }
+                    
+                    // Update RAD WND status
+                    val radWndType = EnhancedRecordingManager.Companion.RecordingType.RAD_WND_LEVEL3_30FPS
+                    if (thermalManager.isEnhancedRecordingActive(radWndType)) {
+                        val duration = thermalManager.getEnhancedRecordingDuration(radWndType)
+                        val minutes = duration / 60
+                        val seconds = duration % 60
+                        binding.tvRadWndStatus.text = String.format("RAD WND L3: %02d:%02d", minutes, seconds)
+                    }
+                    
+                    delay(1000) // Update every second
+                    
+                } catch (e: Exception) {
+                    Log.w(TAG, "Enhanced recording timer update failed", e)
+                    break
+                }
+            }
+        }
     }
 }

@@ -141,8 +141,8 @@
                 android:textSize="14sp" />
 
         </LinearLayout>
-        
-        <!-- Recording Duration -->
+
+        <!-- Standard Recording Duration -->
         <TextView
             android:id="@+id/tvRecordingDuration"
             android:layout_width="match_parent"
@@ -154,7 +154,81 @@
             android:textSize="14sp"
             android:textStyle="bold"
             android:visibility="gone" />
+
+        <!-- Enhanced Recording Controls -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnSamsung4K"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:backgroundTint="#673AB7"
+                android:text="Samsung 4K"
+                android:textColor="@android:color/white"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/btnRadWndL3"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="1"
+                android:backgroundTint="#E91E63"
+                android:text="RAD WND L3"
+                android:textColor="@android:color/white"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/btnParallelRec"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_marginStart="4dp"
+                android:layout_weight="1"
+                android:backgroundTint="#FF5722"
+                android:text="Parallel"
+                android:textColor="@android:color/white"
+                android:textSize="10sp" />
+
+        </LinearLayout>
         
+        <!-- Enhanced Recording Status -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:id="@+id/enhancedRecordingStatus">
+
+            <TextView
+                android:id="@+id/tvSamsung4KStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Samsung 4K: 00:00"
+                android:textColor="#673AB7"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvRadWndStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="RAD WND L3: 00:00"
+                android:textColor="#E91E63"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
         <!-- Additional Overlay Controls -->
         <LinearLayout
             android:layout_width="match_parent"

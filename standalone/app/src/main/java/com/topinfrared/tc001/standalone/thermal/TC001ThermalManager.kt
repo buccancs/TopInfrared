@@ -13,6 +13,8 @@ import com.topinfrared.tc001.common.utils.FileUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
 import java.io.File
 import java.io.FileOutputStream
 
@@ -39,6 +41,10 @@ class TC001ThermalManager(
     private var currentVideoFile: File? = null
     private var recordingSurface: Surface? = null
     private var recordingStartTime: Long = 0
+    
+    // Enhanced recording capabilities
+    private val enhancedRecordingScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+    private var enhancedRecordingManager: EnhancedRecordingManager? = null
     
     suspend fun startThermalCapture(): Boolean = withContext(Dispatchers.IO) {
         try {
@@ -71,6 +77,10 @@ class TC001ThermalManager(
             }
             
             isCapturing = true
+            
+            // Initialize enhanced recording manager
+            enhancedRecordingManager = EnhancedRecordingManager(context, enhancedRecordingScope)
+            
             true
             
         } catch (e: Exception) {
@@ -270,6 +280,10 @@ class TC001ThermalManager(
         mediaRecorder = null
         recordingSurface = null
         
+        // Cleanup enhanced recording manager
+        enhancedRecordingManager?.cleanup()
+        enhancedRecordingManager = null
+        
         cameraHandler?.cleanup()
         cameraHandler = null
         currentThermalBitmap?.recycle()
@@ -378,5 +392,68 @@ class TC001ThermalManager(
                 Log.v(TAG, "Mock thermal: Enhanced area temperature variation")
             }
         }
+    }
+    
+    /**
+     * Start Samsung-specific 4K recording at 30 FPS
+     */
+    suspend fun startSamsung4KRecording(): Boolean {
+        return enhancedRecordingManager?.startSamsung4KRecording() ?: false
+    }
+    
+    /**
+     * Start RAD WND Level 3 recording at 30 FPS  
+     */
+    suspend fun startRadWndLevel3Recording(): Boolean {
+        return enhancedRecordingManager?.startRadWndLevel3Recording() ?: false
+    }
+    
+    /**
+     * Start parallel Samsung 4K + RAD WND Level 3 recording
+     */
+    suspend fun startParallelRecording(): Pair<Boolean, Boolean> {
+        return enhancedRecordingManager?.startParallelRecording() ?: Pair(false, false)
+    }
+    
+    /**
+     * Stop specific enhanced recording type
+     */
+    suspend fun stopEnhancedRecording(type: EnhancedRecordingManager.Companion.RecordingType): String? {
+        return enhancedRecordingManager?.stopRecording(type)
+    }
+    
+    /**
+     * Stop all enhanced recordings
+     */
+    suspend fun stopAllEnhancedRecordings(): List<String> {
+        return enhancedRecordingManager?.stopAllRecordings() ?: emptyList()
+    }
+    
+    /**
+     * Check if specific enhanced recording is active
+     */
+    fun isEnhancedRecordingActive(type: EnhancedRecordingManager.Companion.RecordingType): Boolean {
+        return enhancedRecordingManager?.isRecording(type) ?: false
+    }
+    
+    /**
+     * Get enhanced recording duration for specific type
+     */
+    fun getEnhancedRecordingDuration(type: EnhancedRecordingManager.Companion.RecordingType): Long {
+        return enhancedRecordingManager?.getRecordingDuration(type) ?: 0
+    }
+    
+    /**
+     * Check if any enhanced recording is active
+     */
+    fun isAnyEnhancedRecordingActive(): Boolean {
+        return enhancedRecordingManager?.isAnyRecordingActive() ?: false
+    }
+    
+    /**
+     * Get all active enhanced recording types
+     */
+    fun getActiveEnhancedRecordingTypes(): Set<EnhancedRecordingManager.Companion.RecordingType> {
+        return enhancedRecordingManager?.getActiveRecordingTypes() ?: emptySet()
     }
 }

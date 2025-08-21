@@ -2,6 +2,8 @@
 <resources xmlns:ns1="http://schemas.android.com/tools">
     <color name="button_background">#2196F3</color>
     <color name="button_disabled">#CCCCCC</color>
+    <color name="design_default_color_primary">#FF5722</color>
+    <color name="purple_700">#673AB7</color>
     <color name="tc001_error">#F44336</color>
     <color name="tc001_on_surface">#333333</color>
     <color name="tc001_primary">#2196F3</color>
