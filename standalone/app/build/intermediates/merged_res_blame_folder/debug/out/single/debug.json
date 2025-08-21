@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "/home/runner/.gradle/daemon/7.5/com.topinfrared.tc001.standalone.app-merged_res-40:/drawable_circle_background.xml.flat",
+        "source": "/home/runner/.gradle/daemon/7.5/com.topinfrared.tc001.standalone.app-main-42:/drawable/circle_background.xml"
+    },
+    {
+        "merged": "com.topinfrared.tc001.standalone.app-merged_res-40:/drawable_ic_launcher.xml.flat",
+        "source": "com.topinfrared.tc001.standalone.app-main-42:/drawable/ic_launcher.xml"
+    },
+    {
+        "merged": "/home/runner/.gradle/daemon/7.5/com.topinfrared.tc001.standalone.app-merged_res-40:/drawable_ic_launcher.xml.flat",
+        "source": "/home/runner/.gradle/daemon/7.5/com.topinfrared.tc001.standalone.app-main-42:/drawable/ic_launcher.xml"
+    },
+    {
+        "merged": "/home/runner/.gradle/daemon/7.5/com.topinfrared.tc001.standalone.app-merged_res-40:/layout_activity_thermal.xml.flat",
+        "source": "/home/runner/.gradle/daemon/7.5/com.topinfrared.tc001.standalone.app-main-42:/layout/activity_thermal.xml"
+    },
+    {
+        "merged": "/home/runner/.gradle/daemon/7.5/com.topinfrared.tc001.standalone.app-merged_res-40:/xml_device_filter.xml.flat",
+        "source": "/home/runner/.gradle/daemon/7.5/com.topinfrared.tc001.standalone.app-main-42:/xml/device_filter.xml"
+    },
+    {
+        "merged": "/home/runner/.gradle/daemon/7.5/com.topinfrared.tc001.standalone.app-merged_res-40:/drawable_ic_thermal_camera.xml.flat",
+        "source": "/home/runner/.gradle/daemon/7.5/com.topinfrared.tc001.standalone.app-main-42:/drawable/ic_thermal_camera.xml"
+    },
+    {
+        "merged": "/home/runner/.gradle/daemon/7.5/com.topinfrared.tc001.standalone.app-merged_res-40:/layout_activity_main.xml.flat",
+        "source": "/home/runner/.gradle/daemon/7.5/com.topinfrared.tc001.standalone.app-main-42:/layout/activity_main.xml"
+    },
+    {
+        "merged": "/home/runner/.gradle/daemon/7.5/com.topinfrared.tc001.standalone.app-merged_res-40:/drawable_circle_button_background.xml.flat",
+        "source": "/home/runner/.gradle/daemon/7.5/com.topinfrared.tc001.standalone.app-main-42:/drawable/circle_button_background.xml"
+    }
+]

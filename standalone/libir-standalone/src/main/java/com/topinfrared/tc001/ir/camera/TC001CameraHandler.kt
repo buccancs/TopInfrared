@@ -69,7 +69,7 @@ class TC001CameraHandler(
         }
     }
     
-    suspend fun stopPreview() = withContext(Dispatchers.IO) {
+    suspend fun stopPreview(): Unit = withContext(Dispatchers.IO) {
         try {
             if (isCapturing) {
                 isCapturing = false
@@ -127,9 +127,10 @@ class TC001CameraHandler(
     
     fun disconnect() {
         try {
-            stopPreview()
-            isConnected = false
             isCapturing = false
+            mockFrameThread?.interrupt()
+            mockFrameThread = null
+            isConnected = false
             
             Log.i(TAG, "TC001 camera disconnected")
             

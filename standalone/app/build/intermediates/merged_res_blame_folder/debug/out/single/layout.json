@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.topinfrared.tc001.standalone.app-mergeDebugResources-39:/layout/activity_main.xml",
+        "source": "com.topinfrared.tc001.standalone.app-main-42:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.topinfrared.tc001.standalone.app-mergeDebugResources-39:/layout/activity_thermal.xml",
+        "source": "com.topinfrared.tc001.standalone.app-main-42:/layout/activity_thermal.xml"
+    }
+]
