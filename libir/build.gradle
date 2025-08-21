@@ -3,8 +3,6 @@ plugins {
     id 'kotlin-android'
     id 'com.google.devtools.ksp'
 }
-
-}
 android {
     namespace 'com.infisense.usbir'
     compileSdk rootProject.ext.android.compileSdk
