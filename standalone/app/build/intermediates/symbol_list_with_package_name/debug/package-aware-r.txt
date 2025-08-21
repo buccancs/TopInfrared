@@ -3174,9 +3174,11 @@ id bounceEnd
 id bounceStart
 id btnBack
 id btnCapture
+id btnClearAll
 id btnConnectTC001
 id btnLocalFiles
 id btnRecord
+id btnRefresh
 id btnTempModeArea
 id btnTempModeLine
 id btnTempModePoint
@@ -3311,12 +3313,15 @@ id inward
 id is_pooling_container_tag
 id italic
 id item_touch_helper_previous_elevation
+id ivFileType
 id ivTC001Logo
 id ivThermalView
 id jumpToEnd
 id jumpToStart
 id labeled
 id layout
+id layoutHeader
+id layoutStats
 id left
 id leftToRight
 id legacy
@@ -3453,6 +3458,7 @@ id progress_horizontal
 id radio
 id ratio
 id rectangles
+id recyclerViewFiles
 id report_drawn
 id reverseSawtooth
 id right
@@ -3553,6 +3559,7 @@ id textinput_placeholder
 id textinput_prefix_text
 id textinput_suffix_text
 id thermalControls
+id thermalOverlay
 id time
 id title
 id titleDividerNoCustom
@@ -3571,6 +3578,13 @@ id transition_transform
 id triangle
 id tvAppTitle
 id tvConnectionStatus
+id tvEmptyState
+id tvFileDate
+id tvFileName
+id tvFileSize
+id tvFileType
+id tvFilesCount
+id tvStorageUsed
 id unchecked
 id uniform
 id unlabeled
@@ -3708,6 +3722,7 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_local_files
 layout activity_main
 layout activity_thermal
 layout custom_dialog
@@ -3728,6 +3743,7 @@ layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
+layout item_local_file
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title

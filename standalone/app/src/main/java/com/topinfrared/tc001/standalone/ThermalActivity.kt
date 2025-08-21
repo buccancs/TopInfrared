@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.topinfrared.tc001.standalone.databinding.ActivityThermalBinding
 import com.topinfrared.tc001.standalone.thermal.TC001ThermalManager
+import com.topinfrared.tc001.standalone.ui.ThermalOverlayView
 import kotlinx.coroutines.launch
 
 class ThermalActivity : AppCompatActivity() {
@@ -58,16 +59,19 @@ class ThermalActivity : AppCompatActivity() {
             // Thermal controls
             btnTempModePoint.setOnClickListener {
                 thermalManager.setTemperatureMeasureMode(TC001ThermalManager.TempMode.POINT)
+                binding.thermalOverlay.setTemperatureMeasureMode(TC001ThermalManager.TempMode.POINT)
                 updateTempModeUI(TC001ThermalManager.TempMode.POINT)
             }
             
             btnTempModeLine.setOnClickListener {
                 thermalManager.setTemperatureMeasureMode(TC001ThermalManager.TempMode.LINE)
+                binding.thermalOverlay.setTemperatureMeasureMode(TC001ThermalManager.TempMode.LINE)
                 updateTempModeUI(TC001ThermalManager.TempMode.LINE)
             }
             
             btnTempModeArea.setOnClickListener {
                 thermalManager.setTemperatureMeasureMode(TC001ThermalManager.TempMode.AREA)
+                binding.thermalOverlay.setTemperatureMeasureMode(TC001ThermalManager.TempMode.AREA)
                 updateTempModeUI(TC001ThermalManager.TempMode.AREA)
             }
         }

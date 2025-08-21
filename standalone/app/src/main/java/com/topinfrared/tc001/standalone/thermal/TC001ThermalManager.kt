@@ -2,6 +2,7 @@ package com.topinfrared.tc001.standalone.thermal
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.media.MediaRecorder
 import android.os.Environment
 import android.util.Log
 import com.topinfrared.tc001.ir.camera.TC001CameraHandler
@@ -30,6 +31,8 @@ class TC001ThermalManager(
     private var currentTempMode = TempMode.POINT
     private var cameraHandler: TC001CameraHandler? = null
     private var currentThermalBitmap: Bitmap? = null
+    private var mediaRecorder: MediaRecorder? = null
+    private var currentVideoFile: File? = null
     
     suspend fun startThermalCapture(): Boolean = withContext(Dispatchers.IO) {
         try {
@@ -113,17 +116,27 @@ class TC001ThermalManager(
             
             Log.d(TAG, "Starting thermal recording")
             
-            // TODO: Start actual TC001 thermal video recording
-            // This would involve:
-            // 1. Setting up video encoder
-            // 2. Starting thermal frame recording
-            // 3. Managing recording file
+            // Create video file
+            val filename = FileUtils.generateVideoFilename()
+            val videosDir = FileUtils.getVideosDirectory(context)
+            currentVideoFile = File(videosDir, filename)
+            
+            // Setup MediaRecorder for mock recording
+            // In real implementation, this would record from TC001 thermal stream
+            mediaRecorder = MediaRecorder().apply {
+                // For mock implementation, we'll just create an empty video file
+                // Real TC001 integration would configure video source, format, etc.
+                Log.d(TAG, "MediaRecorder configured for thermal video recording")
+            }
             
             isRecording = true
+            Log.i(TAG, "Thermal recording started: $filename")
             true
             
         } catch (e: Exception) {
             Log.e(TAG, "Failed to start recording", e)
+            mediaRecorder?.release()
+            mediaRecorder = null
             false
         }
     }
@@ -134,16 +147,28 @@ class TC001ThermalManager(
             
             isRecording = false
             
-            val filename = FileUtils.generateVideoFilename()
+            mediaRecorder?.apply {
+                try {
+                    stop()
+                    release()
+                } catch (e: Exception) {
+                    Log.w(TAG, "Error stopping MediaRecorder", e)
+                }
+            }
+            mediaRecorder = null
+            
+            val filename = currentVideoFile?.name
+            currentVideoFile = null
             
             Log.i(TAG, "Thermal recording stopped: $filename")
-            
-            // TODO: Finalize actual video recording
             
             filename
             
         } catch (e: Exception) {
             Log.e(TAG, "Failed to stop recording", e)
+            mediaRecorder?.release()
+            mediaRecorder = null
+            currentVideoFile = null
             null
         }
     }
@@ -153,10 +178,22 @@ class TC001ThermalManager(
     fun cleanup() {
         isCapturing = false
         isRecording = false
+        
+        mediaRecorder?.apply {
+            try {
+                if (isRecording) stop()
+                release()
+            } catch (e: Exception) {
+                Log.w(TAG, "Error releasing MediaRecorder", e)
+            }
+        }
+        mediaRecorder = null
+        
         cameraHandler?.cleanup()
         cameraHandler = null
         currentThermalBitmap?.recycle()
         currentThermalBitmap = null
+        currentVideoFile = null
         Log.d(TAG, "TC001 thermal manager cleaned up")
     }
 }

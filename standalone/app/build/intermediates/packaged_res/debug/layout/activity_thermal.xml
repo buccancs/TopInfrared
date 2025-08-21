@@ -32,19 +32,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Thermal Image View -->
-    <ImageView
-        android:id="@+id/ivThermalView"
+    <!-- Thermal Image View with Overlay -->
+    <FrameLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="16dp"
         android:background="#222222"
-        android:contentDescription="Thermal View"
-        android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@id/thermalControls"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnBack" />
+        app:layout_constraintTop_toBottomOf="@id/btnBack">
+
+        <ImageView
+            android:id="@+id/ivThermalView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="Thermal View"
+            android:scaleType="fitCenter" />
+
+        <com.topinfrared.tc001.standalone.ui.ThermalOverlayView
+            android:id="@+id/thermalOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
 
     <!-- Thermal Controls -->
     <LinearLayout

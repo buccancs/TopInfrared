@@ -14,6 +14,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.topinfrared.tc001.standalone.R;
+import com.topinfrared.tc001.standalone.ui.ThermalOverlayView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -49,11 +50,14 @@ public final class ActivityThermalBinding implements ViewBinding {
   @NonNull
   public final LinearLayout thermalControls;
 
+  @NonNull
+  public final ThermalOverlayView thermalOverlay;
+
   private ActivityThermalBinding(@NonNull ConstraintLayout rootView, @NonNull Button btnBack,
       @NonNull Button btnCapture, @NonNull Button btnRecord, @NonNull Button btnTempModeArea,
       @NonNull Button btnTempModeLine, @NonNull Button btnTempModePoint,
       @NonNull ImageView ivThermalView, @NonNull ProgressBar progressLoading,
-      @NonNull LinearLayout thermalControls) {
+      @NonNull LinearLayout thermalControls, @NonNull ThermalOverlayView thermalOverlay) {
     this.rootView = rootView;
     this.btnBack = btnBack;
     this.btnCapture = btnCapture;
@@ -64,6 +68,7 @@ public final class ActivityThermalBinding implements ViewBinding {
     this.ivThermalView = ivThermalView;
     this.progressLoading = progressLoading;
     this.thermalControls = thermalControls;
+    this.thermalOverlay = thermalOverlay;
   }
 
   @Override
@@ -147,9 +152,15 @@ public final class ActivityThermalBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.thermalOverlay;
+      ThermalOverlayView thermalOverlay = ViewBindings.findChildViewById(rootView, id);
+      if (thermalOverlay == null) {
+        break missingId;
+      }
+
       return new ActivityThermalBinding((ConstraintLayout) rootView, btnBack, btnCapture, btnRecord,
           btnTempModeArea, btnTempModeLine, btnTempModePoint, ivThermalView, progressLoading,
-          thermalControls);
+          thermalControls, thermalOverlay);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

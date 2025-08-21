@@ -52,6 +52,10 @@
             android:name="com.topinfrared.tc001.standalone.ThermalActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.topinfrared.tc001.standalone.LocalFilesActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
 
         <!-- USB device filter for TC001 -->
         <receiver

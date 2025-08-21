@@ -102,17 +102,64 @@ class TC001CameraHandler(
     
     private fun createMockThermalBitmap(): Bitmap {
         val colors = IntArray(PREVIEW_WIDTH * PREVIEW_HEIGHT)
+        val time = System.currentTimeMillis() / 1000.0
+        val centerX = PREVIEW_WIDTH / 2
+        val centerY = PREVIEW_HEIGHT / 2
         
         for (y in 0 until PREVIEW_HEIGHT) {
             for (x in 0 until PREVIEW_WIDTH) {
                 val index = y * PREVIEW_WIDTH + x
-                val temp = (x + y + System.currentTimeMillis() / 100) % 256
-                val normalized = temp / 255f
                 
-                // Thermal color mapping
-                val r = (normalized * 255).toInt()
-                val g = ((1 - normalized) * normalized * 4 * 255).toInt()
-                val b = ((1 - normalized) * 255).toInt()
+                // Create realistic thermal pattern with hot spots
+                val dx = (x - centerX).toDouble() / PREVIEW_WIDTH
+                val dy = (y - centerY).toDouble() / PREVIEW_HEIGHT
+                val distance = kotlin.math.sqrt(dx * dx + dy * dy)
+                
+                // Create moving hot spots
+                val hotSpot1 = kotlin.math.exp(-((dx - 0.3 * kotlin.math.sin(time * 0.5)) * (dx - 0.3 * kotlin.math.sin(time * 0.5)) + 
+                                                (dy - 0.3 * kotlin.math.cos(time * 0.5)) * (dy - 0.3 * kotlin.math.cos(time * 0.5))) * 10)
+                val hotSpot2 = kotlin.math.exp(-((dx + 0.2 * kotlin.math.sin(time * 0.7)) * (dx + 0.2 * kotlin.math.sin(time * 0.7)) + 
+                                                (dy + 0.2 * kotlin.math.cos(time * 0.7)) * (dy + 0.2 * kotlin.math.cos(time * 0.7))) * 15)
+                
+                // Base temperature + hot spots + some noise
+                var temp = 0.3 + 0.4 * hotSpot1 + 0.3 * hotSpot2 + 0.1 * kotlin.math.sin(time + x * 0.1 + y * 0.1)
+                temp = temp.coerceIn(0.0, 1.0)
+                
+                // Convert to thermal color mapping (iron colormap approximation)
+                val r: Int
+                val g: Int 
+                val b: Int
+                
+                when {
+                    temp < 0.25 -> {
+                        // Cold: dark blue to blue
+                        val factor = temp * 4
+                        r = 0
+                        g = 0
+                        b = (128 + factor * 127).toInt()
+                    }
+                    temp < 0.5 -> {
+                        // Cool: blue to cyan
+                        val factor = (temp - 0.25) * 4
+                        r = 0
+                        g = (factor * 255).toInt()
+                        b = 255
+                    }
+                    temp < 0.75 -> {
+                        // Warm: cyan to yellow
+                        val factor = (temp - 0.5) * 4
+                        r = (factor * 255).toInt()
+                        g = 255
+                        b = ((1 - factor) * 255).toInt()
+                    }
+                    else -> {
+                        // Hot: yellow to red
+                        val factor = (temp - 0.75) * 4
+                        r = 255
+                        g = ((1 - factor) * 255).toInt()
+                        b = 0
+                    }
+                }
                 
                 colors[index] = (0xFF shl 24) or (r shl 16) or (g shl 8) or b
             }

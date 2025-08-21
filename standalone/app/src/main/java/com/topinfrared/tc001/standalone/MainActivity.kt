@@ -40,7 +40,8 @@ class MainActivity : AppCompatActivity() {
             
             btnLocalFiles.setOnClickListener {
                 // Navigate to local files/recordings
-                Toast.makeText(this@MainActivity, "Local files feature", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this@MainActivity, LocalFilesActivity::class.java)
+                startActivity(intent)
             }
             
             // Update connection status

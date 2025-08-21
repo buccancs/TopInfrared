@@ -36,6 +36,11 @@
             android:exported="false"
             android:screenOrientation="portrait" />
             
+        <activity
+            android:name=".LocalFilesActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+            
         <!-- USB device filter for TC001 -->
         <receiver android:name=".usb.UsbReceiver"
             android:exported="false">
