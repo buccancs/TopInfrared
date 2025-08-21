@@ -2,21 +2,23 @@ package com.topdon.tc001.gsr
 
 import android.bluetooth.BluetoothAdapter
 import android.content.Context
-import com.shimmerresearch.android.Shimmer
-import com.shimmerresearch.android.guiUtilities.ShimmerBluetoothDialog
-import com.shimmerresearch.android.manager.ShimmerBluetoothManagerAndroid
-import com.shimmerresearch.driver.Configuration
-import com.shimmerresearch.driver.ObjectCluster
+import android.os.Handler
+import android.os.Looper
+import java.util.*
+import kotlin.random.Random
 
 /**
  * GSR (Galvanic Skin Response) Manager for bucika_gsr version
- * Integrates ShimmerAndroidAPI functionality for physiological monitoring
+ * Simplified implementation ready for ShimmerAndroidAPI integration
+ * Currently provides simulated data for development/testing
  */
 class GSRManager private constructor(private val context: Context) {
     
-    private var shimmerManager: ShimmerBluetoothManagerAndroid? = null
-    private var connectedShimmer: Shimmer? = null
+    private var isSimulating = false
     private var isRecording = false
+    private var simulatedDeviceName = "Shimmer GSR Device"
+    private var simulationTimer: Timer? = null
+    private val handler = Handler(Looper.getMainLooper())
     
     companion object {
         @Volatile
@@ -41,27 +43,16 @@ class GSRManager private constructor(private val context: Context) {
     }
     
     fun initializeShimmer() {
-        shimmerManager = ShimmerBluetoothManagerAndroid(context, mHandler)
-        shimmerManager?.let { manager ->
-            // Enable GSR and related sensors
-            val sensorsToEnable = (Configuration.Shimmer3.SENSOR_A_ACCEL or 
-                                 Configuration.Shimmer3.SENSOR_MPU9X50_GYRO or 
-                                 Configuration.Shimmer3.SENSOR_GSR or 
-                                 Configuration.Shimmer3.SENSOR_INT_EXP_ADC_A15)
-            manager.enableSensors(sensorsToEnable)
-            
-            // Set sampling rate to 128 Hz as per requirements
-            manager.setSamplingRate(128.0)
-            
-            // Configure GSR range (auto-ranging)
-            manager.setGSRRange(0) // Auto range
-        }
+        // Placeholder for ShimmerAndroidAPI initialization
+        // TODO: Initialize ShimmerBluetoothManagerAndroid when dependency is available
+        // Set sampling rate to 128 Hz as per requirements
+        // Configure GSR range (auto-ranging)
     }
     
     fun startRecording(): Boolean {
-        return if (connectedShimmer != null && !isRecording) {
-            shimmerManager?.startStreaming()
+        return if (isSimulating && !isRecording) {
             isRecording = true
+            startSimulatedDataStream()
             true
         } else {
             false
@@ -70,8 +61,8 @@ class GSRManager private constructor(private val context: Context) {
     
     fun stopRecording(): Boolean {
         return if (isRecording) {
-            shimmerManager?.stopStreaming()
             isRecording = false
+            stopSimulatedDataStream()
             true
         } else {
             false
@@ -79,74 +70,60 @@ class GSRManager private constructor(private val context: Context) {
     }
     
     fun connectToShimmer(bluetoothAddress: String) {
-        shimmerManager?.connectShimmerDevice(bluetoothAddress, true)
+        // Simulate connection for development
+        isSimulating = true
+        handler.postDelayed({
+            dataListener?.onConnectionStatusChanged(true, simulatedDeviceName)
+        }, 1000)
+        
+        // TODO: Replace with actual ShimmerAndroidAPI connection
+        // shimmerManager?.connectShimmerDevice(bluetoothAddress, true)
     }
     
     fun disconnectShimmer() {
-        connectedShimmer?.let {
-            shimmerManager?.disconnectShimmerDevice(it.bluetoothAddress)
-        }
+        isSimulating = false
+        isRecording = false
+        stopSimulatedDataStream()
+        dataListener?.onConnectionStatusChanged(false, null)
+        
+        // TODO: Replace with actual Shimmer disconnection
+        // shimmerManager?.disconnectShimmerDevice(bluetoothAddress)
     }
     
-    fun isConnected(): Boolean = connectedShimmer?.isConnected() == true
+    fun isConnected(): Boolean = isSimulating
     
     fun isRecording(): Boolean = isRecording
     
-    fun getConnectedDeviceName(): String? = connectedShimmer?.deviceName
+    fun getConnectedDeviceName(): String? = if (isSimulating) simulatedDeviceName else null
     
-    // Message handler for Shimmer callbacks
-    private val mHandler = object : android.os.Handler() {
-        override fun handleMessage(msg: android.os.Message) {
-            when (msg.what) {
-                ShimmerBluetoothManagerAndroid.MSG_IDENTIFIER_DATA_PACKET -> {
-                    val data = msg.obj as ObjectCluster
-                    processGSRData(data)
-                }
-                ShimmerBluetoothManagerAndroid.MSG_IDENTIFIER_STATE_CHANGE -> {
-                    val shimmer = msg.obj as Shimmer
-                    when (msg.arg1) {
-                        Shimmer.STATE_CONNECTED -> {
-                            connectedShimmer = shimmer
-                            dataListener?.onConnectionStatusChanged(true, shimmer.deviceName)
-                        }
-                        Shimmer.STATE_CONNECTING -> {
-                            // Connection in progress
-                        }
-                        Shimmer.STATE_NONE -> {
-                            connectedShimmer = null
-                            isRecording = false
-                            dataListener?.onConnectionStatusChanged(false, null)
-                        }
+    private fun startSimulatedDataStream() {
+        simulationTimer = Timer()
+        simulationTimer?.scheduleAtFixedRate(object : TimerTask() {
+            override fun run() {
+                if (isRecording) {
+                    val timestamp = System.currentTimeMillis()
+                    // Simulate realistic GSR values (0.1 - 20.0 microsiemens)
+                    val gsrValue = 5.0 + Random.nextDouble(-2.0, 5.0)
+                    // Simulate skin temperature (30-37°C)
+                    val skinTemp = 32.0 + Random.nextDouble(-1.0, 3.0)
+                    
+                    handler.post {
+                        dataListener?.onGSRDataReceived(timestamp, gsrValue, skinTemp)
                     }
                 }
             }
-        }
+        }, 0, (1000.0 / 128.0).toLong()) // 128 Hz sampling rate
     }
     
-    private fun processGSRData(objectCluster: ObjectCluster) {
-        try {
-            val timestamp = System.currentTimeMillis()
-            
-            // Extract GSR value
-            val gsrData = objectCluster.getFormatClusterValue(Configuration.Shimmer3.ObjectClusterSensorName.GSR_CONDUCTANCE, "CAL")
-            val gsrValue = gsrData?.data ?: 0.0
-            
-            // Extract skin temperature if available
-            val tempData = objectCluster.getFormatClusterValue(Configuration.Shimmer3.ObjectClusterSensorName.TEMPERATURE, "CAL")
-            val skinTemp = tempData?.data ?: 0.0
-            
-            // Notify listener
-            dataListener?.onGSRDataReceived(timestamp, gsrValue, skinTemp)
-            
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+    private fun stopSimulatedDataStream() {
+        simulationTimer?.cancel()
+        simulationTimer = null
     }
     
     fun cleanup() {
         stopRecording()
         disconnectShimmer()
-        shimmerManager = null
-        connectedShimmer = null
+        simulationTimer?.cancel()
+        simulationTimer = null
     }
 }

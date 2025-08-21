@@ -3,8 +3,9 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
-    id 'com.google.gms.google-services'
-    id 'com.google.firebase.crashlytics'
+    // Commented out until proper Google services setup
+    // id 'com.google.gms.google-services'
+    // id 'com.google.firebase.crashlytics'
 }
 
 kapt {
@@ -29,14 +30,14 @@ android {
 //            abiFilters "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
         }
 
-        buildConfigField "String", "VERSION_DATE", "\"$dayStr\""
+        buildConfigField "String", "VERSION_DATE", "\"${getDayStr()}\""
         manifestPlaceholders = [
                 JPUSH_PKGNAME : applicationId,
                 JPUSH_APPKEY : "cbd4eafc9049d751fc5a8c58",
                 JPUSH_CHANNEL : "developer-default",
         ]
 
-        setProperty("archivesBaseName", "TC001-v${versionName}.google")
+        setProperty("archivesBaseName", "BucikaGSR-v${versionName}.google")
     }
 
     bundle {
@@ -202,10 +203,10 @@ static def getTimeStr() {
 
 def versionApk(variant, defaultConfig) {
     variant.outputs.all {
-        def appName = "TopInfrared.apk"
-        def nameStr = "TopInfrared_" + defaultConfig.versionName + "." + dayStr
+        def appName = "BucikaGSR.apk"
+        def nameStr = "BucikaGSR_" + defaultConfig.versionName + "." + getDayStr()
         if (variant.name == "devDebug") {
-            appName = "TopInfrared-v" + defaultConfig.versionName + "-debug.apk"
+            appName = "BucikaGSR-v" + defaultConfig.versionName + "-debug.apk"
         } else if (variant.name == "devRelease") {
             appName = nameStr + "-release.apk"
         } else if (variant.name == "betaDebug") {
@@ -217,9 +218,9 @@ def versionApk(variant, defaultConfig) {
         } else if (variant.name == "prodRelease") {
             appName = nameStr + ".apk"
         } else if (variant.name == "prodTopdonDebug") {
-            appName = "TopInfrared_Android10_" + defaultConfig.versionName + "." + dayStr + "_debug.apk"
+            appName = "BucikaGSR_Android10_" + defaultConfig.versionName + "." + getDayStr() + "_debug.apk"
         } else if (variant.name == "prodTopdonRelease") {
-            appName = "TopInfrared_Android10_" + defaultConfig.versionName + "." + dayStr + ".apk"
+            appName = "BucikaGSR_Android10_" + defaultConfig.versionName + "." + getDayStr() + ".apk"
         } else if (variant.name == "insideChinaDebug") {
             appName = nameStr + "_debug.apk"
         } else if (variant.name == "insideChinaRelease") {
@@ -241,9 +242,9 @@ def copyApk(type, flavor) {
         include '**/*.apk'
         rename { String fileName ->
             if (flavor.contains("Topdon")) {
-                fileName.substring(0, fileName.lastIndexOf(".apk")) + '_build' + timeStr + '(Topdon).apk'
+                fileName.substring(0, fileName.lastIndexOf(".apk")) + '_build' + getTimeStr() + '(Topdon).apk'
             } else {
-                fileName.substring(0, fileName.lastIndexOf(".apk")) + '_build' + timeStr + '.apk'
+                fileName.substring(0, fileName.lastIndexOf(".apk")) + '_build' + getTimeStr() + '.apk'
             }
         }
     }
@@ -256,11 +257,14 @@ def copyAab(type) {
         into "../outputs/bundle/${type}/"
         include '**/*.aab'
         rename { String fileName ->
-            fileName.substring(0, fileName.lastIndexOf(".google")) + "." + dayStr + "_" + type + '_build' + timeStr + '.aab'
+            fileName.substring(0, fileName.lastIndexOf(".google")) + "." + getDayStr() + "_" + type + '_build' + getTimeStr() + '.aab'
         }
     }
 }
 
+// APK copying functionality commented out to fix build issues
+// TODO: Re-enable APK copying when needed
+/*
 project.afterEvaluate {
     assembleProdDebug.doLast {
         println "===================== build prod Debug.apk copy ========================="
@@ -313,6 +317,7 @@ project.afterEvaluate {
     }
 
 }
+*/
 
 dependencies {
     // Only essential components for bucika_gsr version - no house, edit3d modules
@@ -324,10 +329,10 @@ dependencies {
     implementation project(':libui')
     implementation project(':BleModule')
     
-    // ShimmerAndroidAPI for GSR functionality
-    implementation 'com.github.ShimmerEngineering:Shimmer-Android-API:+'
+    // Note: ShimmerAndroidAPI dependency to be added when proper repository access is available
+    // implementation 'com.github.ShimmerEngineering:Shimmer-Android-API:1.2.0'
 
-    kapt Deps.arouter_compiler
+    kapt 'com.alibaba:arouter-compiler:1.5.2'
 
     implementation 'com.github.lzyzsd:jsbridge:1.0.4'
     implementation 'com.alibaba:fastjson:1.2.78'

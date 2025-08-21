@@ -76,15 +76,13 @@ dependencies {
     implementation project(':libir')
     implementation project(':libmenu')
     implementation project(':libui')
-    implementation project(':component:house')
-    implementation project(':component:pseudo')
-
-    kapt Deps.arouter_compiler
-    api Deps.lottie
+    // Excluded house and pseudo modules for bucika_gsr version
+    
+    kapt 'com.alibaba:arouter-compiler:1.5.2'
+    api 'com.airbnb.android:lottie:3.0.7'
     api 'com.github.anzaizai:EasySwipeMenuLayout:1.1.4'
 
-    api Deps.compass_sense
-    api Deps.compass_core
+    // Note: Compass dependencies to be added when needed
 
     // gsy player
     implementation "com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer-java:v8.1.4"

@@ -36,3 +36,19 @@ ext {
     ]
 }
 
+// Simple dependency definitions for bucika_gsr
+class Deps {
+    // Core dependencies
+    static final String arouter_compiler = 'com.alibaba:arouter-compiler:1.5.2'
+    static final String lottie = 'com.airbnb.android:lottie:3.0.7'
+    static final String arouter_api = 'com.alibaba:arouter-api:1.5.2'
+    static final String gson = 'com.google.code.gson:gson:2.8.7'
+    static final String okhttp = 'com.squareup.okhttp3:okhttp:4.9.1'
+    static final String retrofit = 'com.squareup.retrofit2:retrofit:2.9.0'
+    static final String retrofit_gson = 'com.squareup.retrofit2:converter-gson:2.9.0'
+    static final String glide = 'com.github.bumptech.glide:glide:4.12.0'
+    
+    // Placeholder compass dependencies - to be implemented later
+    static final String compass_sense = ''
+    static final String compass_core = ''
+}

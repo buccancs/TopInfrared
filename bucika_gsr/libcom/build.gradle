@@ -63,9 +63,9 @@ dependencies {
     implementation project(':libapp')
     implementation project(':libui')
 
-    kapt Deps.arouter_compiler
-    api Deps.colorpickerview
-    implementation Deps.brvah
+    kapt "com.alibaba:arouter-compiler:1.5.2"
+    api "com.github.skydoves:colorpickerview:2.2.4"
+    implementation "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7"
 
     implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '3.17'
     implementation group: 'org.apache.xmlbeans', name: 'xmlbeans', version: '3.1.0'
