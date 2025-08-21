@@ -73,6 +73,24 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_image"
             app:layout_constraintBottom_toBottomOf="parent" />
+
+        <!-- GSR Monitoring Button for bucika_gsr -->
+        <TextView
+            android:id="@+id/tv_gsr_monitoring"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="GSR Monitoring"
+            android:textSize="14sp"
+            android:textColor="#ffffff"
+            android:background="@drawable/bg_corners50_solid_theme"
+            app:layout_constraintWidth_percent="0.6"
+            app:layout_constraintDimensionRatio="2400:320"
+            app:layout_constraintVertical_bias="0.15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_connect_device"
+            app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- 连接过任何设备界面 -->

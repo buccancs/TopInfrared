@@ -39,6 +39,7 @@ import kotlinx.android.synthetic.main.fragment_main.cl_no_device
 import kotlinx.android.synthetic.main.fragment_main.iv_add
 import kotlinx.android.synthetic.main.fragment_main.recycler_view
 import kotlinx.android.synthetic.main.fragment_main.tv_connect_device
+import kotlinx.android.synthetic.main.fragment_main.tv_gsr_monitoring
 import kotlinx.android.synthetic.main.item_device_connect.view.battery_view
 import kotlinx.android.synthetic.main.item_device_connect.view.iv_bg
 import kotlinx.android.synthetic.main.item_device_connect.view.iv_image
@@ -69,6 +70,7 @@ class MainFragment : BaseFragment(), View.OnClickListener {
     override fun initView() {
         adapter = MyAdapter()
         tv_connect_device.setOnClickListener(this)
+        tv_gsr_monitoring.setOnClickListener(this)  // Add GSR button click listener
         iv_add.setOnClickListener(this)
         adapter.hasConnectLine = DeviceTools.isConnect()
         adapter.hasConnectTS004 = WebSocketProxy.getInstance().isTS004Connect()
@@ -199,9 +201,9 @@ class MainFragment : BaseFragment(), View.OnClickListener {
         when (v) {
             tv_connect_device, iv_add -> {//添加设备
                 startActivity(Intent(requireContext(), DeviceTypeActivity::class.java))
-//                ARouter.getInstance().build(RoutePath.UsbIrModule.PAGE_IR_MAIN_ACTIVITY)
-//                    .navigation()
-//                startActivity(Intent(requireContext(), IRThermalLiteActivity::class.java))
+            }
+            tv_gsr_monitoring -> {//GSR监控 - bucika_gsr版本
+                startActivity(Intent(requireContext(), com.topdon.tc001.gsr.GSRActivity::class.java))
             }
         }
     }
