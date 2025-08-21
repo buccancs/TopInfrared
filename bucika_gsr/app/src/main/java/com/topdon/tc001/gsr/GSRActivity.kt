@@ -63,6 +63,12 @@ class GSRActivity : BaseActivity(), GSRManager.GSRDataListener {
         btn_stop_recording.setOnClickListener {
             stopGSRRecording()
         }
+        
+        // Enhanced Recording button
+        btn_enhanced_recording.setOnClickListener {
+            val intent = Intent(this, com.topdon.tc001.recording.EnhancedRecordingActivity::class.java)
+            startActivity(intent)
+        }
     }
     
     private fun checkBluetoothPermissions(): Boolean {

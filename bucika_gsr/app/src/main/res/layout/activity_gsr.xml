@@ -216,6 +216,16 @@
                         android:text="This bucika_gsr version integrates ShimmerAndroidAPI for real-time GSR monitoring at 128 Hz sampling rate. GSR data can be synchronized with thermal IR imaging for multi-modal physiological analysis."
                         android:textSize="14sp" />
 
+                    <Button
+                        android:id="@+id/btn_enhanced_recording"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:backgroundTint="#FFFF5722"
+                        android:text="Enhanced Recording (Samsung 4K + RAD WND)"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/white" />
+
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>

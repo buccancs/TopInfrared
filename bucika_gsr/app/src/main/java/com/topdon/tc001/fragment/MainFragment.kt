@@ -205,6 +205,8 @@ class MainFragment : BaseFragment(), View.OnClickListener {
             tv_gsr_monitoring -> {//GSR监控 - bucika_gsr版本
                 startActivity(Intent(requireContext(), com.topdon.tc001.gsr.GSRActivity::class.java))
             }
+            // Enhanced Recording button can be added here or accessed through GSR activity
+            // For now, GSRActivity provides access to enhanced recording features
         }
     }
 
