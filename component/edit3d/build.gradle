@@ -10,6 +10,7 @@ kapt {
     }
 }
 android {
+    namespace 'com.topdon.lib.menu'
     compileSdk rootProject.ext.android.compileSdk
 
     defaultConfig {

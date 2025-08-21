@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
     id 'kotlin-kapt'
     id 'com.google.gms.google-services'
     id 'com.google.firebase.crashlytics'
@@ -14,6 +13,7 @@ kapt {
 }
 
 android {
+    namespace 'com.topdon.tc001'
     compileSdk rootProject.ext.android.compileSdk
     defaultConfig {
         applicationId rootProject.ext.android.applicationId
@@ -37,6 +37,11 @@ android {
         ]
 
         setProperty("archivesBaseName", "TC001-v${versionName}.google")
+    }
+
+    buildFeatures {
+        buildConfig true
+        viewBinding true
     }
 
     bundle {
@@ -261,6 +266,7 @@ def copyAab(type) {
     }
 }
 
+/*
 project.afterEvaluate {
     assembleProdDebug.doLast {
         println "===================== build prod Debug.apk copy ========================="
@@ -313,6 +319,7 @@ project.afterEvaluate {
     }
 
 }
+*/
 
 dependencies {
     implementation project(':component:edit3d')
