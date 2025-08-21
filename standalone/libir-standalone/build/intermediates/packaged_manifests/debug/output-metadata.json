@@ -4,7 +4,7 @@
     "type": "PACKAGED_MANIFESTS",
     "kind": "Directory"
   },
-  "applicationId": "com.topinfrared.tc001.ir",
+  "applicationId": "com.topinfrared.tc001.libir",
   "variantName": "debug",
   "elements": [
     {

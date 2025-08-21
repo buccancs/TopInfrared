@@ -36,7 +36,7 @@ class TC001CameraHandler(
     suspend fun connectToDevice(device: UsbDevice?): Boolean = withContext(Dispatchers.IO) {
         try {
             // Mock connection for standalone demo
-            Log.i(TAG, "Connecting to TC001 device (mock)")
+            Log.i(TAG, "Connecting to TC001 device (mock)${device?.let { " - Device: ${it.deviceName}" } ?: ""}")
             isConnected = true
             true
         } catch (e: Exception) {
@@ -113,7 +113,6 @@ class TC001CameraHandler(
                 // Create realistic thermal pattern with hot spots
                 val dx = (x - centerX).toDouble() / PREVIEW_WIDTH
                 val dy = (y - centerY).toDouble() / PREVIEW_HEIGHT
-                val distance = kotlin.math.sqrt(dx * dx + dy * dy)
                 
                 // Create moving hot spots
                 val hotSpot1 = kotlin.math.exp(-((dx - 0.3 * kotlin.math.sin(time * 0.5)) * (dx - 0.3 * kotlin.math.sin(time * 0.5)) + 

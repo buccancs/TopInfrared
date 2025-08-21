@@ -6,6 +6,8 @@ plugins {
 android {
     compileSdk rootProject.ext.android.compileSdk
     
+    namespace 'com.topinfrared.tc001.standalone'
+    
     defaultConfig {
         applicationId rootProject.ext.android.applicationId
         minSdk rootProject.ext.android.minSdk

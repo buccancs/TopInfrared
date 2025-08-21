@@ -1,1 +1,1 @@
-com.topinfrared.tc001.ir
+com.topinfrared.tc001.libir
