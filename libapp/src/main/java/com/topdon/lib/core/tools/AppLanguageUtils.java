@@ -24,21 +24,9 @@ import java.util.Locale;
 
 public class AppLanguageUtils {
 
-    private static HashMap<String, Locale> mAllLanguages = new HashMap<String, Locale>(14) {{
-        put(ConstantLanguages.ZH_CN, Locale.SIMPLIFIED_CHINESE);
-        put(ConstantLanguages.ZH_TW, Locale.TRADITIONAL_CHINESE);
+    private static HashMap<String, Locale> mAllLanguages = new HashMap<String, Locale>(1) {{
+        // Only English support - all international support removed
         put(ConstantLanguages.ENGLISH, Locale.ENGLISH);
-        put(ConstantLanguages.GERMAN, Locale.GERMANY);
-        put(ConstantLanguages.JA, Locale.JAPAN);
-        put(ConstantLanguages.FR, Locale.FRANCE);
-        put(ConstantLanguages.IT, Locale.ITALY);
-        put(ConstantLanguages.RU, new Locale(ConstantLanguages.RU, "RU"));
-        put(ConstantLanguages.PT, new Locale(ConstantLanguages.PT, "PT"));
-        put(ConstantLanguages.ES, new Locale(ConstantLanguages.ES, "ES"));
-        put(ConstantLanguages.PL, new Locale(ConstantLanguages.PL, "PL"));
-        put(ConstantLanguages.CS, new Locale(ConstantLanguages.CS, "CS"));
-        put(ConstantLanguages.UK, new Locale(ConstantLanguages.UK, "UK"));
-        put(ConstantLanguages.NL, new Locale(ConstantLanguages.NL, "NL"));
     }};
 
     public static String getChineseSystemLanguage() {
@@ -46,46 +34,11 @@ public class AppLanguageUtils {
     }
 
     /**
-     * 获取系统默认语言
+     * 获取系统默认语言 - Modified to only support English
      */
     public static String getSystemLanguage() {
-        Locale locale = LanguageUtils.getSystemLanguage();
-        String language = locale.getLanguage();
-        if (TextUtils.equals(Locale.CHINA.getLanguage(), language)) {
-            if (locale.getCountry().equals("TW") || locale.getCountry().equals("HK")) {
-                return ConstantLanguages.ZH_TW;
-            } else {
-                return ConstantLanguages.ZH_CN;
-            }
-        } else if (TextUtils.equals(Locale.GERMAN.getLanguage(), language)) {
-            return ConstantLanguages.GERMAN;
-        } else if (TextUtils.equals(Locale.JAPAN.getLanguage(), language)) {
-            return ConstantLanguages.JA;
-        } else if (TextUtils.equals(Locale.FRANCE.getLanguage(), language)) {
-            return ConstantLanguages.FR;
-        } else if (TextUtils.equals(Locale.ITALY.getLanguage(), language)) {
-            return ConstantLanguages.IT;
-        } else if (TextUtils.equals(new Locale(ConstantLanguages.RU, "RU").getLanguage(), language)) {
-            return ConstantLanguages.RU;
-        } else if (TextUtils.equals(new Locale(ConstantLanguages.PT, "PT").getLanguage(), language)) {
-            return ConstantLanguages.PT;
-        } else if (TextUtils.equals(new Locale(ConstantLanguages.ES, "ES").getLanguage(), language)) {
-            return ConstantLanguages.ES;
-        } else if (TextUtils.equals(new Locale(ConstantLanguages.PL, "PL").getLanguage(), language)) {
-            return ConstantLanguages.PL;
-        } else if (TextUtils.equals(new Locale(ConstantLanguages.CS, "CS").getLanguage(), language)) {
-            return ConstantLanguages.CS;
-        } else if (TextUtils.equals(new Locale(ConstantLanguages.UK, "UK").getLanguage(), language)) {
-            return ConstantLanguages.UK;
-        } else if (TextUtils.equals(new Locale(ConstantLanguages.NL, "NL").getLanguage(), language)) {
-            return ConstantLanguages.NL;
-        } else {
-            if (BaseApplication.instance.isDomestic()) {
-                return ConstantLanguages.ZH_CN;
-            } else {
-                return ConstantLanguages.ENGLISH;
-            }
-        }
+        // Always return English - all international support removed
+        return ConstantLanguages.ENGLISH;
     }
 
     @SuppressWarnings("deprecation")

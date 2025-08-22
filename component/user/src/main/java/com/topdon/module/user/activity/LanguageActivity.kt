@@ -20,23 +20,8 @@ class LanguageActivity : BaseActivity() {
 
     override fun initView() {
         title_view.setRightClickListener {//保存
-            val localeStr: String = when (selectIndex) {
-                0 -> ConstantLanguages.ENGLISH
-                1 -> ConstantLanguages.RU
-                2 -> ConstantLanguages.JA
-                3 -> ConstantLanguages.GERMAN
-                4 -> ConstantLanguages.FR
-                5 -> ConstantLanguages.PT
-                6 -> ConstantLanguages.ES
-                7 -> ConstantLanguages.IT
-                8 -> ConstantLanguages.PL
-                9 -> ConstantLanguages.CS
-                10 -> ConstantLanguages.UK
-                11 -> ConstantLanguages.NL
-                12 -> ConstantLanguages.ZH_CN
-                13 -> ConstantLanguages.ZH_TW
-                else -> AppLanguageUtils.getSystemLanguage()
-            }
+            // Only English is supported - always return English
+            val localeStr: String = ConstantLanguages.ENGLISH
             setResult(RESULT_OK, Intent().also { it.putExtra("localeStr", localeStr) })
             finish()
         }
@@ -61,23 +46,8 @@ class LanguageActivity : BaseActivity() {
     }
 
     private fun showLanguage() {
-        val selectIndex = when (SharedManager.getLanguage(this)) {
-            ConstantLanguages.ENGLISH -> 0
-            ConstantLanguages.RU -> 1
-            ConstantLanguages.JA -> 2
-            ConstantLanguages.GERMAN -> 3
-            ConstantLanguages.FR -> 4
-            ConstantLanguages.PT -> 5
-            ConstantLanguages.ES -> 6
-            ConstantLanguages.IT -> 7
-            ConstantLanguages.PL -> 8
-            ConstantLanguages.CS -> 9
-            ConstantLanguages.UK -> 10
-            ConstantLanguages.NL -> 11
-            ConstantLanguages.ZH_CN -> 12
-            ConstantLanguages.ZH_TW -> 13
-            else -> 0
-        }
+        // Only English is supported - always select index 0
+        val selectIndex = 0
         adapter.setSelect(selectIndex)
         this.selectIndex = selectIndex
     }
