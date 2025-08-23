@@ -15,30 +15,18 @@ import com.blankj.utilcode.util.SizeUtils
 import com.topdon.lib.core.utils.ScreenUtil
 import com.topdon.module.thermal.ir.R
 
-/**
- * 3D 编辑使用的，长地像 SeekBar 的那个条条.
- */
 class TargetBarPickView : View {
 
     companion object {
-        /**
-         * 默认条条背景颜色.
-         */
+        
         @ColorInt
         private const val DEFAULT_BG_COLOR = 0x7F000000.toInt()
-        /**
-         * 默认进度条颜色.
-         */
+        
         @ColorInt
         private const val DEFAULT_PROGRESS_COLOR = 0xffffffff.toInt()
 
-        /**
-         * Thumb 圆角尺寸，单位 dp.
-         */
         private const val THUMB_CORNERS = 4f
-        /**
-         * Thumb 描边尺寸，单位 dp.
-         */
+        
         private const val THUMB_STROKE_WIDTH = 1.5f
     }
 
@@ -48,16 +36,10 @@ class TargetBarPickView : View {
 
     var onStopTrackingTouch: ((progress: Int, max: Int) -> Unit)? = null
 
-    /**
-     * 根据进度格式化指示 View 文字.
-     */
     var valueFormatListener: ((progress: Int) -> String) = {
         it.toString()
     }
 
-    /**
-     * 条条进度最大值.
-     */
     var max: Int = 100
         set(value) {
             if (field != value) {
@@ -74,11 +56,6 @@ class TargetBarPickView : View {
             }
         }
 
-
-
-    /**
-     * 条条当前进度.
-     */
     private var progress: Int
         set(value) {
             if (field != value) {
@@ -92,27 +69,16 @@ class TargetBarPickView : View {
         onProgressChanged?.invoke(this.progress, max)
     }
 
-    /**
-     * 条条尺寸，单位 px（横向时是高度，竖向时是宽度）
-     */
     private val barSize: Int
-    /**
-     * 顺时针旋转角度，仅支持 0、90、180、270.
-     */
+    
     private val rotate: Int
-    /**
-     * 标签文字.
-     */
+    
     private val labelText: String
-
-
 
     private val path = Path()
     private val paint = TextPaint()
     private val thumbRect = RectF()
     private val barRect = RectF()
-
-
 
     constructor(context: Context) : this(context, null)
 
@@ -163,9 +129,6 @@ class TargetBarPickView : View {
         return true
     }
 
-    /**
-     * 计算 Thumb 宽度，单位 px.
-     */
     private fun computeThumbWidth(): Int {
         val minTextWidth = paint.measureText(valueFormatListener.invoke(min)).toInt()
         val maxTextWidth = paint.measureText(valueFormatListener.invoke(max)).toInt()
@@ -223,7 +186,6 @@ class TargetBarPickView : View {
         canvas.restore()
 
         drawThumb(canvas)
-//        drawText(canvas)
     }
 
     private fun computeBarRect() {

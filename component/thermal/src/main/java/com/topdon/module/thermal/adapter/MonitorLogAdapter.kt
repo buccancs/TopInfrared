@@ -55,11 +55,9 @@ class MonitorLogAdapter(val context: Context) :
         val timeText = itemView.item_log_time_text
     }
 
-
     interface OnItemClickListener {
         fun onClick(index: Int, thermalId: String)
         fun onLongClick(index: Int, thermalId: String)
     }
-
 
 }

@@ -1,9 +1,5 @@
 package com.topdon.pseudo.constant
 
-/**
- * @author: CaiSongL
- * @date: 2023/8/8 19:37
- */
 object ColorRecommend {
 
     val colorList1 = intArrayOf(
@@ -39,10 +35,6 @@ object ColorRecommend {
         0xffffff00.toInt(),
     )
 
-    /**
-     *
-     * @param index 0-铁红 1-黑红 2-自然 3-岩浆 4-辉金
-     */
     fun getColorByIndex(isTC007: Boolean, index: Int): IntArray = when (index) {
         0 -> colorList1
         1 -> colorList2

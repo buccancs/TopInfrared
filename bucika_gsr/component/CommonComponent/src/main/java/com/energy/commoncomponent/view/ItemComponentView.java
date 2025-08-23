@@ -11,9 +11,6 @@ import android.widget.TextView;
 import androidx.appcompat.widget.SwitchCompat;
 import com.energy.commoncomponent.R;
 
-/**
- * Created by fengjibo on 2023/5/29.
- */
 public class ItemComponentView extends LinearLayout {
 
     private OnItemClickListener mOnItemClickListener;

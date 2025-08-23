@@ -1,15 +1,4 @@
-/*
- * Copyright (c) 2016-present 贵州纳雍穿青人李裕江<1032694760@qq.com>
- *
- * The software is licensed under the Mulan PSL v2.
- * You can use this software according to the terms and conditions of the Mulan PSL v2.
- * You may obtain a copy of Mulan PSL v2 at:
- *     http://license.coscl.org.cn/MulanPSL2
- * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
- * PURPOSE.
- * See the Mulan PSL v2 for more details.
- */
+
 
 package com.github.gzuliyujiang.wheelpicker.widget;
 
@@ -37,12 +26,6 @@ import com.topdon.lib.ui.R;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 日期时间滚轮控件
- *
- * @author 贵州山野羡民（1032694760@qq.com）
- * @since 2019/5/14 15:26
- */
 @SuppressWarnings("unused")
 public class YearWheelLayout extends BaseWheelLayout {
     private DateWheelLayout dateWheelLayout;
@@ -86,7 +69,6 @@ public class YearWheelLayout extends BaseWheelLayout {
     protected void onInit(@NonNull Context context) {
         dateWheelLayout = findViewById(R.id.wheel_picker_date_wheel);
 
-        //初始颜色
         setCurtainEnabled(true);
         getMonthLabelView().setBackgroundColor(0x1A2B79D7);
         getYearLabelView().setBackgroundColor(0x1A2B79D7);
@@ -167,16 +149,10 @@ public class YearWheelLayout extends BaseWheelLayout {
         dateWheelLayout.setDateMode(dateMode);
     }
 
-    /**
-     * 设置日期时间范围
-     */
     public void setRange(DatimeEntity startValue, DatimeEntity endValue) {
         setRange(startValue, endValue, null);
     }
 
-    /**
-     * 设置日期时间范围
-     */
     public void setRange(DatimeEntity startValue, DatimeEntity endValue, DatimeEntity defaultValue) {
         if (startValue == null) {
             startValue = DatimeEntity.now();

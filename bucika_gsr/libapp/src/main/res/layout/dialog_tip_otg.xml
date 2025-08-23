@@ -110,5 +110,4 @@
         app:layout_constraintStart_toEndOf="@+id/dialog_tip_cancel_btn"
         app:layout_constraintTop_toBottomOf="@+id/dialog_tip_line" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>

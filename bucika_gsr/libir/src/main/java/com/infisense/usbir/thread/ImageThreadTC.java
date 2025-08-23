@@ -26,21 +26,12 @@ import org.opencv.imgproc.Imgproc;
 import java.nio.ByteBuffer;
 import java.util.LinkedHashMap;
 
-/*
- * @Description:
- * @Author:         brilliantzhao
- * @CreateDate:     2022.2.24 11:06
- * @UpdateUser:
- * @UpdateDate:     2022.2.24 11:06
- * @UpdateRemark:
- */
 public class ImageThreadTC extends Thread {
 
-
-    public static final int TYPE_AI_C = -1;//不开启
-    public static final int TYPE_AI_D = 0;//动态检测
-    public static final int TYPE_AI_H = 1;//高温源检测
-    public static final int TYPE_AI_L = 2;//低温源检测
+    public static final int TYPE_AI_C = -1;
+    public static final int TYPE_AI_D = 0;
+    public static final int TYPE_AI_H = 1;
+    public static final int TYPE_AI_L = 2;
 
     private byte[] imgTmp;
     private String TAG = "ImageThread";
@@ -51,13 +42,12 @@ public class ImageThreadTC extends Thread {
     private int imageHeight;
     private byte[] imageSrc;
     private byte[] temperatureSrc;
-    private boolean rotate; // 屏幕旋转
-    //
+    private boolean rotate;
     private CommonParams.DataFlowMode dataFlowMode = CommonParams.DataFlowMode.IMAGE_AND_TEMP_OUTPUT;
     private byte[] imageYUV422;
     private byte[] imageARGB;
     private byte[] imageDst;
-    public byte[] imageTemp;//艾睿需要的测试数据，处理完可以删除
+    public byte[] imageTemp;
 
     private byte[] imageY8;
     private float max = Float.MAX_VALUE;
@@ -69,7 +59,6 @@ public class ImageThreadTC extends Thread {
     private int pseudocolorMode = 3;
     private AlarmBean alarmBean;
 
-
     private byte[] firstFrame = null;
     private byte[] firstTemp = null;
     private int typeAi = TYPE_AI_C;
@@ -79,11 +68,9 @@ public class ImageThreadTC extends Thread {
     private final byte[] amplifyRotateArray;
     public static final int MULTIPLE = 2;
 
-
     public void setOpenAmplify(boolean openAmplify) {
         isOpenAmplify = openAmplify;
     }
-
 
     public int getTypeAi() {
         return typeAi;
@@ -100,10 +87,6 @@ public class ImageThreadTC extends Thread {
     public void setAlarmBean(AlarmBean alarmBean) {
         this.alarmBean = alarmBean;
     }
-
-
-
-
 
     public void setSyncImage(SynchronizedBitmap syncimage) {
         this.syncimage = syncimage;
@@ -178,10 +161,7 @@ public class ImageThreadTC extends Thread {
                     } else {
                         LibIRProcess.convertYuyvMapToARGBPseudocolor(imageSrc, imageHeight * imageWidth, PseudocodeUtils.INSTANCE.changePseudocodeModeByOld(pseudocolorMode), imageARGB);
                     }
-                    /*
-                     * 经过转换之后的红外数据
-                     * 其中的数据是旋转90度的，需要旋转回来,红外旋转的逻辑放在这里处理。
-                     */
+                    
                     if (rotateInt == 270) {
                         LibIRProcess.ImageRes_t imageRes = new LibIRProcess.ImageRes_t();
                         imageRes.height = (char) imageWidth;
@@ -204,9 +184,7 @@ public class ImageThreadTC extends Thread {
                         imageDst = imageARGB;
                     }
                     irImageHelp.customPseudoColor(imageDst,temperatureSrc,imageWidth,imageHeight);
-                    /*
-                     * 等温尺处理,展示伪彩的温度范围内信息
-                     */
+                    
                     irImageHelp.setPseudoColorMaxMin(imageDst,temperatureSrc,max,min,imageWidth,imageHeight);
                 }
                 imageDst = irImageHelp.contourDetection(alarmBean,
@@ -235,7 +213,6 @@ public class ImageThreadTC extends Thread {
                     imageDst = grayData;
                 }else if (typeAi == TYPE_AI_D) {
                     int firstTime = 0;
-                    //静态闯入算法
                     if (firstFrame == null || firstTemp == null) {
                         firstFrame = new byte[imageDst.length];
                         firstTemp = new byte[temperatureSrc.length];
@@ -259,7 +236,6 @@ public class ImageThreadTC extends Thread {
                                 Log.e("静态闯入异常：", e.getMessage());
                             }
                         } else {
-                            //相似度不同，则代表手机抖动
                             System.arraycopy(imageDst, 0, firstFrame, 0, imageDst.length);
                             System.arraycopy(temperatureSrc, 0, firstTemp, 0, temperatureSrc.length);
                         }
@@ -271,7 +247,6 @@ public class ImageThreadTC extends Thread {
                             (rotateInt == 270 || rotateInt == 90) ? imageWidth  : imageHeight ,
                             amplifyRotateArray);
                 }
-//                    Log.e("图像总处理耗时：", String.valueOf(System.currentTimeMillis() - startImageTime));
             }
 
             synchronized (syncimage.viewLock) {
@@ -312,8 +287,6 @@ public class ImageThreadTC extends Thread {
         baseBitmap.copyPixelsFromBuffer(ByteBuffer.wrap(imageDst));
         return baseBitmap;
     }
-
-
 
     private ColorRGB getColorRGBByMap(LinkedHashMap<Integer, ColorRGB> map, Integer key) {
         return map.get(key);

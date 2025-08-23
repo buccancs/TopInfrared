@@ -5,25 +5,6 @@ import com.topdon.libhik.util.ByteArrayUtil.toFloat
 import com.topdon.libhik.util.ByteArrayUtil.toInt
 import com.topdon.libhik.util.ByteArrayUtil.toStr
 
-/**
- * 专家测温规则及结果，共 208 byte.
- * @param enable 是否启用
- * @param regionId 区域 Id
- * @param distance 测温距离，单位 cm
- * @param regionType 区域类型 1-点 2-线 3-面
- * @param regionName 区域名称
- * @param emissivity 发射率百分比，如 97 表示 0.97
- * @param minTemp 最低温，单位摄氏度
- * @param maxTemp 最高温，单位摄氏度
- * @param aveTemp 平均温，单位摄氏度
- * @param diffTemp 温差，单位摄氏度
- * @param maxX 区域最高温归一化 X 轴坐标 [0, 1000]
- * @param maxY 区域最高温归一化 Y 轴坐标 [0, 1000]
- * @param minX 区域最低温归一化 X 轴坐标 [0, 1000]
- * @param minY 区域最低温归一化 Y 轴坐标 [0, 1000]
- * @param pointCount 多边形实际顶点数
- * @param pointList 点、线、面 顶点列表
- */
 data class TempRule(
     val enable: Boolean,
     val regionId: Int,
@@ -62,9 +43,7 @@ data class TempRule(
     )
 
     companion object {
-        /**
-         * 从指定数组的 index 开始，解析共 count 个点坐标
-         */
+        
         private fun ByteArray.toPointList(index: Int, count: Int): ArrayList<Point> = try {
             val resultList: ArrayList<Point> = ArrayList(count)
             for (i in 0 until count) {

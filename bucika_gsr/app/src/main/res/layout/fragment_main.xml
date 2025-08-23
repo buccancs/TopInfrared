@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:background="#16131e">
 
-    <!-- 未连接过任何设备界面 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_no_device"
         android:layout_width="0dp"
@@ -56,7 +55,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
 
-        <!-- 连接设备 -->
         <TextView
             android:id="@+id/tv_connect_device"
             android:layout_width="0dp"
@@ -74,7 +72,6 @@
             app:layout_constraintTop_toBottomOf="@id/iv_image"
             app:layout_constraintBottom_toBottomOf="parent" />
 
-        <!-- GSR Monitoring Button for bucika_gsr -->
         <TextView
             android:id="@+id/tv_gsr_monitoring"
             android:layout_width="0dp"
@@ -93,7 +90,6 @@
             app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- 连接过任何设备界面 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_has_device"
         android:layout_width="0dp"

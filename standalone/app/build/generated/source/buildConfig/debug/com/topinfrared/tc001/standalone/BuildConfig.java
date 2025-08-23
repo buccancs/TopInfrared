@@ -1,6 +1,4 @@
-/**
- * Automatically generated file. DO NOT MODIFY
- */
+
 package com.topinfrared.tc001.standalone;
 
 public final class BuildConfig {

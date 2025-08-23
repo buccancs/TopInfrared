@@ -6,18 +6,10 @@ import android.bluetooth.le.ScanFilter;
 import android.bluetooth.le.ScanSettings;
 import android.os.Build;
 
-
-
 import androidx.annotation.RequiresApi;
 
 import java.util.List;
 
-/**
- * 搜索配置
- * 
- * date: 2021/8/12 15:31
- * author: bichuanfeng
- */
 public class ScanConfiguration {
     int scanPeriodMillis = 10000;
     boolean acceptSysConnectedDevice;
@@ -50,30 +42,18 @@ public class ScanConfiguration {
         return filters;
     }
 
-    /**
-     * 搜索周期
-     *
-     * @param scanPeriodMillis 搜索一次的毫秒值
-     */
     public ScanConfiguration setScanPeriodMillis(int scanPeriodMillis) {
-        //至少1秒
         if (scanPeriodMillis >= 1000) {
             this.scanPeriodMillis = scanPeriodMillis;
         }
         return this;
     }
 
-    /**
-     * 是否将通过系统蓝牙配对连接的设备添加到搜索结果中（有些手机无法获取到系统已连接的蓝牙设备）
-     */
     public ScanConfiguration setAcceptSysConnectedDevice(boolean acceptSysConnectedDevice) {
         this.acceptSysConnectedDevice = acceptSysConnectedDevice;
         return this;
     }
 
-    /**
-     * {@link BluetoothLeScanner}的搜索设置
-     */
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     public ScanConfiguration setScanSettings(ScanSettings scanSettings) {
         Inspector.requireNonNull(scanSettings, "scanSettings can't be null");
@@ -81,25 +61,16 @@ public class ScanConfiguration {
         return this;
     }
 
-    /**
-     * 是否过滤非ble设备
-     */
     public ScanConfiguration setOnlyAcceptBleDevice(boolean onlyAcceptBleDevice) {
         this.onlyAcceptBleDevice = onlyAcceptBleDevice;
         return this;
     }
 
-    /**
-     * 根据信号强度过滤
-     */
     public ScanConfiguration setRssiLowLimit(int rssiLowLimit) {
         this.rssiLowLimit = rssiLowLimit;
         return this;
     }
 
-    /**
-     * 搜索过滤器。{@link BluetoothLeScanner#startScan(List, ScanSettings, ScanCallback)}
-     */
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     public ScanConfiguration setFilters(List<ScanFilter> filters) {
         this.filters = filters;

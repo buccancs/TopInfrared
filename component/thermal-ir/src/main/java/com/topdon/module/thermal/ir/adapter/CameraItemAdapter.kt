@@ -7,13 +7,8 @@ import com.topdon.lib.ui.listener.SingleClickListener
 import com.topdon.lib.ui.widget.CountDownView
 import com.topdon.module.thermal.ir.R
 
-/**
- * @author: CaiSongL
- * @date: 2023/4/3 10:18
- */
 class CameraItemAdapter(
     data: MutableList<CameraItemBean>? = null) : BaseQuickAdapter<CameraItemBean, BaseViewHolder>(R.layout.item_camera,data) {
-
 
     var listener: ((index: Int,item: CameraItemBean) -> Unit)? = null
 

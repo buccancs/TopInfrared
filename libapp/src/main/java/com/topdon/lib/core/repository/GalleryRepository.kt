@@ -42,7 +42,6 @@ object GalleryRepository {
             if (!targetDir.exists()) {
                 targetDir.mkdirs()
             }
-            //遍历要复制该目录下的全部文件
             fileList?.forEach {
                 val path = sourceDir.absolutePath + File.separator + it.name
                 copyPictureFile(path,targetDir.absolutePath + File.separator + it.name)
@@ -70,9 +69,6 @@ object GalleryRepository {
         }
     }
 
-    /**
-     * 读取本地图库指定设备类型的最新文件
-     */
     fun readLatest(dirType: DirType): String {
         var firstPath = ""
         try {
@@ -80,7 +76,6 @@ object GalleryRepository {
             val dirFile = File(path)
             if (dirFile.isDirectory) {
                 val files = dirFile.listFiles()!!
-                //按时间倒序
                 files.sortByDescending {
                     it.lastModified()
                 }
@@ -96,11 +91,6 @@ object GalleryRepository {
         return firstPath
     }
 
-    /**
-     * 分页加载
-     * @param pageNum 页码，从1开始
-     * @param pageCount 每页数据条数
-     */
     suspend fun loadByPage(isVideo: Boolean, dirType: DirType, pageNum: Int, pageCount: Int): ArrayList<GalleryBean>? {
         return withContext(Dispatchers.IO) {
             val resultList: ArrayList<GalleryBean> = ArrayList()
@@ -134,9 +124,6 @@ object GalleryRepository {
         }
     }
 
-    /**
-     * 仅供生成报告使用的，加载所有指定设备类型的图片.
-     */
     suspend fun loadAllReportImg(dirType: DirType): ArrayList<GalleryBean> = withContext(Dispatchers.IO) {
         val resultList: ArrayList<GalleryBean> = ArrayList()
         try {
@@ -155,9 +142,6 @@ object GalleryRepository {
         return@withContext resultList
     }
 
-    /**
-     * 加载本地所有指定类型的图片或视频列表.
-     */
     private fun loadAllLocale(isVideo: Boolean, dirType: DirType): ArrayList<File> {
         if (dirType == DirType.LINE) {
             val sourFile = File(FileConfig.gallerySourDir)
@@ -185,23 +169,17 @@ object GalleryRepository {
                 resultList.add(it)
             }
         }
-        //按时间倒序
         resultList.sortByDescending {
             it.lastModified()
         }
         return resultList
     }
 
-    /**
-     * 使用 MediaStore API 而不是 File 加载本地所有指定类型的图片或视频列表.
-     */
     private fun loadAllLocaleByMediaStore(dirType: DirType): Array<out File> {
         val tc001Files: MutableList<File> = ArrayList()
-        // 定义查询的列
         val projection = arrayOf(
             MediaStore.Images.Media.DATA
         )
-        // 定义查询条件，指定目标文件夹路径
         val selection = MediaStore.Images.Media.DATA + " LIKE ?"
         val path = when (dirType) {
             DirType.LINE -> "%DCIM/${CommUtils.getAppName()}%"
@@ -209,9 +187,7 @@ object GalleryRepository {
             else -> "%DCIM/TS004%"
         }
         val selectionArgs = arrayOf(path)
-        // 获取MediaStore ContentResolver
         val contentResolver: ContentResolver = Utils.getApp().contentResolver
-        // 查询媒体库
         val queryUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
         val cursor = contentResolver.query(
             queryUri,

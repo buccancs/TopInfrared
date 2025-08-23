@@ -14,7 +14,6 @@ import com.topdon.module.thermal.R
 import kotlinx.android.synthetic.main.activity_video.*
 import java.io.File
 
-
 @Route(path = RouterConfig.VIDEO)
 class VideoActivity : BaseActivity() {
 

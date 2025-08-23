@@ -1,8 +1,5 @@
 package com.energy.commoncomponent.view.tempcanvas;
 
-/**
- * Created by fengjibo on 2024/2/20.
- */
 public class TempResultBean {
     private String id;
     private String label;
@@ -12,23 +9,15 @@ public class TempResultBean {
     private float averageTemperature;
     private long order;
 
-    private int position; //相对应点线框list的position
+    private int position;
 
-    //类型
     private TempInfoMode tempInfoMode;
-    //环境温度
     private float ambientTemp;
-    //测温距离
     private float measureDistance;
-    //辐射率
     private float emissivity;
-    //高温报警开关
     private boolean highAlertEnable;
-    //高温阀值
     private float highThreshold;
-    //低温报警开关
     private boolean lowAlertEnable;
-    //低温阀值
     private float lowThreshold;
 
     private int x1;

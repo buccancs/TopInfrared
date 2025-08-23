@@ -54,5 +54,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/item_menu_tab_fl" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>

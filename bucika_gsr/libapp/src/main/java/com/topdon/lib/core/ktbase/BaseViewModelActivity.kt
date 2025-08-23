@@ -24,12 +24,9 @@ abstract class BaseViewModelActivity<VM : BaseViewModel> : BaseActivity() {
         }
     }
 
-    //viewModel实例
     abstract fun providerVMClass(): Class<VM>
 
-    //接口请求出错，子类可以重写此方法做一些操作
     protected fun requestError(it: Exception?) {
-        //处理一些已知异常
         it?.run {
             when (it) {
                 is TimeoutCancellationException -> httpErrorTip(getString(R.string.http_time_out), "")

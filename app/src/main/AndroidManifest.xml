@@ -33,24 +33,6 @@
         <meta-data
             android:name="app_name"
             android:value="${app_name}" />
-<!--        <service-->
-<!--            android:name="com.topdon.tc001.jpush.JPushService"-->
-<!--            android:enabled="true"-->
-<!--            android:exported="false">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="cn.jiguang.user.service.action" />-->
-<!--            </intent-filter>-->
-<!--        </service>-->
-
-<!--        <receiver-->
-<!--            android:name="com.topdon.tc001.jpush.PushMessageReceiver"-->
-<!--            android:enabled="true"-->
-<!--            android:exported="false">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="cn.jpush.android.intent.RECEIVE_MESSAGE" />-->
-<!--                <category android:name="com.topdon.tc001" />-->
-<!--            </intent-filter>-->
-<!--        </receiver>-->
 
         <meta-data
             android:name="ScopedStorage"
@@ -72,14 +54,12 @@
 
         </activity>
 
-
-
         <activity
             android:name=".BlankDevActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/Blank"
             android:exported="true">
-            <!-- 监听USB设备的插拔 -->
+            
             <intent-filter>
                 <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
             </intent-filter>

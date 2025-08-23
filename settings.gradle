@@ -3,7 +3,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        jcenter() // Warning: this repository is going to shut down soon
+        jcenter()
         maven { url 'https://jitpack.io' }
         maven {
             url 'https://maven.zohodl.com'
@@ -11,11 +11,6 @@ dependencyResolutionManagement {
         maven {
             url 'https://maven.aliyun.com/repository/public/'
         }
-//        maven {
-//            // http://172.16.50.94:8081/#browse/browse:topdon
-//            url 'http://172.16.50.94:8081/repository/topdon'
-//            allowInsecureProtocol = true
-//        }
         flatDir {
             dirs 'libir/libs'
         }

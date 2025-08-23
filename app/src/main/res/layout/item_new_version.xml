@@ -39,5 +39,4 @@
         android:drawableRight="@drawable/ic_right_arrow"
         tools:text="版本2.00.003" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>

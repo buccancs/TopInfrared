@@ -1,15 +1,4 @@
-/*
- * Copyright (c) 2016-present 贵州纳雍穿青人李裕江<1032694760@qq.com>
- *
- * The software is licensed under the Mulan PSL v2.
- * You can use this software according to the terms and conditions of the Mulan PSL v2.
- * You may obtain a copy of Mulan PSL v2 at:
- *     http://license.coscl.org.cn/MulanPSL2
- * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
- * PURPOSE.
- * See the Mulan PSL v2 for more details.
- */
+
 
 package com.github.gzuliyujiang.wheelpicker;
 
@@ -27,16 +16,6 @@ import com.github.gzuliyujiang.wheelpicker.contract.OnLinkagePickedListener;
 import com.github.gzuliyujiang.wheelpicker.widget.LinkageWheelLayout;
 import com.github.gzuliyujiang.wheelview.widget.WheelView;
 
-/**
- * 二三级联动选择器
- *
- * @author 贵州山野羡民（1032694760@qq.com）
- * @see com.github.gzuliyujiang.wheelview.contract.TextProvider
- * @see LinkageProvider
- * @see LinkageWheelLayout
- * @see OnLinkagePickedListener
- * @since 2019/6/17 11:21
- */
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class LinkagePicker extends ModalDialog {
     protected LinkageWheelLayout wheelLayout;

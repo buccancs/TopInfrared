@@ -19,11 +19,11 @@ import kotlinx.android.synthetic.main.item_menu_layout.view.item_menu_tab_text
 class MenuSixAdapter (val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var listener: ((index: Int, code: Int) -> Unit)? = null
     private var selected = -1
-    private var rangeEnable = false //测距
-    private var pseudoMode = MenuBean.TYPE_MIX//伪彩模式
-    private var lightLevel = MenuBean.TYPE_LIGHT_MIDDLE//亮度: 高
-    private var pipEnable = false //画中画
-    private var gainLevel = MenuBean.TYPE_GAIN_X1//放大倍数
+    private var rangeEnable = false
+    private var pseudoMode = MenuBean.TYPE_MIX
+    private var lightLevel = MenuBean.TYPE_LIGHT_MIDDLE
+    private var pipEnable = false
+    private var gainLevel = MenuBean.TYPE_GAIN_X1
 
     private fun selected(index: Int) {
         selected = index
@@ -49,7 +49,6 @@ class MenuSixAdapter (val context: Context) : RecyclerView.Adapter<RecyclerView.
         this.gainLevel = gainLevel
         notifyDataSetChanged()
     }
-
 
     private val sixBean = arrayListOf(
         MonocularBean(R.drawable.ic_menu_black_hot_svg, context.getString(R.string.color_p11), MonocularHelp.TYPE_SET_BLACK),
@@ -151,14 +150,8 @@ class MenuSixAdapter (val context: Context) : RecyclerView.Adapter<RecyclerView.
          }
     }
 
-//    // 状态变化
     private fun iconUI(isActive: Boolean, img: ImageView, nameText: TextView) {
         img.isSelected = isActive
-//        if (isActive) {
-//            nameText.setTextColor(ContextCompat.getColor(context, R.color.white))
-//        } else {
-//            nameText.setTextColor(ContextCompat.getColor(context, R.color.font_third_color))
-//        }
     }
 
     inner class ItemView(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -175,7 +168,7 @@ class MenuSixAdapter (val context: Context) : RecyclerView.Adapter<RecyclerView.
                 layoutParams.height = imageSize
                 itemView.item_menu_tab_img.layoutParams = layoutParams
             }else{
-                val count = 3.5 //一屏占4个
+                val count = 3.5
                 val height = (ScreenUtil.getScreenHeight(context) / count).toInt()
                 itemView.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, height)
                 val imageSize = (ScreenUtil.getScreenHeight(context) * 62 / 375f).toInt()

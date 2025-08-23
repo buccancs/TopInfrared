@@ -22,5 +22,4 @@
         android:visibility="visible"
         tools:text="拍照" />
 
-
 </LinearLayout>

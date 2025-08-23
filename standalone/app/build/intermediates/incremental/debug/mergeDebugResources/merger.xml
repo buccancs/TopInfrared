@@ -78,18 +78,12 @@
         
         <attr name="android:type"/>
 
-        
-        
         <attr name="android:gradientRadius"/>
 
-        
-        
         <attr name="android:centerX"/>
         
         <attr name="android:centerY"/>
 
-        
-        
         <attr name="android:startX"/>
         
         <attr name="android:startY"/>
@@ -98,7 +92,6 @@
         
         <attr name="android:endY"/>
 
-        
         <attr name="android:tileMode"/>
     </declare-styleable><declare-styleable name="GradientColorItem">
         
@@ -121,7 +114,6 @@
         
         <attr format="integer" name="layout_keyline"/>
 
-        
         <attr name="layout_anchorGravity">
             
             <flag name="top" value="0x30"/>
@@ -153,7 +145,6 @@
             <flag name="end" value="0x00800005"/>
         </attr>
 
-        
         <attr format="enum" name="layout_insetEdge">
             
             <enum name="none" value="0x0"/>
@@ -243,9 +234,6 @@
         
         <attr format="string" name="layoutManager"/>
 
-        
-        
-        
         <eat-comment/>
 
         <attr name="android:orientation"/>
@@ -363,12 +351,10 @@
         <item name="actionModeCloseDrawable">?android:attr/actionModeCloseDrawable</item>
         <item name="homeAsUpIndicator">?android:attr/homeAsUpIndicator</item>
 
-        
         <item name="listPreferredItemHeightSmall">?android:attr/listPreferredItemHeightSmall</item>
         <item name="textAppearanceLargePopupMenu">?android:attr/textAppearanceLargePopupMenu</item>
         <item name="textAppearanceSmallPopupMenu">?android:attr/textAppearanceSmallPopupMenu</item>
 
-        
         <item name="selectableItemBackground">?android:attr/selectableItemBackground</item>
         <item name="selectableItemBackgroundBorderless">?android:attr/selectableItemBackgroundBorderless</item>
         <item name="borderlessButtonStyle">?android:borderlessButtonStyle</item>
@@ -378,7 +364,6 @@
         <item name="editTextColor">?android:attr/editTextColor</item>
         <item name="listChoiceBackgroundIndicator">?android:attr/listChoiceBackgroundIndicator</item>
 
-        
         <item name="buttonStyle">?android:attr/buttonStyle</item>
         <item name="buttonStyleSmall">?android:attr/buttonStyleSmall</item>
         <item name="checkboxStyle">?android:attr/checkboxStyle</item>
@@ -387,7 +372,6 @@
         <item name="ratingBarStyle">?android:attr/ratingBarStyle</item>
         <item name="spinnerStyle">?android:attr/spinnerStyle</item>
 
-        
         <item name="android:colorPrimary">?attr/colorPrimary</item>
         <item name="android:colorPrimaryDark">?attr/colorPrimaryDark</item>
         <item name="android:colorAccent">?attr/colorAccent</item>
@@ -407,12 +391,10 @@
         <item name="actionModeCloseDrawable">?android:attr/actionModeCloseDrawable</item>
         <item name="homeAsUpIndicator">?android:attr/homeAsUpIndicator</item>
 
-        
         <item name="listPreferredItemHeightSmall">?android:attr/listPreferredItemHeightSmall</item>
         <item name="textAppearanceLargePopupMenu">?android:attr/textAppearanceLargePopupMenu</item>
         <item name="textAppearanceSmallPopupMenu">?android:attr/textAppearanceSmallPopupMenu</item>
 
-        
         <item name="selectableItemBackground">?android:attr/selectableItemBackground</item>
         <item name="selectableItemBackgroundBorderless">?android:attr/selectableItemBackgroundBorderless</item>
         <item name="borderlessButtonStyle">?android:borderlessButtonStyle</item>
@@ -422,7 +404,6 @@
         <item name="editTextColor">?android:attr/editTextColor</item>
         <item name="listChoiceBackgroundIndicator">?android:attr/listChoiceBackgroundIndicator</item>
 
-        
         <item name="buttonStyle">?android:attr/buttonStyle</item>
         <item name="buttonStyleSmall">?android:attr/buttonStyleSmall</item>
         <item name="checkboxStyle">?android:attr/checkboxStyle</item>
@@ -431,7 +412,6 @@
         <item name="ratingBarStyle">?android:attr/ratingBarStyle</item>
         <item name="spinnerStyle">?android:attr/spinnerStyle</item>
 
-        
         <item name="android:colorPrimary">?attr/colorPrimary</item>
         <item name="android:colorPrimaryDark">?attr/colorPrimaryDark</item>
         <item name="android:colorAccent">?attr/colorAccent</item>
@@ -486,7 +466,6 @@
         <item name="android:textColorLink">?android:attr/colorAccent</item>
         <item name="android:textColorLinkInverse">?android:attr/colorAccent</item>
 
-        
         <item name="android:textColorHint">@color/abc_hint_foreground_material_dark</item>
         <item name="android:textColorHintInverse">@color/abc_hint_foreground_material_light</item>
 
@@ -497,7 +476,6 @@
         <item name="android:textColorLink">?android:attr/colorAccent</item>
         <item name="android:textColorLinkInverse">?android:attr/colorAccent</item>
 
-        
         <item name="android:textColorHint">@color/abc_hint_foreground_material_light</item>
         <item name="android:textColorHintInverse">@color/abc_hint_foreground_material_dark</item>
 
@@ -517,7 +495,6 @@
         <item name="ratingBarStyleIndicator">?android:attr/ratingBarStyleIndicator</item>
         <item name="ratingBarStyleSmall">?android:attr/ratingBarStyleSmall</item>
 
-        
         <item name="actionBarItemBackground">?android:attr/actionBarItemBackground</item>
         
         <item name="actionMenuTextColor">?android:attr/actionMenuTextColor</item>
@@ -530,7 +507,6 @@
         <item name="ratingBarStyleIndicator">?android:attr/ratingBarStyleIndicator</item>
         <item name="ratingBarStyleSmall">?android:attr/ratingBarStyleSmall</item>
 
-        
         <item name="actionBarItemBackground">?android:attr/actionBarItemBackground</item>
         
         <item name="actionMenuTextColor">?android:attr/actionMenuTextColor</item>
@@ -723,7 +699,6 @@
         <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
         <item name="actionModeTheme">?attr/actionBarTheme</item>
 
-        
         <item name="listChoiceBackgroundIndicator">@drawable/abc_list_selector_holo_dark</item>
 
         <item name="colorPrimaryDark">@color/primary_dark_material_dark</item>
@@ -766,7 +741,6 @@
         <item name="colorButtonNormal">@color/button_material_dark</item>
         <item name="colorSwitchThumbNormal">@color/switch_thumb_material_dark</item>
 
-        
         <item name="isLightTheme">false</item>
     </style><style name="Base.ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="colorControlNormal">?android:attr/textColorPrimary</item>
@@ -799,7 +773,6 @@
         <item name="colorButtonNormal">@color/button_material_light</item>
         <item name="colorSwitchThumbNormal">@color/switch_thumb_material_light</item>
 
-        
         <item name="isLightTheme">true</item>
     </style><style name="Base.V7.Theme.AppCompat" parent="Platform.AppCompat">
         <item name="windowNoTitle">false</item>
@@ -810,7 +783,6 @@
 
         <item name="colorBackgroundFloating">@color/background_floating_material_dark</item>
 
-        
         <item name="isLightTheme">false</item>
 
         <item name="selectableItemBackground">@drawable/abc_item_background_holo_dark</item>
@@ -821,7 +793,6 @@
         <item name="dividerVertical">@drawable/abc_list_divider_mtrl_alpha</item>
         <item name="dividerHorizontal">@drawable/abc_list_divider_mtrl_alpha</item>
 
-        
         <item name="actionBarTabStyle">@style/Widget.AppCompat.ActionBar.TabView</item>
         <item name="actionBarTabBarStyle">@style/Widget.AppCompat.ActionBar.TabBar</item>
         <item name="actionBarTabTextStyle">@style/Widget.AppCompat.ActionBar.TabText</item>
@@ -838,10 +809,8 @@
         <item name="actionMenuTextAppearance">@style/TextAppearance.AppCompat.Widget.ActionBar.Menu</item>
         <item name="actionMenuTextColor">?android:attr/textColorPrimaryDisableOnly</item>
 
-        
         <item name="actionDropDownStyle">@style/Widget.AppCompat.Spinner.DropDown.ActionBar</item>
 
-        
         <item name="actionModeTheme">?attr/actionBarTheme</item>
         <item name="actionModeStyle">@style/Widget.AppCompat.ActionMode</item>
         <item name="actionModeBackground">@drawable/abc_cab_background_top_material</item>
@@ -856,14 +825,12 @@
         <item name="actionModeSelectAllDrawable">@drawable/abc_ic_menu_selectall_mtrl_alpha</item>
         <item name="actionModeShareDrawable">@drawable/abc_ic_menu_share_mtrl_alpha</item>
 
-        
         <item name="panelMenuListWidth">@dimen/abc_panel_menu_list_width</item>
         <item name="panelMenuListTheme">@style/Theme.AppCompat.CompactMenu</item>
         <item name="panelBackground">@drawable/abc_menu_hardkey_panel_mtrl_mult</item>
         <item name="android:panelBackground">@android:color/transparent</item>
         <item name="listChoiceBackgroundIndicator">@drawable/abc_list_selector_holo_dark</item>
 
-        
         <item name="textAppearanceListItem">@style/TextAppearance.AppCompat.Subhead</item>
         <item name="textAppearanceListItemSmall">@style/TextAppearance.AppCompat.Subhead</item>
         <item name="textAppearanceListItemSecondary">@style/TextAppearance.AppCompat.Body1</item>
@@ -875,16 +842,13 @@
         <item name="listPreferredItemPaddingStart">@dimen/abc_list_item_padding_horizontal_material</item>
         <item name="listPreferredItemPaddingEnd">@dimen/abc_list_item_padding_horizontal_material</item>
 
-        
         <item name="spinnerStyle">@style/Widget.AppCompat.Spinner</item>
         <item name="android:spinnerItemStyle">@style/Widget.AppCompat.TextView.SpinnerItem</item>
         <item name="android:dropDownListViewStyle">@style/Widget.AppCompat.ListView.DropDown</item>
 
-        
         <item name="spinnerDropDownItemStyle">@style/Widget.AppCompat.DropDownItem.Spinner</item>
         <item name="dropdownListPreferredItemHeight">?attr/listPreferredItemHeightSmall</item>
 
-        
         <item name="popupMenuStyle">@style/Widget.AppCompat.PopupMenu</item>
         <item name="textAppearanceLargePopupMenu">@style/TextAppearance.AppCompat.Widget.PopupMenu.Large</item>
         <item name="textAppearanceSmallPopupMenu">@style/TextAppearance.AppCompat.Widget.PopupMenu.Small</item>
@@ -893,17 +857,14 @@
         <item name="dropDownListViewStyle">?android:attr/dropDownListViewStyle</item>
         <item name="listMenuViewStyle">@style/Widget.AppCompat.ListMenuView</item>
 
-        
         <item name="searchViewStyle">@style/Widget.AppCompat.SearchView</item>
         <item name="android:dropDownItemStyle">@style/Widget.AppCompat.DropDownItem.Spinner</item>
         <item name="textColorSearchUrl">@color/abc_search_url_text</item>
         <item name="textAppearanceSearchResultTitle">@style/TextAppearance.AppCompat.SearchResult.Title</item>
         <item name="textAppearanceSearchResultSubtitle">@style/TextAppearance.AppCompat.SearchResult.Subtitle</item>
 
-        
         <item name="activityChooserViewStyle">@style/Widget.AppCompat.ActivityChooserView</item>
 
-        
         <item name="toolbarStyle">@style/Widget.AppCompat.Toolbar</item>
         <item name="toolbarNavigationButtonStyle">@style/Widget.AppCompat.Toolbar.Button.Navigation</item>
 
@@ -913,7 +874,6 @@
         <item name="autoCompleteTextViewStyle">@style/Widget.AppCompat.AutoCompleteTextView</item>
         <item name="android:textViewStyle">@style/Widget.AppCompat.TextView</item>
 
-        
         <item name="colorPrimaryDark">@color/primary_dark_material_dark</item>
         <item name="colorPrimary">@color/primary_material_dark</item>
         <item name="colorAccent">@color/accent_material_dark</item>
@@ -937,7 +897,6 @@
         <item name="ratingBarStyleSmall">@style/Widget.AppCompat.RatingBar.Small</item>
         <item name="seekBarStyle">@style/Widget.AppCompat.SeekBar</item>
 
-        
         <item name="buttonStyle">@style/Widget.AppCompat.Button</item>
         <item name="buttonStyleSmall">@style/Widget.AppCompat.Button.Small</item>
         <item name="android:textAppearanceButton">@style/TextAppearance.AppCompat.Widget.Button</item>
@@ -950,7 +909,6 @@
         <item name="buttonBarNegativeButtonStyle">?attr/buttonBarButtonStyle</item>
         <item name="buttonBarNeutralButtonStyle">?attr/buttonBarButtonStyle</item>
 
-        
         <item name="dialogTheme">@style/ThemeOverlay.AppCompat.Dialog</item>
         <item name="dialogPreferredPadding">@dimen/abc_dialog_padding_material</item>
         <item name="dialogCornerRadius">@dimen/abc_dialog_corner_radius_material</item>
@@ -961,13 +919,11 @@
         <item name="textColorAlertDialogListItem">@color/abc_primary_text_material_dark</item>
         <item name="listDividerAlertDialog">@null</item>
 
-        
         <item name="windowFixedWidthMajor">@null</item>
         <item name="windowFixedWidthMinor">@null</item>
         <item name="windowFixedHeightMajor">@null</item>
         <item name="windowFixedHeightMinor">@null</item>
 
-        
         <item name="tooltipFrameBackground">@drawable/tooltip_frame_light</item>
         <item name="tooltipForegroundColor">@color/foreground_material_light</item>
 
@@ -1006,7 +962,6 @@
 
         <item name="colorBackgroundFloating">@color/background_floating_material_light</item>
 
-        
         <item name="isLightTheme">true</item>
 
         <item name="selectableItemBackground">@drawable/abc_item_background_holo_light</item>
@@ -1017,7 +972,6 @@
         <item name="dividerVertical">@drawable/abc_list_divider_mtrl_alpha</item>
         <item name="dividerHorizontal">@drawable/abc_list_divider_mtrl_alpha</item>
 
-        
         <item name="actionBarTabStyle">@style/Widget.AppCompat.Light.ActionBar.TabView</item>
         <item name="actionBarTabBarStyle">@style/Widget.AppCompat.Light.ActionBar.TabBar</item>
         <item name="actionBarTabTextStyle">@style/Widget.AppCompat.Light.ActionBar.TabText</item>
@@ -1034,7 +988,6 @@
         <item name="actionMenuTextAppearance">@style/TextAppearance.AppCompat.Widget.ActionBar.Menu</item>
         <item name="actionMenuTextColor">?android:attr/textColorPrimaryDisableOnly</item>
 
-        
         <item name="actionModeTheme">?attr/actionBarTheme</item>
         <item name="actionModeStyle">@style/Widget.AppCompat.ActionMode</item>
         <item name="actionModeBackground">@drawable/abc_cab_background_top_material</item>
@@ -1049,17 +1002,14 @@
         <item name="actionModeSelectAllDrawable">@drawable/abc_ic_menu_selectall_mtrl_alpha</item>
         <item name="actionModeShareDrawable">@drawable/abc_ic_menu_share_mtrl_alpha</item>
 
-        
         <item name="actionDropDownStyle">@style/Widget.AppCompat.Light.Spinner.DropDown.ActionBar</item>
 
-        
         <item name="panelMenuListWidth">@dimen/abc_panel_menu_list_width</item>
         <item name="panelMenuListTheme">@style/Theme.AppCompat.CompactMenu</item>
         <item name="panelBackground">@drawable/abc_menu_hardkey_panel_mtrl_mult</item>
         <item name="android:panelBackground">@android:color/transparent</item>
         <item name="listChoiceBackgroundIndicator">@drawable/abc_list_selector_holo_light</item>
 
-        
         <item name="textAppearanceListItem">@style/TextAppearance.AppCompat.Subhead</item>
         <item name="textAppearanceListItemSmall">@style/TextAppearance.AppCompat.Subhead</item>
         <item name="textAppearanceListItemSecondary">@style/TextAppearance.AppCompat.Body1</item>
@@ -1071,16 +1021,13 @@
         <item name="listPreferredItemPaddingStart">@dimen/abc_list_item_padding_horizontal_material</item>
         <item name="listPreferredItemPaddingEnd">@dimen/abc_list_item_padding_horizontal_material</item>
 
-        
         <item name="spinnerStyle">@style/Widget.AppCompat.Spinner</item>
         <item name="android:spinnerItemStyle">@style/Widget.AppCompat.TextView.SpinnerItem</item>
         <item name="android:dropDownListViewStyle">@style/Widget.AppCompat.ListView.DropDown</item>
 
-        
         <item name="spinnerDropDownItemStyle">@style/Widget.AppCompat.DropDownItem.Spinner</item>
         <item name="dropdownListPreferredItemHeight">?attr/listPreferredItemHeightSmall</item>
 
-        
         <item name="popupMenuStyle">@style/Widget.AppCompat.Light.PopupMenu</item>
         <item name="textAppearanceLargePopupMenu">@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Large</item>
         <item name="textAppearanceSmallPopupMenu">@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Small</item>
@@ -1089,17 +1036,14 @@
         <item name="dropDownListViewStyle">?android:attr/dropDownListViewStyle</item>
         <item name="listMenuViewStyle">@style/Widget.AppCompat.ListMenuView</item>
 
-        
         <item name="searchViewStyle">@style/Widget.AppCompat.Light.SearchView</item>
         <item name="android:dropDownItemStyle">@style/Widget.AppCompat.DropDownItem.Spinner</item>
         <item name="textColorSearchUrl">@color/abc_search_url_text</item>
         <item name="textAppearanceSearchResultTitle">@style/TextAppearance.AppCompat.SearchResult.Title</item>
         <item name="textAppearanceSearchResultSubtitle">@style/TextAppearance.AppCompat.SearchResult.Subtitle</item>
 
-        
         <item name="activityChooserViewStyle">@style/Widget.AppCompat.ActivityChooserView</item>
 
-        
         <item name="toolbarStyle">@style/Widget.AppCompat.Toolbar</item>
         <item name="toolbarNavigationButtonStyle">@style/Widget.AppCompat.Toolbar.Button.Navigation</item>
 
@@ -1109,7 +1053,6 @@
         <item name="autoCompleteTextViewStyle">@style/Widget.AppCompat.AutoCompleteTextView</item>
         <item name="android:textViewStyle">@style/Widget.AppCompat.TextView</item>
 
-        
         <item name="colorPrimaryDark">@color/primary_dark_material_light</item>
         <item name="colorPrimary">@color/primary_material_light</item>
         <item name="colorAccent">@color/accent_material_light</item>
@@ -1132,7 +1075,6 @@
         <item name="ratingBarStyleSmall">@style/Widget.AppCompat.RatingBar.Small</item>
         <item name="seekBarStyle">@style/Widget.AppCompat.SeekBar</item>
 
-        
         <item name="buttonStyle">@style/Widget.AppCompat.Button</item>
         <item name="buttonStyleSmall">@style/Widget.AppCompat.Button.Small</item>
         <item name="android:textAppearanceButton">@style/TextAppearance.AppCompat.Widget.Button</item>
@@ -1145,7 +1087,6 @@
         <item name="buttonBarNegativeButtonStyle">?attr/buttonBarButtonStyle</item>
         <item name="buttonBarNeutralButtonStyle">?attr/buttonBarButtonStyle</item>
 
-        
         <item name="dialogTheme">@style/ThemeOverlay.AppCompat.Dialog</item>
         <item name="dialogPreferredPadding">@dimen/abc_dialog_padding_material</item>
         <item name="dialogCornerRadius">@dimen/abc_dialog_corner_radius_material</item>
@@ -1156,13 +1097,11 @@
         <item name="textColorAlertDialogListItem">@color/abc_primary_text_material_light</item>
         <item name="listDividerAlertDialog">@null</item>
 
-        
         <item name="windowFixedWidthMajor">@null</item>
         <item name="windowFixedWidthMinor">@null</item>
         <item name="windowFixedHeightMajor">@null</item>
         <item name="windowFixedHeightMinor">@null</item>
 
-        
         <item name="tooltipFrameBackground">@drawable/tooltip_frame_dark</item>
         <item name="tooltipForegroundColor">@color/foreground_material_dark</item>
 
@@ -1503,7 +1442,6 @@
         <item name="android:buttonBarButtonStyle">?attr/buttonBarButtonStyle</item>
         <item name="android:borderlessButtonStyle">?attr/borderlessButtonStyle</item>
 
-        
         <item name="android:colorForeground">@color/foreground_material_dark</item>
         <item name="android:colorForegroundInverse">@color/foreground_material_light</item>
         <item name="android:colorBackground">@color/background_material_dark</item>
@@ -1512,7 +1450,6 @@
         <item name="android:backgroundDimAmount">0.6</item>
         <item name="android:windowBackground">@color/background_material_dark</item>
 
-        
         <item name="android:textColorPrimary">@color/abc_primary_text_material_dark</item>
         <item name="android:textColorPrimaryInverse">@color/abc_primary_text_material_light</item>
         <item name="android:textColorPrimaryDisableOnly">@color/abc_primary_text_disable_only_material_dark</item>
@@ -1528,7 +1465,6 @@
         <item name="android:textColorLinkInverse">?attr/colorAccent</item>
         <item name="android:textColorAlertDialogListItem">@color/abc_primary_text_material_dark</item>
 
-        
         <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>
         <item name="android:textAppearanceInverse">@style/TextAppearance.AppCompat.Inverse</item>
         <item name="android:textAppearanceLarge">@style/TextAppearance.AppCompat.Large</item>
@@ -1543,7 +1479,6 @@
         <item name="android:listChoiceIndicatorMultiple">@drawable/abc_btn_check_material</item>
         <item name="listChoiceIndicatorMultipleAnimated">@drawable/abc_btn_check_material_anim</item>
 
-        
         <item name="android:textAppearanceListItem">@style/TextAppearance.AppCompat.Subhead</item>
         <item name="android:textAppearanceListItemSmall">@style/TextAppearance.AppCompat.Subhead</item>
         
@@ -1571,7 +1506,6 @@
         <item name="android:buttonBarButtonStyle">?attr/buttonBarButtonStyle</item>
         <item name="android:borderlessButtonStyle">?attr/borderlessButtonStyle</item>
 
-        
         <item name="android:colorForeground">@color/foreground_material_light</item>
         <item name="android:colorForegroundInverse">@color/foreground_material_dark</item>
         <item name="android:colorBackground">@color/background_material_light</item>
@@ -1580,7 +1514,6 @@
         <item name="android:backgroundDimAmount">0.6</item>
         <item name="android:windowBackground">@color/background_material_light</item>
 
-        
         <item name="android:textColorPrimary">@color/abc_primary_text_material_light</item>
         <item name="android:textColorPrimaryInverse">@color/abc_primary_text_material_dark</item>
         <item name="android:textColorSecondary">@color/abc_secondary_text_material_light</item>
@@ -1597,7 +1530,6 @@
         <item name="android:textColorLinkInverse">?attr/colorAccent</item>
         <item name="android:textColorAlertDialogListItem">@color/abc_primary_text_material_light</item>
 
-        
         <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>
         <item name="android:textAppearanceInverse">@style/TextAppearance.AppCompat.Inverse</item>
         <item name="android:textAppearanceLarge">@style/TextAppearance.AppCompat.Large</item>
@@ -1612,7 +1544,6 @@
         <item name="android:listChoiceIndicatorMultiple">@drawable/abc_btn_check_material</item>
         <item name="listChoiceIndicatorMultipleAnimated">@drawable/abc_btn_check_material_anim</item>
 
-        
         <item name="android:textAppearanceListItem">@style/TextAppearance.AppCompat.Subhead</item>
         <item name="android:textAppearanceListItemSmall">@style/TextAppearance.AppCompat.Subhead</item>
         
@@ -1638,7 +1569,6 @@
         <item name="actionDropDownStyle">@style/Widget.AppCompat.Spinner.DropDown.ActionBar</item>
         <item name="selectableItemBackground">@drawable/abc_item_background_holo_dark</item>
 
-        
         <item name="android:autoCompleteTextViewStyle">@style/Widget.AppCompat.AutoCompleteTextView</item>
         <item name="android:dropDownItemStyle">@style/Widget.AppCompat.DropDownItem.Spinner</item>
     </style><style name="Platform.ThemeOverlay.AppCompat.Light">
@@ -1646,7 +1576,6 @@
         <item name="actionDropDownStyle">@style/Widget.AppCompat.Light.Spinner.DropDown.ActionBar</item>
         <item name="selectableItemBackground">@drawable/abc_item_background_holo_light</item>
 
-        
         <item name="android:autoCompleteTextViewStyle">@style/Widget.AppCompat.Light.AutoCompleteTextView</item>
         <item name="android:dropDownItemStyle">@style/Widget.AppCompat.DropDownItem.Spinner</item>
     </style><style name="Platform.Widget.AppCompat.Spinner" parent="android:Widget.Holo.Spinner"/><style name="RtlOverlay.DialogWindowTitle.AppCompat" parent="Base.DialogWindowTitle.AppCompat">
@@ -1845,10 +1774,8 @@
         
         <attr format="reference" name="srcCompat"/>
 
-        
         <attr format="color" name="tint"/>
 
-        
         <attr name="tintMode">
             
             <enum name="src_over" value="3"/>
@@ -1951,34 +1878,24 @@
         <attr format="boolean" name="emojiCompatEnabled"/>
     </declare-styleable><declare-styleable name="AppCompatTheme">
 
-        
-        
-        
         <eat-comment/>
 
-        
         <attr format="boolean" name="windowActionBar"/>
 
-        
         <attr format="boolean" name="windowNoTitle"/>
 
-        
         <attr format="boolean" name="windowActionBarOverlay"/>
 
-        
         <attr format="boolean" name="windowActionModeOverlay"/>
 
-        
         <attr format="dimension|fraction" name="windowFixedWidthMajor"/>
         
         <attr format="dimension|fraction" name="windowFixedHeightMinor"/>
 
-        
         <attr format="dimension|fraction" name="windowFixedWidthMinor"/>
         
         <attr format="dimension|fraction" name="windowFixedHeightMajor"/>
 
-        
         <attr format="dimension|fraction" name="windowMinWidthMajor"/>
         
         <attr format="dimension|fraction" name="windowMinWidthMinor"/>
@@ -1986,9 +1903,6 @@
         <attr name="android:windowIsFloating"/>
         <attr name="android:windowAnimationStyle"/>
 
-        
-        
-        
         <eat-comment/>
         
         <attr format="reference" name="actionBarTabStyle"/>
@@ -2018,14 +1932,9 @@
         <attr format="reference" name="actionBarItemBackground"/>
         
         <attr format="reference" name="actionMenuTextAppearance"/>
-        
-        
+
         <attr format="color|reference" name="actionMenuTextColor"/>
 
-
-        
-        
-        
         <eat-comment/>
         <attr format="reference" name="actionModeStyle"/>
         <attr format="reference" name="actionModeCloseButtonStyle"/>
@@ -2050,15 +1959,10 @@
         
         <attr format="reference" name="actionModeWebSearchDrawable"/>
 
-        
         <attr format="string" name="actionModeCloseContentDescription"/>
 
-        
         <attr format="reference" name="actionModePopupWindowStyle"/>
 
-        
-        
-        
         <eat-comment/>
         
         <attr format="reference" name="textAppearanceLargePopupMenu"/>
@@ -2067,13 +1971,8 @@
         
         <attr format="reference" name="textAppearancePopupMenuHeader"/>
 
-
-        
-        
-        
         <eat-comment/>
 
-        
         <attr format="reference" name="dialogTheme"/>
         
         <attr format="dimension" name="dialogPreferredPadding"/>
@@ -2082,12 +1981,8 @@
         
         <attr format="dimension" name="dialogCornerRadius"/>
 
-        
-        
-        
         <eat-comment/>
 
-        
         <attr format="reference" name="actionDropDownStyle"/>
         
         <attr format="dimension" name="dropdownListPreferredItemHeight"/>
@@ -2096,10 +1991,8 @@
         
         <attr format="reference" name="homeAsUpIndicator"/>
 
-        
         <attr format="reference" name="actionButtonStyle"/>
 
-        
         <attr format="reference" name="buttonBarStyle"/>
         
         <attr format="reference" name="buttonBarButtonStyle"/>
@@ -2116,27 +2009,20 @@
         
         <attr format="reference" name="activityChooserViewStyle"/>
 
-        
         <attr format="reference" name="toolbarStyle"/>
         
         <attr format="reference" name="toolbarNavigationButtonStyle"/>
 
-        
         <attr format="reference" name="popupMenuStyle"/>
         
         <attr format="reference" name="popupWindowStyle"/>
 
-        
         <attr format="reference|color" name="editTextColor"/>
         
         <attr format="reference" name="editTextBackground"/>
 
-        
         <attr format="reference" name="imageButtonStyle"/>
 
-        
-        
-        
         <eat-comment/>
         
         <attr format="reference" name="textAppearanceSearchResultTitle"/>
@@ -2147,45 +2033,33 @@
         
         <attr format="reference" name="searchViewStyle"/>
 
-        
-        
-        
         <eat-comment/>
 
-        
         <attr format="dimension" name="listPreferredItemHeight"/>
         
         <attr format="dimension" name="listPreferredItemHeightSmall"/>
         
         <attr format="dimension" name="listPreferredItemHeightLarge"/>
 
-        
         <attr format="dimension" name="listPreferredItemPaddingLeft"/>
         
         <attr format="dimension" name="listPreferredItemPaddingRight"/>
 
-        
         <attr format="dimension" name="listPreferredItemPaddingStart"/>
         
         <attr format="dimension" name="listPreferredItemPaddingEnd"/>
 
-        
         <attr format="reference" name="dropDownListViewStyle"/>
         <attr format="reference" name="listPopupWindowStyle"/>
 
-        
         <attr format="reference" name="textAppearanceListItem"/>
         
         <attr format="reference" name="textAppearanceListItemSecondary"/>
         
         <attr format="reference" name="textAppearanceListItemSmall"/>
 
-        
-        
-        
         <eat-comment/>
 
-        
         <attr format="reference" name="panelBackground"/>
         
         <attr format="dimension" name="panelMenuListWidth"/>
@@ -2194,44 +2068,28 @@
         
         <attr format="reference" name="listChoiceBackgroundIndicator"/>
 
-        
-        
-        
         <eat-comment/>
 
-        
         <attr format="color" name="colorPrimary"/>
 
-        
         <attr format="color" name="colorPrimaryDark"/>
 
-        
         <attr format="color" name="colorAccent"/>
 
-        
         <attr format="color" name="colorControlNormal"/>
 
-        
         <attr format="color" name="colorControlActivated"/>
 
-        
         <attr format="color" name="colorControlHighlight"/>
 
-        
         <attr format="color" name="colorButtonNormal"/>
 
-        
         <attr format="color" name="colorSwitchThumbNormal"/>
 
-        
         <attr format="reference" name="controlBackground"/>
 
-        
         <attr format="color" name="colorBackgroundFloating"/>
 
-        
-        
-        
         <eat-comment/>
         <attr format="reference" name="alertDialogStyle"/>
         <attr format="reference" name="alertDialogButtonGroupStyle"/>
@@ -2239,24 +2097,16 @@
         
         <attr format="reference" name="alertDialogTheme"/>
 
-        
         <attr format="reference|color" name="textColorAlertDialogListItem"/>
 
-        
         <attr format="reference" name="buttonBarPositiveButtonStyle"/>
 
-        
         <attr format="reference" name="buttonBarNegativeButtonStyle"/>
 
-        
         <attr format="reference" name="buttonBarNeutralButtonStyle"/>
 
-        
-        
-        
         <eat-comment/>
 
-        
         <attr format="reference" name="autoCompleteTextViewStyle"/>
         
         <attr format="reference" name="buttonStyle"/>
@@ -2283,30 +2133,20 @@
         
         <attr format="reference" name="switchStyle"/>
 
-        
         <attr format="reference" name="listMenuViewStyle"/>
 
-        
-        
-        
         <eat-comment/>
 
-        
         <attr format="reference" name="tooltipFrameBackground"/>
         
         <attr format="reference|color" name="tooltipForegroundColor"/>
 
-        
         <attr format="reference|color" name="colorError"/>
 
         <attr format="string" name="viewInflaterClass"/>
 
-        
-        
-        
         <eat-comment/>
 
-        
         <attr format="reference" name="listChoiceIndicatorSingleAnimated"/>
         
         <attr format="reference" name="listChoiceIndicatorMultipleAnimated"/>
@@ -2321,7 +2161,6 @@
         
         <attr format="color" name="checkMarkTint"/>
 
-        
         <attr name="checkMarkTintMode">
             
             <enum name="src_over" value="3"/>
@@ -2343,7 +2182,6 @@
         
         <attr format="color" name="buttonTint"/>
 
-        
         <attr name="buttonTintMode">
             
             <enum name="src_over" value="3"/>
@@ -2410,48 +2248,34 @@
         <attr name="android:dropDownHorizontalOffset"/>
     </declare-styleable><declare-styleable name="MenuGroup">
 
-        
         <attr name="android:id"/>
 
-        
         <attr name="android:menuCategory"/>
 
-        
         <attr name="android:orderInCategory"/>
 
-        
         <attr name="android:checkableBehavior"/>
 
-        
         <attr name="android:visible"/>
 
-        
         <attr name="android:enabled"/>
 
     </declare-styleable><declare-styleable name="MenuItem">
 
-        
         <attr name="android:id"/>
 
-        
         <attr name="android:menuCategory"/>
 
-        
         <attr name="android:orderInCategory"/>
 
-        
         <attr name="android:title"/>
 
-        
         <attr name="android:titleCondensed"/>
 
-        
         <attr name="android:icon"/>
 
-        
         <attr name="android:alphabeticShortcut"/>
 
-        
         <attr name="alphabeticModifiers">
             <flag name="META" value="0x10000"/>
             <flag name="CTRL" value="0x1000"/>
@@ -2461,10 +2285,8 @@
             <flag name="FUNCTION" value="0x8"/>
         </attr>
 
-        
         <attr name="android:numericShortcut"/>
 
-        
         <attr name="numericModifiers">
             <flag name="META" value="0x10000"/>
             <flag name="CTRL" value="0x1000"/>
@@ -2474,22 +2296,16 @@
             <flag name="FUNCTION" value="0x8"/>
         </attr>
 
-        
         <attr name="android:checkable"/>
 
-        
         <attr name="android:checked"/>
 
-        
         <attr name="android:visible"/>
 
-        
         <attr name="android:enabled"/>
 
-        
         <attr name="android:onClick"/>
 
-        
         <attr name="showAsAction">
             
             <flag name="never" value="0"/>
@@ -2503,25 +2319,18 @@
             <flag name="collapseActionView" value="8"/>
         </attr>
 
-        
         <attr format="reference" name="actionLayout"/>
 
-        
         <attr format="string" name="actionViewClass"/>
 
-        
         <attr format="string" name="actionProviderClass"/>
 
-        
         <attr format="string" name="contentDescription"/>
 
-        
         <attr format="string" name="tooltipText"/>
 
-        
         <attr format="color" name="iconTint"/>
 
-        
         <attr name="iconTintMode">
             
             <enum name="src_over" value="3"/>
@@ -2758,7 +2567,6 @@
         
         <attr format="color" name="backgroundTint"/>
 
-        
         <attr name="backgroundTintMode">
             
             <enum name="src_over" value="3"/>
@@ -2792,8 +2600,7 @@
         <attr name="android:enterFadeDuration"/>
         
         <attr name="android:exitFadeDuration"/>
-        
-        
+
     </declare-styleable><declare-styleable name="AnimatedStateListDrawableItem">
         
         <attr name="android:drawable"/>
@@ -2821,8 +2628,7 @@
         <attr name="android:enterFadeDuration"/>
         
         <attr name="android:exitFadeDuration"/>
-        
-        
+
     </declare-styleable><declare-styleable name="StateListDrawableItem">
         
         <attr name="android:drawable"/>
@@ -3066,29 +2872,21 @@
         <attr name="android:orientation"/>
         <attr name="android:id"/>
 
-        
         <attr name="android:visibility"/>
         <attr name="visibilityMode"/>
 
-        
         <attr name="android:alpha"/>
 
-        
         <attr name="android:elevation"/>
 
-        
         <attr name="android:rotation"/>
 
-        
         <attr name="android:rotationX"/>
 
-        
         <attr name="android:rotationY"/>
 
-        
         <attr name="android:scaleX"/>
 
-        
         <attr name="android:scaleY"/>
         <attr name="pivotAnchor"/>
 
@@ -3096,7 +2894,6 @@
         <attr name="android:transformPivotY"/>
         <attr name="transformPivotTarget"/>
 
-        
         <attr name="android:translationX"/>
         
         <attr name="android:translationY"/>
@@ -3200,8 +2997,6 @@
         <attr name="flow_maxElementsWrap"/>
         <attr name="flow_horizontalGap"/>
         <attr name="flow_verticalGap"/>
-        
-        
 
         <attr name="flow_firstHorizontalStyle"/>
         <attr name="flow_firstVerticalStyle"/>
@@ -3263,8 +3058,6 @@
         <attr name="flow_horizontalAlign"/>
         <attr name="flow_verticalBias"/>
         <attr name="flow_horizontalBias"/>
-        
-        
 
         <attr name="flow_firstHorizontalStyle"/>
         <attr name="flow_firstVerticalStyle"/>
@@ -3281,7 +3074,6 @@
         <attr name="circularflow_viewCenter"/>
         <attr name="circularflow_defaultRadius"/>
         <attr name="circularflow_defaultAngle"/>
-
 
         <attr name="layout_constraintCircle"/>
         <attr name="layout_constraintCircleRadius"/>
@@ -3366,29 +3158,21 @@
         <attr name="android:id"/>
         <attr name="motionTarget"/>
 
-        
         <attr name="android:visibility"/>
         <attr name="visibilityMode"/>
 
-        
         <attr name="android:alpha"/>
 
-        
         <attr name="android:elevation"/>
 
-        
         <attr name="android:rotation"/>
 
-        
         <attr name="android:rotationX"/>
 
-        
         <attr name="android:rotationY"/>
 
-        
         <attr name="android:scaleX"/>
 
-        
         <attr name="android:scaleY"/>
         <attr name="pivotAnchor"/>
 
@@ -3396,7 +3180,6 @@
         <attr name="android:transformPivotY"/>
         <attr name="transformPivotTarget"/>
 
-        
         <attr name="android:translationX"/>
         
         <attr name="android:translationY"/>
@@ -3483,8 +3266,6 @@
         <attr name="flow_maxElementsWrap"/>
         <attr name="flow_horizontalGap"/>
         <attr name="flow_verticalGap"/>
-        
-        
 
         <attr name="flow_firstHorizontalStyle"/>
         <attr name="flow_firstVerticalStyle"/>
@@ -3627,8 +3408,6 @@
         <attr name="flow_maxElementsWrap"/>
         <attr name="flow_horizontalGap"/>
         <attr name="flow_verticalGap"/>
-        
-        
 
         <attr name="flow_firstHorizontalStyle"/>
         <attr name="flow_firstVerticalStyle"/>
@@ -3688,7 +3467,6 @@
 
         <attr name="motionProgress"/>
 
-        
         <attr name="android:alpha"/>
         <attr name="android:elevation"/>
         <attr name="android:rotation"/>
@@ -3740,16 +3518,12 @@
             <enum name="parentRelative" value="2"/>
         </attr>
 
-        
         <attr format="float" name="percentX"/>
 
-        
         <attr format="float" name="percentY"/>
 
-        
         <attr format="float" name="percentWidth"/>
 
-        
         <attr format="float" name="percentHeight"/>
         <attr name="framePosition"/>
         <attr name="motionTarget"/>
@@ -3769,10 +3543,8 @@
         <attr name="waveOffset"/>
         <attr name="wavePhase"/>
 
-        
         <attr name="waveDecay"/>
 
-        
         <attr name="android:alpha"/>
         <attr name="android:elevation"/>
         <attr name="android:rotation"/>
@@ -4032,10 +3804,8 @@
         <attr name="android:visibility"/>
         <attr name="visibilityMode"/>
 
-        
         <attr name="android:alpha"/>
 
-        
         <attr name="motionProgress"/>
         <attr name="layout_constraintTag"/>
     </declare-styleable><declare-styleable name="State">
@@ -4062,36 +3832,26 @@
         
         <attr name="android:elevation"/>
 
-        
         <attr name="android:rotation"/>
 
-        
         <attr name="android:rotationX"/>
 
-        
         <attr name="android:rotationY"/>
 
-        
         <attr name="android:scaleX"/>
 
-        
         <attr name="android:scaleY"/>
 
-        
         <attr name="android:transformPivotX"/>
 
-        
         <attr name="android:transformPivotY"/>
 
         <attr name="transformPivotTarget"/>
 
-        
         <attr format="dimension" name="android:translationX"/>
 
-        
         <attr format="dimension" name="android:translationY"/>
 
-        
         <attr format="dimension" name="android:translationZ"/>
 
     </declare-styleable><declare-styleable name="Transition">
@@ -4263,7 +4023,6 @@
   </plurals><string name="bottomsheet_action_collapse">Sužavanje donje tabele</string><string name="bottomsheet_action_expand">Proširivanje donje tabele</string><string name="bottomsheet_action_expand_halfway">Proširivanje dopola</string><string name="bottomsheet_drag_handle_clicked">Ručica za prevlačenje je dvaput dodirnuta</string><string name="bottomsheet_drag_handle_content_description">Ručica za prevlačenje</string><string name="character_counter_content_description">Uneseno znakova: %1$d od %2$d</string><string name="character_counter_overflowed_content_description">Ograničenje broja znakova premašuje %1$d od %2$d</string><string name="clear_text_end_icon_content_description">Obriši tekst</string><string name="error_icon_content_description">Greška</string><string name="exposed_dropdown_menu_content_description">Prikaži padajući meni</string><string name="icon_content_description">ikona dijaloškog okvira</string><string name="item_view_role_description">Kartica</string><string name="material_clock_toggle_content_description">Odaberite prijepodne ili poslijepodne</string><string name="material_hour_24h_suffix">%1$s h</string><string name="material_hour_selection">Odaberite sat</string><string name="material_hour_suffix">%1$s h</string><string name="material_minute_selection">Odaberite minute</string><string name="material_minute_suffix">%1$s min</string><string name="material_timepicker_am">AM</string><string name="material_timepicker_clock_mode_description">Prebacite u način rada kao sat za unos vremena.</string><string name="material_timepicker_hour">Sat</string><string name="material_timepicker_minute">Minuta</string><string name="material_timepicker_pm">PM</string><string name="material_timepicker_select_time">Odabir vremena</string><string name="material_timepicker_text_input_mode_description">Prebacite u način unosa teksta za unos vremena.</string><string name="mtrl_badge_numberless_content_description">Novo obavještenje</string><string name="mtrl_chip_close_icon_content_description">Uklonite %1$s</string><string name="mtrl_exceed_max_badge_number_content_description" ns2:ignore="PluralsCandidate">Broj novih obavještenja: više od %1$d</string><string name="mtrl_picker_a11y_next_month">Promijeni na sljedeći mjesec</string><string name="mtrl_picker_a11y_prev_month">Promijeni na prethodni mjesec</string><string name="mtrl_picker_announce_current_range_selection">Odabir datuma početka: %1$s – Odabir datuma završetka: %2$s</string><string name="mtrl_picker_announce_current_selection">Trenutni izbor: %1$s</string><string name="mtrl_picker_announce_current_selection_none">ništa</string><string name="mtrl_picker_cancel">Otkaži</string><string name="mtrl_picker_confirm">Uredu</string><string name="mtrl_picker_date_header_selected">%1$s</string><string name="mtrl_picker_date_header_title">Odaberite datum</string><string name="mtrl_picker_date_header_unselected">Odabrani datum</string><string name="mtrl_picker_day_of_week_column_header">Kolona za dane: %1$s</string><string name="mtrl_picker_end_date_description">Datum završetka %1$s</string><string name="mtrl_picker_invalid_format">Nevažeći format.</string><string name="mtrl_picker_invalid_format_example">Primjer: %1$s</string><string name="mtrl_picker_invalid_format_use">Koristi: %1$s</string><string name="mtrl_picker_invalid_range">Nevažeći opseg.</string><string name="mtrl_picker_navigate_to_current_year_description">Odlazak na trenutnu godinu %1$d</string><string name="mtrl_picker_navigate_to_year_description">Odlazak na %1$d. godinu</string><string name="mtrl_picker_out_of_range">Izvan opsega: %1$s</string><string name="mtrl_picker_range_header_only_end_selected">Datum početka – %1$s</string><string name="mtrl_picker_range_header_only_start_selected">%1$s – Datum završetka</string><string name="mtrl_picker_range_header_selected">%1$s – %2$s</string><string name="mtrl_picker_range_header_title">Odaberite raspon</string><string name="mtrl_picker_range_header_unselected">Datum početka – Datum završetka</string><string name="mtrl_picker_save">Sačuvaj</string><string name="mtrl_picker_start_date_description">Datum početka %1$s</string><string name="mtrl_picker_text_input_date_hint">Datum</string><string name="mtrl_picker_text_input_date_range_end_hint">Datum završetka</string><string name="mtrl_picker_text_input_date_range_start_hint">Datum početka</string><string name="mtrl_picker_text_input_day_abbr">d</string><string name="mtrl_picker_text_input_month_abbr">m</string><string name="mtrl_picker_text_input_year_abbr">g</string><string name="mtrl_picker_today_description">Danas %1$s</string><string name="mtrl_picker_toggle_to_calendar_input_mode">Prebacivanje na način unosa kalendara</string><string name="mtrl_picker_toggle_to_day_selection">Prebacivanje dodirom na prikaz Kalendara</string><string name="mtrl_picker_toggle_to_text_input_mode">Prebacivanje na način unosa teksta</string><string name="mtrl_picker_toggle_to_year_selection">Prebacivanje dodirom na prikaz godine</string><string name="mtrl_timepicker_cancel">Otkaži</string><string name="mtrl_timepicker_confirm">Uredu</string><string name="password_toggle_content_description">Prikaži lozinku</string></file><file path="/home/runner/.gradle/caches/transforms-3/9b369476b5216dcf22e792672dfe9301/transformed/material-1.11.0/res/values-v31/values-v31.xml" qualifiers="v31"><color name="m3_ref_palette_dynamic_neutral0">@android:color/system_neutral1_1000</color><color name="m3_ref_palette_dynamic_neutral10">@android:color/system_neutral1_900</color><color name="m3_ref_palette_dynamic_neutral100">@android:color/system_neutral1_0</color><color name="m3_ref_palette_dynamic_neutral20">@android:color/system_neutral1_800</color><color name="m3_ref_palette_dynamic_neutral30">@android:color/system_neutral1_700</color><color name="m3_ref_palette_dynamic_neutral40">@android:color/system_neutral1_600</color><color name="m3_ref_palette_dynamic_neutral50">@android:color/system_neutral1_500</color><color name="m3_ref_palette_dynamic_neutral60">@android:color/system_neutral1_400</color><color name="m3_ref_palette_dynamic_neutral70">@android:color/system_neutral1_300</color><color name="m3_ref_palette_dynamic_neutral80">@android:color/system_neutral1_200</color><color name="m3_ref_palette_dynamic_neutral90">@android:color/system_neutral1_100</color><color name="m3_ref_palette_dynamic_neutral95">@android:color/system_neutral1_50</color><color name="m3_ref_palette_dynamic_neutral99">@android:color/system_neutral1_10</color><color name="m3_ref_palette_dynamic_neutral_variant0">@android:color/system_neutral2_1000</color><color name="m3_ref_palette_dynamic_neutral_variant10">@android:color/system_neutral2_900</color><color name="m3_ref_palette_dynamic_neutral_variant100">@android:color/system_neutral2_0</color><color name="m3_ref_palette_dynamic_neutral_variant20">@android:color/system_neutral2_800</color><color name="m3_ref_palette_dynamic_neutral_variant30">@android:color/system_neutral2_700</color><color name="m3_ref_palette_dynamic_neutral_variant40">@android:color/system_neutral2_600</color><color name="m3_ref_palette_dynamic_neutral_variant50">@android:color/system_neutral2_500</color><color name="m3_ref_palette_dynamic_neutral_variant60">@android:color/system_neutral2_400</color><color name="m3_ref_palette_dynamic_neutral_variant70">@android:color/system_neutral2_300</color><color name="m3_ref_palette_dynamic_neutral_variant80">@android:color/system_neutral2_200</color><color name="m3_ref_palette_dynamic_neutral_variant90">@android:color/system_neutral2_100</color><color name="m3_ref_palette_dynamic_neutral_variant95">@android:color/system_neutral2_50</color><color name="m3_ref_palette_dynamic_neutral_variant99">@android:color/system_neutral2_10</color><color name="m3_ref_palette_dynamic_primary0">@android:color/system_accent1_1000</color><color name="m3_ref_palette_dynamic_primary10">@android:color/system_accent1_900</color><color name="m3_ref_palette_dynamic_primary100">@android:color/system_accent1_0</color><color name="m3_ref_palette_dynamic_primary20">@android:color/system_accent1_800</color><color name="m3_ref_palette_dynamic_primary30">@android:color/system_accent1_700</color><color name="m3_ref_palette_dynamic_primary40">@android:color/system_accent1_600</color><color name="m3_ref_palette_dynamic_primary50">@android:color/system_accent1_500</color><color name="m3_ref_palette_dynamic_primary60">@android:color/system_accent1_400</color><color name="m3_ref_palette_dynamic_primary70">@android:color/system_accent1_300</color><color name="m3_ref_palette_dynamic_primary80">@android:color/system_accent1_200</color><color name="m3_ref_palette_dynamic_primary90">@android:color/system_accent1_100</color><color name="m3_ref_palette_dynamic_primary95">@android:color/system_accent1_50</color><color name="m3_ref_palette_dynamic_primary99">@android:color/system_accent1_10</color><color name="m3_ref_palette_dynamic_secondary0">@android:color/system_accent2_1000</color><color name="m3_ref_palette_dynamic_secondary10">@android:color/system_accent2_900</color><color name="m3_ref_palette_dynamic_secondary100">@android:color/system_accent2_0</color><color name="m3_ref_palette_dynamic_secondary20">@android:color/system_accent2_800</color><color name="m3_ref_palette_dynamic_secondary30">@android:color/system_accent2_700</color><color name="m3_ref_palette_dynamic_secondary40">@android:color/system_accent2_600</color><color name="m3_ref_palette_dynamic_secondary50">@android:color/system_accent2_500</color><color name="m3_ref_palette_dynamic_secondary60">@android:color/system_accent2_400</color><color name="m3_ref_palette_dynamic_secondary70">@android:color/system_accent2_300</color><color name="m3_ref_palette_dynamic_secondary80">@android:color/system_accent2_200</color><color name="m3_ref_palette_dynamic_secondary90">@android:color/system_accent2_100</color><color name="m3_ref_palette_dynamic_secondary95">@android:color/system_accent2_50</color><color name="m3_ref_palette_dynamic_secondary99">@android:color/system_accent2_10</color><color name="m3_ref_palette_dynamic_tertiary0">@android:color/system_accent3_1000</color><color name="m3_ref_palette_dynamic_tertiary10">@android:color/system_accent3_900</color><color name="m3_ref_palette_dynamic_tertiary100">@android:color/system_accent3_0</color><color name="m3_ref_palette_dynamic_tertiary20">@android:color/system_accent3_800</color><color name="m3_ref_palette_dynamic_tertiary30">@android:color/system_accent3_700</color><color name="m3_ref_palette_dynamic_tertiary40">@android:color/system_accent3_600</color><color name="m3_ref_palette_dynamic_tertiary50">@android:color/system_accent3_500</color><color name="m3_ref_palette_dynamic_tertiary60">@android:color/system_accent3_400</color><color name="m3_ref_palette_dynamic_tertiary70">@android:color/system_accent3_300</color><color name="m3_ref_palette_dynamic_tertiary80">@android:color/system_accent3_200</color><color name="m3_ref_palette_dynamic_tertiary90">@android:color/system_accent3_100</color><color name="m3_ref_palette_dynamic_tertiary95">@android:color/system_accent3_50</color><color name="m3_ref_palette_dynamic_tertiary99">@android:color/system_accent3_10</color><color name="m3_sys_color_dynamic_dark_background">@color/m3_ref_palette_dynamic_neutral_variant6</color><color name="m3_sys_color_dynamic_dark_inverse_on_surface">@color/m3_ref_palette_dynamic_neutral20</color><color name="m3_sys_color_dynamic_dark_inverse_primary">@color/m3_ref_palette_dynamic_primary40</color><color name="m3_sys_color_dynamic_dark_inverse_surface">@color/m3_ref_palette_dynamic_neutral90</color><color name="m3_sys_color_dynamic_dark_on_background">@color/m3_ref_palette_dynamic_neutral90</color><color name="m3_sys_color_dynamic_dark_on_primary">@color/m3_ref_palette_dynamic_primary20</color><color name="m3_sys_color_dynamic_dark_on_primary_container">@color/m3_ref_palette_dynamic_primary90</color><color name="m3_sys_color_dynamic_dark_on_secondary">@color/m3_ref_palette_dynamic_secondary20</color><color name="m3_sys_color_dynamic_dark_on_secondary_container">@color/m3_ref_palette_dynamic_secondary90</color><color name="m3_sys_color_dynamic_dark_on_surface">@color/m3_ref_palette_dynamic_neutral90</color><color name="m3_sys_color_dynamic_dark_on_surface_variant">@color/m3_ref_palette_dynamic_neutral_variant80</color><color name="m3_sys_color_dynamic_dark_on_tertiary">@color/m3_ref_palette_dynamic_tertiary20</color><color name="m3_sys_color_dynamic_dark_on_tertiary_container">@color/m3_ref_palette_dynamic_tertiary90</color><color name="m3_sys_color_dynamic_dark_outline">@color/m3_ref_palette_dynamic_neutral_variant60</color><color name="m3_sys_color_dynamic_dark_outline_variant">@color/m3_ref_palette_dynamic_neutral_variant30</color><color name="m3_sys_color_dynamic_dark_primary">@color/m3_ref_palette_dynamic_primary80</color><color name="m3_sys_color_dynamic_dark_primary_container">@color/m3_ref_palette_dynamic_primary30</color><color name="m3_sys_color_dynamic_dark_secondary">@color/m3_ref_palette_dynamic_secondary80</color><color name="m3_sys_color_dynamic_dark_secondary_container">@color/m3_ref_palette_dynamic_secondary30</color><color name="m3_sys_color_dynamic_dark_surface">@color/m3_ref_palette_dynamic_neutral_variant6</color><color name="m3_sys_color_dynamic_dark_surface_bright">@color/m3_ref_palette_dynamic_neutral_variant24</color><color name="m3_sys_color_dynamic_dark_surface_container">@color/m3_ref_palette_dynamic_neutral_variant12</color><color name="m3_sys_color_dynamic_dark_surface_container_high">@color/m3_ref_palette_dynamic_neutral_variant17</color><color name="m3_sys_color_dynamic_dark_surface_container_highest">@color/m3_ref_palette_dynamic_neutral_variant22</color><color name="m3_sys_color_dynamic_dark_surface_container_low">@color/m3_ref_palette_dynamic_neutral_variant10</color><color name="m3_sys_color_dynamic_dark_surface_container_lowest">@color/m3_ref_palette_dynamic_neutral_variant4</color><color name="m3_sys_color_dynamic_dark_surface_dim">@color/m3_ref_palette_dynamic_neutral_variant6</color><color name="m3_sys_color_dynamic_dark_surface_variant">@color/m3_ref_palette_dynamic_neutral_variant30</color><color name="m3_sys_color_dynamic_dark_tertiary">@color/m3_ref_palette_dynamic_tertiary80</color><color name="m3_sys_color_dynamic_dark_tertiary_container">@color/m3_ref_palette_dynamic_tertiary30</color><color name="m3_sys_color_dynamic_light_background">@color/m3_ref_palette_dynamic_neutral_variant98</color><color name="m3_sys_color_dynamic_light_inverse_on_surface">@color/m3_ref_palette_dynamic_neutral95</color><color name="m3_sys_color_dynamic_light_inverse_primary">@color/m3_ref_palette_dynamic_primary80</color><color name="m3_sys_color_dynamic_light_inverse_surface">@color/m3_ref_palette_dynamic_neutral20</color><color name="m3_sys_color_dynamic_light_on_background">@color/m3_ref_palette_dynamic_neutral10</color><color name="m3_sys_color_dynamic_light_on_primary">@color/m3_ref_palette_dynamic_primary100</color><color name="m3_sys_color_dynamic_light_on_primary_container">@color/m3_ref_palette_dynamic_primary10</color><color name="m3_sys_color_dynamic_light_on_secondary">@color/m3_ref_palette_dynamic_secondary100</color><color name="m3_sys_color_dynamic_light_on_secondary_container">@color/m3_ref_palette_dynamic_secondary10</color><color name="m3_sys_color_dynamic_light_on_surface">@color/m3_ref_palette_dynamic_neutral10</color><color name="m3_sys_color_dynamic_light_on_surface_variant">@color/m3_ref_palette_dynamic_neutral_variant30</color><color name="m3_sys_color_dynamic_light_on_tertiary">@color/m3_ref_palette_dynamic_tertiary100</color><color name="m3_sys_color_dynamic_light_on_tertiary_container">@color/m3_ref_palette_dynamic_tertiary10</color><color name="m3_sys_color_dynamic_light_outline">@color/m3_ref_palette_dynamic_neutral_variant50</color><color name="m3_sys_color_dynamic_light_outline_variant">@color/m3_ref_palette_dynamic_neutral_variant80</color><color name="m3_sys_color_dynamic_light_primary">@color/m3_ref_palette_dynamic_primary40</color><color name="m3_sys_color_dynamic_light_primary_container">@color/m3_ref_palette_dynamic_primary90</color><color name="m3_sys_color_dynamic_light_secondary">@color/m3_ref_palette_dynamic_secondary40</color><color name="m3_sys_color_dynamic_light_secondary_container">@color/m3_ref_palette_dynamic_secondary90</color><color name="m3_sys_color_dynamic_light_surface">@color/m3_ref_palette_dynamic_neutral_variant98</color><color name="m3_sys_color_dynamic_light_surface_bright">@color/m3_ref_palette_dynamic_neutral_variant98</color><color name="m3_sys_color_dynamic_light_surface_container">@color/m3_ref_palette_dynamic_neutral_variant94</color><color name="m3_sys_color_dynamic_light_surface_container_high">@color/m3_ref_palette_dynamic_neutral_variant92</color><color name="m3_sys_color_dynamic_light_surface_container_highest">@color/m3_ref_palette_dynamic_neutral_variant90</color><color name="m3_sys_color_dynamic_light_surface_container_low">@color/m3_ref_palette_dynamic_neutral_variant96</color><color name="m3_sys_color_dynamic_light_surface_container_lowest">@color/m3_ref_palette_dynamic_neutral_variant100</color><color name="m3_sys_color_dynamic_light_surface_dim">@color/m3_ref_palette_dynamic_neutral_variant87</color><color name="m3_sys_color_dynamic_light_surface_variant">@color/m3_ref_palette_dynamic_neutral_variant90</color><color name="m3_sys_color_dynamic_light_tertiary">@color/m3_ref_palette_dynamic_tertiary40</color><color name="m3_sys_color_dynamic_light_tertiary_container">@color/m3_ref_palette_dynamic_tertiary90</color><color name="m3_sys_color_dynamic_on_primary_fixed">@color/m3_ref_palette_dynamic_primary10</color><color name="m3_sys_color_dynamic_on_primary_fixed_variant">@color/m3_ref_palette_dynamic_primary30</color><color name="m3_sys_color_dynamic_on_secondary_fixed">@color/m3_ref_palette_dynamic_secondary10</color><color name="m3_sys_color_dynamic_on_secondary_fixed_variant">@color/m3_ref_palette_dynamic_secondary30</color><color name="m3_sys_color_dynamic_on_tertiary_fixed">@color/m3_ref_palette_dynamic_tertiary10</color><color name="m3_sys_color_dynamic_on_tertiary_fixed_variant">@color/m3_ref_palette_dynamic_tertiary30</color><color name="m3_sys_color_dynamic_primary_fixed">@color/m3_ref_palette_dynamic_primary90</color><color name="m3_sys_color_dynamic_primary_fixed_dim">@color/m3_ref_palette_dynamic_primary80</color><color name="m3_sys_color_dynamic_secondary_fixed">@color/m3_ref_palette_dynamic_secondary90</color><color name="m3_sys_color_dynamic_secondary_fixed_dim">@color/m3_ref_palette_dynamic_secondary80</color><color name="m3_sys_color_dynamic_tertiary_fixed">@color/m3_ref_palette_dynamic_tertiary90</color><color name="m3_sys_color_dynamic_tertiary_fixed_dim">@color/m3_ref_palette_dynamic_tertiary80</color><color name="material_dynamic_color_dark_error">@color/m3_sys_color_dark_error</color><color name="material_dynamic_color_dark_error_container">@color/m3_sys_color_dark_error_container</color><color name="material_dynamic_color_dark_on_error">@color/m3_sys_color_dark_on_error</color><color name="material_dynamic_color_dark_on_error_container">@color/m3_sys_color_dark_on_error_container</color><color name="material_dynamic_color_light_error">@color/m3_sys_color_light_error</color><color name="material_dynamic_color_light_error_container">@color/m3_sys_color_light_error_container</color><color name="material_dynamic_color_light_on_error">@color/m3_sys_color_light_on_error</color><color name="material_dynamic_color_light_on_error_container">@color/m3_sys_color_light_on_error_container</color><color name="material_dynamic_neutral0">@color/m3_ref_palette_dynamic_neutral0</color><color name="material_dynamic_neutral10">@color/m3_ref_palette_dynamic_neutral10</color><color name="material_dynamic_neutral100">@color/m3_ref_palette_dynamic_neutral100</color><color name="material_dynamic_neutral20">@color/m3_ref_palette_dynamic_neutral20</color><color name="material_dynamic_neutral30">@color/m3_ref_palette_dynamic_neutral30</color><color name="material_dynamic_neutral40">@color/m3_ref_palette_dynamic_neutral40</color><color name="material_dynamic_neutral50">@color/m3_ref_palette_dynamic_neutral50</color><color name="material_dynamic_neutral60">@color/m3_ref_palette_dynamic_neutral60</color><color name="material_dynamic_neutral70">@color/m3_ref_palette_dynamic_neutral70</color><color name="material_dynamic_neutral80">@color/m3_ref_palette_dynamic_neutral80</color><color name="material_dynamic_neutral90">@color/m3_ref_palette_dynamic_neutral90</color><color name="material_dynamic_neutral95">@color/m3_ref_palette_dynamic_neutral95</color><color name="material_dynamic_neutral99">@color/m3_ref_palette_dynamic_neutral99</color><color name="material_dynamic_neutral_variant0">@color/m3_ref_palette_dynamic_neutral_variant0</color><color name="material_dynamic_neutral_variant10">@color/m3_ref_palette_dynamic_neutral_variant10</color><color name="material_dynamic_neutral_variant100">@color/m3_ref_palette_dynamic_neutral_variant100</color><color name="material_dynamic_neutral_variant20">@color/m3_ref_palette_dynamic_neutral_variant20</color><color name="material_dynamic_neutral_variant30">@color/m3_ref_palette_dynamic_neutral_variant30</color><color name="material_dynamic_neutral_variant40">@color/m3_ref_palette_dynamic_neutral_variant40</color><color name="material_dynamic_neutral_variant50">@color/m3_ref_palette_dynamic_neutral_variant50</color><color name="material_dynamic_neutral_variant60">@color/m3_ref_palette_dynamic_neutral_variant60</color><color name="material_dynamic_neutral_variant70">@color/m3_ref_palette_dynamic_neutral_variant70</color><color name="material_dynamic_neutral_variant80">@color/m3_ref_palette_dynamic_neutral_variant80</color><color name="material_dynamic_neutral_variant90">@color/m3_ref_palette_dynamic_neutral_variant90</color><color name="material_dynamic_neutral_variant95">@color/m3_ref_palette_dynamic_neutral_variant95</color><color name="material_dynamic_neutral_variant99">@color/m3_ref_palette_dynamic_neutral_variant99</color><color name="material_dynamic_primary0">@color/m3_ref_palette_dynamic_primary0</color><color name="material_dynamic_primary10">@color/m3_ref_palette_dynamic_primary10</color><color name="material_dynamic_primary100">@color/m3_ref_palette_dynamic_primary100</color><color name="material_dynamic_primary20">@color/m3_ref_palette_dynamic_primary20</color><color name="material_dynamic_primary30">@color/m3_ref_palette_dynamic_primary30</color><color name="material_dynamic_primary40">@color/m3_ref_palette_dynamic_primary40</color><color name="material_dynamic_primary50">@color/m3_ref_palette_dynamic_primary50</color><color name="material_dynamic_primary60">@color/m3_ref_palette_dynamic_primary60</color><color name="material_dynamic_primary70">@color/m3_ref_palette_dynamic_primary70</color><color name="material_dynamic_primary80">@color/m3_ref_palette_dynamic_primary80</color><color name="material_dynamic_primary90">@color/m3_ref_palette_dynamic_primary90</color><color name="material_dynamic_primary95">@color/m3_ref_palette_dynamic_primary95</color><color name="material_dynamic_primary99">@color/m3_ref_palette_dynamic_primary99</color><color name="material_dynamic_secondary0">@color/m3_ref_palette_dynamic_secondary0</color><color name="material_dynamic_secondary10">@color/m3_ref_palette_dynamic_secondary10</color><color name="material_dynamic_secondary100">@color/m3_ref_palette_dynamic_secondary100</color><color name="material_dynamic_secondary20">@color/m3_ref_palette_dynamic_secondary20</color><color name="material_dynamic_secondary30">@color/m3_ref_palette_dynamic_secondary30</color><color name="material_dynamic_secondary40">@color/m3_ref_palette_dynamic_secondary40</color><color name="material_dynamic_secondary50">@color/m3_ref_palette_dynamic_secondary50</color><color name="material_dynamic_secondary60">@color/m3_ref_palette_dynamic_secondary60</color><color name="material_dynamic_secondary70">@color/m3_ref_palette_dynamic_secondary70</color><color name="material_dynamic_secondary80">@color/m3_ref_palette_dynamic_secondary80</color><color name="material_dynamic_secondary90">@color/m3_ref_palette_dynamic_secondary90</color><color name="material_dynamic_secondary95">@color/m3_ref_palette_dynamic_secondary95</color><color name="material_dynamic_secondary99">@color/m3_ref_palette_dynamic_secondary99</color><color name="material_dynamic_tertiary0">@color/m3_ref_palette_dynamic_tertiary0</color><color name="material_dynamic_tertiary10">@color/m3_ref_palette_dynamic_tertiary10</color><color name="material_dynamic_tertiary100">@color/m3_ref_palette_dynamic_tertiary100</color><color name="material_dynamic_tertiary20">@color/m3_ref_palette_dynamic_tertiary20</color><color name="material_dynamic_tertiary30">@color/m3_ref_palette_dynamic_tertiary30</color><color name="material_dynamic_tertiary40">@color/m3_ref_palette_dynamic_tertiary40</color><color name="material_dynamic_tertiary50">@color/m3_ref_palette_dynamic_tertiary50</color><color name="material_dynamic_tertiary60">@color/m3_ref_palette_dynamic_tertiary60</color><color name="material_dynamic_tertiary70">@color/m3_ref_palette_dynamic_tertiary70</color><color name="material_dynamic_tertiary80">@color/m3_ref_palette_dynamic_tertiary80</color><color name="material_dynamic_tertiary90">@color/m3_ref_palette_dynamic_tertiary90</color><color name="material_dynamic_tertiary95">@color/m3_ref_palette_dynamic_tertiary95</color><color name="material_dynamic_tertiary99">@color/m3_ref_palette_dynamic_tertiary99</color><style name="Theme.Material3.DynamicColors.Dark" parent="Theme.Material3.Dark">
     <item name="isMaterial3DynamicColorApplied">true</item>
 
-    
     <item name="colorPrimary">@color/m3_sys_color_dynamic_dark_primary</item>
     <item name="colorOnPrimary">@color/m3_sys_color_dynamic_dark_on_primary</item>
     <item name="colorPrimaryInverse">@color/m3_sys_color_dynamic_dark_inverse_primary</item>
@@ -4310,7 +4069,6 @@
     <item name="colorErrorContainer">@color/m3_sys_color_dark_error_container</item>
     <item name="colorOnErrorContainer">@color/m3_sys_color_dark_on_error_container</item>
 
-    
     <item name="android:textColorPrimary">@color/m3_dynamic_dark_default_color_primary_text</item>
     <item name="android:textColorPrimaryInverse">@color/m3_dynamic_default_color_primary_text</item>
     <item name="android:textColorSecondary">@color/m3_dynamic_dark_default_color_secondary_text</item>
@@ -4327,7 +4085,6 @@
   </style><style name="Theme.Material3.DynamicColors.Light" parent="Theme.Material3.Light">
     <item name="isMaterial3DynamicColorApplied">true</item>
 
-    
     <item name="colorPrimary">@color/m3_sys_color_dynamic_light_primary</item>
     <item name="colorOnPrimary">@color/m3_sys_color_dynamic_light_on_primary</item>
     <item name="colorPrimaryInverse">@color/m3_sys_color_dynamic_light_inverse_primary</item>
@@ -4374,7 +4131,6 @@
     <item name="colorErrorContainer">@color/m3_sys_color_light_error_container</item>
     <item name="colorOnErrorContainer">@color/m3_sys_color_light_on_error_container</item>
 
-    
     <item name="android:textColorPrimary">@color/m3_dynamic_default_color_primary_text</item>
     <item name="android:textColorPrimaryInverse">@color/m3_dynamic_dark_default_color_primary_text</item>
     <item name="android:textColorSecondary">@color/m3_dynamic_default_color_secondary_text</item>
@@ -4391,7 +4147,6 @@
   </style><style name="ThemeOverlay.Material3.DynamicColors.Dark" parent="">
     <item name="isMaterial3DynamicColorApplied">true</item>
 
-    
     <item name="colorPrimary">@color/m3_sys_color_dynamic_dark_primary</item>
     <item name="colorOnPrimary">@color/m3_sys_color_dynamic_dark_on_primary</item>
     <item name="colorPrimaryInverse">@color/m3_sys_color_dynamic_dark_inverse_primary</item>
@@ -4439,7 +4194,6 @@
     <item name="colorErrorContainer">@color/material_dynamic_color_dark_error_container</item>
     <item name="colorOnErrorContainer">@color/material_dynamic_color_dark_on_error_container</item>
 
-    
     <item name="android:textColorPrimary">@color/m3_dynamic_dark_default_color_primary_text</item>
     <item name="android:textColorPrimaryInverse">@color/m3_dynamic_default_color_primary_text</item>
     <item name="android:textColorSecondary">@color/m3_dynamic_dark_default_color_secondary_text</item>
@@ -4456,7 +4210,6 @@
   </style><style name="ThemeOverlay.Material3.DynamicColors.Light" parent="">
     <item name="isMaterial3DynamicColorApplied">true</item>
 
-    
     <item name="colorPrimary">@color/m3_sys_color_dynamic_light_primary</item>
     <item name="colorOnPrimary">@color/m3_sys_color_dynamic_light_on_primary</item>
     <item name="colorPrimaryInverse">@color/m3_sys_color_dynamic_light_inverse_primary</item>
@@ -4504,7 +4257,6 @@
     <item name="colorErrorContainer">@color/material_dynamic_color_light_error_container</item>
     <item name="colorOnErrorContainer">@color/material_dynamic_color_light_on_error_container</item>
 
-    
     <item name="android:textColorPrimary">@color/m3_dynamic_default_color_primary_text</item>
     <item name="android:textColorPrimaryInverse">@color/m3_dynamic_dark_default_color_primary_text</item>
     <item name="android:textColorSecondary">@color/m3_dynamic_default_color_secondary_text</item>
@@ -5020,7 +4772,6 @@
     <item name="actionBarWidgetTheme">@null</item>
     <item name="actionBarTheme">@style/ThemeOverlay.MaterialComponents.Dark.ActionBar</item>
 
-    
     <item name="listChoiceBackgroundIndicator">@drawable/abc_list_selector_holo_dark</item>
 
     <item name="colorPrimaryDark">@color/primary_dark_material_dark</item>
@@ -5046,7 +4797,6 @@
   </style><style name="Base.ThemeOverlay.MaterialComponents.Dialog" parent="Base.V14.ThemeOverlay.MaterialComponents.Dialog"/><style name="Base.ThemeOverlay.MaterialComponents.Dialog.Alert" parent="Base.V14.ThemeOverlay.MaterialComponents.Dialog.Alert"/><style name="Base.ThemeOverlay.MaterialComponents.MaterialAlertDialog" parent="Base.V14.ThemeOverlay.MaterialComponents.MaterialAlertDialog"/><style name="Base.V14.Theme.Material3.Dark" parent="Theme.MaterialComponents">
     <item name="isMaterial3Theme">true</item>
 
-    
     <item name="colorPrimary">@color/m3_sys_color_dark_primary</item>
     <item name="colorOnPrimary">@color/m3_sys_color_dark_on_primary</item>
     <item name="colorPrimaryInverse">@color/m3_sys_color_dark_inverse_primary</item>
@@ -5094,10 +4844,8 @@
     <item name="colorErrorContainer">@color/m3_sys_color_dark_error_container</item>
     <item name="colorOnErrorContainer">@color/m3_sys_color_dark_on_error_container</item>
 
-    
     <item name="android:windowBackground">?android:attr/colorBackground</item>
 
-    
     <item name="android:textColorPrimary">@color/m3_dark_default_color_primary_text</item>
     <item name="android:textColorPrimaryInverse">@color/m3_default_color_primary_text</item>
     <item name="android:textColorSecondary">@color/m3_dark_default_color_secondary_text</item>
@@ -5114,24 +4862,20 @@
     <item name="android:textColorLinkInverse">?attr/colorPrimaryInverse</item>
     <item name="android:textColorAlertDialogListItem">@color/m3_dark_default_color_primary_text</item>
 
-    
     <item name="colorPrimaryDark">?attr/colorPrimary</item>
     <item name="colorPrimaryVariant">?attr/colorPrimary</item>
     <item name="colorSecondaryVariant">?attr/colorSecondary</item>
 
-    
     <item name="alertDialogTheme">@style/ThemeOverlay.Material3.Dialog.Alert</item>
     <item name="bottomSheetDialogTheme">@style/ThemeOverlay.Material3.BottomSheetDialog</item>
     <item name="materialAlertDialogTheme">@style/ThemeOverlay.Material3.MaterialAlertDialog</item>
     <item name="sideSheetDialogTheme">@style/ThemeOverlay.Material3.SideSheetDialog</item>
 
-    
     <item name="materialCalendarStyle">@style/Widget.Material3.MaterialCalendar</item>
     <item name="materialCalendarFullscreenTheme">@style/ThemeOverlay.Material3.MaterialCalendar.Fullscreen</item>
     <item name="materialCalendarTheme">@style/ThemeOverlay.Material3.MaterialCalendar</item>
     <item name="materialTimePickerTheme">@style/ThemeOverlay.Material3.MaterialTimePicker</item>
 
-    
     <item name="appBarLayoutStyle">@style/Widget.Material3.AppBarLayout</item>
     <item name="badgeStyle">@style/Widget.Material3.Badge</item>
     <item name="borderlessButtonStyle">@style/Widget.Material3.Button.TextButton</item>
@@ -5206,27 +4950,22 @@
     <item name="toolbarStyle">@style/Widget.Material3.Toolbar</item>
     <item name="toolbarSurfaceStyle">@style/Widget.Material3.Toolbar.Surface</item>
 
-    
     <item name="collapsingToolbarLayoutMediumSize">@dimen/m3_appbar_size_medium</item>
     <item name="collapsingToolbarLayoutLargeSize">@dimen/m3_appbar_size_large</item>
 
-    
     <item name="actionBarPopupTheme">@style/ThemeOverlay.Material3.Dark</item>
     <item name="actionBarSize">@dimen/m3_appbar_size_compact</item>
     <item name="actionBarStyle">@style/Widget.Material3.ActionBar.Solid</item>
     <item name="actionModeStyle">@style/Widget.Material3.ActionMode</item>
 
-    
     <item name="popupMenuBackground">@drawable/m3_popupmenu_background_overlay</item>
     <item name="listPopupWindowStyle">@style/Widget.Material3.PopupMenu.ListPopupWindow</item>
     <item name="popupMenuStyle">@style/Widget.Material3.PopupMenu</item>
     <item name="actionOverflowMenuStyle">@style/Widget.Material3.PopupMenu.Overflow</item>
 
-    
     <item name="materialDividerStyle">@style/Widget.Material3.MaterialDivider</item>
     <item name="materialDividerHeavyStyle">@style/Widget.Material3.MaterialDivider.Heavy</item>
 
-    
     <item name="textAppearanceDisplayLarge">@style/TextAppearance.Material3.DisplayLarge</item>
     <item name="textAppearanceDisplayMedium">@style/TextAppearance.Material3.DisplayMedium</item>
     <item name="textAppearanceDisplaySmall">@style/TextAppearance.Material3.DisplaySmall</item>
@@ -5243,7 +4982,6 @@
     <item name="textAppearanceLabelMedium">@style/TextAppearance.Material3.LabelMedium</item>
     <item name="textAppearanceLabelSmall">@style/TextAppearance.Material3.LabelSmall</item>
 
-    
     <item name="android:textAppearanceListItem">?attr/textAppearanceTitleMedium</item>
     <item name="android:textAppearanceListItemSmall">?attr/textAppearanceTitleMedium</item>
     <item name="android:textAppearanceListItemSecondary" ns2:targetApi="21">?attr/textAppearanceBodyMedium</item>
@@ -5251,11 +4989,9 @@
     <item name="textAppearanceListItemSmall">?attr/textAppearanceTitleMedium</item>
     <item name="textAppearanceListItemSecondary">?attr/textAppearanceBodyMedium</item>
 
-    
     <item name="textAppearanceLargePopupMenu">?attr/textAppearanceBodyLarge</item>
     <item name="textAppearanceSmallPopupMenu">?attr/textAppearanceBodyLarge</item>
 
-    
     <item name="shapeCornerFamily">@integer/m3_sys_shape_corner_full_corner_family</item>
     <item name="shapeAppearanceCornerExtraSmall">@style/ShapeAppearance.Material3.Corner.ExtraSmall</item>
     <item name="shapeAppearanceCornerSmall">@style/ShapeAppearance.Material3.Corner.Small</item>
@@ -5263,12 +4999,10 @@
     <item name="shapeAppearanceCornerLarge">@style/ShapeAppearance.Material3.Corner.Large</item>
     <item name="shapeAppearanceCornerExtraLarge">@style/ShapeAppearance.Material3.Corner.ExtraLarge</item>
 
-    
     <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Material3.SmallComponent</item>
     <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Material3.MediumComponent</item>
     <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.Material3.LargeComponent</item>
 
-    
     <item name="motionEasingStandardInterpolator">@interpolator/m3_sys_motion_easing_standard</item>
     <item name="motionEasingStandardDecelerateInterpolator">@interpolator/m3_sys_motion_easing_standard_decelerate</item>
     <item name="motionEasingStandardAccelerateInterpolator">@interpolator/m3_sys_motion_easing_standard_accelerate</item>
@@ -5299,11 +5033,9 @@
     <item name="motionDurationExtraLong4">@integer/m3_sys_motion_duration_extra_long4</item>
     <item name="motionPath">@integer/m3_sys_motion_path</item>
 
-    
     <item name="elevationOverlayEnabled">true</item>
     <item name="elevationOverlayColor">@macro/m3_sys_color_dark_surface_tint</item>
 
-    
     <item name="dynamicColorThemeOverlay">@style/ThemeOverlay.Material3.DynamicColors.Dark</item>
   </style><style name="Base.V14.Theme.Material3.Dark.BottomSheetDialog" parent="Theme.Material3.Dark.Dialog">
     <item name="android:windowIsFloating">false</item>
@@ -5314,7 +5046,6 @@
   </style><style name="Base.V14.Theme.Material3.Dark.Dialog" parent="Theme.MaterialComponents.Dialog">
     <item name="isMaterial3Theme">true</item>
 
-    
     <item name="colorPrimary">@color/m3_sys_color_dark_primary</item>
     <item name="colorOnPrimary">@color/m3_sys_color_dark_on_primary</item>
     <item name="colorPrimaryInverse">@color/m3_sys_color_dark_inverse_primary</item>
@@ -5362,7 +5093,6 @@
     <item name="colorErrorContainer">@color/m3_sys_color_dark_error_container</item>
     <item name="colorOnErrorContainer">@color/m3_sys_color_dark_on_error_container</item>
 
-    
     <item name="android:textColorPrimary">@color/m3_dark_default_color_primary_text</item>
     <item name="android:textColorPrimaryInverse">@color/m3_default_color_primary_text</item>
     <item name="android:textColorSecondary">@color/m3_dark_default_color_secondary_text</item>
@@ -5379,12 +5109,10 @@
     <item name="android:textColorLinkInverse">?attr/colorPrimaryInverse</item>
     <item name="android:textColorAlertDialogListItem">@color/m3_dark_default_color_primary_text</item>
 
-    
     <item name="colorPrimaryDark">?attr/colorPrimary</item>
     <item name="colorPrimaryVariant">?attr/colorPrimary</item>
     <item name="colorSecondaryVariant">?attr/colorSecondary</item>
 
-    
     <item name="appBarLayoutStyle">@style/Widget.Material3.AppBarLayout</item>
     <item name="badgeStyle">@style/Widget.Material3.Badge</item>
     <item name="borderlessButtonStyle">@style/Widget.Material3.Button.TextButton</item>
@@ -5459,27 +5187,22 @@
     <item name="toolbarStyle">@style/Widget.Material3.Toolbar</item>
     <item name="toolbarSurfaceStyle">@style/Widget.Material3.Toolbar.Surface</item>
 
-    
     <item name="collapsingToolbarLayoutMediumSize">@dimen/m3_appbar_size_medium</item>
     <item name="collapsingToolbarLayoutLargeSize">@dimen/m3_appbar_size_large</item>
 
-    
     <item name="actionBarPopupTheme">@style/ThemeOverlay.Material3.Dark</item>
     <item name="actionBarSize">@dimen/m3_appbar_size_compact</item>
     <item name="actionBarStyle">@style/Widget.Material3.ActionBar.Solid</item>
     <item name="actionModeStyle">@style/Widget.Material3.ActionMode</item>
 
-    
     <item name="popupMenuBackground">@drawable/m3_popupmenu_background_overlay</item>
     <item name="listPopupWindowStyle">@style/Widget.Material3.PopupMenu.ListPopupWindow</item>
     <item name="popupMenuStyle">@style/Widget.Material3.PopupMenu</item>
     <item name="actionOverflowMenuStyle">@style/Widget.Material3.PopupMenu.Overflow</item>
 
-    
     <item name="materialDividerStyle">@style/Widget.Material3.MaterialDivider</item>
     <item name="materialDividerHeavyStyle">@style/Widget.Material3.MaterialDivider.Heavy</item>
 
-    
     <item name="textAppearanceDisplayLarge">@style/TextAppearance.Material3.DisplayLarge</item>
     <item name="textAppearanceDisplayMedium">@style/TextAppearance.Material3.DisplayMedium</item>
     <item name="textAppearanceDisplaySmall">@style/TextAppearance.Material3.DisplaySmall</item>
@@ -5496,7 +5219,6 @@
     <item name="textAppearanceLabelMedium">@style/TextAppearance.Material3.LabelMedium</item>
     <item name="textAppearanceLabelSmall">@style/TextAppearance.Material3.LabelSmall</item>
 
-    
     <item name="android:textAppearanceListItem">?attr/textAppearanceTitleMedium</item>
     <item name="android:textAppearanceListItemSmall">?attr/textAppearanceTitleMedium</item>
     <item name="android:textAppearanceListItemSecondary" ns2:targetApi="21">?attr/textAppearanceBodyMedium</item>
@@ -5504,13 +5226,9 @@
     <item name="textAppearanceListItemSmall">?attr/textAppearanceTitleMedium</item>
     <item name="textAppearanceListItemSecondary">?attr/textAppearanceBodyMedium</item>
 
-    
     <item name="textAppearanceLargePopupMenu">?attr/textAppearanceBodyLarge</item>
     <item name="textAppearanceSmallPopupMenu">?attr/textAppearanceBodyLarge</item>
 
-    
-
-    
     <item name="shapeCornerFamily">@integer/m3_sys_shape_corner_full_corner_family</item>
     <item name="shapeAppearanceCornerExtraSmall">@style/ShapeAppearance.Material3.Corner.ExtraSmall</item>
     <item name="shapeAppearanceCornerSmall">@style/ShapeAppearance.Material3.Corner.Small</item>
@@ -5518,12 +5236,10 @@
     <item name="shapeAppearanceCornerLarge">@style/ShapeAppearance.Material3.Corner.Large</item>
     <item name="shapeAppearanceCornerExtraLarge">@style/ShapeAppearance.Material3.Corner.ExtraLarge</item>
 
-    
     <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Material3.SmallComponent</item>
     <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Material3.MediumComponent</item>
     <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.Material3.LargeComponent</item>
 
-    
     <item name="motionEasingStandardInterpolator">@interpolator/m3_sys_motion_easing_standard</item>
     <item name="motionEasingStandardDecelerateInterpolator">@interpolator/m3_sys_motion_easing_standard_decelerate</item>
     <item name="motionEasingStandardAccelerateInterpolator">@interpolator/m3_sys_motion_easing_standard_accelerate</item>
@@ -5554,21 +5270,17 @@
     <item name="motionDurationExtraLong4">@integer/m3_sys_motion_duration_extra_long4</item>
     <item name="motionPath">@integer/m3_sys_motion_path</item>
 
-    
     <item name="elevationOverlayEnabled">true</item>
     <item name="elevationOverlayColor">@macro/m3_sys_color_dark_surface_tint</item>
 
-    
     <item name="alertDialogTheme">@style/ThemeOverlay.Material3.Dialog.Alert</item>
     <item name="materialAlertDialogTheme">@style/ThemeOverlay.Material3.MaterialAlertDialog</item>
 
-    
     <item name="materialCalendarStyle">@style/Widget.Material3.MaterialCalendar</item>
     <item name="materialCalendarFullscreenTheme">@style/ThemeOverlay.Material3.MaterialCalendar.Fullscreen</item>
     <item name="materialCalendarTheme">@style/ThemeOverlay.Material3.MaterialCalendar</item>
     <item name="materialTimePickerTheme">@style/ThemeOverlay.Material3.MaterialTimePicker</item>
 
-    
     <item name="dynamicColorThemeOverlay">@style/ThemeOverlay.Material3.DynamicColors.Dark</item>
   </style><style name="Base.V14.Theme.Material3.Dark.SideSheetDialog" parent="Theme.Material3.Dark.Dialog">
     <item name="android:windowIsFloating">false</item>
@@ -5578,7 +5290,6 @@
   </style><style name="Base.V14.Theme.Material3.Light" parent="Theme.MaterialComponents.Light">
     <item name="isMaterial3Theme">true</item>
 
-    
     <item name="colorPrimary">@color/m3_sys_color_light_primary</item>
     <item name="colorOnPrimary">@color/m3_sys_color_light_on_primary</item>
     <item name="colorPrimaryInverse">@color/m3_sys_color_light_inverse_primary</item>
@@ -5626,10 +5337,8 @@
     <item name="colorErrorContainer">@color/m3_sys_color_light_error_container</item>
     <item name="colorOnErrorContainer">@color/m3_sys_color_light_on_error_container</item>
 
-    
     <item name="android:windowBackground">?android:attr/colorBackground</item>
 
-    
     <item name="android:textColorPrimary">@color/m3_default_color_primary_text</item>
     <item name="android:textColorPrimaryInverse">@color/m3_dark_default_color_primary_text</item>
     <item name="android:textColorSecondary">@color/m3_default_color_secondary_text</item>
@@ -5646,24 +5355,20 @@
     <item name="android:textColorLinkInverse">?attr/colorPrimaryInverse</item>
     <item name="android:textColorAlertDialogListItem">@color/m3_default_color_primary_text</item>
 
-    
     <item name="colorPrimaryDark">?attr/colorPrimary</item>
     <item name="colorPrimaryVariant">?attr/colorPrimary</item>
     <item name="colorSecondaryVariant">?attr/colorSecondary</item>
 
-    
     <item name="alertDialogTheme">@style/ThemeOverlay.Material3.Dialog.Alert</item>
     <item name="bottomSheetDialogTheme">@style/ThemeOverlay.Material3.BottomSheetDialog</item>
     <item name="materialAlertDialogTheme">@style/ThemeOverlay.Material3.MaterialAlertDialog</item>
     <item name="sideSheetDialogTheme">@style/ThemeOverlay.Material3.SideSheetDialog</item>
 
-    
     <item name="materialCalendarStyle">@style/Widget.Material3.MaterialCalendar</item>
     <item name="materialCalendarFullscreenTheme">@style/ThemeOverlay.Material3.MaterialCalendar.Fullscreen</item>
     <item name="materialCalendarTheme">@style/ThemeOverlay.Material3.MaterialCalendar</item>
     <item name="materialTimePickerTheme">@style/ThemeOverlay.Material3.MaterialTimePicker</item>
 
-    
     <item name="appBarLayoutStyle">@style/Widget.Material3.AppBarLayout</item>
     <item name="badgeStyle">@style/Widget.Material3.Badge</item>
     <item name="borderlessButtonStyle">@style/Widget.Material3.Button.TextButton</item>
@@ -5738,27 +5443,22 @@
     <item name="toolbarStyle">@style/Widget.Material3.Toolbar</item>
     <item name="toolbarSurfaceStyle">@style/Widget.Material3.Toolbar.Surface</item>
 
-    
     <item name="collapsingToolbarLayoutMediumSize">@dimen/m3_appbar_size_medium</item>
     <item name="collapsingToolbarLayoutLargeSize">@dimen/m3_appbar_size_large</item>
 
-    
     <item name="actionBarPopupTheme">@style/ThemeOverlay.Material3.Light</item>
     <item name="actionBarSize">@dimen/m3_appbar_size_compact</item>
     <item name="actionBarStyle">@style/Widget.Material3.Light.ActionBar.Solid</item>
     <item name="actionModeStyle">@style/Widget.Material3.ActionMode</item>
 
-    
     <item name="popupMenuBackground">@drawable/m3_popupmenu_background_overlay</item>
     <item name="listPopupWindowStyle">@style/Widget.Material3.PopupMenu.ListPopupWindow</item>
     <item name="popupMenuStyle">@style/Widget.Material3.PopupMenu</item>
     <item name="actionOverflowMenuStyle">@style/Widget.Material3.PopupMenu.Overflow</item>
 
-    
     <item name="materialDividerStyle">@style/Widget.Material3.MaterialDivider</item>
     <item name="materialDividerHeavyStyle">@style/Widget.Material3.MaterialDivider.Heavy</item>
 
-    
     <item name="textAppearanceDisplayLarge">@style/TextAppearance.Material3.DisplayLarge</item>
     <item name="textAppearanceDisplayMedium">@style/TextAppearance.Material3.DisplayMedium</item>
     <item name="textAppearanceDisplaySmall">@style/TextAppearance.Material3.DisplaySmall</item>
@@ -5775,7 +5475,6 @@
     <item name="textAppearanceLabelMedium">@style/TextAppearance.Material3.LabelMedium</item>
     <item name="textAppearanceLabelSmall">@style/TextAppearance.Material3.LabelSmall</item>
 
-    
     <item name="android:textAppearanceListItem">?attr/textAppearanceTitleMedium</item>
     <item name="android:textAppearanceListItemSmall">?attr/textAppearanceTitleMedium</item>
     <item name="android:textAppearanceListItemSecondary" ns2:targetApi="21">?attr/textAppearanceBodyMedium</item>
@@ -5783,11 +5482,9 @@
     <item name="textAppearanceListItemSmall">?attr/textAppearanceTitleMedium</item>
     <item name="textAppearanceListItemSecondary">?attr/textAppearanceBodyMedium</item>
 
-    
     <item name="textAppearanceLargePopupMenu">?attr/textAppearanceBodyLarge</item>
     <item name="textAppearanceSmallPopupMenu">?attr/textAppearanceBodyLarge</item>
 
-    
     <item name="shapeCornerFamily">@integer/m3_sys_shape_corner_full_corner_family</item>
     <item name="shapeAppearanceCornerExtraSmall">@style/ShapeAppearance.Material3.Corner.ExtraSmall</item>
     <item name="shapeAppearanceCornerSmall">@style/ShapeAppearance.Material3.Corner.Small</item>
@@ -5795,12 +5492,10 @@
     <item name="shapeAppearanceCornerLarge">@style/ShapeAppearance.Material3.Corner.Large</item>
     <item name="shapeAppearanceCornerExtraLarge">@style/ShapeAppearance.Material3.Corner.ExtraLarge</item>
 
-    
     <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Material3.SmallComponent</item>
     <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Material3.MediumComponent</item>
     <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.Material3.LargeComponent</item>
 
-    
     <item name="motionEasingStandardInterpolator">@interpolator/m3_sys_motion_easing_standard</item>
     <item name="motionEasingStandardDecelerateInterpolator">@interpolator/m3_sys_motion_easing_standard_decelerate</item>
     <item name="motionEasingStandardAccelerateInterpolator">@interpolator/m3_sys_motion_easing_standard_accelerate</item>
@@ -5831,11 +5526,9 @@
     <item name="motionDurationExtraLong4">@integer/m3_sys_motion_duration_extra_long4</item>
     <item name="motionPath">@integer/m3_sys_motion_path</item>
 
-    
     <item name="elevationOverlayEnabled">true</item>
     <item name="elevationOverlayColor">@macro/m3_sys_color_light_surface_tint</item>
 
-    
     <item name="dynamicColorThemeOverlay">@style/ThemeOverlay.Material3.DynamicColors.Light</item>
   </style><style name="Base.V14.Theme.Material3.Light.BottomSheetDialog" parent="Theme.Material3.Light.Dialog">
     <item name="android:windowIsFloating">false</item>
@@ -5846,7 +5539,6 @@
   </style><style name="Base.V14.Theme.Material3.Light.Dialog" parent="Theme.MaterialComponents.Light.Dialog">
     <item name="isMaterial3Theme">true</item>
 
-    
     <item name="colorPrimary">@color/m3_sys_color_light_primary</item>
     <item name="colorOnPrimary">@color/m3_sys_color_light_on_primary</item>
     <item name="colorPrimaryInverse">@color/m3_sys_color_light_inverse_primary</item>
@@ -5894,7 +5586,6 @@
     <item name="colorErrorContainer">@color/m3_sys_color_light_error_container</item>
     <item name="colorOnErrorContainer">@color/m3_sys_color_light_on_error_container</item>
 
-    
     <item name="android:textColorPrimary">@color/m3_default_color_primary_text</item>
     <item name="android:textColorPrimaryInverse">@color/m3_dark_default_color_primary_text</item>
     <item name="android:textColorSecondary">@color/m3_default_color_secondary_text</item>
@@ -5911,12 +5602,10 @@
     <item name="android:textColorLinkInverse">?attr/colorPrimaryInverse</item>
     <item name="android:textColorAlertDialogListItem">@color/m3_default_color_primary_text</item>
 
-    
     <item name="colorPrimaryDark">?attr/colorPrimary</item>
     <item name="colorPrimaryVariant">?attr/colorPrimary</item>
     <item name="colorSecondaryVariant">?attr/colorSecondary</item>
 
-    
     <item name="appBarLayoutStyle">@style/Widget.Material3.AppBarLayout</item>
     <item name="badgeStyle">@style/Widget.Material3.Badge</item>
     <item name="borderlessButtonStyle">@style/Widget.Material3.Button.TextButton</item>
@@ -5991,27 +5680,22 @@
     <item name="toolbarStyle">@style/Widget.Material3.Toolbar</item>
     <item name="toolbarSurfaceStyle">@style/Widget.Material3.Toolbar.Surface</item>
 
-    
     <item name="collapsingToolbarLayoutMediumSize">@dimen/m3_appbar_size_medium</item>
     <item name="collapsingToolbarLayoutLargeSize">@dimen/m3_appbar_size_large</item>
 
-    
     <item name="actionBarPopupTheme">@style/ThemeOverlay.Material3.Light</item>
     <item name="actionBarSize">@dimen/m3_appbar_size_compact</item>
     <item name="actionBarStyle">@style/Widget.Material3.Light.ActionBar.Solid</item>
     <item name="actionModeStyle">@style/Widget.Material3.ActionMode</item>
 
-    
     <item name="popupMenuBackground">@drawable/m3_popupmenu_background_overlay</item>
     <item name="listPopupWindowStyle">@style/Widget.Material3.PopupMenu.ListPopupWindow</item>
     <item name="popupMenuStyle">@style/Widget.Material3.PopupMenu</item>
     <item name="actionOverflowMenuStyle">@style/Widget.Material3.PopupMenu.Overflow</item>
 
-    
     <item name="materialDividerStyle">@style/Widget.Material3.MaterialDivider</item>
     <item name="materialDividerHeavyStyle">@style/Widget.Material3.MaterialDivider.Heavy</item>
 
-    
     <item name="textAppearanceDisplayLarge">@style/TextAppearance.Material3.DisplayLarge</item>
     <item name="textAppearanceDisplayMedium">@style/TextAppearance.Material3.DisplayMedium</item>
     <item name="textAppearanceDisplaySmall">@style/TextAppearance.Material3.DisplaySmall</item>
@@ -6028,7 +5712,6 @@
     <item name="textAppearanceLabelMedium">@style/TextAppearance.Material3.LabelMedium</item>
     <item name="textAppearanceLabelSmall">@style/TextAppearance.Material3.LabelSmall</item>
 
-    
     <item name="android:textAppearanceListItem">?attr/textAppearanceTitleMedium</item>
     <item name="android:textAppearanceListItemSmall">?attr/textAppearanceTitleMedium</item>
     <item name="android:textAppearanceListItemSecondary" ns2:targetApi="21">?attr/textAppearanceBodyMedium</item>
@@ -6036,13 +5719,9 @@
     <item name="textAppearanceListItemSmall">?attr/textAppearanceTitleMedium</item>
     <item name="textAppearanceListItemSecondary">?attr/textAppearanceBodyMedium</item>
 
-    
     <item name="textAppearanceLargePopupMenu">?attr/textAppearanceBodyLarge</item>
     <item name="textAppearanceSmallPopupMenu">?attr/textAppearanceBodyLarge</item>
 
-    
-
-    
     <item name="shapeCornerFamily">@integer/m3_sys_shape_corner_full_corner_family</item>
     <item name="shapeAppearanceCornerExtraSmall">@style/ShapeAppearance.Material3.Corner.ExtraSmall</item>
     <item name="shapeAppearanceCornerSmall">@style/ShapeAppearance.Material3.Corner.Small</item>
@@ -6050,12 +5729,10 @@
     <item name="shapeAppearanceCornerLarge">@style/ShapeAppearance.Material3.Corner.Large</item>
     <item name="shapeAppearanceCornerExtraLarge">@style/ShapeAppearance.Material3.Corner.ExtraLarge</item>
 
-    
     <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Material3.SmallComponent</item>
     <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Material3.MediumComponent</item>
     <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.Material3.LargeComponent</item>
 
-    
     <item name="motionEasingStandardInterpolator">@interpolator/m3_sys_motion_easing_standard</item>
     <item name="motionEasingStandardDecelerateInterpolator">@interpolator/m3_sys_motion_easing_standard_decelerate</item>
     <item name="motionEasingStandardAccelerateInterpolator">@interpolator/m3_sys_motion_easing_standard_accelerate</item>
@@ -6086,21 +5763,17 @@
     <item name="motionDurationExtraLong4">@integer/m3_sys_motion_duration_extra_long4</item>
     <item name="motionPath">@integer/m3_sys_motion_path</item>
 
-    
     <item name="elevationOverlayEnabled">true</item>
     <item name="elevationOverlayColor">@macro/m3_sys_color_light_surface_tint</item>
 
-    
     <item name="alertDialogTheme">@style/ThemeOverlay.Material3.Dialog.Alert</item>
     <item name="materialAlertDialogTheme">@style/ThemeOverlay.Material3.MaterialAlertDialog</item>
 
-    
     <item name="materialCalendarStyle">@style/Widget.Material3.MaterialCalendar</item>
     <item name="materialCalendarFullscreenTheme">@style/ThemeOverlay.Material3.MaterialCalendar.Fullscreen</item>
     <item name="materialCalendarTheme">@style/ThemeOverlay.Material3.MaterialCalendar</item>
     <item name="materialTimePickerTheme">@style/ThemeOverlay.Material3.MaterialTimePicker</item>
 
-    
     <item name="dynamicColorThemeOverlay">@style/ThemeOverlay.Material3.DynamicColors.Light</item>
   </style><style name="Base.V14.Theme.Material3.Light.SideSheetDialog" parent="Theme.Material3.Light.Dialog">
     <item name="android:windowIsFloating">false</item>
@@ -6110,7 +5783,6 @@
   </style><style name="Base.V14.Theme.MaterialComponents" parent="Base.V14.Theme.MaterialComponents.Bridge">
     <item name="viewInflaterClass">com.google.android.material.theme.MaterialComponentsViewInflater</item>
 
-    
     <item name="colorPrimary">@color/design_dark_default_color_primary</item>
     <item name="colorPrimaryDark">@color/design_dark_default_color_primary_dark</item>
     <item name="colorAccent">?attr/colorSecondary</item>
@@ -6118,7 +5790,6 @@
     <item name="android:colorBackground">@color/design_dark_default_color_background</item>
     <item name="colorError">@color/design_dark_default_color_error</item>
 
-    
     <item name="actionBarSize">@dimen/mtrl_toolbar_default_height</item>
     <item name="actionBarPopupTheme">@style/ThemeOverlay.MaterialComponents.Dark</item>
     <item name="actionBarStyle">@style/Widget.MaterialComponents.ActionBar.Surface</item>
@@ -6126,7 +5797,6 @@
     <item name="actionOverflowMenuStyle">@style/Widget.MaterialComponents.PopupMenu.Overflow</item>
     <item name="actionModeStyle">@style/Widget.MaterialComponents.ActionMode</item>
 
-    
     <item name="appBarLayoutStyle">@style/Widget.MaterialComponents.AppBarLayout.Surface</item>
     <item name="borderlessButtonStyle">@style/Widget.MaterialComponents.Button.TextButton</item>
     <item name="bottomNavigationStyle">@style/Widget.MaterialComponents.BottomNavigationView</item>
@@ -6153,18 +5823,15 @@
     <item name="textInputFilledExposedDropdownMenuStyle">@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu</item>
     <item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar</item>
 
-    
     <item name="bottomSheetDialogTheme">@style/ThemeOverlay.MaterialComponents.BottomSheetDialog</item>
     <item name="alertDialogTheme">@style/ThemeOverlay.MaterialComponents.Dialog.Alert</item>
     <item name="materialAlertDialogTheme">@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog</item>
     <item name="android:datePickerDialogTheme" ns2:ignore="NewApi">@style/ThemeOverlay.MaterialComponents.Dialog</item>
     <item name="android:timePickerDialogTheme" ns2:ignore="NewApi">@style/ThemeOverlay.MaterialComponents.Dialog</item>
 
-    
     <item name="textAppearanceLargePopupMenu">?attr/textAppearanceSubtitle1</item>
     <item name="textAppearanceSmallPopupMenu">?attr/textAppearanceSubtitle1</item>
 
-    
     <item name="materialCalendarStyle">@style/Widget.MaterialComponents.MaterialCalendar</item>
     <item name="materialCalendarFullscreenTheme">@style/ThemeOverlay.MaterialComponents.MaterialCalendar.Fullscreen</item>
     <item name="materialCalendarTheme">@style/ThemeOverlay.MaterialComponents.MaterialCalendar</item>
@@ -6189,7 +5856,6 @@
 
     <item name="minTouchTargetSize">@dimen/mtrl_min_touch_target_size</item>
 
-    
     <item name="badgeStyle">@style/Widget.MaterialComponents.Badge</item>
     <item name="bottomAppBarStyle">@style/Widget.MaterialComponents.BottomAppBar</item>
     <item name="chipStyle">@style/Widget.MaterialComponents.Chip.Action</item>
@@ -6205,7 +5871,6 @@
     <item name="navigationRailStyle">@style/Widget.MaterialComponents.NavigationRailView</item>
     <item name="sliderStyle">@style/Widget.MaterialComponents.Slider</item>
 
-    
     <item name="textAppearanceHeadline1">@style/TextAppearance.MaterialComponents.Headline1</item>
     <item name="textAppearanceHeadline2">@style/TextAppearance.MaterialComponents.Headline2</item>
     <item name="textAppearanceHeadline3">@style/TextAppearance.MaterialComponents.Headline3</item>
@@ -6220,7 +5885,6 @@
     <item name="textAppearanceButton">@style/TextAppearance.MaterialComponents.Button</item>
     <item name="textAppearanceOverline">@style/TextAppearance.MaterialComponents.Overline</item>
 
-    
     <item name="shapeAppearanceSmallComponent">
       @style/ShapeAppearance.MaterialComponents.SmallComponent
     </item>
@@ -6231,7 +5895,6 @@
       @style/ShapeAppearance.MaterialComponents.LargeComponent
     </item>
 
-    
     <item name="motionEasingStandard">@string/material_motion_easing_standard</item>
     <item name="motionEasingEmphasized">@string/material_motion_easing_emphasized</item>
     <item name="motionEasingDecelerated">@string/material_motion_easing_decelerated</item>
@@ -6247,7 +5910,6 @@
 
     <item name="motionPath">@integer/material_motion_path</item>
 
-    
     <item name="elevationOverlayEnabled">true</item>
     <item name="elevationOverlayColor">?attr/colorOnSurface</item>
   </style><style name="Base.V14.Theme.MaterialComponents.Dialog" parent="Base.V14.Theme.MaterialComponents.Dialog.Bridge">
@@ -6261,7 +5923,6 @@
     <item name="android:colorBackground">@color/design_dark_default_color_background</item>
     <item name="colorError">@color/design_dark_default_color_error</item>
 
-    
     <item name="actionBarSize">@dimen/mtrl_toolbar_default_height</item>
     <item name="actionBarPopupTheme">@style/ThemeOverlay.MaterialComponents.Dark</item>
     <item name="actionBarStyle">@style/Widget.MaterialComponents.ActionBar.Surface</item>
@@ -6269,7 +5930,6 @@
     <item name="actionOverflowMenuStyle">@style/Widget.MaterialComponents.PopupMenu.Overflow</item>
     <item name="actionModeStyle">@style/Widget.MaterialComponents.ActionMode</item>
 
-    
     <item name="appBarLayoutStyle">@style/Widget.MaterialComponents.AppBarLayout.Surface</item>
     <item name="borderlessButtonStyle">@style/Widget.MaterialComponents.Button.TextButton</item>
     <item name="bottomNavigationStyle">@style/Widget.MaterialComponents.BottomNavigationView</item>
@@ -6298,7 +5958,6 @@
     <item name="alertDialogTheme">@style/ThemeOverlay.MaterialComponents.Dialog.Alert</item>
     <item name="materialAlertDialogTheme">@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog</item>
 
-    
     <item name="textAppearanceLargePopupMenu">?attr/textAppearanceSubtitle1</item>
     <item name="textAppearanceSmallPopupMenu">?attr/textAppearanceSubtitle1</item>
   </style><style name="Base.V14.Theme.MaterialComponents.Dialog.Bridge" parent="Platform.MaterialComponents.Dialog">
@@ -6321,7 +5980,6 @@
 
     <item name="minTouchTargetSize">@dimen/mtrl_min_touch_target_size</item>
 
-    
     <item name="badgeStyle">@style/Widget.MaterialComponents.Badge</item>
     <item name="bottomAppBarStyle">@style/Widget.MaterialComponents.BottomAppBar</item>
     <item name="chipStyle">@style/Widget.MaterialComponents.Chip.Action</item>
@@ -6337,7 +5995,6 @@
     <item name="navigationRailStyle">@style/Widget.MaterialComponents.NavigationRailView</item>
     <item name="sliderStyle">@style/Widget.MaterialComponents.Slider</item>
 
-    
     <item name="textAppearanceHeadline1">@style/TextAppearance.MaterialComponents.Headline1</item>
     <item name="textAppearanceHeadline2">@style/TextAppearance.MaterialComponents.Headline2</item>
     <item name="textAppearanceHeadline3">@style/TextAppearance.MaterialComponents.Headline3</item>
@@ -6352,7 +6009,6 @@
     <item name="textAppearanceButton">@style/TextAppearance.MaterialComponents.Button</item>
     <item name="textAppearanceOverline">@style/TextAppearance.MaterialComponents.Overline</item>
 
-    
     <item name="shapeAppearanceSmallComponent">
       @style/ShapeAppearance.MaterialComponents.SmallComponent
     </item>
@@ -6363,7 +6019,6 @@
       @style/ShapeAppearance.MaterialComponents.LargeComponent
     </item>
 
-    
     <item name="motionEasingStandard">@string/material_motion_easing_standard</item>
     <item name="motionEasingEmphasized">@string/material_motion_easing_emphasized</item>
     <item name="motionEasingDecelerated">@string/material_motion_easing_decelerated</item>
@@ -6379,13 +6034,11 @@
 
     <item name="motionPath">@integer/material_motion_path</item>
 
-    
     <item name="elevationOverlayEnabled">true</item>
     <item name="elevationOverlayColor">?attr/colorOnSurface</item>
   </style><style name="Base.V14.Theme.MaterialComponents.Light" parent="Base.V14.Theme.MaterialComponents.Light.Bridge">
     <item name="viewInflaterClass">com.google.android.material.theme.MaterialComponentsViewInflater</item>
 
-    
     <item name="colorPrimary">@color/design_default_color_primary</item>
     <item name="colorPrimaryDark">@color/design_default_color_primary_dark</item>
     <item name="colorAccent">?attr/colorSecondary</item>
@@ -6393,14 +6046,12 @@
     <item name="android:colorBackground">@color/design_default_color_background</item>
     <item name="colorError">@color/design_default_color_error</item>
 
-    
     <item name="actionBarSize">@dimen/mtrl_toolbar_default_height</item>
     <item name="actionBarPopupTheme">@style/ThemeOverlay.MaterialComponents.Light</item>
     <item name="actionBarStyle">@style/Widget.MaterialComponents.Light.ActionBar.Solid</item>
     <item name="actionOverflowMenuStyle">@style/Widget.MaterialComponents.PopupMenu.Overflow</item>
     <item name="actionModeStyle">@style/Widget.MaterialComponents.ActionMode</item>
 
-    
     <item name="appBarLayoutStyle">@style/Widget.MaterialComponents.AppBarLayout.Primary</item>
     <item name="borderlessButtonStyle">@style/Widget.MaterialComponents.Button.TextButton</item>
     <item name="bottomNavigationStyle">@style/Widget.MaterialComponents.BottomNavigationView</item>
@@ -6427,18 +6078,15 @@
     <item name="textInputFilledExposedDropdownMenuStyle">@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu</item>
     <item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar</item>
 
-    
     <item name="bottomSheetDialogTheme">@style/ThemeOverlay.MaterialComponents.BottomSheetDialog</item>
     <item name="alertDialogTheme">@style/ThemeOverlay.MaterialComponents.Dialog.Alert</item>
     <item name="materialAlertDialogTheme">@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog</item>
     <item name="android:datePickerDialogTheme" ns2:ignore="NewApi">@style/ThemeOverlay.MaterialComponents.Dialog</item>
     <item name="android:timePickerDialogTheme" ns2:ignore="NewApi">@style/ThemeOverlay.MaterialComponents.Dialog</item>
 
-    
     <item name="textAppearanceLargePopupMenu">?attr/textAppearanceSubtitle1</item>
     <item name="textAppearanceSmallPopupMenu">?attr/textAppearanceSubtitle1</item>
 
-    
     <item name="materialCalendarStyle">@style/Widget.MaterialComponents.MaterialCalendar</item>
     <item name="materialCalendarFullscreenTheme">@style/ThemeOverlay.MaterialComponents.MaterialCalendar.Fullscreen</item>
     <item name="materialCalendarTheme">@style/ThemeOverlay.MaterialComponents.MaterialCalendar</item>
@@ -6463,7 +6111,6 @@
 
     <item name="minTouchTargetSize">@dimen/mtrl_min_touch_target_size</item>
 
-    
     <item name="badgeStyle">@style/Widget.MaterialComponents.Badge</item>
     <item name="bottomAppBarStyle">@style/Widget.MaterialComponents.BottomAppBar</item>
     <item name="chipStyle">@style/Widget.MaterialComponents.Chip.Action</item>
@@ -6479,7 +6126,6 @@
     <item name="navigationRailStyle">@style/Widget.MaterialComponents.NavigationRailView</item>
     <item name="sliderStyle">@style/Widget.MaterialComponents.Slider</item>
 
-    
     <item name="textAppearanceHeadline1">@style/TextAppearance.MaterialComponents.Headline1</item>
     <item name="textAppearanceHeadline2">@style/TextAppearance.MaterialComponents.Headline2</item>
     <item name="textAppearanceHeadline3">@style/TextAppearance.MaterialComponents.Headline3</item>
@@ -6494,7 +6140,6 @@
     <item name="textAppearanceButton">@style/TextAppearance.MaterialComponents.Button</item>
     <item name="textAppearanceOverline">@style/TextAppearance.MaterialComponents.Overline</item>
 
-    
     <item name="shapeAppearanceSmallComponent">
       @style/ShapeAppearance.MaterialComponents.SmallComponent
     </item>
@@ -6505,7 +6150,6 @@
       @style/ShapeAppearance.MaterialComponents.LargeComponent
     </item>
 
-    
     <item name="motionEasingStandard">@string/material_motion_easing_standard</item>
     <item name="motionEasingEmphasized">@string/material_motion_easing_emphasized</item>
     <item name="motionEasingDecelerated">@string/material_motion_easing_decelerated</item>
@@ -6521,7 +6165,6 @@
 
     <item name="motionPath">@integer/material_motion_path</item>
 
-    
     <item name="elevationOverlayEnabled">false</item>
     <item name="elevationOverlayColor">?attr/colorOnSurface</item>
   </style><style name="Base.V14.Theme.MaterialComponents.Light.DarkActionBar.Bridge" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -6542,7 +6185,6 @@
     <item name="scrimBackground">@color/mtrl_scrim_color</item>
     <item name="popupMenuBackground">@drawable/mtrl_popupmenu_background</item>
 
-    
     <item name="textAppearanceHeadline1">@style/TextAppearance.MaterialComponents.Headline1</item>
     <item name="textAppearanceHeadline2">@style/TextAppearance.MaterialComponents.Headline2</item>
     <item name="textAppearanceHeadline3">@style/TextAppearance.MaterialComponents.Headline3</item>
@@ -6557,7 +6199,6 @@
     <item name="textAppearanceButton">@style/TextAppearance.MaterialComponents.Button</item>
     <item name="textAppearanceOverline">@style/TextAppearance.MaterialComponents.Overline</item>
 
-    
     <item name="shapeAppearanceSmallComponent">
       @style/ShapeAppearance.MaterialComponents.SmallComponent
     </item>
@@ -6568,7 +6209,6 @@
       @style/ShapeAppearance.MaterialComponents.LargeComponent
     </item>
 
-    
     <item name="motionEasingStandard">@string/material_motion_easing_standard</item>
     <item name="motionEasingEmphasized">@string/material_motion_easing_emphasized</item>
     <item name="motionEasingDecelerated">@string/material_motion_easing_decelerated</item>
@@ -6584,13 +6224,11 @@
 
     <item name="motionPath">@integer/material_motion_path</item>
 
-    
     <item name="elevationOverlayEnabled">false</item>
     <item name="elevationOverlayColor">?attr/colorOnSurface</item>
   </style><style name="Base.V14.Theme.MaterialComponents.Light.Dialog" parent="Base.V14.Theme.MaterialComponents.Light.Dialog.Bridge">
     <item name="viewInflaterClass">com.google.android.material.theme.MaterialComponentsViewInflater</item>
 
-    
     <item name="colorPrimary">@color/design_default_color_primary</item>
     <item name="colorPrimaryDark">@color/design_default_color_primary_dark</item>
     <item name="colorSecondary">@color/design_default_color_secondary</item>
@@ -6599,14 +6237,12 @@
     <item name="android:colorBackground">@color/design_default_color_background</item>
     <item name="colorError">@color/design_default_color_error</item>
 
-    
     <item name="actionBarSize">@dimen/mtrl_toolbar_default_height</item>
     <item name="actionBarPopupTheme">@style/ThemeOverlay.MaterialComponents.Light</item>
     <item name="actionBarStyle">@style/Widget.MaterialComponents.Light.ActionBar.Solid</item>
     <item name="actionOverflowMenuStyle">@style/Widget.MaterialComponents.PopupMenu.Overflow</item>
     <item name="actionModeStyle">@style/Widget.MaterialComponents.ActionMode</item>
 
-    
     <item name="appBarLayoutStyle">@style/Widget.MaterialComponents.AppBarLayout.Primary</item>
     <item name="borderlessButtonStyle">@style/Widget.MaterialComponents.Button.TextButton</item>
     <item name="bottomNavigationStyle">@style/Widget.MaterialComponents.BottomNavigationView</item>
@@ -6635,7 +6271,6 @@
     <item name="alertDialogTheme">@style/ThemeOverlay.MaterialComponents.Dialog.Alert</item>
     <item name="materialAlertDialogTheme">@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog</item>
 
-    
     <item name="textAppearanceLargePopupMenu">?attr/textAppearanceSubtitle1</item>
     <item name="textAppearanceSmallPopupMenu">?attr/textAppearanceSubtitle1</item>
   </style><style name="Base.V14.Theme.MaterialComponents.Light.Dialog.Bridge" parent="Platform.MaterialComponents.Light.Dialog">
@@ -6658,7 +6293,6 @@
 
     <item name="minTouchTargetSize">@dimen/mtrl_min_touch_target_size</item>
 
-    
     <item name="badgeStyle">@style/Widget.MaterialComponents.Badge</item>
     <item name="bottomAppBarStyle">@style/Widget.MaterialComponents.BottomAppBar</item>
     <item name="chipStyle">@style/Widget.MaterialComponents.Chip.Action</item>
@@ -6674,7 +6308,6 @@
     <item name="navigationRailStyle">@style/Widget.MaterialComponents.NavigationRailView</item>
     <item name="sliderStyle">@style/Widget.MaterialComponents.Slider</item>
 
-    
     <item name="textAppearanceHeadline1">@style/TextAppearance.MaterialComponents.Headline1</item>
     <item name="textAppearanceHeadline2">@style/TextAppearance.MaterialComponents.Headline2</item>
     <item name="textAppearanceHeadline3">@style/TextAppearance.MaterialComponents.Headline3</item>
@@ -6689,7 +6322,6 @@
     <item name="textAppearanceButton">@style/TextAppearance.MaterialComponents.Button</item>
     <item name="textAppearanceOverline">@style/TextAppearance.MaterialComponents.Overline</item>
 
-    
     <item name="shapeAppearanceSmallComponent">
       @style/ShapeAppearance.MaterialComponents.SmallComponent
     </item>
@@ -6700,7 +6332,6 @@
       @style/ShapeAppearance.MaterialComponents.LargeComponent
     </item>
 
-    
     <item name="motionEasingStandard">@string/material_motion_easing_standard</item>
     <item name="motionEasingEmphasized">@string/material_motion_easing_emphasized</item>
     <item name="motionEasingDecelerated">@string/material_motion_easing_decelerated</item>
@@ -6716,7 +6347,6 @@
 
     <item name="motionPath">@integer/material_motion_path</item>
 
-    
     <item name="elevationOverlayEnabled">false</item>
     <item name="elevationOverlayColor">?attr/colorOnSurface</item>
   </style><style name="Base.V14.ThemeOverlay.Material3.BottomSheetDialog" parent="Base.ThemeOverlay.Material3.Dialog">
@@ -6856,7 +6486,6 @@
     <item name="extraMultilineHeightEnabled">true</item>
     <item name="forceApplySystemWindowInsetTop">true</item>
 
-    
     <item name="titleCollapseMode">fade</item>
     <item name="statusBarScrim">@empty</item>
     <item name="scrimAnimationDuration">?attr/motionDurationMedium2</item>
@@ -7635,7 +7264,6 @@
     <item name="colorErrorContainer">@color/m3_sys_color_dark_error_container</item>
     <item name="colorOnErrorContainer">@color/m3_sys_color_dark_on_error_container</item>
 
-    
     <item name="android:textColorPrimary">@color/m3_dark_default_color_primary_text</item>
     <item name="android:textColorPrimaryInverse">@color/m3_default_color_primary_text</item>
     <item name="android:textColorSecondary">@color/m3_dark_default_color_secondary_text</item>
@@ -7707,7 +7335,6 @@
     <item name="colorErrorContainer">@color/m3_sys_color_light_error_container</item>
     <item name="colorOnErrorContainer">@color/m3_sys_color_light_on_error_container</item>
 
-    
     <item name="android:textColorPrimary">@color/m3_default_color_primary_text</item>
     <item name="android:textColorPrimaryInverse">@color/m3_dark_default_color_primary_text</item>
     <item name="android:textColorSecondary">@color/m3_default_color_secondary_text</item>
@@ -7744,7 +7371,6 @@
     <item name="android:windowElevation" ns2:ignore="NewApi">@dimen/m3_datepicker_elevation</item>
     <item name="materialCalendarStyle">@style/Widget.Material3.MaterialCalendar</item>
 
-    
     <item name="materialCalendarHeaderLayout">@style/Widget.Material3.MaterialCalendar.HeaderLayout</item>
     <item name="materialCalendarHeaderDivider">@style/Widget.Material3.MaterialCalendar.HeaderDivider</item>
     <item name="materialCalendarHeaderTitle">@style/Widget.Material3.MaterialCalendar.HeaderTitle</item>
@@ -7753,16 +7379,13 @@
     <item name="materialCalendarHeaderConfirmButton">@style/Widget.Material3.Button.TextButton</item>
     <item name="materialCalendarHeaderToggleButton">@style/Widget.Material3.MaterialCalendar.HeaderToggleButton</item>
 
-    
     <item name="materialCalendarYearNavigationButton">@style/Widget.Material3.MaterialCalendar.YearNavigationButton</item>
     <item name="materialCalendarMonthNavigationButton">@style/Widget.Material3.MaterialCalendar.MonthNavigationButton</item>
 
-    
     <item name="materialCalendarDayOfWeekLabel">@style/Widget.Material3.MaterialCalendar.DayOfWeekLabel</item>
     <item name="materialCalendarDay">@style/Widget.Material3.MaterialCalendar.DayTextView</item>
     <item name="materialCalendarMonth">@style/Widget.Material3.MaterialCalendar.MonthTextView</item>
 
-    
     <item name="buttonBarPositiveButtonStyle">@style/Widget.Material3.Button.TextButton.Dialog</item>
     <item name="buttonBarNegativeButtonStyle">@style/Widget.Material3.Button.TextButton.Dialog</item>
   </style><style name="ThemeOverlay.Material3.MaterialCalendar.Fullscreen">
@@ -7828,7 +7451,6 @@
     <item name="colorErrorContainer">@color/material_personalized_color_error_container</item>
     <item name="colorOnErrorContainer">@color/material_personalized_color_on_error_container</item>
 
-    
     <item name="android:textColorPrimary">@color/material_personalized_color_primary_text</item>
     <item name="android:textColorPrimaryInverse">@color/material_personalized_color_primary_text_inverse</item>
     <item name="android:textColorSecondary">@color/material_personalized_color_secondary_text</item>
@@ -7932,7 +7554,6 @@
   </style><style name="ThemeOverlay.MaterialComponents.MaterialAlertDialog.Picker.Date" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog"/><style name="ThemeOverlay.MaterialComponents.MaterialAlertDialog.Picker.Date.Calendar"/><style name="ThemeOverlay.MaterialComponents.MaterialAlertDialog.Picker.Date.Spinner"/><style name="ThemeOverlay.MaterialComponents.MaterialCalendar" parent="ThemeOverlay.MaterialComponents.Dialog">
     <item name="materialCalendarStyle">@style/Widget.MaterialComponents.MaterialCalendar</item>
 
-    
     <item name="materialCalendarHeaderLayout">@style/Widget.MaterialComponents.MaterialCalendar.HeaderLayout</item>
     <item name="materialCalendarHeaderDivider">@style/Widget.MaterialComponents.MaterialCalendar.HeaderDivider</item>
     <item name="materialCalendarHeaderTitle">@style/Widget.MaterialComponents.MaterialCalendar.HeaderTitle</item>
@@ -7941,16 +7562,13 @@
     <item name="materialCalendarHeaderConfirmButton">@style/Widget.MaterialComponents.MaterialCalendar.HeaderConfirmButton</item>
     <item name="materialCalendarHeaderToggleButton">@style/Widget.MaterialComponents.MaterialCalendar.HeaderToggleButton</item>
 
-    
     <item name="materialCalendarYearNavigationButton">@style/Widget.MaterialComponents.MaterialCalendar.YearNavigationButton</item>
     <item name="materialCalendarMonthNavigationButton">@style/Widget.MaterialComponents.MaterialCalendar.MonthNavigationButton</item>
 
-    
     <item name="materialCalendarDayOfWeekLabel">@style/Widget.MaterialComponents.MaterialCalendar.DayOfWeekLabel</item>
     <item name="materialCalendarDay">@style/Widget.MaterialComponents.MaterialCalendar.DayTextView</item>
     <item name="materialCalendarMonth">@style/Widget.MaterialComponents.MaterialCalendar.MonthTextView</item>
 
-    
     <item name="buttonBarPositiveButtonStyle">@style/Widget.MaterialComponents.Button.TextButton.Dialog</item>
     <item name="buttonBarNegativeButtonStyle">@style/Widget.MaterialComponents.Button.TextButton.Dialog</item>
   </style><style name="ThemeOverlay.MaterialComponents.MaterialCalendar.Fullscreen" parent="ThemeOverlay.MaterialComponents.MaterialCalendar">
@@ -8115,7 +7733,6 @@
       @animator/m3_appbar_state_list_animator
     </item>
 
-    
     <item name="android:outlineAmbientShadowColor" ns2:ignore="NewApi">@android:color/transparent</item>
     <item name="android:outlineSpotShadowColor" ns2:ignore="NewApi">@android:color/transparent</item>
   </style><style name="Widget.Material3.AutoCompleteTextView.FilledBox" parent="Widget.MaterialComponents.AutoCompleteTextView.FilledBox">
@@ -8157,7 +7774,6 @@
     <item name="badgeHeight">@dimen/m3_badge_size</item>
     <item name="badgeShapeAppearance">@style/ShapeAppearance.M3.Comp.Badge.Shape</item>
 
-    
     <item name="badgeWithTextWidth">@dimen/m3_badge_with_text_size</item>
     <item name="badgeWithTextHeight">@dimen/m3_badge_with_text_size</item>
     <item name="horizontalOffsetWithText">@dimen/m3_badge_with_text_offset</item>
@@ -8826,7 +8442,6 @@
     <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Material3.SearchBar</item>
     <item name="materialThemeOverlay">@style/ThemeOverlay.Material3.Search</item>
 
-    
     <item name="android:outlineAmbientShadowColor" ns2:ignore="NewApi">@android:color/transparent</item>
     <item name="android:outlineSpotShadowColor" ns2:ignore="NewApi">@android:color/transparent</item>
   </style><style name="Widget.Material3.SearchBar.Outlined">
@@ -9002,7 +8617,6 @@
     <item name="subtitleTextAppearance">?attr/textAppearanceTitleMedium</item>
     <item name="contentInsetStartWithNavigation">0dp</item>
 
-    
     <item name="android:outlineAmbientShadowColor" ns2:ignore="NewApi">@android:color/transparent</item>
     <item name="android:outlineSpotShadowColor" ns2:ignore="NewApi">@android:color/transparent</item>
   </style><style name="Widget.Material3.Toolbar.OnSurface">
@@ -9709,22 +9323,16 @@
       
       <flag name="noScroll" value="0x0"/>
 
-      
       <flag name="scroll" value="0x1"/>
 
-      
       <flag name="exitUntilCollapsed" value="0x2"/>
 
-      
       <flag name="enterAlways" value="0x4"/>
 
-      
       <flag name="enterAlwaysCollapsed" value="0x8"/>
 
-      
       <flag name="snap" value="0x10"/>
 
-      
       <flag name="snapMargins" value="0x20"/>
     </attr>
 
@@ -9735,7 +9343,6 @@
       <enum name="compress" value="1"/>
     </attr>
 
-    
     <attr format="reference" name="layout_scrollInterpolator"/>
   </declare-styleable><declare-styleable name="Badge">
     
@@ -9781,7 +9388,6 @@
     
     <attr format="reference" name="badgeWithTextShapeAppearanceOverlay"/>
 
-    
     <attr name="offsetAlignmentMode">
       
       <enum name="edge" value="0"/>
@@ -9789,7 +9395,6 @@
       <enum name="legacy" value="1"/>
     </attr>
 
-    
     <attr format="dimension" name="horizontalOffset"/>
     
     <attr format="dimension" name="verticalOffset"/>
@@ -9964,8 +9569,7 @@
     <enum name="center" value="1"/>
   </attr>
   </declare-styleable><declare-styleable name="Chip">
-    
-    
+
     <attr format="color" name="chipSurfaceColor"/>
     
     <attr format="color" name="chipBackgroundColor"/>
@@ -9984,7 +9588,6 @@
     
     <attr name="ensureMinTouchTargetSize"/>
 
-    
     <attr name="android:text"/>
     
     <attr name="android:textAppearance"/>
@@ -9997,7 +9600,6 @@
     
     <attr name="android:maxWidth"/>
 
-    
     <attr format="boolean" name="chipIconVisible"/>
     
     <attr format="boolean" name="chipIconEnabled"/>
@@ -10008,7 +9610,6 @@
     
     <attr format="dimension" name="chipIconSize"/>
 
-    
     <attr format="boolean" name="closeIconVisible"/>
     
     <attr format="boolean" name="closeIconEnabled"/>
@@ -10019,7 +9620,6 @@
     
     <attr format="dimension" name="closeIconSize"/>
 
-    
     <attr name="android:checkable"/>
     
     <attr format="boolean" name="checkedIconVisible"/>
@@ -10030,60 +9630,40 @@
     
     <attr name="checkedIconTint"/>
 
-    
     <attr name="showMotionSpec"/>
     
     <attr name="hideMotionSpec"/>
 
-    
     <attr name="shapeAppearance"/>
     
     <attr name="shapeAppearanceOverlay"/>
 
-    
-
-    
-
-    
     <attr format="dimension" name="chipStartPadding"/>
     
     <attr format="dimension" name="iconStartPadding"/>
 
-    
-
-    
     <attr format="dimension" name="iconEndPadding"/>
     
     <attr format="dimension" name="textStartPadding"/>
 
-    
-
-    
     <attr format="dimension" name="textEndPadding"/>
     
     <attr format="dimension" name="closeIconStartPadding"/>
 
-    
-
-    
     <attr format="dimension" name="closeIconEndPadding"/>
     
     <attr format="dimension" name="chipEndPadding"/>
 
-    
   </declare-styleable><declare-styleable name="ChipGroup">
 
-    
     <attr format="dimension" name="chipSpacing"/>
     
     <attr format="dimension" name="chipSpacingHorizontal"/>
     
     <attr format="dimension" name="chipSpacingVertical"/>
 
-    
     <attr format="boolean" name="singleLine"/>
 
-    
     <attr name="singleSelection"/>
     
     <attr name="selectionRequired"/>
@@ -10151,7 +9731,6 @@
     
     <attr format="integer" name="scrimAnimationDuration"/>
 
-    
     <attr name="collapsedTitleGravity">
       
       <flag name="top" value="0x30"/>
@@ -10175,7 +9754,6 @@
       <flag name="end" value="0x00800005"/>
     </attr>
 
-    
     <attr name="expandedTitleGravity">
       
       <flag name="top" value="0x30"/>
@@ -10199,7 +9777,6 @@
       <flag name="end" value="0x00800005"/>
     </attr>
 
-    
     <attr format="boolean" name="titleEnabled"/>
     
     <attr name="title"/>
@@ -10217,7 +9794,6 @@
     
     <attr format="boolean" name="extraMultilineHeightEnabled"/>
 
-    
     <attr format="reference" name="titlePositionInterpolator"/>
   </declare-styleable><declare-styleable name="CollapsingToolbarLayout_Layout">
     <attr name="layout_collapseMode">
@@ -10229,7 +9805,6 @@
       <enum name="parallax" value="2"/>
     </attr>
 
-    
     <attr format="float" name="layout_collapseParallaxMultiplier"/>
   </declare-styleable><declare-styleable name="ExtendedFloatingActionButton">
     
@@ -10265,10 +9840,8 @@
     <attr name="backgroundTint"/>
     <attr name="backgroundTintMode"/>
 
-    
     <attr name="rippleColor"/>
 
-    
     <attr name="fabSize">
       
       <enum name="auto" value="-1"/>
@@ -10360,7 +9933,6 @@
     <attr name="android:inputType"/>
     <attr name="android:popupElevation"/>
 
-    
     <attr format="reference" name="simpleItemLayout"/>
     
     <attr format="reference" name="simpleItems"/>
@@ -10426,7 +9998,6 @@
     
     <attr name="singleSelection"/>
 
-    
     <attr name="selectionRequired"/>
     
     <attr format="reference" name="checkedButton"/>
@@ -10488,7 +10059,6 @@
     
     <attr name="strokeWidth"/>
 
-    
     <attr name="shapeAppearance"/>
     
     <attr name="shapeAppearanceOverlay"/>
@@ -10692,27 +10262,21 @@
     
     <attr format="dimension" name="activeIndicatorLabelPadding"/>
 
-    
     <attr format="reference" name="itemActiveIndicatorStyle"/>
 
-    
     <attr name="elevation"/>
   </declare-styleable><declare-styleable name="NavigationRailView">
-    
-    
+
     <attr format="dimension" name="itemMinHeight"/>
     
     <attr name="headerLayout"/>
    
     <attr name="menuGravity">
-      
-      
+
       <enum name="top" value="49"/>
-      
-      
+
       <enum name="center" value="17"/>
-      
-      
+
       <enum name="bottom" value="81"/>
     </attr>
     
@@ -10789,12 +10353,10 @@
     <attr format="dimension" name="drawerLayoutCornerSize"/>
   </declare-styleable><declare-styleable name="RadialViewGroup">
 
-    
     <attr name="materialCircleRadius"/>
   </declare-styleable><declare-styleable name="RangeSlider">
     <attr format="reference" name="values"/>
 
-    
     <attr format="dimension" name="minSeparation"/>
   </declare-styleable><declare-styleable name="ScrimInsetsFrameLayout">
     <attr format="color|reference" name="insetForeground"/>
@@ -10865,7 +10427,6 @@
     
     <attr format="dimension|fraction" name="cornerSizeBottomLeft"/>
 
-    
     <attr format="enum" name="cornerFamily">
       <enum name="rounded" value="0"/>
       <enum name="cut" value="1"/>
@@ -10894,12 +10455,10 @@
     <attr name="strokeWidth"/>
     <attr name="strokeColor"/>
 
-    
     <attr name="shapeAppearance"/>
     
     <attr name="shapeAppearanceOverlay"/>
 
-    
     <attr name="contentPadding"/>
     <attr name="contentPaddingBottom"/>
     <attr format="dimension" name="contentPaddingEnd"/>
@@ -10921,7 +10480,6 @@
     <attr name="android:maxWidth"/>
     <attr name="android:maxHeight"/>
 
-    
     <attr format="reference" name="coplanarSiblingViewId"/>
 
   </declare-styleable><declare-styleable name="Slider">
@@ -11125,7 +10683,6 @@
     
     <attr name="android:maxWidth"/>
 
-    
     <attr format="boolean" name="hintEnabled"/>
     
     <attr format="boolean" name="hintAnimationEnabled"/>
@@ -11136,7 +10693,6 @@
     
     <attr format="boolean" name="expandedHintEnabled"/>
 
-    
     <attr format="string" name="helperText"/>
     
     <attr format="boolean" name="helperTextEnabled"/>
@@ -11145,7 +10701,6 @@
     
     <attr format="color" name="helperTextTextColor"/>
 
-    
     <attr format="boolean" name="errorEnabled"/>
     
     <attr format="reference" name="errorTextAppearance"/>
@@ -11173,12 +10728,10 @@
       <enum name="screen" value="15"/>
     </attr>
 
-    
     <attr format="color" name="cursorColor"/>
     
     <attr format="color" name="cursorErrorColor"/>
 
-    
     <attr format="boolean" name="counterEnabled"/>
     
     <attr format="integer" name="counterMaxLength"/>
@@ -11191,14 +10744,12 @@
     
     <attr format="reference" name="counterOverflowTextColor"/>
 
-    
     <attr format="string" name="placeholderText"/>
     
     <attr format="reference" name="placeholderTextAppearance"/>
     
     <attr format="color" name="placeholderTextColor"/>
 
-    
     <attr format="string" name="prefixText"/>
     
     <attr format="reference" name="prefixTextAppearance"/>
@@ -11211,7 +10762,6 @@
     
     <attr format="color" name="suffixTextColor"/>
 
-    
     <attr format="reference" name="startIconDrawable"/>
     
     <attr format="string" name="startIconContentDescription"/>
@@ -11305,7 +10855,6 @@
       <enum name="centerInside" value="6"/>
     </attr>
 
-    
     <attr name="boxBackgroundMode">
       
       <enum name="none" value="0"/>
@@ -11335,12 +10884,10 @@
     
     <attr format="dimension" name="boxStrokeWidthFocused"/>
 
-    
     <attr name="shapeAppearance"/>
     
     <attr name="shapeAppearanceOverlay"/>
 
-    
     <attr format="boolean" name="passwordToggleEnabled"/>
     
     <attr format="reference" name="passwordToggleDrawable"/>
@@ -11520,7 +11067,6 @@
     <attr format="boolean" name="foregroundInsidePadding"/>
   </declare-styleable><declare-styleable name="RadialViewGroup">
 
-    
     <attr name="materialCircleRadius"/>
   </declare-styleable><declare-styleable name="MaterialAlertDialog">
     <attr name="backgroundTint"/>
@@ -11587,40 +11133,29 @@
     
     <attr name="strokeWidth"/>
 
-    
     <attr name="shapeAppearance"/>
     
     <attr name="shapeAppearanceOverlay"/>
   </declare-styleable><declare-styleable name="AppCompatTheme">
 
-        
-        
-        
         <eat-comment/>
 
-        
         <attr format="boolean" name="windowActionBar"/>
 
-        
         <attr format="boolean" name="windowNoTitle"/>
 
-        
         <attr format="boolean" name="windowActionBarOverlay"/>
 
-        
         <attr format="boolean" name="windowActionModeOverlay"/>
 
-        
         <attr format="dimension|fraction" name="windowFixedWidthMajor"/>
         
         <attr format="dimension|fraction" name="windowFixedHeightMinor"/>
 
-        
         <attr format="dimension|fraction" name="windowFixedWidthMinor"/>
         
         <attr format="dimension|fraction" name="windowFixedHeightMajor"/>
 
-        
         <attr format="dimension|fraction" name="windowMinWidthMajor"/>
         
         <attr format="dimension|fraction" name="windowMinWidthMinor"/>
@@ -11628,9 +11163,6 @@
         <attr name="android:windowIsFloating"/>
         <attr name="android:windowAnimationStyle"/>
 
-        
-        
-        
         <eat-comment/>
         
         <attr format="reference" name="actionBarTabStyle"/>
@@ -11660,14 +11192,9 @@
         <attr format="reference" name="actionBarItemBackground"/>
         
         <attr format="reference" name="actionMenuTextAppearance"/>
-        
-        
+
         <attr format="color|reference" name="actionMenuTextColor"/>
 
-
-        
-        
-        
         <eat-comment/>
         <attr format="reference" name="actionModeStyle"/>
         <attr format="reference" name="actionModeCloseButtonStyle"/>
@@ -11692,15 +11219,10 @@
         
         <attr format="reference" name="actionModeWebSearchDrawable"/>
 
-        
         <attr format="string" name="actionModeCloseContentDescription"/>
 
-        
         <attr format="reference" name="actionModePopupWindowStyle"/>
 
-        
-        
-        
         <eat-comment/>
         
         <attr format="reference" name="textAppearanceLargePopupMenu"/>
@@ -11709,13 +11231,8 @@
         
         <attr format="reference" name="textAppearancePopupMenuHeader"/>
 
-
-        
-        
-        
         <eat-comment/>
 
-        
         <attr format="reference" name="dialogTheme"/>
         
         <attr format="dimension" name="dialogPreferredPadding"/>
@@ -11724,12 +11241,8 @@
         
         <attr format="dimension" name="dialogCornerRadius"/>
 
-        
-        
-        
         <eat-comment/>
 
-        
         <attr format="reference" name="actionDropDownStyle"/>
         
         <attr format="dimension" name="dropdownListPreferredItemHeight"/>
@@ -11738,10 +11251,8 @@
         
         <attr format="reference" name="homeAsUpIndicator"/>
 
-        
         <attr format="reference" name="actionButtonStyle"/>
 
-        
         <attr format="reference" name="buttonBarStyle"/>
         
         <attr format="reference" name="buttonBarButtonStyle"/>
@@ -11758,27 +11269,20 @@
         
         <attr format="reference" name="activityChooserViewStyle"/>
 
-        
         <attr format="reference" name="toolbarStyle"/>
         
         <attr format="reference" name="toolbarNavigationButtonStyle"/>
 
-        
         <attr format="reference" name="popupMenuStyle"/>
         
         <attr format="reference" name="popupWindowStyle"/>
 
-        
         <attr format="reference|color" name="editTextColor"/>
         
         <attr format="reference" name="editTextBackground"/>
 
-        
         <attr format="reference" name="imageButtonStyle"/>
 
-        
-        
-        
         <eat-comment/>
         
         <attr format="reference" name="textAppearanceSearchResultTitle"/>
@@ -11789,45 +11293,33 @@
         
         <attr format="reference" name="searchViewStyle"/>
 
-        
-        
-        
         <eat-comment/>
 
-        
         <attr format="dimension" name="listPreferredItemHeight"/>
         
         <attr format="dimension" name="listPreferredItemHeightSmall"/>
         
         <attr format="dimension" name="listPreferredItemHeightLarge"/>
 
-        
         <attr format="dimension" name="listPreferredItemPaddingLeft"/>
         
         <attr format="dimension" name="listPreferredItemPaddingRight"/>
 
-        
         <attr format="dimension" name="listPreferredItemPaddingStart"/>
         
         <attr format="dimension" name="listPreferredItemPaddingEnd"/>
 
-        
         <attr format="reference" name="dropDownListViewStyle"/>
         <attr format="reference" name="listPopupWindowStyle"/>
 
-        
         <attr format="reference" name="textAppearanceListItem"/>
         
         <attr format="reference" name="textAppearanceListItemSecondary"/>
         
         <attr format="reference" name="textAppearanceListItemSmall"/>
 
-        
-        
-        
         <eat-comment/>
 
-        
         <attr format="reference" name="panelBackground"/>
         
         <attr format="dimension" name="panelMenuListWidth"/>
@@ -11836,44 +11328,28 @@
         
         <attr format="reference" name="listChoiceBackgroundIndicator"/>
 
-        
-        
-        
         <eat-comment/>
 
-        
         <attr format="color" name="colorPrimary"/>
 
-        
         <attr format="color" name="colorPrimaryDark"/>
 
-        
         <attr format="color" name="colorAccent"/>
 
-        
         <attr format="color" name="colorControlNormal"/>
 
-        
         <attr format="color" name="colorControlActivated"/>
 
-        
         <attr format="color" name="colorControlHighlight"/>
 
-        
         <attr format="color" name="colorButtonNormal"/>
 
-        
         <attr format="color" name="colorSwitchThumbNormal"/>
 
-        
         <attr format="reference" name="controlBackground"/>
 
-        
         <attr format="color" name="colorBackgroundFloating"/>
 
-        
-        
-        
         <eat-comment/>
         <attr format="reference" name="alertDialogStyle"/>
         <attr format="reference" name="alertDialogButtonGroupStyle"/>
@@ -11881,24 +11357,16 @@
         
         <attr format="reference" name="alertDialogTheme"/>
 
-        
         <attr format="reference|color" name="textColorAlertDialogListItem"/>
 
-        
         <attr format="reference" name="buttonBarPositiveButtonStyle"/>
 
-        
         <attr format="reference" name="buttonBarNegativeButtonStyle"/>
 
-        
         <attr format="reference" name="buttonBarNeutralButtonStyle"/>
 
-        
-        
-        
         <eat-comment/>
 
-        
         <attr format="reference" name="autoCompleteTextViewStyle"/>
         
         <attr format="reference" name="buttonStyle"/>
@@ -11925,30 +11393,20 @@
         
         <attr format="reference" name="switchStyle"/>
 
-        
         <attr format="reference" name="listMenuViewStyle"/>
 
-        
-        
-        
         <eat-comment/>
 
-        
         <attr format="reference" name="tooltipFrameBackground"/>
         
         <attr format="reference|color" name="tooltipForegroundColor"/>
 
-        
         <attr format="reference|color" name="colorError"/>
 
         <attr format="string" name="viewInflaterClass"/>
 
-        
-        
-        
         <eat-comment/>
 
-        
         <attr format="reference" name="listChoiceIndicatorSingleAnimated"/>
         
         <attr format="reference" name="listChoiceIndicatorMultipleAnimated"/>
@@ -11997,7 +11455,6 @@
     
     <attr format="integer" name="scrimAnimationDuration"/>
 
-    
     <attr name="collapsedTitleGravity">
       
       <flag name="top" value="0x30"/>
@@ -12021,7 +11478,6 @@
       <flag name="end" value="0x00800005"/>
     </attr>
 
-    
     <attr name="expandedTitleGravity">
       
       <flag name="top" value="0x30"/>
@@ -12045,7 +11501,6 @@
       <flag name="end" value="0x00800005"/>
     </attr>
 
-    
     <attr format="boolean" name="titleEnabled"/>
     
     <attr name="title"/>
@@ -12063,7 +11518,6 @@
     
     <attr format="boolean" name="extraMultilineHeightEnabled"/>
 
-    
     <attr format="reference" name="titlePositionInterpolator"/>
   </declare-styleable><declare-styleable name="MenuView">
         
@@ -12114,7 +11568,6 @@
     <attr name="android:maxWidth"/>
     <attr name="android:maxHeight"/>
 
-    
     <attr format="reference" name="coplanarSiblingViewId"/>
 
   </declare-styleable><declare-styleable name="RecycleListView">
@@ -12216,7 +11669,6 @@
     <attr name="android:inputType"/>
     <attr name="android:popupElevation"/>
 
-    
     <attr format="reference" name="simpleItemLayout"/>
     
     <attr format="reference" name="simpleItems"/>
@@ -12265,10 +11717,8 @@
     
     <attr format="dimension" name="activeIndicatorLabelPadding"/>
 
-    
     <attr format="reference" name="itemActiveIndicatorStyle"/>
 
-    
     <attr name="elevation"/>
   </declare-styleable><declare-styleable name="MotionTelltales">
         <attr format="enum" name="telltales_velocityMode">
@@ -12316,7 +11766,6 @@
         
         <attr format="color" name="checkMarkTint"/>
 
-        
         <attr name="checkMarkTintMode">
             
             <enum name="src_over" value="3"/>
@@ -12396,7 +11845,6 @@
 
         <attr name="motionProgress"/>
 
-        
         <attr name="android:alpha"/>
         <attr name="android:elevation"/>
         <attr name="android:rotation"/>
@@ -12422,7 +11870,6 @@
       <enum name="parallax" value="2"/>
     </attr>
 
-    
     <attr format="float" name="layout_collapseParallaxMultiplier"/>
   </declare-styleable><declare-styleable name="PopupWindowBackgroundState">
         
@@ -12454,16 +11901,12 @@
             <enum name="parentRelative" value="2"/>
         </attr>
 
-        
         <attr format="float" name="percentX"/>
 
-        
         <attr format="float" name="percentY"/>
 
-        
         <attr format="float" name="percentWidth"/>
 
-        
         <attr format="float" name="percentHeight"/>
         <attr name="framePosition"/>
         <attr name="motionTarget"/>
@@ -12564,8 +12007,7 @@
         <attr name="android:enterFadeDuration"/>
         
         <attr name="android:exitFadeDuration"/>
-        
-        
+
     </declare-styleable><declare-styleable name="Spinner">
         
         <attr name="android:prompt"/>
@@ -12614,8 +12056,7 @@
         
         <attr format="dimension" name="thickness"/>
     </declare-styleable><declare-styleable name="Chip">
-    
-    
+
     <attr format="color" name="chipSurfaceColor"/>
     
     <attr format="color" name="chipBackgroundColor"/>
@@ -12634,7 +12075,6 @@
     
     <attr name="ensureMinTouchTargetSize"/>
 
-    
     <attr name="android:text"/>
     
     <attr name="android:textAppearance"/>
@@ -12647,7 +12087,6 @@
     
     <attr name="android:maxWidth"/>
 
-    
     <attr format="boolean" name="chipIconVisible"/>
     
     <attr format="boolean" name="chipIconEnabled"/>
@@ -12658,7 +12097,6 @@
     
     <attr format="dimension" name="chipIconSize"/>
 
-    
     <attr format="boolean" name="closeIconVisible"/>
     
     <attr format="boolean" name="closeIconEnabled"/>
@@ -12669,7 +12107,6 @@
     
     <attr format="dimension" name="closeIconSize"/>
 
-    
     <attr name="android:checkable"/>
     
     <attr format="boolean" name="checkedIconVisible"/>
@@ -12680,47 +12117,30 @@
     
     <attr name="checkedIconTint"/>
 
-    
     <attr name="showMotionSpec"/>
     
     <attr name="hideMotionSpec"/>
 
-    
     <attr name="shapeAppearance"/>
     
     <attr name="shapeAppearanceOverlay"/>
 
-    
-
-    
-
-    
     <attr format="dimension" name="chipStartPadding"/>
     
     <attr format="dimension" name="iconStartPadding"/>
 
-    
-
-    
     <attr format="dimension" name="iconEndPadding"/>
     
     <attr format="dimension" name="textStartPadding"/>
 
-    
-
-    
     <attr format="dimension" name="textEndPadding"/>
     
     <attr format="dimension" name="closeIconStartPadding"/>
 
-    
-
-    
     <attr format="dimension" name="closeIconEndPadding"/>
     
     <attr format="dimension" name="chipEndPadding"/>
 
-    
   </declare-styleable><declare-styleable name="Badge">
     
     <attr format="dimension" name="badgeRadius"/>
@@ -12765,7 +12185,6 @@
     
     <attr format="reference" name="badgeWithTextShapeAppearanceOverlay"/>
 
-    
     <attr name="offsetAlignmentMode">
       
       <enum name="edge" value="0"/>
@@ -12773,7 +12192,6 @@
       <enum name="legacy" value="1"/>
     </attr>
 
-    
     <attr format="dimension" name="horizontalOffset"/>
     
     <attr format="dimension" name="verticalOffset"/>
@@ -12892,22 +12310,16 @@
         <attr format="reference" name="defaultState"/>
     </declare-styleable><declare-styleable name="MenuGroup">
 
-        
         <attr name="android:id"/>
 
-        
         <attr name="android:menuCategory"/>
 
-        
         <attr name="android:orderInCategory"/>
 
-        
         <attr name="android:checkableBehavior"/>
 
-        
         <attr name="android:visible"/>
 
-        
         <attr name="android:enabled"/>
 
     </declare-styleable><declare-styleable name="MotionLayout">
@@ -12970,7 +12382,6 @@
     
     <attr name="singleSelection"/>
 
-    
     <attr name="selectionRequired"/>
     
     <attr format="reference" name="checkedButton"/>
@@ -13229,19 +12640,14 @@
         <attr name="android:visibility"/>
         <attr name="visibilityMode"/>
 
-        
         <attr name="android:alpha"/>
 
-        
         <attr name="motionProgress"/>
         <attr name="layout_constraintTag"/>
     </declare-styleable><declare-styleable name="RecyclerView">
         
         <attr format="string" name="layoutManager"/>
 
-        
-        
-        
         <eat-comment/>
 
         <attr name="android:orientation"/>
@@ -13267,7 +12673,6 @@
     
     <attr format="dimension|fraction" name="cornerSizeBottomLeft"/>
 
-    
     <attr format="enum" name="cornerFamily">
       <enum name="rounded" value="0"/>
       <enum name="cut" value="1"/>
@@ -13298,51 +12703,38 @@
         
         <attr name="android:elevation"/>
 
-        
         <attr name="android:rotation"/>
 
-        
         <attr name="android:rotationX"/>
 
-        
         <attr name="android:rotationY"/>
 
-        
         <attr name="android:scaleX"/>
 
-        
         <attr name="android:scaleY"/>
 
-        
         <attr name="android:transformPivotX"/>
 
-        
         <attr name="android:transformPivotY"/>
 
         <attr name="transformPivotTarget"/>
 
-        
         <attr format="dimension" name="android:translationX"/>
 
-        
         <attr format="dimension" name="android:translationY"/>
 
-        
         <attr format="dimension" name="android:translationZ"/>
 
     </declare-styleable><declare-styleable name="ChipGroup">
 
-    
     <attr format="dimension" name="chipSpacing"/>
     
     <attr format="dimension" name="chipSpacingHorizontal"/>
     
     <attr format="dimension" name="chipSpacingVertical"/>
 
-    
     <attr format="boolean" name="singleLine"/>
 
-    
     <attr name="singleSelection"/>
     
     <attr name="selectionRequired"/>
@@ -13356,7 +12748,6 @@
         
         <attr format="color" name="buttonTint"/>
 
-        
         <attr name="buttonTintMode">
             
             <enum name="src_over" value="3"/>
@@ -13409,7 +12800,6 @@
         
         <attr format="integer" name="layout_keyline"/>
 
-        
         <attr name="layout_anchorGravity">
             
             <flag name="top" value="0x30"/>
@@ -13441,7 +12831,6 @@
             <flag name="end" value="0x00800005"/>
         </attr>
 
-        
         <attr format="enum" name="layout_insetEdge">
             
             <enum name="none" value="0x0"/>
@@ -13543,29 +12932,21 @@
         <attr name="android:orientation"/>
         <attr name="android:id"/>
 
-        
         <attr name="android:visibility"/>
         <attr name="visibilityMode"/>
 
-        
         <attr name="android:alpha"/>
 
-        
         <attr name="android:elevation"/>
 
-        
         <attr name="android:rotation"/>
 
-        
         <attr name="android:rotationX"/>
 
-        
         <attr name="android:rotationY"/>
 
-        
         <attr name="android:scaleX"/>
 
-        
         <attr name="android:scaleY"/>
         <attr name="pivotAnchor"/>
 
@@ -13573,7 +12954,6 @@
         <attr name="android:transformPivotY"/>
         <attr name="transformPivotTarget"/>
 
-        
         <attr name="android:translationX"/>
         
         <attr name="android:translationY"/>
@@ -13677,8 +13057,6 @@
         <attr name="flow_maxElementsWrap"/>
         <attr name="flow_horizontalGap"/>
         <attr name="flow_verticalGap"/>
-        
-        
 
         <attr name="flow_firstHorizontalStyle"/>
         <attr name="flow_firstVerticalStyle"/>
@@ -13713,18 +13091,12 @@
         
         <attr name="android:type"/>
 
-        
-        
         <attr name="android:gradientRadius"/>
 
-        
-        
         <attr name="android:centerX"/>
         
         <attr name="android:centerY"/>
 
-        
-        
         <attr name="android:startX"/>
         
         <attr name="android:startY"/>
@@ -13733,7 +13105,6 @@
         
         <attr name="android:endY"/>
 
-        
         <attr name="android:tileMode"/>
     </declare-styleable><declare-styleable name="Carousel"><attr format="reference" name="carousel_firstView"/><attr format="reference" name="carousel_previousState"/><attr format="reference" name="carousel_nextState"/><attr format="boolean" name="carousel_infinite"/><attr format="reference" name="carousel_forwardTransition"/><attr format="reference" name="carousel_backwardTransition"/><attr format="float" name="carousel_touchUp_dampeningFactor"/><attr format="enum" name="carousel_touchUpMode">
             <enum name="immediateStop" value="1"/>
@@ -13778,10 +13149,8 @@
         <attr name="waveOffset"/>
         <attr name="wavePhase"/>
 
-        
         <attr name="waveDecay"/>
 
-        
         <attr name="android:alpha"/>
         <attr name="android:elevation"/>
         <attr name="android:rotation"/>
@@ -13847,7 +13216,6 @@
     
     <attr name="android:maxWidth"/>
 
-    
     <attr format="boolean" name="hintEnabled"/>
     
     <attr format="boolean" name="hintAnimationEnabled"/>
@@ -13858,7 +13226,6 @@
     
     <attr format="boolean" name="expandedHintEnabled"/>
 
-    
     <attr format="string" name="helperText"/>
     
     <attr format="boolean" name="helperTextEnabled"/>
@@ -13867,7 +13234,6 @@
     
     <attr format="color" name="helperTextTextColor"/>
 
-    
     <attr format="boolean" name="errorEnabled"/>
     
     <attr format="reference" name="errorTextAppearance"/>
@@ -13895,12 +13261,10 @@
       <enum name="screen" value="15"/>
     </attr>
 
-    
     <attr format="color" name="cursorColor"/>
     
     <attr format="color" name="cursorErrorColor"/>
 
-    
     <attr format="boolean" name="counterEnabled"/>
     
     <attr format="integer" name="counterMaxLength"/>
@@ -13913,14 +13277,12 @@
     
     <attr format="reference" name="counterOverflowTextColor"/>
 
-    
     <attr format="string" name="placeholderText"/>
     
     <attr format="reference" name="placeholderTextAppearance"/>
     
     <attr format="color" name="placeholderTextColor"/>
 
-    
     <attr format="string" name="prefixText"/>
     
     <attr format="reference" name="prefixTextAppearance"/>
@@ -13933,7 +13295,6 @@
     
     <attr format="color" name="suffixTextColor"/>
 
-    
     <attr format="reference" name="startIconDrawable"/>
     
     <attr format="string" name="startIconContentDescription"/>
@@ -14027,7 +13388,6 @@
       <enum name="centerInside" value="6"/>
     </attr>
 
-    
     <attr name="boxBackgroundMode">
       
       <enum name="none" value="0"/>
@@ -14057,12 +13417,10 @@
     
     <attr format="dimension" name="boxStrokeWidthFocused"/>
 
-    
     <attr name="shapeAppearance"/>
     
     <attr name="shapeAppearanceOverlay"/>
 
-    
     <attr format="boolean" name="passwordToggleEnabled"/>
     
     <attr format="reference" name="passwordToggleDrawable"/>
@@ -14211,7 +13569,6 @@
         
         <attr format="color" name="backgroundTint"/>
 
-        
         <attr name="backgroundTintMode">
             
             <enum name="src_over" value="3"/>
@@ -14344,8 +13701,6 @@
         <attr name="flow_maxElementsWrap"/>
         <attr name="flow_horizontalGap"/>
         <attr name="flow_verticalGap"/>
-        
-        
 
         <attr name="flow_firstHorizontalStyle"/>
         <attr name="flow_firstVerticalStyle"/>
@@ -14375,10 +13730,8 @@
         
         <attr format="reference" name="srcCompat"/>
 
-        
         <attr format="color" name="tint"/>
 
-        
         <attr name="tintMode">
             
             <enum name="src_over" value="3"/>
@@ -14442,8 +13795,6 @@
         <attr name="flow_horizontalAlign"/>
         <attr name="flow_verticalBias"/>
         <attr name="flow_horizontalBias"/>
-        
-        
 
         <attr name="flow_firstHorizontalStyle"/>
         <attr name="flow_firstVerticalStyle"/>
@@ -14460,7 +13811,6 @@
         <attr name="circularflow_viewCenter"/>
         <attr name="circularflow_defaultRadius"/>
         <attr name="circularflow_defaultAngle"/>
-
 
         <attr name="layout_constraintCircle"/>
         <attr name="layout_constraintCircleRadius"/>
@@ -14562,21 +13912,17 @@
         <attr name="android:id"/>
         <attr format="reference" name="constraints"/>
     </declare-styleable><declare-styleable name="NavigationRailView">
-    
-    
+
     <attr format="dimension" name="itemMinHeight"/>
     
     <attr name="headerLayout"/>
    
     <attr name="menuGravity">
-      
-      
+
       <enum name="top" value="49"/>
-      
-      
+
       <enum name="center" value="17"/>
-      
-      
+
       <enum name="bottom" value="81"/>
     </attr>
     
@@ -14669,22 +14015,16 @@
       
       <flag name="noScroll" value="0x0"/>
 
-      
       <flag name="scroll" value="0x1"/>
 
-      
       <flag name="exitUntilCollapsed" value="0x2"/>
 
-      
       <flag name="enterAlways" value="0x4"/>
 
-      
       <flag name="enterAlwaysCollapsed" value="0x8"/>
 
-      
       <flag name="snap" value="0x10"/>
 
-      
       <flag name="snapMargins" value="0x20"/>
     </attr>
 
@@ -14695,7 +14035,6 @@
       <enum name="compress" value="1"/>
     </attr>
 
-    
     <attr format="reference" name="layout_scrollInterpolator"/>
   </declare-styleable><declare-styleable name="Slider">
     <attr name="android:value"/>
@@ -14788,12 +14127,10 @@
     <attr name="strokeWidth"/>
     <attr name="strokeColor"/>
 
-    
     <attr name="shapeAppearance"/>
     
     <attr name="shapeAppearanceOverlay"/>
 
-    
     <attr name="contentPadding"/>
     <attr name="contentPaddingBottom"/>
     <attr format="dimension" name="contentPaddingEnd"/>
@@ -14814,8 +14151,7 @@
         <attr name="android:enterFadeDuration"/>
         
         <attr name="android:exitFadeDuration"/>
-        
-        
+
     </declare-styleable><declare-styleable name="MaterialButton">
     
     <attr name="android:checkable"/>
@@ -15028,10 +14364,8 @@
     <attr name="backgroundTint"/>
     <attr name="backgroundTintMode"/>
 
-    
     <attr name="rippleColor"/>
 
-    
     <attr name="fabSize">
       
       <enum name="auto" value="-1"/>
@@ -15091,29 +14425,21 @@
         <attr name="android:id"/>
         <attr name="motionTarget"/>
 
-        
         <attr name="android:visibility"/>
         <attr name="visibilityMode"/>
 
-        
         <attr name="android:alpha"/>
 
-        
         <attr name="android:elevation"/>
 
-        
         <attr name="android:rotation"/>
 
-        
         <attr name="android:rotationX"/>
 
-        
         <attr name="android:rotationY"/>
 
-        
         <attr name="android:scaleX"/>
 
-        
         <attr name="android:scaleY"/>
         <attr name="pivotAnchor"/>
 
@@ -15121,7 +14447,6 @@
         <attr name="android:transformPivotY"/>
         <attr name="transformPivotTarget"/>
 
-        
         <attr name="android:translationX"/>
         
         <attr name="android:translationY"/>
@@ -15208,8 +14533,6 @@
         <attr name="flow_maxElementsWrap"/>
         <attr name="flow_horizontalGap"/>
         <attr name="flow_verticalGap"/>
-        
-        
 
         <attr name="flow_firstHorizontalStyle"/>
         <attr name="flow_firstVerticalStyle"/>
@@ -15252,28 +14575,20 @@
     <attr format="reference" name="shapeAppearanceOverlay"/>
   </declare-styleable><declare-styleable name="MenuItem">
 
-        
         <attr name="android:id"/>
 
-        
         <attr name="android:menuCategory"/>
 
-        
         <attr name="android:orderInCategory"/>
 
-        
         <attr name="android:title"/>
 
-        
         <attr name="android:titleCondensed"/>
 
-        
         <attr name="android:icon"/>
 
-        
         <attr name="android:alphabeticShortcut"/>
 
-        
         <attr name="alphabeticModifiers">
             <flag name="META" value="0x10000"/>
             <flag name="CTRL" value="0x1000"/>
@@ -15283,10 +14598,8 @@
             <flag name="FUNCTION" value="0x8"/>
         </attr>
 
-        
         <attr name="android:numericShortcut"/>
 
-        
         <attr name="numericModifiers">
             <flag name="META" value="0x10000"/>
             <flag name="CTRL" value="0x1000"/>
@@ -15296,22 +14609,16 @@
             <flag name="FUNCTION" value="0x8"/>
         </attr>
 
-        
         <attr name="android:checkable"/>
 
-        
         <attr name="android:checked"/>
 
-        
         <attr name="android:visible"/>
 
-        
         <attr name="android:enabled"/>
 
-        
         <attr name="android:onClick"/>
 
-        
         <attr name="showAsAction">
             
             <flag name="never" value="0"/>
@@ -15325,25 +14632,18 @@
             <flag name="collapseActionView" value="8"/>
         </attr>
 
-        
         <attr format="reference" name="actionLayout"/>
 
-        
         <attr format="string" name="actionViewClass"/>
 
-        
         <attr format="string" name="actionProviderClass"/>
 
-        
         <attr format="string" name="contentDescription"/>
 
-        
         <attr format="string" name="tooltipText"/>
 
-        
         <attr format="color" name="iconTint"/>
 
-        
         <attr name="iconTintMode">
             
             <enum name="src_over" value="3"/>
@@ -15388,7 +14688,6 @@
     </declare-styleable><declare-styleable name="RangeSlider">
     <attr format="reference" name="values"/>
 
-    
     <attr format="dimension" name="minSeparation"/>
   </declare-styleable><declare-styleable name="OnSwipe">
         <attr format="float" name="dragScale"/>

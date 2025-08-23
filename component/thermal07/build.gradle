@@ -4,7 +4,6 @@ plugins {
     id 'com.google.devtools.ksp'
 }
 
-
 android {
     namespace 'com.topdon.thermal07'
     compileSdk rootProject.ext.android.compileSdk
@@ -64,7 +63,5 @@ dependencies {
     implementation project(':component:thermal-ir')
     implementation project(':component:thermal04')
 
-
-    //艾睿手持设备API接口SDK
     api(name: 'jetified-tas_api-1.0.4.0', ext: 'aar')
 }

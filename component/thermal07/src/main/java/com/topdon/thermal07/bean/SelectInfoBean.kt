@@ -7,7 +7,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class SelectInfoBean(
-    val type: Int = 0, //1-点 2-线 3-面
+    val type: Int = 0,
     val startPoint: Point = Point(0, 0),
     val endPoint: Point = Point(0, 0)
 ) : Parcelable {

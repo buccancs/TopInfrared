@@ -15,11 +15,6 @@ import com.elvishew.xlog.XLog
 import com.topdon.lib.core.BaseApplication
 import com.topdon.lib.core.repository.TS004Repository
 
-/**
- * des:
- * author: CaiSongL
- * date: 2024/3/5 9:07
- **/
 object NetWorkUtils {
 
     private var mNetworkCallback: ConnectivityManager.NetworkCallback ?= null
@@ -34,7 +29,7 @@ object NetWorkUtils {
     fun isWifiNameValid(context: Context, prefixes: List<String>): Boolean {
         val wifiManager = context.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
         val wifiInfo = wifiManager.connectionInfo
-        val ssid = wifiInfo.ssid.replace("\"", "") // 移除双引号
+        val ssid = wifiInfo.ssid.replace("\"", "")
         for (prefix in prefixes) {
             if (ssid.startsWith(prefix)) {
                 return true
@@ -45,10 +40,10 @@ object NetWorkUtils {
 
     fun connectWifi(ssid: String, password: String, listener: ((network: Network?) -> Unit)? = null) {
         netWorkListener = listener
-        if (Build.VERSION.SDK_INT < 29) {//低于 Android10
+        if (Build.VERSION.SDK_INT < 29) {
             val request = NetworkRequest.Builder()
                 .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
-                .removeCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)//不需要能访问 internet
+                .removeCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
                 .build()
             val callback = object : ConnectivityManager.NetworkCallback() {
                 override fun onAvailable(network: Network) {
@@ -139,9 +134,8 @@ object NetWorkUtils {
         }
     }
 
-
     fun switchNetwork(isWifi: Boolean, listener: ((network: Network?) -> Unit)? = null) {
-        if (Build.VERSION.SDK_INT < 29) {//低于 Android10
+        if (Build.VERSION.SDK_INT < 29) {
             return
         }
         if (isWifi){

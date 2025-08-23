@@ -14,7 +14,7 @@ import com.topdon.module.user.R
 import kotlinx.android.synthetic.main.fragment_more.*
 
 /**
- * 插件式 “更多” 页面
+ * 插件式 "更多" 页面
  *
  * 需要传递参数：
  * - [ExtraKeyConfig.IS_TC007] - 当前设备是否为 TC007

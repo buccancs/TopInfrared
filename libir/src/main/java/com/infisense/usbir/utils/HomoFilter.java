@@ -37,7 +37,6 @@ public class HomoFilter {
         homo.add(new Mat(hu.size(),CV_32FC1,new Scalar(0)));
         Mat hu2c = new Mat(size,CV_32FC2);
         Core.merge(homo,hu2c);
-        //System.out.println(hu.dump());
         return hu2c;
     }
 
@@ -47,7 +46,6 @@ public class HomoFilter {
         int dy = src.cols() / 2;
         float[] data = new float[dy];
 
-        //System.out.println(src.dump());
         if(src.rows() % 2 == 0) {
             if (src.cols() % 2 == 0) {
                 for(int i = 0; i < dx; i++){
@@ -71,7 +69,6 @@ public class HomoFilter {
                 System.out.println("copy failed");
             }
         }
-        //System.out.println(dst.dump());
         return dst;
     }
 
@@ -84,7 +81,6 @@ public class HomoFilter {
         cvtColor(image, image, COLOR_YUV2GRAY_YUYV);
         normalize(image, image, 0, 255, NORM_MINMAX);
         image.convertTo(image, CV_8UC1);
-        //imshow("src", image);
         CLAHE clahe = Imgproc.createCLAHE();
         clahe.setClipLimit(1.0);
         clahe.setTilesGridSize(new Size(3,3));
@@ -113,7 +109,6 @@ public class HomoFilter {
         Core.idft(image_padd_2c,image_padd_2c,DFT_SCALE);
         System.out.println(image_padd_2c.channels());
 
-
         Core.exp(image_padd_2c,image_padd_2c);
         Core.subtract(image_padd_2c,new Scalar(1),image_padd_2c);
         List<Mat> image_padd_s = new ArrayList<Mat>();
@@ -126,16 +121,6 @@ public class HomoFilter {
         temp = iftCenter(temp);
         Mat result = new Mat();
         temp.convertTo(result,CV_8UC1);
-        //applyColorMap(image,image,15);
-        //imshow("image", image);
-        //equalizeHist(result,result);
-//        CLAHE clahe = Imgproc.createCLAHE();
-//        clahe.setClipLimit(2);
-//        clahe.setTilesGridSize(new Size(3,3));
-//        clahe.apply(result,result);
-//        applyColorMap(result,result,15);
-        //imshow("result", result);
-        //waitKey(0);
         return result;
 
     }

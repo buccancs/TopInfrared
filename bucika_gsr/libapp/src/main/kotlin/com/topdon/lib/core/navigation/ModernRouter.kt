@@ -5,30 +5,18 @@ import android.content.Context
 import android.content.Intent
 import androidx.fragment.app.Fragment
 
-/**
- * Modern routing solution replacing ARouter for Kotlin 2.0 compatibility
- */
 object ModernRouter {
 
     private val routes = mutableMapOf<String, Class<out Activity>>()
-    
-    /**
-     * Register a route with its destination activity
-     */
+
     fun register(path: String, activityClass: Class<out Activity>) {
         routes[path] = activityClass
     }
-    
-    /**
-     * Create a navigation builder for a route
-     */
+
     fun build(path: String): NavigationBuilder {
         return NavigationBuilder(path, routes[path])
     }
-    
-    /**
-     * Navigation builder for fluent API
-     */
+
     class NavigationBuilder(
         private val path: String,
         private val activityClass: Class<out Activity>?
@@ -54,10 +42,7 @@ object ModernRouter {
             extras[key] = value
             return this
         }
-        
-        /**
-         * Navigate from activity
-         */
+
         fun navigation(activity: Activity) {
             activityClass?.let { clazz ->
                 val intent = Intent(activity, clazz).apply {
@@ -73,19 +58,13 @@ object ModernRouter {
                 activity.startActivity(intent)
             }
         }
-        
-        /**
-         * Navigate from fragment
-         */
+
         fun navigation(fragment: Fragment) {
             fragment.activity?.let { activity ->
                 navigation(activity)
             }
         }
-        
-        /**
-         * Navigate from context
-         */
+
         fun navigation(context: Context) {
             activityClass?.let { clazz ->
                 val intent = Intent(context, clazz).apply {

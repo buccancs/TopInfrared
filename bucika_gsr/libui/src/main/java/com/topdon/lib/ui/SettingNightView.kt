@@ -28,8 +28,6 @@ class SettingNightView : LinearLayout {
         }
     }
 
-
-
     private var iconRes: Int = 0
     private var contentStr: String = ""
     private var moreShow: Boolean = true

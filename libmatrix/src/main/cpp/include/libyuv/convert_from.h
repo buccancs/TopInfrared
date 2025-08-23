@@ -1,12 +1,4 @@
-/*
- *  Copyright 2011 The LibYuv Project Authors. All rights reserved.
- *
- *  Use of this source code is governed by a BSD-style license
- *  that can be found in the LICENSE file in the root of the source
- *  tree. An additional intellectual property rights grant can be found
- *  in the file PATENTS. All contributing project authors may
- *  be found in the AUTHORS file in the root of the source tree.
- */
+
 
 #ifndef INCLUDE_LIBYUV_CONVERT_FROM_H_
 #define INCLUDE_LIBYUV_CONVERT_FROM_H_
@@ -19,9 +11,6 @@ namespace libyuv {
 extern "C" {
 #endif
 
-// See Also convert.h for conversions from formats to I420.
-
-// Convert 8 bit YUV to 10 bit.
 #define H420ToH010 I420ToI010
 int I420ToI010(const uint8_t* src_y,
                int src_stride_y,
@@ -70,7 +59,6 @@ int I420ToI444(const uint8_t* src_y,
                int width,
                int height);
 
-// Copy to I400. Source can be I420, I422, I444, I400, NV12 or NV21.
 LIBYUV_API
 int I400Copy(const uint8_t* src_y,
              int src_stride_y,
@@ -275,10 +263,6 @@ int I422ToRGB565(const uint8_t* src_y,
                  int width,
                  int height);
 
-// Convert I420 To RGB565 with 4x4 dither matrix (16 bytes).
-// Values in dither matrix from 0 to 7 recommended.
-// The order of the dither matrix is first byte is upper left.
-
 LIBYUV_API
 int I420ToRGB565Dither(const uint8_t* src_y,
                        int src_stride_y,
@@ -316,7 +300,6 @@ int I420ToARGB4444(const uint8_t* src_y,
                    int width,
                    int height);
 
-// Convert I420 to AR30.
 LIBYUV_API
 int I420ToAR30(const uint8_t* src_y,
                int src_stride_y,
@@ -329,7 +312,6 @@ int I420ToAR30(const uint8_t* src_y,
                int width,
                int height);
 
-// Convert H420 to AR30.
 LIBYUV_API
 int H420ToAR30(const uint8_t* src_y,
                int src_stride_y,
@@ -342,9 +324,6 @@ int H420ToAR30(const uint8_t* src_y,
                int width,
                int height);
 
-// Convert I420 to specified format.
-// "dst_sample_stride" is bytes in a row for the destination. Pass 0 if the
-//    buffer has contiguous rows. Can be negative. A multiple of 16 is optimal.
 LIBYUV_API
 int ConvertFromI420(const uint8_t* y,
                     int y_stride,
@@ -359,8 +338,8 @@ int ConvertFromI420(const uint8_t* y,
                     uint32_t fourcc);
 
 #ifdef __cplusplus
-}  // extern "C"
-}  // namespace libyuv
+}
+}
 #endif
 
-#endif  // INCLUDE_LIBYUV_CONVERT_FROM_H_
+#endif

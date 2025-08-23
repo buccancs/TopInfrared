@@ -46,9 +46,6 @@ public class FileUtil {
         return url;
     }
 
-    /*
-     * 截屏
-     * */
     public static File getSnapFile(String url) {
         File file = new File(getPicturePath(url));
         file.mkdirs();

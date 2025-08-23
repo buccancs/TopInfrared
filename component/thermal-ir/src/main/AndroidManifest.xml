@@ -9,8 +9,6 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.READ_MEDIA_VISUAL_USER_SELECTED" />
 
-
-
     <application>
         <activity
             android:name=".activity.IRThermalNightActivity"

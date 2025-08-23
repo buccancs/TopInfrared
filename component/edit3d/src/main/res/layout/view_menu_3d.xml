@@ -14,8 +14,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <!-- 视角 -->
     <View
         android:id="@+id/view_menu1_visual"
         android:layout_width="0dp"
@@ -52,7 +50,6 @@
         app:layout_constraintEnd_toEndOf="@id/view_menu1_visual"
         app:layout_constraintTop_toBottomOf="@id/iv_menu1_visual" />
 
-    <!-- 标定 -->
     <View
         android:id="@+id/view_menu1_mark"
         android:layout_width="0dp"
@@ -89,7 +86,6 @@
         app:layout_constraintEnd_toEndOf="@id/view_menu1_mark"
         app:layout_constraintTop_toBottomOf="@id/iv_menu1_mark" />
 
-    <!-- 伪彩 -->
     <View
         android:id="@+id/view_menu1_pseudo"
         android:layout_width="0dp"
@@ -126,7 +122,6 @@
         app:layout_constraintEnd_toEndOf="@id/view_menu1_pseudo"
         app:layout_constraintTop_toBottomOf="@id/iv_menu1_pseudo" />
 
-    <!-- 模式 -->
     <View
         android:id="@+id/view_menu1_mode"
         android:layout_width="0dp"

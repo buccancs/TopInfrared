@@ -40,7 +40,6 @@ class TipChangeDeviceDialog :Dialog {
             return this
         }
 
-
         fun setCancelListener(event: ((check: Boolean) -> Unit)? = null): Builder {
             this.closeEvent = event
             return this
@@ -54,7 +53,6 @@ class TipChangeDeviceDialog :Dialog {
         fun dismiss() {
             this.dialog!!.dismiss()
         }
-
 
         fun create(): TipChangeDeviceDialog {
             if (dialog == null) {
@@ -81,13 +79,11 @@ class TipChangeDeviceDialog :Dialog {
             val lp = dialog!!.window!!.attributes
             val wRatio =
                 if (context!!.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
-                    //竖屏
                     0.85
                 } else {
-                    //横屏
                     0.35
                 }
-            lp.width = (ScreenUtil.getScreenWidth(context!!) * wRatio).toInt() //设置宽度
+            lp.width = (ScreenUtil.getScreenWidth(context!!) * wRatio).toInt()
             dialog!!.window!!.attributes = lp
 
             dialog!!.setCanceledOnTouchOutside(canceled)

@@ -51,11 +51,9 @@ class GalleryAdapter(val context: Context) :
         val img = itemView.item_gallery_img
     }
 
-
     interface OnItemClickListener {
         fun onClick(index: Int, path: String)
         fun onLongClick(index: Int, path: String)
     }
-
 
 }

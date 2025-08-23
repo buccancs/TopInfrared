@@ -10,16 +10,9 @@ import com.topdon.lib.core.db.entity.DirReport
 import com.topdon.lib.core.db.entity.HouseReport
 import com.topdon.lib.core.db.entity.ItemReport
 
-/**
- * 房屋检测-报告 DAO。
- *
- * Created by LCG on 2024/8/19.
- */
 @Dao
 abstract class HouseReportDao {
-    /**
-     * 插入指定的房屋检测报告.
-     */
+    
     @Transaction
     open fun insert(houseReport: HouseReport): Long {
         houseReport.id = insertReport(houseReport)
@@ -59,15 +52,12 @@ abstract class HouseReportDao {
         return houseReport
     }
 
-
-
     @Insert
     abstract fun insertReport(houseReport: HouseReport): Long
     @Insert
     abstract fun insertDir(dirReport: DirReport): Long
     @Insert
     abstract fun insertItem(itemReport: ItemReport): Long
-
 
     @Delete
     abstract fun deleteReport(vararg houseReport: HouseReport)
@@ -76,14 +66,12 @@ abstract class HouseReportDao {
     @Delete
     abstract fun deleteItem(vararg itemReport: ItemReport)
 
-
     @Update
     abstract fun updateReport(houseReport: HouseReport)
     @Update
     abstract fun updateDir(dirReport: DirReport)
     @Update
     abstract fun updateItem(itemReport: ItemReport)
-
 
     @Query("SELECT * FROM HouseReport ORDER BY createTime DESC")
     abstract fun queryAll(): List<HouseReport>

@@ -24,13 +24,6 @@ public class TargetUtils {
                    currentSelectDraw = R.drawable.ic_target_circle_sheep_green;
                }
            } else if(targetMeasureMode == ObserveBean.TYPE_MEASURE_DOG){
-//               if(targetType == ObserveBean.TYPE_TARGET_HORIZONTAL){
-//                   currentSelectDraw = R.drawable.ic_target_horizontal_dog_green;
-//               } else if(targetType == ObserveBean.TYPE_TARGET_VERTICAL){
-//                   currentSelectDraw = R.drawable.ic_target_vertical_dog_green;
-//               } else if(targetType == ObserveBean.TYPE_TARGET_CIRCLE){
-//                   currentSelectDraw = R.drawable.ic_target_circle_dog_green;
-//               }
                if(targetType == ObserveBean.TYPE_TARGET_HORIZONTAL){
                    currentSelectDraw = R.drawable.ic_target_horizontal_sheep_green;
                } else if(targetType == ObserveBean.TYPE_TARGET_VERTICAL){
@@ -39,13 +32,6 @@ public class TargetUtils {
                    currentSelectDraw = R.drawable.ic_target_circle_sheep_green;
                }
            } else if(targetMeasureMode == ObserveBean.TYPE_MEASURE_BIRD){
-//               if(targetType == ObserveBean.TYPE_TARGET_HORIZONTAL){
-//                   currentSelectDraw = R.drawable.ic_target_horizontal_bird_green;
-//               } else if(targetType == ObserveBean.TYPE_TARGET_VERTICAL){
-//                   currentSelectDraw = R.drawable.ic_target_vertical_bird_green;
-//               } else if(targetType == ObserveBean.TYPE_TARGET_CIRCLE){
-//                   currentSelectDraw = R.drawable.ic_target_circle_bird_green;
-//               }
                if(targetType == ObserveBean.TYPE_TARGET_HORIZONTAL){
                    currentSelectDraw = R.drawable.ic_target_horizontal_sheep_green;
                } else if(targetType == ObserveBean.TYPE_TARGET_VERTICAL){
@@ -72,13 +58,6 @@ public class TargetUtils {
                     currentSelectDraw = R.drawable.ic_target_circle_sheep_red;
                 }
             } else if(targetMeasureMode == ObserveBean.TYPE_MEASURE_DOG){
-//                if(targetType == ObserveBean.TYPE_TARGET_HORIZONTAL){
-//                    currentSelectDraw = R.drawable.ic_target_horizontal_dog_red;
-//                } else if(targetType == ObserveBean.TYPE_TARGET_VERTICAL){
-//                    currentSelectDraw = R.drawable.ic_target_vertical_dog_red;
-//                } else if(targetType == ObserveBean.TYPE_TARGET_CIRCLE){
-//                    currentSelectDraw = R.drawable.ic_target_circle_dog_red;
-//                }
                 if(targetType == ObserveBean.TYPE_TARGET_HORIZONTAL){
                     currentSelectDraw = R.drawable.ic_target_horizontal_sheep_red;
                 } else if(targetType == ObserveBean.TYPE_TARGET_VERTICAL){
@@ -87,13 +66,6 @@ public class TargetUtils {
                     currentSelectDraw = R.drawable.ic_target_circle_sheep_red;
                 }
             } else if(targetMeasureMode == ObserveBean.TYPE_MEASURE_BIRD){
-//                if(targetType == ObserveBean.TYPE_TARGET_HORIZONTAL){
-//                    currentSelectDraw = R.drawable.ic_target_horizontal_bird_red;
-//                } else if(targetType == ObserveBean.TYPE_TARGET_VERTICAL){
-//                    currentSelectDraw = R.drawable.ic_target_vertical_bird_red;
-//                } else if(targetType == ObserveBean.TYPE_TARGET_CIRCLE){
-//                    currentSelectDraw = R.drawable.ic_target_circle_bird_red;
-//                }
                 if(targetType == ObserveBean.TYPE_TARGET_HORIZONTAL){
                     currentSelectDraw = R.drawable.ic_target_horizontal_sheep_red;
                 } else if(targetType == ObserveBean.TYPE_TARGET_VERTICAL){
@@ -120,13 +92,6 @@ public class TargetUtils {
                     currentSelectDraw = R.drawable.ic_target_circle_sheep_blue;
                 }
             } else if(targetMeasureMode == ObserveBean.TYPE_MEASURE_DOG){
-//                if(targetType == ObserveBean.TYPE_TARGET_HORIZONTAL){
-//                    currentSelectDraw = R.drawable.ic_target_horizontal_dog_blue;
-//                } else if(targetType == ObserveBean.TYPE_TARGET_VERTICAL){
-//                    currentSelectDraw = R.drawable.ic_target_vertical_dog_blue;
-//                } else if(targetType == ObserveBean.TYPE_TARGET_CIRCLE){
-//                    currentSelectDraw = R.drawable.ic_target_circle_dog_blue;
-//                }
                 if(targetType == ObserveBean.TYPE_TARGET_HORIZONTAL){
                     currentSelectDraw = R.drawable.ic_target_horizontal_sheep_blue;
                 } else if(targetType == ObserveBean.TYPE_TARGET_VERTICAL){
@@ -135,13 +100,6 @@ public class TargetUtils {
                     currentSelectDraw = R.drawable.ic_target_circle_sheep_blue;
                 }
             } else if(targetMeasureMode == ObserveBean.TYPE_MEASURE_BIRD){
-//                if(targetType == ObserveBean.TYPE_TARGET_HORIZONTAL){
-//                    currentSelectDraw = R.drawable.ic_target_horizontal_bird_blue;
-//                } else if(targetType == ObserveBean.TYPE_TARGET_VERTICAL){
-//                    currentSelectDraw = R.drawable.ic_target_vertical_bird_blue;
-//                } else if(targetType == ObserveBean.TYPE_TARGET_CIRCLE){
-//                    currentSelectDraw = R.drawable.ic_target_circle_bird_blue;
-//                }
                 if(targetType == ObserveBean.TYPE_TARGET_HORIZONTAL){
                     currentSelectDraw = R.drawable.ic_target_horizontal_sheep_blue;
                 } else if(targetType == ObserveBean.TYPE_TARGET_VERTICAL){
@@ -168,13 +126,6 @@ public class TargetUtils {
                     currentSelectDraw = R.drawable.ic_target_circle_sheep_black;
                 }
             } else if(targetMeasureMode == ObserveBean.TYPE_MEASURE_DOG){
-//                if(targetType == ObserveBean.TYPE_TARGET_HORIZONTAL){
-//                    currentSelectDraw = R.drawable.ic_target_horizontal_dog_black;
-//                } else if(targetType == ObserveBean.TYPE_TARGET_VERTICAL){
-//                    currentSelectDraw = R.drawable.ic_target_vertical_dog_black;
-//                } else if(targetType == ObserveBean.TYPE_TARGET_CIRCLE){
-//                    currentSelectDraw = R.drawable.ic_target_circle_dog_black;
-//                }
                 if(targetType == ObserveBean.TYPE_TARGET_HORIZONTAL){
                     currentSelectDraw = R.drawable.ic_target_horizontal_sheep_black;
                 } else if(targetType == ObserveBean.TYPE_TARGET_VERTICAL){
@@ -183,13 +134,6 @@ public class TargetUtils {
                     currentSelectDraw = R.drawable.ic_target_circle_sheep_black;
                 }
             } else if(targetMeasureMode == ObserveBean.TYPE_MEASURE_BIRD){
-//                if(targetType == ObserveBean.TYPE_TARGET_HORIZONTAL){
-//                    currentSelectDraw = R.drawable.ic_target_horizontal_bird_black;
-//                } else if(targetType == ObserveBean.TYPE_TARGET_VERTICAL){
-//                    currentSelectDraw = R.drawable.ic_target_vertical_bird_black;
-//                } else if(targetType == ObserveBean.TYPE_TARGET_CIRCLE){
-//                    currentSelectDraw = R.drawable.ic_target_circle_bird_black;
-//                }
                 if(targetType == ObserveBean.TYPE_TARGET_HORIZONTAL){
                     currentSelectDraw = R.drawable.ic_target_horizontal_sheep_black;
                 } else if(targetType == ObserveBean.TYPE_TARGET_VERTICAL){
@@ -216,13 +160,6 @@ public class TargetUtils {
                     currentSelectDraw = R.drawable.ic_target_circle_sheep_white;
                 }
             } else if(targetMeasureMode == ObserveBean.TYPE_MEASURE_DOG){
-//                if(targetType == ObserveBean.TYPE_TARGET_HORIZONTAL){
-//                    currentSelectDraw = R.drawable.ic_target_horizontal_dog_white;
-//                } else if(targetType == ObserveBean.TYPE_TARGET_VERTICAL){
-//                    currentSelectDraw = R.drawable.ic_target_vertical_dog_white;
-//                } else if(targetType == ObserveBean.TYPE_TARGET_CIRCLE){
-//                    currentSelectDraw = R.drawable.ic_target_circle_dog_white;
-//                }
                 if(targetType == ObserveBean.TYPE_TARGET_HORIZONTAL){
                     currentSelectDraw = R.drawable.ic_target_horizontal_sheep_white;
                 } else if(targetType == ObserveBean.TYPE_TARGET_VERTICAL){
@@ -231,13 +168,6 @@ public class TargetUtils {
                     currentSelectDraw = R.drawable.ic_target_circle_sheep_white;
                 }
             } else if(targetMeasureMode == ObserveBean.TYPE_MEASURE_BIRD){
-//                if(targetType == ObserveBean.TYPE_TARGET_HORIZONTAL){
-//                    currentSelectDraw = R.drawable.ic_target_horizontal_bird_white;
-//                } else if(targetType == ObserveBean.TYPE_TARGET_VERTICAL){
-//                    currentSelectDraw = R.drawable.ic_target_vertical_bird_white;
-//                } else if(targetType == ObserveBean.TYPE_TARGET_CIRCLE){
-//                    currentSelectDraw = R.drawable.ic_target_circle_bird_white;
-//                }
                 if(targetType == ObserveBean.TYPE_TARGET_HORIZONTAL){
                     currentSelectDraw = R.drawable.ic_target_horizontal_sheep_white;
                 } else if(targetType == ObserveBean.TYPE_TARGET_VERTICAL){
@@ -253,16 +183,16 @@ public class TargetUtils {
     public static float getMeasureSize(int targetMeasureMode){
         float mMeasureSize = 180f;
         switch (targetMeasureMode) {
-            case ObserveBean.TYPE_MEASURE_PERSON://人
+            case ObserveBean.TYPE_MEASURE_PERSON:
                 mMeasureSize = 180f;
                 break;
-            case ObserveBean.TYPE_MEASURE_SHEEP://羊
+            case ObserveBean.TYPE_MEASURE_SHEEP:
                 mMeasureSize = 100f;
                 break;
-            case ObserveBean.TYPE_MEASURE_DOG://狗
+            case ObserveBean.TYPE_MEASURE_DOG:
                 mMeasureSize = 50f;
                 break;
-            case ObserveBean.TYPE_MEASURE_BIRD://鸟
+            case ObserveBean.TYPE_MEASURE_BIRD:
                 mMeasureSize = 20f;
                 break;
         }

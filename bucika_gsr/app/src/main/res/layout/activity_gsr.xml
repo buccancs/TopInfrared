@@ -20,7 +20,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Connection Status -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -78,7 +77,6 @@
 
             </androidx.cardview.widget.CardView>
 
-            <!-- Recording Controls -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -137,7 +135,6 @@
 
             </androidx.cardview.widget.CardView>
 
-            <!-- GSR Data Display -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -189,7 +186,6 @@
 
             </androidx.cardview.widget.CardView>
 
-            <!-- Information -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

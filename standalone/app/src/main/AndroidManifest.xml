@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- USB permissions for TC001 device -->
     <uses-permission android:name="android.permission.USB_PERMISSION" />
     <uses-feature android:name="android.hardware.usb.host" android:required="true" />
-    
-    <!-- Storage permissions for local recording -->
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    
-    <!-- Camera permissions -->
+
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
@@ -39,8 +36,7 @@
             android:name=".LocalFilesActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-            
-        <!-- USB device filter for TC001 -->
+
         <receiver android:name=".usb.UsbReceiver"
             android:exported="false">
             <intent-filter>

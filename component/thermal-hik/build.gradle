@@ -54,11 +54,11 @@ android {
 
 dependencies {
     implementation project(':component:pseudo')
-    implementation project(':component:thermal-ir') //很多热成像公共的东西在里面如图库
+    implementation project(':component:thermal-ir')
     implementation project(':libapp')
     implementation project(':libcom')
     implementation project(':libhik')
-    implementation project(':libir') //点线面温度需要用到
+    implementation project(':libir')
     implementation project(':libmenu')
     implementation project(':libui')
 

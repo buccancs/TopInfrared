@@ -6,10 +6,6 @@ import com.topdon.lib.ui.core.Pivot
 import com.topdon.lib.ui.core.Pivot.X
 import com.topdon.lib.ui.core.Pivot.Y
 
-/**
- * @author: CaiSongL
- * @date: 2023/4/1 16:02
- */
 class ScaleTransformer : HorizontalScrollItemTransformer {
     private var pivotX: Pivot = X.CENTER.create()
     private var pivotY: Pivot = Y.CENTER.create()

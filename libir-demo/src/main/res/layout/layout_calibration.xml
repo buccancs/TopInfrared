@@ -10,7 +10,6 @@
         android:layout_width="301dp"
         android:layout_height="wrap_content">
 
-
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
@@ -25,7 +24,6 @@
             android:ems="10"
             android:inputType="number" />
 
-
         <Button
             android:id="@+id/singlepointsumit"
             android:layout_width="100dp"
@@ -33,7 +31,6 @@
             android:layout_alignBottom="@id/singlepoint"
             android:layout_toRightOf="@id/singlepoint"
             android:text="@string/single_point_calibration" />
-
 
         <TextView
             android:id="@+id/textView2"
@@ -50,7 +47,6 @@
             android:layout_alignStart="@id/highpoint"
             android:layout_toRightOf="@id/textView2"
             android:text="@string/high_temperature" />
-
 
         <EditText
             android:id="@+id/lowpoint"

@@ -19,7 +19,7 @@ class WsManager(private val wsUrl: String, private val okHttpClient: OkHttpClien
     }
 
     private var mWebSocket: WebSocket? = null
-    private var status: State = State.DISCONNECTED //websocket连接状态
+    private var status: State = State.DISCONNECTED
     private var heartBeatTimer: HeartBeatTimer? = null
 
     private val mWebSocketListener: WebSocketListener = object : WebSocketListener() {
@@ -28,7 +28,6 @@ class WsManager(private val wsUrl: String, private val okHttpClient: OkHttpClien
             mWebSocket = webSocket
             status = State.CONNECTED
 
-            //开始定时发送心跳
             heartBeatTimer?.cancel()
             heartBeatTimer = HeartBeatTimer(this@WsManager)
             heartBeatTimer?.timeoutListener = {
@@ -88,14 +87,12 @@ class WsManager(private val wsUrl: String, private val okHttpClient: OkHttpClien
         }
     }
 
-
     fun isConnect(): Boolean = status == State.CONNECTING || status == State.CONNECTED
-
 
     private var mLock = ReentrantLock()
     @Synchronized
     fun startConnect() {
-        if (status == State.CONNECTING || status == State.CONNECTED) {//连接中或已连接
+        if (status == State.CONNECTING || status == State.CONNECTED) {
             Log.w("WebSocket", "${if (status == State.CONNECTING) "连接中" else "已连接"} startConnect() 重复调用")
             return
         }
@@ -160,7 +157,6 @@ class WsManager(private val wsUrl: String, private val okHttpClient: OkHttpClien
         return isSend
     }
 
-
     private val wsMainHandler = Handler(Looper.getMainLooper())
     private fun IWebSocketListener?.runMain(block: (IWebSocketListener) -> Unit) {
         if (this != null) {
@@ -173,7 +169,6 @@ class WsManager(private val wsUrl: String, private val okHttpClient: OkHttpClien
             }
         }
     }
-
 
     private class HeartBeatTimer(val wsManager: WsManager) : Timer() {
         var timeoutListener: (() -> Unit)? = null
@@ -188,7 +183,7 @@ class WsManager(private val wsUrl: String, private val okHttpClient: OkHttpClien
                     if (lastHeartBeatTime == 0L) {
                         lastHeartBeatTime = currentTime
                     }
-                    if (currentTime - lastHeartBeatTime > 15 * 1000) {//3秒一个心跳包，连续丢失 5 个包视为断开
+                    if (currentTime - lastHeartBeatTime > 15 * 1000) {
                         Log.d("WebSocket", "连续5个心跳包无响应，视为连接断开")
                         timeoutListener?.invoke()
                         lastHeartBeatTime = currentTime
@@ -207,14 +202,9 @@ class WsManager(private val wsUrl: String, private val okHttpClient: OkHttpClien
     }
 
     abstract class IWebSocketListener : WebSocketListener() {
-        /**
-         * 返回要发送的心跳消息，null 则不发送.
-         */
+        
         abstract fun onHeartBeat(): String?
 
-        /**
-         * 心跳超时处理.
-         */
         abstract fun onHeartBeatTimeout()
     }
 

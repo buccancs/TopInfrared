@@ -73,7 +73,6 @@
             app:layout_constraintStart_toEndOf="@id/tv_warn"
             app:layout_constraintTop_toTopOf="@id/tv_good" />
 
-        <!-- 状态对应文案 -->
         <TextView
             android:id="@+id/tv_state"
             android:layout_width="0dp"
@@ -116,7 +115,6 @@
             app:layout_constraintEnd_toEndOf="@id/view_bg_item"
             app:layout_constraintTop_toBottomOf="@id/tv_input_text">
 
-            <!-- 仅用于占位，无实际交互 -->
             <View
                 android:id="@+id/space_image1"
                 android:layout_width="0dp"
@@ -156,7 +154,6 @@
                 app:layout_constraintStart_toEndOf="@id/space_image3"
                 app:layout_constraintEnd_toEndOf="parent" />
 
-            <!-- 图片 -->
             <com.topdon.lib.ui.widget.RoundImageView
                 android:id="@+id/iv_image1"
                 android:layout_width="0dp"
@@ -204,7 +201,6 @@
                 app:layout_constraintTop_toTopOf="@id/space_image4"
                 app:layout_constraintBottom_toBottomOf="@id/space_image4" />
 
-            <!-- 删除 -->
             <ImageView
                 android:id="@+id/iv_del_image1"
                 android:layout_width="26dp"
@@ -276,7 +272,6 @@
             app:layout_constraintEnd_toEndOf="@id/view_bg_item"
             app:layout_constraintTop_toBottomOf="@id/cl_image" />
 
-        <!-- 添加图片 -->
         <com.topdon.lib.core.view.MyTextView
             android:id="@+id/tv_item_add_img"
             android:layout_width="wrap_content"
@@ -289,7 +284,7 @@
             app:layout_constraintTop_toBottomOf="@id/view_line"
             app:layout_constraintStart_toStartOf="@id/view_bg_item"
             app:layout_constraintEnd_toStartOf="@+id/tv_item_add_text" />
-        <!-- 添加文字 -->
+        
         <com.topdon.lib.core.view.MyTextView
             android:id="@+id/tv_item_add_text"
             android:layout_width="wrap_content"
@@ -301,7 +296,7 @@
             app:layout_constraintTop_toTopOf="@id/tv_item_add_img"
             app:layout_constraintStart_toEndOf="@id/tv_item_add_img"
             app:layout_constraintEnd_toStartOf="@+id/tv_item_copy" />
-        <!-- 复制 -->
+        
         <com.topdon.lib.core.view.MyTextView
             android:id="@+id/tv_item_copy"
             android:layout_width="wrap_content"
@@ -313,7 +308,7 @@
             app:layout_constraintTop_toTopOf="@id/tv_item_add_img"
             app:layout_constraintStart_toEndOf="@id/tv_item_add_text"
             app:layout_constraintEnd_toStartOf="@+id/tv_item_del" />
-        <!-- 删除 -->
+        
         <com.topdon.lib.core.view.MyTextView
             android:id="@+id/tv_item_del"
             android:layout_width="wrap_content"

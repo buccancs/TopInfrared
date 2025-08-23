@@ -16,9 +16,6 @@ import com.topdon.lib.core.utils.ByteUtils.toBytes
 import com.topdon.lib.core.utils.ByteUtils.toHexString
 import org.greenrobot.eventbus.EventBus
 
-/**
- * 先获取权限
- */
 object DeviceTools {
 
     /**
@@ -65,15 +62,6 @@ object DeviceTools {
         return null
     }
 
-
-
-    /**
-     * 获取usb权限
-     *
-     * UsbManager.requestPermission
-     * 在android 10无法弹出授权框
-     * targetSdk 27
-     */
     fun requestUsb(activity: Activity, requestCode: Int, device: UsbDevice) {
         val usbManager = Utils.getApp().getSystemService(Context.USB_SERVICE) as UsbManager
         val intent = Intent(DeviceBroadcastReceiver.ACTION_USB_PERMISSION)
@@ -82,6 +70,5 @@ object DeviceTools {
         usbManager.requestPermission(device, pendingIntent)
         XLog.i("申请usb权限")
     }
-
 
 }

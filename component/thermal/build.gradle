@@ -4,7 +4,6 @@ plugins {
     id 'com.google.devtools.ksp'
 }
 
-
 android {
     namespace 'com.topdon.module.thermal'
     compileSdk rootProject.ext.android.compileSdk

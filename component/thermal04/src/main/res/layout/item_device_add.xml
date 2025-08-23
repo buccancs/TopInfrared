@@ -55,5 +55,4 @@
         app:layout_constraintStart_toEndOf="@id/iv_icon"
         app:layout_constraintEnd_toStartOf="@id/tv_connect" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>

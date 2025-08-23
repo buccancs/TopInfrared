@@ -4,12 +4,12 @@ import android.hardware.usb.UsbDevice
 
 object DeviceConfig {
 
-    //TC001 - main supported device
-    //vid:3034, pid:22592
+    // TC001 - main supported device
+    // vid:3034, pid:22592
     const val IR_VENDOR_ID = 0x0BDA
     const val IR_PRODUCT_ID = 0x5840
 
-    //topdon
+    // topdon
     const val TOPDON_VENDOR_ID = 0x0BDA
     const val TOPDON_PRODUCT_ID = 0x5830
 
@@ -20,10 +20,6 @@ object DeviceConfig {
         return (productId == TOPDON_PRODUCT_ID && vendorId == TOPDON_VENDOR_ID) ||
                 (productId == IR_PRODUCT_ID && vendorId == IR_VENDOR_ID)
     }
-
-
-
-
 
     const val SKU = "TDTC001A11"
     const val SN = "TC001A11000001"

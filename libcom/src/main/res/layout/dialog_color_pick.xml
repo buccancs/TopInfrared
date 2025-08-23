@@ -46,7 +46,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rl_close" />
 
-    <!-- 目前原型UI为6个预设值，更改的概率不大，此处直接写死，就不用 RecyclerView、自定义View 之类的去复杂化了 -->
     <View
         android:id="@+id/view_color1"
         android:layout_width="0dp"

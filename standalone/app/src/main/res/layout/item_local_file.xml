@@ -13,13 +13,11 @@
         android:orientation="horizontal"
         android:padding="16dp">
 
-        <!-- Thumbnail Image -->
         <FrameLayout
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_gravity="center_vertical">
-            
-            <!-- File Type Icon -->
+
             <ImageView
                 android:id="@+id/ivFileType"
                 android:layout_width="48dp"
@@ -27,8 +25,7 @@
                 android:layout_gravity="center"
                 android:contentDescription="File Type"
                 android:src="@android:drawable/ic_menu_gallery" />
-            
-            <!-- Thumbnail Image -->
+
             <ImageView
                 android:id="@+id/ivThumbnail"
                 android:layout_width="match_parent"
@@ -39,7 +36,6 @@
                 
         </FrameLayout>
 
-        <!-- File Info -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -47,7 +43,6 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <!-- File Name -->
             <TextView
                 android:id="@+id/tvFileName"
                 android:layout_width="match_parent"
@@ -59,7 +54,6 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <!-- File Details -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -88,7 +82,6 @@
 
             </LinearLayout>
 
-            <!-- File Date -->
             <TextView
                 android:id="@+id/tvFileDate"
                 android:layout_width="match_parent"
@@ -99,8 +92,7 @@
                 android:textSize="12sp" />
 
         </LinearLayout>
-        
-        <!-- Selection Checkbox -->
+
         <CheckBox
             android:id="@+id/cbFileSelect"
             android:layout_width="wrap_content"

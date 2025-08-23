@@ -53,12 +53,6 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import org.json.JSONObject
 
-
-/**
- * 首页 Fragment.
- *
- * Created by LCG on 2024/4/18.
- */
 @SuppressLint("NotifyDataSetChanged")
 class MainFragment : BaseFragment(), View.OnClickListener {
 
@@ -134,7 +128,6 @@ class MainFragment : BaseFragment(), View.OnClickListener {
         }
         viewLifecycleOwner.lifecycle.addObserver(object : DefaultLifecycleObserver {
             override fun onResume(owner: LifecycleOwner) {
-                // 要是当前已连接 TS004、TC007，切到流量上，不然登录注册意见反馈那些没网
                 if (WebSocketProxy.getInstance().isConnected()) {
                     NetWorkUtils.switchNetwork(true)
                 }
@@ -197,19 +190,16 @@ class MainFragment : BaseFragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v) {
-            tv_connect_device, iv_add -> {//添加设备
+            tv_connect_device, iv_add -> {
                 startActivity(Intent(requireContext(), DeviceTypeActivity::class.java))
-//                ARouter.getInstance().build(RoutePath.UsbIrModule.PAGE_IR_MAIN_ACTIVITY)
-//                    .navigation()
-//                startActivity(Intent(requireContext(), IRThermalLiteActivity::class.java))
             }
         }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onSocketMsgEvent(event: SocketMsgEvent) {
-        if (SocketCmdUtil.getCmdResponse(event.text) == WsCmdConstants.APP_EVENT_HEART_BEATS) {//心跳
-            if (!adapter.hasConnectTC007) {//当前连接的不是 TC007
+        if (SocketCmdUtil.getCmdResponse(event.text) == WsCmdConstants.APP_EVENT_HEART_BEATS) {
+            if (!adapter.hasConnectTC007) {
                 return
             }
             try {
@@ -222,33 +212,25 @@ class MainFragment : BaseFragment(), View.OnClickListener {
     }
 
     private class MyAdapter : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
-        /**
-         * 有线设备当前是否已连接.
-         */
+        
         var hasConnectLine: Boolean = false
             set(value) {
                 field = value
                 notifyItemRangeChanged(0, 3)
             }
-        /**
-         * TS004 当前是否已连接.
-         */
+        
         var hasConnectTS004: Boolean = false
             set(value) {
                 field = value
                 notifyItemRangeChanged(0, itemCount)
             }
-        /**
-         * TC007 当前是否已连接.
-         */
+        
         var hasConnectTC007: Boolean = false
             set(value) {
                 field = value
                 notifyItemRangeChanged(0, itemCount)
             }
-        /**
-         * TC007 设备电池信息.
-         */
+        
         var tc007Battery: BatteryInfo? = null
             set(value) {
                 if (field != value) {
@@ -256,7 +238,6 @@ class MainFragment : BaseFragment(), View.OnClickListener {
                     notifyItemRangeChanged(0, itemCount)
                 }
             }
-
 
         var onItemClickListener: ((type: ConnectType) -> Unit)? = null
         var onItemLongClickListener: ((view: View, type: ConnectType) -> Unit)? = null
@@ -350,7 +331,6 @@ class MainFragment : BaseFragment(), View.OnClickListener {
                 rootView.iv_bg.setOnLongClickListener {
                     val position = bindingAdapterPosition
                     if (position != RecyclerView.NO_POSITION) {
-                        //只有离线设备才能长按删除
                         val deviceType = getConnectType(position)
                         when (deviceType) {
                             ConnectType.LINE -> {

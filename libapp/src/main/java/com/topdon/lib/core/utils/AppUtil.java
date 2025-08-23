@@ -20,7 +20,6 @@ import java.util.List;
 public class AppUtil {
     public static boolean isAppInstalled(Context context, String packageName) {
         PackageManager packageManager = context.getPackageManager();
-        //获取系统中安装的应用包的信息
         List<PackageInfo> listPackageInfo = packageManager.getInstalledPackages(0);
         for (int i = 0; i < listPackageInfo.size(); i++) {
             if (listPackageInfo.get(i).packageName.equalsIgnoreCase(packageName)) {
@@ -37,7 +36,6 @@ public class AppUtil {
         resolveIntent.setPackage(pi.packageName);
         List<ResolveInfo> apps = context.getPackageManager().queryIntentActivities(resolveIntent, 0);
         if (apps == null || apps.size() <= 0) {
-//            LLog.e("bcf","该应用没有启动入口无法启动");
             return;
         }
         ResolveInfo ri = apps.iterator().next();
@@ -52,20 +50,10 @@ public class AppUtil {
         }
     }
 
-
-    /**
-     * 应用安装
-     *
-     * @param context
-     * @param
-     * @param apkPath
-     */
     public static void installApp(Context context, File apkPath) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        ///< 判断是否是AndroidN以及更高的版本
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            // 不能再用setFlags了， setflags会重置之前的设置， 要么 setflags 多个|拼接，要么addflag
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             Uri contentUri = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", apkPath);
             intent.setDataAndType(contentUri, "application/vnd.android.package-archive");
@@ -75,12 +63,6 @@ public class AppUtil {
         context.startActivity(intent);
     }
 
-    /**
-     * 方法描述：判断某一Service是否正在运行     *
-     * * @param context     上下文
-     * * @param serviceName Service的全路径： 包名 + service的类名
-     * * @return true 表示正在运行，false 表示没有运行
-     */
     public static boolean isProcessRunning(Context context, String serviceName) {
         ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningServiceInfo> runningServiceInfos = am.getRunningServices(200);
@@ -96,12 +78,6 @@ public class AppUtil {
         return false;
     }
 
-    /**
-     * 方法描述：判断某一Service是否正在运行     *
-     * * @param context     上下文
-     * * @param serviceName Service的全路径： 包名 + service的类名
-     * * @return true 表示正在运行，false 表示没有运行
-     */
     public static boolean isServiceRunning(Context context, String serviceName) {
         ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningServiceInfo> runningServiceInfos = am.getRunningServices(200);

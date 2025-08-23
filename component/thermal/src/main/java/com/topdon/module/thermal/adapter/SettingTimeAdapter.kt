@@ -12,9 +12,6 @@ import com.topdon.module.thermal.R
 import kotlinx.android.synthetic.main.item_setting_check.view.*
 import kotlinx.android.synthetic.main.item_setting_time.view.*
 
-/**
- * 设置时间
- */
 class SettingTimeAdapter(val context: Context) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -28,7 +25,6 @@ class SettingTimeAdapter(val context: Context) :
         this.select = index
         notifyDataSetChanged()
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view =
@@ -62,10 +58,8 @@ class SettingTimeAdapter(val context: Context) :
         val btn: Button = itemView.item_setting_time_btn
     }
 
-
     interface OnItemClickListener {
         fun onClick(index: Int, time: Int)
     }
-
 
 }

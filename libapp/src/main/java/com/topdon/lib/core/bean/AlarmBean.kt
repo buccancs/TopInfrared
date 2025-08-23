@@ -2,10 +2,6 @@ package com.topdon.lib.core.bean
 
 import java.nio.ByteBuffer
 
-/**
- * @author: CaiSongL
- * @date: 2023/5/16 15:56
- */
 data class AlarmBean(
     var isHighOpen: Boolean = false,
     var isLowOpen: Boolean = false,
@@ -56,7 +52,6 @@ data class AlarmBean(
         }
     }
 
-
     fun toByteArray(): ByteArray = ByteBuffer.allocate(28)
         .put(if (isHighOpen) 1 else 0)
         .put(if (isLowOpen) 1 else 0)
@@ -70,8 +65,5 @@ data class AlarmBean(
         .putInt(ringtoneType)
         .array()
 
-    /**
-     * 判断温度报警是否开启
-     */
     fun isOpen(): Boolean = isHighOpen || isLowOpen
 }

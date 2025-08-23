@@ -16,9 +16,6 @@ import com.energy.iruvc.utils.IAlignCallback;
 import com.energy.iruvc.utils.IFrameCallback;
 import com.energy.iruvc.uvc.UVCCamera;
 
-/**
- * Created by fengjibo on 2024/1/10.
- */
 public class DualViewWithManualAlignExternalCamera extends BaseParamDualView{
         private final String TAG = "DualViewWithManualAlignExternalCamera";
         private DualUVCCamera dualUVCCamera;
@@ -33,18 +30,11 @@ public class DualViewWithManualAlignExternalCamera extends BaseParamDualView{
         private SurfaceNativeWindow mSurfaceNativeWindow;
         private Surface mSurface;
 
-        /**
-         * @param handler
-         */
         public void setHandler(Handler handler) {
             this.handler = handler;
         }
 
         private IFrameCallback iFrameCallback = new IFrameCallback() {
-            /**
-             * frame里面是有两帧图像的，前面是融合之后的图像，是ARGB格式，占4个字节;
-             * 后面是红外和温度的图像，红外和温度的图像是YUV422格式，占2个字节
-             */
 
             @Override
             public void onFrame(byte[] frame) {
@@ -76,15 +66,10 @@ public class DualViewWithManualAlignExternalCamera extends BaseParamDualView{
             }
         };
 
-        /**
-         * @param cameraview
-         * @param iruvc
-         */
         public DualViewWithManualAlignExternalCamera(int irWidth, int irHeight, int vlWidth, int vlHeight, int dualWidth, int dualHeight,
                                                      SurfaceView cameraview, UVCCamera iruvc, CommonParams.DataFlowMode dataFlowMode) {
             super(irWidth, irHeight, vlWidth, vlHeight, dualWidth, dualHeight);
             this.cameraview = cameraview;
-            // DualUVCCamera 初始化
             ConcreateDualBuilder concreateDualBuilder = new ConcreateDualBuilder();
             dualUVCCamera = concreateDualBuilder
                     .setDualType(DualType.USB_DUAL)
@@ -97,34 +82,23 @@ public class DualViewWithManualAlignExternalCamera extends BaseParamDualView{
                     .setUseDualGPU(false)
                     .setMultiThreadHandleDualEnable(false)
                     .build();
-            //
             mSurfaceNativeWindow = new SurfaceNativeWindow();
-//            dualUVCCamera.setImageRotate(DualCameraParams.TypeLoadParameters.ROTATE_180);
             dualUVCCamera.addIrUVCCamera(iruvc);
             fusionLength = mDualWidth * mDualHeight * 4;
             mixData = new byte[fusionLength];
 
         }
 
-        /**
-         *
-         */
         public void startPreview() {
             dualUVCCamera.setFrameCallback(iFrameCallback);
             dualUVCCamera.onStartPreview();
             firstFrame = false;
         }
 
-        /**
-         * @return
-         */
         public DualUVCCamera getDualUVCCamera() {
             return dualUVCCamera;
         }
 
-        /**
-         * 关闭双光预览
-         */
         public void stopPreview() {
             dualUVCCamera.setFrameCallback(null);
             dualUVCCamera.onStopPreview();

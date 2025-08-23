@@ -63,7 +63,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-//    implementation(name: 'libusbirsdk_1.2.0', ext: 'aar')
     api(name: 'libusbdualsdk_1.3.4_2406271906_standard', ext: 'aar')
     implementation(name: 'opengl_1.3.2_standard', ext: 'aar')
     api 'com.conghuahuadan:superlayout:1.1.0'

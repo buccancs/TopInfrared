@@ -11,11 +11,6 @@ import com.topdon.module.thermal.ir.activity.BaseIRPlushFragment
 import kotlinx.android.synthetic.main.fragment_ir_plush.dualTextureViewNativeCamera
 import kotlinx.android.synthetic.main.fragment_ir_plush.temperature_view
 
-/**
- * des:
- * author: CaiSongL
- * date: 2024/9/3 11:43
- **/
 class IRPlushFragment : BaseIRPlushFragment() {
 
     override fun getSurfaceView(): SurfaceView {

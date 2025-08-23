@@ -12,17 +12,9 @@ import com.blankj.utilcode.util.SizeUtils
 import com.topdon.lib.ui.R
 import kotlin.math.roundToInt
 
-
-/**
- * 支持竖向的 SeekBar。
- * 暂不支持 thumbOffset.
- */
 class Comm3DSeekBar: AppCompatSeekBar {
     private lateinit var mPaint: TextPaint
 
-    /**
-     * 0-横向 1-竖向
-     */
     private val orientation: Int
 
     private var mMaxWidth = 48
@@ -31,13 +23,10 @@ class Comm3DSeekBar: AppCompatSeekBar {
     private var mMinHeight = 24
     var level = 0;
 
-    // 进度文字位置信息
     private val mProgressTextRect: Rect = Rect()
 
-    // 滑块按钮宽度
     private val mThumbWidth: Int = SizeUtils.dp2px(50f)
 
-    // 进度指示器宽度
     private val mIndicatorWidth: Int = SizeUtils.dp2px(50f)
     private var onSeekBarChangeListener: OnSeekBarChangeListener? = null
 
@@ -119,8 +108,6 @@ class Comm3DSeekBar: AppCompatSeekBar {
         }
     }
 
-
-
     private fun calculateDrawable(w: Int, h: Int) {
         val paddingWidth: Int = w - paddingLeft - paddingRight
         val paddingHeight: Int = h - paddingTop - paddingBottom
@@ -156,16 +143,6 @@ class Comm3DSeekBar: AppCompatSeekBar {
     override fun onDraw(canvas: Canvas) {
         if (orientation == 0) {
             super.onDraw(canvas)
-//            val progressText = "$progress%"
-//            mPaint.getTextBounds(progressText, 0, progressText.length, mProgressTextRect)
-//            // 进度百分比
-//            val progressRatio = progress.toFloat() / max
-//            // thumb偏移量
-//            val thumbOffset: Float =
-//                (mThumbWidth - mProgressTextRect.width()) / 2 - mThumbWidth * progressRatio
-//            val thumbX = width * progressRatio + thumbOffset
-//            val thumbY: Float = height / 2f + mProgressTextRect.height() / 2f
-//            canvas!!.drawText(progressText, thumbX, thumbY, mPaint)
         } else {
             canvas?.let {
                 it.rotate(90f)
@@ -208,16 +185,12 @@ class Comm3DSeekBar: AppCompatSeekBar {
         return true
     }
 
-    /**
-     * 通过级别分层进行粘性处理
-     */
     fun stopTrackTouchLevel(){
         if (level > 0){
             val newLevel = (progress.toFloat() / 100 * 4).roundToInt()
             setProgress((newLevel.toFloat() / level * 100).toInt())
          }
     }
-
 
     private fun trackTouchEvent(event: MotionEvent) {
         val y = event.y.roundToInt()

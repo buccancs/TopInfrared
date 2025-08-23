@@ -52,5 +52,4 @@
         android:background="@color/lms_color_717171"
         app:layout_constraintTop_toBottomOf="@+id/iv_left_icon"/>
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>

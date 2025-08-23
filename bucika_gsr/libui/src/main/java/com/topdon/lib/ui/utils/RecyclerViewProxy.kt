@@ -4,10 +4,6 @@ import android.view.View
 import android.view.ViewGroup.MarginLayoutParams
 import androidx.recyclerview.widget.RecyclerView
 
-/**
- * @author: CaiSongL
- * @date: 2023/4/1 14:44
- */
 class RecyclerViewProxy(val layoutManager: RecyclerView.LayoutManager) {
     fun attachView(view: View?) {
         layoutManager.attachView(view!!)

@@ -9,17 +9,6 @@ import com.topdon.lib.core.config.ExtraKeyConfig
 import com.topdon.lib.core.ktbase.BaseActivity
 import kotlinx.android.synthetic.main.activity_text_input.*
 
-/**
- * 房屋检测 - 问题描述文字输入界面.
- *
- * 需要传递：
- * - [ExtraKeyConfig.ITEM_NAME] - String 类型 item 名称.
- * - [ExtraKeyConfig.RESULT_INPUT_TEXT] - String 类型 当前输入内容.
- *
- * 返回：[ExtraKeyConfig.RESULT_INPUT_TEXT] - String 类型 输入内容.
- *
- * Created by LCG on 2024/8/27.
- */
 @SuppressLint("SetTextI18n")
 class TextInputActivity : BaseActivity(), View.OnClickListener {
     override fun initContentView(): Int = R.layout.activity_text_input
@@ -45,7 +34,7 @@ class TextInputActivity : BaseActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v) {
             iv_exit -> finish()
-            iv_save -> {//保存
+            iv_save -> {
                 val intent = Intent()
                 intent.putExtra(ExtraKeyConfig.RESULT_INPUT_TEXT, et_input.text.toString())
                 setResult(RESULT_OK, intent)

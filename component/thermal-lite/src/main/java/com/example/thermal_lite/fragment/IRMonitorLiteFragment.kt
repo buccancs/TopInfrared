@@ -66,18 +66,13 @@ import org.greenrobot.eventbus.ThreadMode
 import java.util.ResourceBundle
 import java.util.ResourceBundle.getBundle
 
-/**
- * des:
- * author: CaiSongL
- * date: 2024/8/5 14:44
- **/
 class IRMonitorLiteFragment : BaseFragment(), ITsTempListener {
 
     private var configJob: Job ?= null
     protected var isConfigWait = true
-    protected var temperatureBytes = ByteArray(192 * 256 * 2) //温度数据
+    protected var temperatureBytes = ByteArray(192 * 256 * 2)
     var rotateAngle = 270
-    private val imageRes = LibIRProcess.ImageRes_t() //原图尺寸
+    private val imageRes = LibIRProcess.ImageRes_t()
     val dstTempBytes = ByteArray(192*256*2)
     private var mProgressDialog: ProgressDialog? = null
     private var temperaturerun = false
@@ -94,7 +89,6 @@ class IRMonitorLiteFragment : BaseFragment(), ITsTempListener {
     protected var isPause = false
     protected var isPick = false
 
-
     companion object{
         fun newInstance(isPick: Boolean): IRMonitorLiteFragment {
             val fragment = IRMonitorLiteFragment()
@@ -104,7 +98,6 @@ class IRMonitorLiteFragment : BaseFragment(), ITsTempListener {
             return fragment
         }
     }
-
 
     override fun initContentView(): Int {
         return R.layout.fragment_lite_ir_monitor
@@ -141,20 +134,15 @@ class IRMonitorLiteFragment : BaseFragment(), ITsTempListener {
                 }
                 CameraPreviewManager.getInstance().setColorList(null,null, false,0f,0f)
                 CameraPreviewManager.getInstance().alarmBean = null
-                //自动快门
                 IRTool.setAutoShutter(true)
-                //初始化对比度
                 IRTool.basicGlobalContrastLevelSet((50).toInt())
-                //镜像
                 IRTool.basicMirrorAndFlipStatusSet(false)
-                //初始化锐度
                 IRTool.basicImageDetailEnhanceLevelSet(50)
                 CameraPreviewManager.getInstance()?.setLimit(
                     Float.MAX_VALUE, Float.MIN_VALUE,
                     0, 0
-                ) //自定义颜色
+                )
                 shutterHandler = Handler(Looper.getMainLooper())
-                // 定义快门操作
                 fun takePicture() {
                     shutterCount++
                     try {
@@ -162,19 +150,16 @@ class IRMonitorLiteFragment : BaseFragment(), ITsTempListener {
                     }catch (e : RuntimeException){
                     }
                 }
-                // 创建 Runnable，每5秒执行一次
                 shutterRunnable = object : Runnable {
                     override fun run() {
-                        if (shutterCount < 4) { // 确保只执行前40秒的操作（8次）
-                            shutterHandler?.postDelayed(this, 5000L) // 延迟5秒后再次执行
+                        if (shutterCount < 4) {
+                            shutterHandler?.postDelayed(this, 5000L)
                             takePicture()
                         }
                     }
                 }
-                // 开始任务
                 shutterHandler?.postDelayed(shutterRunnable!!,300)
-                //增益模式初始化
-                delay(2000)//sdk的高低增益需要延迟2秒后才能设置成功
+                delay(2000)
                 withContext(Dispatchers.IO){
                     IRTool.basicGainSet(SaveSettingUtil.temperatureMode)
                 }
@@ -182,14 +167,9 @@ class IRMonitorLiteFragment : BaseFragment(), ITsTempListener {
         }
     }
 
-    /**
-     * 开始锅盖矫正流程
-     */
     suspend fun autoStart() : Boolean{
         return IRTool.autoStart()
     }
-
-
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun action(event: ThermalActionEvent) {
@@ -197,19 +177,16 @@ class IRMonitorLiteFragment : BaseFragment(), ITsTempListener {
         Log.w("123", "event:${event.action}")
         when (event.action) {
             2001 -> {
-                //点
                 temperatureView.visibility = View.VISIBLE
                 temperatureView.temperatureRegionMode = REGION_MODE_POINT
                 readPosition(1)
             }
             2002 -> {
-                //线
                 temperatureView.visibility = View.VISIBLE
                 temperatureView.temperatureRegionMode = REGION_MODE_LINE
                 readPosition(2)
             }
             2003 -> {
-                //面
                 temperatureView.visibility = View.VISIBLE
                 temperatureView.temperatureRegionMode = REGION_MODE_RECTANGLE
                 readPosition(3)
@@ -235,7 +212,6 @@ class IRMonitorLiteFragment : BaseFragment(), ITsTempListener {
         showTask?.cancel()
     }
 
-    //获取选取点
     private fun updateTemp(type: Int) {
         var result: SelectPositionBean? = null
         val contentRectF = RectF(0f,0f,192f,256f)
@@ -318,10 +294,6 @@ class IRMonitorLiteFragment : BaseFragment(), ITsTempListener {
         }
     }
 
-
-    /**
-     * 初始化USB连接相关类
-     */
     private fun initUSBMonitorManager() {
         USBMonitorManager.getInstance().init()
         mOnUSBConnectListener = object : OnUSBConnectListener {
@@ -341,13 +313,10 @@ class IRMonitorLiteFragment : BaseFragment(), ITsTempListener {
                 createNew: Boolean
             ) {
                 this@IRMonitorLiteFragment.ctrlBlock = ctrlBlock
-                //USB连接成功后
                 DeviceControlManager.getInstance().handleStartPreview(ctrlBlock)
             }
 
             override fun onDisconnect(device: UsbDevice?, ctrlBlock: USBMonitor.UsbControlBlock?) {
-//                DeviceControlManager.getInstance().handleStopPreview()
-//                finish()
             }
 
             override fun onCancel(device: UsbDevice?) {
@@ -360,7 +329,6 @@ class IRMonitorLiteFragment : BaseFragment(), ITsTempListener {
             .addOnUSBConnectListener(IRMonitorLiteFragment::class.java.name, mOnUSBConnectListener)
     }
     private fun initPreviewManager() {
-        // 初始化预览相关的类
         config = ConfigRepository.readConfig(false)
         CameraPreviewManager.getInstance().init(cameraView, mLiteHandler)
         CameraPreviewManager.getInstance().imageRotate = RotateDegree.DEGREE_270
@@ -388,23 +356,19 @@ class IRMonitorLiteFragment : BaseFragment(), ITsTempListener {
         temperatureView.start()
     }
 
-
     private fun initCameraSize() {
         temperatureView.setTextSize(SaveSettingUtil.tempTextSize)
         temperatureView.setSyncimage(syncimage)
-        // 计算画面的宽高，避免被拉伸变形
         temperatureView.setTemperature(dstTempBytes)
         temperatureView.setUseIRISP(false)
-        //初始全局测温
         temperatureView.post {
             lifecycleScope.launch {
                 if (!temperaturerun) {
                     temperaturerun = true
-                    //需等待渲染完成再显示
                     temperatureView.visibility = View.VISIBLE
                     delay(1000)
                     temperatureView.setImageSize(mPreviewHeight, mPreviewWidth, this@IRMonitorLiteFragment)
-                    temperatureView.temperatureRegionMode = TemperatureView.REGION_MODE_CLEAN//全屏测温
+                    temperatureView.temperatureRegionMode = TemperatureView.REGION_MODE_CLEAN
                 }
             }
         }
@@ -420,20 +384,15 @@ class IRMonitorLiteFragment : BaseFragment(), ITsTempListener {
         return temperatureView
     }
 
-    /**
-     * 绘制点线面
-     */
     fun addTempLine(selectBean: SelectPositionBean) {
         temperatureView.visibility = View.VISIBLE
         temperatureView.isEnabled = false
         when (selectBean.type) {
             1 -> {
-                //点
                 temperatureView.addScalePoint(selectBean.startPosition)
                 temperatureView.temperatureRegionMode = REGION_MODE_POINT
             }
             2 -> {
-                //线
                 temperatureView.addScaleLine(
                     Line(
                         selectBean.startPosition,
@@ -443,7 +402,6 @@ class IRMonitorLiteFragment : BaseFragment(), ITsTempListener {
                 temperatureView.temperatureRegionMode = REGION_MODE_LINE
             }
             3 -> {
-                //面
                 temperatureView.addScaleRectangle(
                     Rect(
                         selectBean.startPosition!!.x,
@@ -457,11 +415,6 @@ class IRMonitorLiteFragment : BaseFragment(), ITsTempListener {
         }
         temperatureView.drawLine()
     }
-
-
-
-
-
 
     override fun onStart() {
         super.onStart()
@@ -531,7 +484,6 @@ class IRMonitorLiteFragment : BaseFragment(), ITsTempListener {
     val basicGainGetValue = IntArray(1)
     var basicGainGetTime = 0L
 
-
     override fun tempCorrectByTs(temp: Float?): Float {
         var tempNew = temp
         try {
@@ -548,7 +500,6 @@ class IRMonitorLiteFragment : BaseFragment(), ITsTempListener {
                 return temp!!
             }
 
-            //获取增益状态 PASS
             if (System.currentTimeMillis() - basicGainGetTime > 5000L){
                 try {
                     val basicGainGet: IrcmdError? = DeviceIrcmdControlManager.getInstance().getIrcmdEngine()

@@ -6,9 +6,6 @@ import com.topdon.lib.core.ktbase.BaseActivity
 import com.topdon.module.user.R
 import kotlinx.android.synthetic.main.activity_question_details.*
 
-/**
- * FAQ - 一项 FAQ 详情
- */
 @Route(path = RouterConfig.QUESTION_DETAILS)
 class QuestionDetailsActivity : BaseActivity() {
 

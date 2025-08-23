@@ -53,59 +53,56 @@ class ChartMonitorView : LineChart, OnChartGestureListener {
     private val axisChartColors by lazy { ContextCompat.getColor(context, R.color.chart_axis) }
     private val axisLine by lazy { ContextCompat.getColor(context, R.color.circle_white) }
 
-    //MPChart
     private fun initChart() {
         synchronized(this) {
             this.setTouchEnabled(true)
             this.onChartGestureListener = this
             this.isDragEnabled = true
             this.setDrawGridBackground(false)
-            this.description = null//图标描述文本
+            this.description = null
             this.setBackgroundResource(R.color.chart_bg)
-            this.setScaleEnabled(true)//缩放
-            this.setPinchZoom(false)//禁用后，可以分别在x轴和y轴上进行缩放
-            this.isDoubleTapToZoomEnabled = false//双击不可缩放
-            this.isScaleYEnabled = false//禁止Y轴缩放
-            this.isScaleXEnabled = true//禁止X轴缩放
+            this.setScaleEnabled(true)
+            this.setPinchZoom(false)
+            this.isDoubleTapToZoomEnabled = false
+            this.isScaleYEnabled = false
+            this.isScaleXEnabled = true
             this.setExtraOffsets(
                 0f,
                 0f,
                 SizeUtils.dp2px(8f).toFloat(),
                 SizeUtils.dp2px(4f).toFloat()
-            )//图表区域偏移
+            )
             setNoDataText(context.getString(R.string.http_code998))
             setNoDataTextColor(ContextCompat.getColor(context, R.color.chart_text))
             val mv = MyMarkerView(context, R.layout.marker_lay)
             mv.chartView = this
-            marker = mv//设置点击坐标显示提示框
+            marker = mv
             val data = LineData()
             data.setValueTextColor(textColor)
             this.data = data
             val l = this.legend
             l.form = Legend.LegendForm.CIRCLE
             l.textColor = textColor
-            l.isEnabled = false//隐藏曲线标签
-            //x轴
+            l.isEnabled = false
             val xAxis = this.xAxis
             xAxis.textColor = textColor
-            xAxis.setDrawGridLines(false)//竖向格线
-            xAxis.gridColor = axisChartColors //x轴网格颜色
-            xAxis.axisLineColor = 0x00000000 //x轴颜色
+            xAxis.setDrawGridLines(false)
+            xAxis.gridColor = axisChartColors
+            xAxis.axisLineColor = 0x00000000
             xAxis.setAvoidFirstLastClipping(true)
             xAxis.isEnabled = true
             xAxis.position = XAxis.XAxisPosition.BOTTOM
             xAxis.granularity = 1f
-            xAxis.isGranularityEnabled = true//重复值不显示
+            xAxis.isGranularityEnabled = true
             xAxis.textSize = 8f
-            //y轴
             val leftAxis = this.axisLeft
-            leftAxis.textColor = textColor //y轴文本颜色
-            leftAxis.axisLineColor = 0x00000000 //y轴颜色
-            leftAxis.setDrawGridLines(true)//横向格线
-            leftAxis.gridColor = axisChartColors //y轴网格颜色
+            leftAxis.textColor = textColor
+            leftAxis.axisLineColor = 0x00000000
+            leftAxis.setDrawGridLines(true)
+            leftAxis.gridColor = axisChartColors
             leftAxis.gridLineWidth = 1.5f
             leftAxis.setLabelCount(6, true)
-            leftAxis.valueFormatter = YValueFormatter()//设置小数点一位
+            leftAxis.valueFormatter = YValueFormatter()
             leftAxis.textSize = 8f
 
             this.axisRight.isEnabled = false
@@ -114,11 +111,6 @@ class ChartMonitorView : LineChart, OnChartGestureListener {
 
     private var startTime = 0L
 
-    /**
-     * 秒更新图表数据
-     * @param timeType 时分秒
-     *
-     */
     fun addPointToChart(bean: ThermalEntity, timeType: Int = 1, selectType: Int = 1) {
         synchronized(this) {
             try {
@@ -127,7 +119,7 @@ class ChartMonitorView : LineChart, OnChartGestureListener {
                     return
                 }
                 val lineData: LineData = this.data
-                var volDataSet = lineData.getDataSetByIndex(0) //读取x为0的坐标点
+                var volDataSet = lineData.getDataSetByIndex(0)
                 if (volDataSet == null) {
                     startTime = bean.createTime
                     xAxis.valueFormatter =
@@ -151,7 +143,6 @@ class ChartMonitorView : LineChart, OnChartGestureListener {
                         Log.w("123", "添加一个数据:$entity")
                     }
                     2 -> {
-                        //第一条线
                         if (volDataSet == null) {
                             volDataSet = createSet(0, "line max temp")
                             lineData.addDataSet(volDataSet)
@@ -161,8 +152,7 @@ class ChartMonitorView : LineChart, OnChartGestureListener {
                         entity.data = bean
                         volDataSet.addEntry(entity)
 
-                        //第二条线
-                        var secondDataSet = lineData.getDataSetByIndex(1) //读取x为0的坐标点
+                        var secondDataSet = lineData.getDataSetByIndex(1)
                         if (secondDataSet == null) {
                             secondDataSet = createSet(1, "line min temp")
                             lineData.addDataSet(secondDataSet)
@@ -172,7 +162,6 @@ class ChartMonitorView : LineChart, OnChartGestureListener {
                         secondDataSet.addEntry(secondEntity)
                     }
                     else -> {
-                        //第一条线
                         if (volDataSet == null) {
                             volDataSet = createSet(0, "fence max temp")
                             lineData.addDataSet(volDataSet)
@@ -181,8 +170,7 @@ class ChartMonitorView : LineChart, OnChartGestureListener {
                         entity.data = bean
                         volDataSet.addEntry(entity)
 
-                        //第二条线
-                        var secondDataSet = lineData.getDataSetByIndex(1) //读取x为0的坐标点
+                        var secondDataSet = lineData.getDataSetByIndex(1)
                         if (secondDataSet == null) {
                             secondDataSet = createSet(1, "fence min temp")
                             lineData.addDataSet(secondDataSet)
@@ -195,13 +183,11 @@ class ChartMonitorView : LineChart, OnChartGestureListener {
 
                 lineData.notifyDataChanged()
                 notifyDataSetChanged()
-                setVisibleXRangeMinimum(ChartTools.getMinimum(type = timeType) / 2)//设置显示X轴区间大小
-                setVisibleXRangeMaximum(ChartTools.getMaximum(type = timeType))//设置显示X轴区间大小
+                setVisibleXRangeMinimum(ChartTools.getMinimum(type = timeType) / 2)
+                setVisibleXRangeMaximum(ChartTools.getMaximum(type = timeType))
                 ChartTools.setX(this, timeType)
-//                ChartTools.setY(this)
-                //结尾点出现在界面才移动最新数据
                 if ((highestVisibleX + ChartTools.getMinimum(timeType) / 2f) > xChartMax) {
-                    moveViewToX(xChartMax)//移动到最右端
+                    moveViewToX(xChartMax)
                 }
                 if (volDataSet.entryCount == 10) {
                     zoom(100f, 1f, xChartMax, 0f)
@@ -230,24 +216,21 @@ class ChartMonitorView : LineChart, OnChartGestureListener {
         R.color.chart_point_center
     )
 
-    /**
-     * 曲线样式
-     */
     private fun createSet(index: Int, label: String): LineDataSet {
         val set = LineDataSet(null, label)
         set.mode = LineDataSet.Mode.HORIZONTAL_BEZIER
         set.setDrawFilled(false)
-        set.fillDrawable = ContextCompat.getDrawable(context, bgChartColors[index])//设置填充颜色渐变
+        set.fillDrawable = ContextCompat.getDrawable(context, bgChartColors[index])
         set.axisDependency = YAxis.AxisDependency.LEFT
-        set.color = ContextCompat.getColor(context, lineChartColors[index])//曲线颜色
-        set.circleHoleColor = ContextCompat.getColor(context, linePointColors[index])//坐标圆心颜色
-        set.setCircleColor(ContextCompat.getColor(context, lineChartColors[index]))//坐标颜色
+        set.color = ContextCompat.getColor(context, lineChartColors[index])
+        set.circleHoleColor = ContextCompat.getColor(context, linePointColors[index])
+        set.setCircleColor(ContextCompat.getColor(context, lineChartColors[index]))
         set.valueTextColor = Color.WHITE
         set.lineWidth = 2f
-        set.circleRadius = 1f//坐标点半径
+        set.circleRadius = 1f
         set.fillAlpha = 200
         set.valueTextSize = 10f
-        set.setDrawValues(false)//设置是否显示坐标值文本
+        set.setDrawValues(false)
         return set
     }
 
@@ -287,7 +270,6 @@ class ChartMonitorView : LineChart, OnChartGestureListener {
     }
 
     override fun onChartScale(me: MotionEvent?, scaleX: Float, scaleY: Float) {
-        //缩放时关闭
         highlightValue(null)
     }
 

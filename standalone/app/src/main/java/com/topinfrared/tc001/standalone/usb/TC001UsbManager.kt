@@ -31,16 +31,14 @@ class TC001UsbManager(
         private const val TAG = "TC001UsbManager"
         private const val ACTION_USB_PERMISSION = "com.topinfrared.tc001.USB_PERMISSION"
         
-        // TC001 USB device identifiers - these would need to be updated with actual TC001 VID/PID
-        private const val TC001_VENDOR_ID = 0x1234  // Example - replace with actual TC001 VID
-        private const val TC001_PRODUCT_ID = 0x5678 // Example - replace with actual TC001 PID
+        private const val TC001_VENDOR_ID = 0x1234
+        private const val TC001_PRODUCT_ID = 0x5678
         
-        // Enhanced connection management constants
         private const val MAX_RECONNECTION_ATTEMPTS = 5
         private const val RECONNECTION_DELAY_MS = 2000L
         private const val CONNECTION_TIMEOUT_MS = 10000L
         private const val HEALTH_CHECK_INTERVAL_MS = 5000L
-        private const val MIN_DISCONNECT_TIME_MS = 1000L // Debounce disconnections
+        private const val MIN_DISCONNECT_TIME_MS = 1000L
     }
     
     private val usbReceiver = object : BroadcastReceiver() {
@@ -118,7 +116,6 @@ class TC001UsbManager(
         withContext(Dispatchers.Main) {
             val device = connectedDevice
             if (device != null) {
-                // Check if device is still physically connected
                 val isStillConnected = usbManager.deviceList.values.any { 
                     it.deviceId == device.deviceId && it.deviceName == device.deviceName 
                 }
@@ -128,12 +125,9 @@ class TC001UsbManager(
                     statusCallback("TC001 connection lost")
                     handleConnectionLost(device)
                 } else {
-                    // Device is still there - could perform additional checks here
-                    // like verifying communication
                     Log.v(TAG, "Health check: TC001 connection healthy")
                 }
             } else {
-                // No device connected - check if TC001 became available
                 val tc001Device = findTC001Device()
                 tc001Device?.let { detectedDevice ->
                     Log.d(TAG, "Health check: TC001 device now available")
@@ -179,14 +173,12 @@ class TC001UsbManager(
         for (device in deviceList.values) {
             Log.v(TAG, "Scanning device: VID=${String.format("0x%04X", device.vendorId)}, PID=${String.format("0x%04X", device.productId)}")
             
-            // Check if this is a TC001 device
             if (device.vendorId == TC001_VENDOR_ID && device.productId == TC001_PRODUCT_ID) {
                 Log.i(TAG, "TC001 device found: ${device.deviceName}")
                 return device
             }
             
-            // For development/testing - accept UVC devices
-            if (device.deviceClass == 14 || // USB Video Class
+            if (device.deviceClass == 14 ||
                 (device.interfaceCount > 0 && device.getInterface(0).interfaceClass == 14)) {
                 Log.i(TAG, "UVC device found (potential TC001): ${device.deviceName}")
                 return device
@@ -208,7 +200,7 @@ class TC001UsbManager(
                 PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
             )
             usbManager.requestPermission(device, permissionIntent)
-            false // Permission request is async, result comes via broadcast
+            false
         }
     }
     
@@ -235,7 +227,6 @@ class TC001UsbManager(
         connectedDevice = null
         connectionCallback(false, null)
         
-        // Schedule reconnection attempt
         scheduleReconnection()
     }
     
@@ -246,7 +237,6 @@ class TC001UsbManager(
             return
         }
         
-        // Don't reconnect too quickly after disconnect (debouncing)
         val timeSinceDisconnect = System.currentTimeMillis() - lastDisconnectTime
         val delay = kotlin.math.max(RECONNECTION_DELAY_MS, MIN_DISCONNECT_TIME_MS - timeSinceDisconnect)
         
@@ -257,7 +247,7 @@ class TC001UsbManager(
                 
                 val success = connectToTC001()
                 if (!success) {
-                    scheduleReconnection() // Try again if failed
+                    scheduleReconnection()
                 }
             }
         }, delay)
@@ -266,14 +256,14 @@ class TC001UsbManager(
     private fun handlePermissionGranted(device: UsbDevice) {
         Log.i(TAG, "USB permission granted for device: ${device.deviceName}")
         connectedDevice = device
-        reconnectionAttempts = 0 // Reset attempt counter on successful connection
+        reconnectionAttempts = 0
         statusCallback("TC001 connected successfully")
         connectionCallback(true, device)
     }
     
     private fun isTC001Device(device: UsbDevice): Boolean {
         return (device.vendorId == TC001_VENDOR_ID && device.productId == TC001_PRODUCT_ID) ||
-               device.deviceClass == 14 || // UVC class for development
+               device.deviceClass == 14 ||
                (device.interfaceCount > 0 && device.getInterface(0).interfaceClass == 14)
     }
     

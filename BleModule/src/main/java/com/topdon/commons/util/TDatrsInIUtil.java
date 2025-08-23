@@ -90,7 +90,6 @@ public class TDatrsInIUtil {
         }
     }
 
-
     public static String getBinPath(int data) {
         String path = FolderUtil.getTdartsUpgradePath();
         if (data == 0) {

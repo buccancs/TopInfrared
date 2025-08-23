@@ -39,24 +39,13 @@ import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import java.io.File
 
-/**
- * TS004 图片详情
- */
 @Route(path = RouterConfig.IR_GALLERY_DETAIL_04)
 class IRGalleryDetail04Activity : BaseActivity() {
 
-    /**
-     * 是否查看远端数据.
-     * true-远端数据 false-手机本地数据
-     */
     private var isRemote = false
-    /**
-     * 当前展示图片在列表中的 position
-     */
+    
     private var position = 0
-    /**
-     * 从上一界面传递过来的，当前展示的图片列表.
-     */
+    
     private lateinit var dataList: ArrayList<GalleryBean>
 
     override fun initContentView() = R.layout.activity_ir_gallery_detail_04
@@ -69,7 +58,7 @@ class IRGalleryDetail04Activity : BaseActivity() {
 
         title_view.setTitleText("${position + 1}/${dataList.size}")
 
-        cl_bottom.isVisible = isRemote //查看远端时底部才有3个按钮
+        cl_bottom.isVisible = isRemote
 
         if (!isRemote) {
             title_view.setRightDrawable(R.drawable.ic_toolbar_info_svg)
@@ -205,7 +194,6 @@ class IRGalleryDetail04Activity : BaseActivity() {
             }
         }
     }
-
 
     private fun actionDownload(isToShare: Boolean) {
         val data = dataList[position]

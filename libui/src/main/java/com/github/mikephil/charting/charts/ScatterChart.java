@@ -8,13 +8,6 @@ import com.github.mikephil.charting.data.ScatterData;
 import com.github.mikephil.charting.interfaces.dataprovider.ScatterDataProvider;
 import com.github.mikephil.charting.renderer.ScatterChartRenderer;
 
-/**
- * The ScatterChart. Draws dots, triangles, squares and custom shapes into the
- * Chart-View. CIRCLE and SCQUARE offer the best performance, TRIANGLE has the
- * worst performance.
- *
- * @author Philipp Jahoda
- */
 public class ScatterChart extends BarLineChartBase<ScatterData> implements ScatterDataProvider {
 
     public ScatterChart(Context context) {
@@ -28,7 +21,6 @@ public class ScatterChart extends BarLineChartBase<ScatterData> implements Scatt
     public ScatterChart(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
-
 
     @Override
     protected void init() {
@@ -45,10 +37,6 @@ public class ScatterChart extends BarLineChartBase<ScatterData> implements Scatt
         return mData;
     }
 
-    /**
-     * Predefined ScatterShapes that allow the specification of a shape a ScatterDataSet should be drawn with.
-     * If a ScatterShape is specified for a ScatterDataSet, the required renderer is set.
-     */
     public enum ScatterShape {
 
         SQUARE("SQUARE"),

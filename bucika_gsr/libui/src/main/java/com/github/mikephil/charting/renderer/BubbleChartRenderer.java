@@ -19,10 +19,6 @@ import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.util.List;
 
-/**
- * Bubble chart implementation: Copyright 2015 Pierre-Marc Airoldi Licensed
- * under Apache License 2.0 Ported by Daniel Cohen Gindi
- */
 public class BubbleChartRenderer extends BarLineScatterCandleBubbleRenderer {
 
     protected BubbleDataProvider mChart;
@@ -83,7 +79,6 @@ public class BubbleChartRenderer extends BarLineScatterCandleBubbleRenderer {
 
         boolean normalizeSize = dataSet.isNormalizeSizeEnabled();
 
-        // calcualte the full width of 1 step on the x-axis
         final float maxBubbleWidth = Math.abs(sizeBuffer[2] - sizeBuffer[0]);
         final float maxBubbleHeight = Math.abs(mViewPortHandler.contentBottom() - mViewPortHandler.contentTop());
         final float referenceSize = Math.min(maxBubbleHeight, maxBubbleWidth);
@@ -123,7 +118,6 @@ public class BubbleChartRenderer extends BarLineScatterCandleBubbleRenderer {
         if (bubbleData == null)
             return;
 
-        // if values are drawn
         if (isDrawingValuesAllowed(mChart)) {
 
             final List<IBubbleDataSet> dataSets = bubbleData.getDataSets();
@@ -137,7 +131,6 @@ public class BubbleChartRenderer extends BarLineScatterCandleBubbleRenderer {
                 if (!shouldDrawValues(dataSet) || dataSet.getEntryCount() < 1)
                     continue;
 
-                // apply the text-styling defined by the DataSet
                 applyValueTextStyle(dataSet);
 
                 final float phaseX = Math.max(0.f, Math.min(1.f, mAnimator.getPhaseX()));
@@ -239,7 +232,6 @@ public class BubbleChartRenderer extends BarLineScatterCandleBubbleRenderer {
 
             boolean normalizeSize = set.isNormalizeSizeEnabled();
 
-            // calcualte the full width of 1 step on the x-axis
             final float maxBubbleWidth = Math.abs(sizeBuffer[2] - sizeBuffer[0]);
             final float maxBubbleHeight = Math.abs(
                     mViewPortHandler.contentBottom() - mViewPortHandler.contentTop());

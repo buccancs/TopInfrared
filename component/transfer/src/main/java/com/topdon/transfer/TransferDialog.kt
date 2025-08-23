@@ -9,11 +9,6 @@ import android.view.ViewGroup
 import com.topdon.lib.core.utils.ScreenUtil
 import kotlinx.android.synthetic.main.dialog_transfer.view.*
 
-/**
- * 相册迁移进度弹框.
- *
- * Created by LCG on 2024/3/26.
- */
 class TransferDialog(context: Context) : Dialog(context, R.style.InfoDialog) {
 
     var max: Int
@@ -27,7 +22,6 @@ class TransferDialog(context: Context) : Dialog(context, R.style.InfoDialog) {
         set(value) {
             contentView.seek_bar.progress = value
         }
-
 
     private val contentView: View = LayoutInflater.from(context).inflate(R.layout.dialog_transfer, null)
 

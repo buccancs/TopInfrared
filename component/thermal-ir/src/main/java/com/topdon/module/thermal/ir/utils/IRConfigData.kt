@@ -3,11 +3,6 @@ package com.topdon.module.thermal.ir.utils
 import android.content.Context
 import com.topdon.module.thermal.ir.R
 
-/**
- * des:
- * author: CaiSongL
- * date: 2024/4/3 11:12
- **/
 data class IRConfigData(val name: String, val value: String) {
     companion object {
         fun irConfigData(context: Context): ArrayList<IRConfigData> = arrayListOf(
@@ -22,9 +17,6 @@ data class IRConfigData(val name: String, val value: String) {
             IRConfigData(name = context.resources.getString(R.string.reference_item9), value = "0.85")
         )
 
-        /**
-         * 根据指定的发射率，拼接与该发射率对应的材料文字并返回.
-         */
         fun getTextByEmissivity(context: Context, emissivity: Float): String {
             val stringBuilder = StringBuilder()
             for (data in irConfigData(context)) {

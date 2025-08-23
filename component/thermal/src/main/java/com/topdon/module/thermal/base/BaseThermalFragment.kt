@@ -12,21 +12,19 @@ open class BaseThermalFragment : BaseFragment() {
     val SRC_WIDTH = 192
     val SRC_HEIGHT = 256
 
-    //0-9
     var paletteIndex = 0
     var irSurfaceViewLayoutParams: ConstraintLayout.LayoutParams? = null
     var displayViewLayoutParams: FrameLayout.LayoutParams? = null
     var fenceLayoutParams: FrameLayout.LayoutParams? = null
     var cameraLayoutParams: FrameLayout.LayoutParams? = null
 
-
     var mCenter = 0f
     var mMaxTemp = 0f
     var mMinTemp = 0f
     var maxImg: ImageView? = null
     var minImg: ImageView? = null
-    var maxIndex = 0//最高温度点
-    var minIndex = 0//最低温度点
+    var maxIndex = 0
+    var minIndex = 0
 
     var mCenterTextView: TextView? = null
     var mMaxTextView: TextView? = null
@@ -55,7 +53,7 @@ open class BaseThermalFragment : BaseFragment() {
     var rawHeight = 0
     var highCrossWidth = 40
     var highCrossHeight = 40
-    var rotateType = 0 //1:90度  2:180度  3:270度
+    var rotateType = 0
     var irSurfaceViewWidth = 0
     var irSurfaceViewHeight = 0
 

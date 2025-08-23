@@ -4,9 +4,6 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.constraintlayout.motion.widget.MotionLayout
 
-/**
- * 闪烁效果
- */
 class RepeatMotionLayout : MotionLayout, MotionLayout.TransitionListener {
 
     private var motionStartId = 0
@@ -14,7 +11,6 @@ class RepeatMotionLayout : MotionLayout, MotionLayout.TransitionListener {
 
     @Volatile
     private var isAdd = false
-
 
     constructor(context: Context) : this(context, null)
 
@@ -28,11 +24,7 @@ class RepeatMotionLayout : MotionLayout, MotionLayout.TransitionListener {
         defStyleAttr
     )
 
-    /**
-     * 开始闪烁
-     */
     fun startTransition() {
-//        Log.w("123", "开始闪烁")
         if (!isAdd) {
             addTransitionListener(this)
             isAdd = true
@@ -40,9 +32,6 @@ class RepeatMotionLayout : MotionLayout, MotionLayout.TransitionListener {
         transitionToEnd()
     }
 
-    /**
-     * 恢复状态
-     */
     fun cancelTransition() {
         removeTransitionListener(this)
         isAdd = false
@@ -64,7 +53,6 @@ class RepeatMotionLayout : MotionLayout, MotionLayout.TransitionListener {
     }
 
     override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
-//        Log.w("123", "onTransitionCompleted currentId:$currentId")
         if (currentId == motionEndId) {
             transitionToStart()
         } else {
@@ -80,6 +68,5 @@ class RepeatMotionLayout : MotionLayout, MotionLayout.TransitionListener {
     ) {
 
     }
-
 
 }

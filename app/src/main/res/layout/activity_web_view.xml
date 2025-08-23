@@ -21,7 +21,6 @@
             android:layout_height="match_parent"
             android:background="#16131e" />
 
-        <!-- 加载失败错误页面 -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_error"
             android:layout_width="match_parent"

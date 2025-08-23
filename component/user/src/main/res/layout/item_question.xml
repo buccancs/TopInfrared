@@ -35,5 +35,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/item_question_end_image" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>

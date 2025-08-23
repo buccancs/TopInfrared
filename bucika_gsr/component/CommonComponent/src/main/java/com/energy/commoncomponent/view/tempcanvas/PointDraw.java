@@ -19,10 +19,6 @@ import com.energy.commoncomponent.utils.ScreenUtils;
 import java.util.LinkedList;
 import java.util.UUID;
 
-/**
- * Created by fengjibo on 2023/6/21.
- * 点绘制工具
- */
 public class PointDraw extends BaseDraw {
 
     private static final String TAG = "BaseTemperatureView PointDraw";
@@ -32,13 +28,13 @@ public class PointDraw extends BaseDraw {
 
     private static final int MAX_POINT_COUNT = 3;
 
-    private int TEXT_POINT_MARGIN; // 数字和点之间的距离
+    private int TEXT_POINT_MARGIN;
 
     private int LABEL_POINT_MARGIN;
 
     private LinkedList<PointView> mPointList;
 
-    private PointView mTempPoint;//临时绘制的point，比如手势移动过程中
+    private PointView mTempPoint;
 
     private Paint mTextPaint;
     private Paint mBgPaint;
@@ -48,7 +44,7 @@ public class PointDraw extends BaseDraw {
     private int mBgColor = Color.parseColor("#CC1A1A1A");
 
     private final int STROKE_WIDTH = 8;
-    private final int TEXT_SIZE = 14; // 文字大小
+    private final int TEXT_SIZE = 14;
 
     private int mOperateStatus = -1;
 
@@ -77,12 +73,6 @@ public class PointDraw extends BaseDraw {
         Log.d(TAG, "setOperateStatus = " + mOperateStatus);
     }
 
-    /**
-     * 添加一个点数据
-     * @param mode
-     * @param centerX
-     * @param centerY
-     */
     public void addPoint(int mode, float centerX, float centerY) {
         PointView pointView = new PointView(mContext, mode, centerX, centerY);
         int size = mPointList.size();
@@ -93,7 +83,6 @@ public class PointDraw extends BaseDraw {
             boolean hasSame = false;
             for (int i = 0; i < mPointList.size(); i ++) {
                 if (mPointList.get(i).getLabel().equals(newLabel)) {
-                    //存在一样的
                     hasSame = true;
                     Log.d(TAG, "addPoint is same");
                     break;
@@ -122,27 +111,16 @@ public class PointDraw extends BaseDraw {
         }
     }
 
-    /**
-     * 删除一个点数据
-     * @param index
-     */
     public void removePoint(int index) {
         if (mPointList.size() > index) {
             mPointList.remove(index);
         }
     }
 
-    /**
-     * 删除所有点数据
-     */
     public void removePoint() {
         mPointList.clear();
     }
 
-    /**
-     * 绘制所有点
-     * @param canvas
-     */
     @Override
     public void onDraw(Canvas canvas, boolean isScroll) {
         for (int i = 0; i < mPointList.size(); i ++) {
@@ -157,13 +135,6 @@ public class PointDraw extends BaseDraw {
         }
     }
 
-    /**
-     * 绘制临时点
-     * @param canvas
-     * @param mode
-     * @param centerX
-     * @param centerY
-     */
     public void onTempDraw(Canvas canvas, int mode, float centerX, float centerY) {
         if (mTempPoint == null) {
             mTempPoint = new PointView(mContext, mode, centerX, centerY);
@@ -181,7 +152,6 @@ public class PointDraw extends BaseDraw {
         RectF tempRectF = new RectF();
         float top = pointView.mCenterY - TEXT_POINT_MARGIN - LABEL_POINT_MARGIN - pointView.mPointSize / 2;
         float bottom = pointView.mCenterY - TEXT_POINT_MARGIN - pointView.mPointSize / 2;
-        //顶部超出在point下方展示
         if (top < 0) {
             top = pointView.mCenterY + TEXT_POINT_MARGIN + pointView.mPointSize / 2;
             bottom = top + LABEL_POINT_MARGIN;
@@ -202,12 +172,10 @@ public class PointDraw extends BaseDraw {
         float right = rectF.right + rectWidth / 2;
         float top = rectF.top;
         float bottom = rectF.bottom;
-        //左侧超出
         if (left < 0) {
             left = 0;
             right = rectWidth;
         }
-        //右侧超出
         if (right > mViewWidth) {
             left = mViewWidth - rectWidth;
             right = mViewWidth;
@@ -235,12 +203,6 @@ public class PointDraw extends BaseDraw {
         return rectF;
     }
 
-    /**
-     * 修改选中的点坐标
-     * @param touchIndex
-     * @param centerX
-     * @param centerY
-     */
     public void changeTouchPointLocationByIndex(int touchIndex, float centerX, float centerY) {
         if (touchIndex < 0 || touchIndex >= mPointList.size()) {
             return;
@@ -248,12 +210,6 @@ public class PointDraw extends BaseDraw {
         mPointList.get(touchIndex).changeLocation(centerX, centerY);
     }
 
-    /**
-     * 检查当前是否存在手势选中的点
-     * @param rawX
-     * @param rawY
-     * @return
-     */
     public int checkTouchPointInclude(float rawX, float rawY) {
         mTouchIndex = -1;
         for (int i = 0; i < mPointList.size(); i ++) {
@@ -269,13 +225,13 @@ public class PointDraw extends BaseDraw {
 
     public static class PointView extends BaseView {
 
-        private static final float TOUCH_EXTRA = 20;//额外的触摸范围
+        private static final float TOUCH_EXTRA = 20;
 
-        private int mMode;//1:blue 2:green 3:red
-        private float mCenterX;//相对父布局
+        private int mMode;
+        private float mCenterX;
         private float mCenterY;
 
-        private Rect mInRect; //范围
+        private Rect mInRect;
         private Bitmap mPointBitmap;
         private Point mTempPoint;
 
@@ -341,6 +297,5 @@ public class PointDraw extends BaseDraw {
     public LinkedList<PointView> getPointViewList() {
         return mPointList;
     }
-
 
 }

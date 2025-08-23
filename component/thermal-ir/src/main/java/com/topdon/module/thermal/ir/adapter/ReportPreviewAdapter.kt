@@ -29,7 +29,6 @@ import kotlinx.android.synthetic.main.item_report_floor.view.rcy_report
 import kotlinx.android.synthetic.main.item_report_floor.view.tv_floor_number
 import kotlinx.android.synthetic.main.item_report_floor.view.view_category_mask
 
-
 @SuppressLint("NotifyDataSetChanged")
 class ReportPreviewAdapter(private val cxt: Context, var dataList: List<HouseRepPreviewItemBean>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {

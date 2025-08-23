@@ -10,26 +10,21 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.io.OutputStream
 
-/**
- * create by fylder on 2018/8/9
- **/
 @Route(path = RouterConfig.PDF)
 class PdfActivity : BaseActivity() {
 
     override fun initContentView() = R.layout.activity_pdf
 
     override fun initView() {
-        //本地说明书
         pdf_view.fromAsset(if (intent.getBooleanExtra("isTS001", false)) "TC001.pdf" else "TS004.pdf")
-            .enableSwipe(true) // allows to block changing pages using swipe
+            .enableSwipe(true)
             .swipeHorizontal(false)
             .enableDoubletap(true)
             .defaultPage(0)
-            .enableAnnotationRendering(false) // render annotations (such as comments, colors or forms)
+            .enableAnnotationRendering(false)
             .password(null)
             .scrollHandle(null)
-            .enableAntialiasing(true) // improve rendering a little bit on low-res screens
-            // spacing between pages in dp. To define spacing color, set view background
+            .enableAntialiasing(true)
             .spacing(0)
             .load()
     }
@@ -56,7 +51,6 @@ class PdfActivity : BaseActivity() {
         window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
     }
 
-    //复制assets文件
     @Throws(IOException::class)
     private fun copyBigDataToSD(assetsName: String, targetFile: File) {
         val myOutput: OutputStream = FileOutputStream(targetFile)

@@ -228,7 +228,6 @@
     <string name="auto_shutter">自動シャッター</string>
     <string name="color_board">カラーボード</string>
 
-    <!--    2022-11-16-->
     <string name="user_services_agreement">利用規約</string>
     <string name="privacy_policy">プライバシーポリシー</string>
     <string name="third_party_components">サードパーティコンポーネント</string>
@@ -240,8 +239,6 @@
     <string name="device_loading_tip">ローディング…</string>
     <string name="edit_image_error_tip">この画像には温度データがないため、編集はサポートされていません。</string>
 
-    <!--	日语-->
-    <!-- 2.00版本 -->
     <string name="app_lapsePhotography">タイミング写真</string>
     <string name="app_Manual_Shutter">マニュアルシャッター</string>
     <string name="app_record_sound">オーディオの録音</string>
@@ -342,7 +339,6 @@
     <string name="start_fail_and_restart">起動に失敗しました！アプリを終了して再度開いてください</string>
     <string name="app_Low_temperature">低温</string>
 
-
     <string name="monitor_finish">ストップ</string>
     <string name="album_menu_2d">2D編集</string>
     <string name="album_menu_3d">3D編集</string>
@@ -380,7 +376,6 @@
     <string name="tip_change_pseudo_mode">ダイナミック・レンダリングモードに切り替えますか?</string>
     <string name="color_p8_ios">きんぞく</string>
 
-
     <string name="menu_3d_visual">ビュー</string>
     <string name="menu_3d_calibrate">較正</string>
     <string name="model">モード</string>
@@ -393,7 +388,6 @@
     <string name="menu_3d_x_axis">X軸</string>
     <string name="menu_3d_y_axis">Y軸</string>
 
-    <!--TS001-->
     <string name="album_menu_Photos">写真</string>
     <string name="feedback_problem_type_6">その他</string>
     <string name="app_got_it">分かりました</string>
@@ -498,8 +492,6 @@
     <string name="installation_package_downloading_tips">ダウンロードを開始します通知で進捗状況を確認してください</string>
     <string name="welcome_use_app">%1$sへようこそ</string>
 
-    <!--日语-->
-
     <string name="dual_light_correction">二重光補正</string>
     <string name="dual_light_correction_tips_1">2台のカメラの焦点が合っていないため、2台のカメラで異なる距離から撮影された画像が合っていません。\nこの機能は画像の位置合わせを個別に行うのに役立ちます。</string>
     <string name="dual_light_correction_tips_2">1.カメラから約0.5 mの距離で熱源(手のひらなど)を画像に残します。\n2.タップして写真を撮ります。</string>
@@ -521,7 +513,6 @@
 
     <string name="text_p_umeng">より優れた機能エクスペリエンスを提供するために、当社の製品にはデータ統計とログ収集のために Umeng+SDK が統合されており、SDK はデバイスの ID とアカウント情報を収集します。</string>
 
-    <!--TS004-->
     <string name="ts004_connection_device">有線接続されたデバイス</string>
     <string name="ts004_auto_save">電話に自動保存します</string>
     <string name="ts004_save_tips">これを有効にすると、写真撮影やビデオ録画のためにアプリに接続すると、写真とビデオが携帯電話にローカルに自動保存されます。</string>
@@ -601,12 +592,10 @@
     <string name="ts004_faq_q5">撮影した熱画像をPCで見るにはどうすればいいですか?</string>
     <string name="ts004_faq_a5">TS004をUSBケーブルでPCに接続すると、TS004に保存されている熱画像を見ることができます。</string>
 
-    <!-- TC001 老 APP 引流 -->
     <string name="gallery_transfer">ギャラリー転送</string>
     <string name="gallery_transfer_wait">データが転送されています。ちょっと待ってください。</string>
     <string name="gallery_transfer_complete">データ転送完了</string>
 
-    <!-- 3.70 -->
     <string name="user_jump">スキップ</string>
     <string name="tc_guide_tips1">リアルタイム監視グラフと履歴を表示レコードを監視します。</string>
     <string name="tc_guide_tips2">正確な温度測定を保証するためには、温度測定の前に関連するパラメータを設定してください。</string>
@@ -623,7 +612,6 @@
     <string name="ts004_conntenct_tip">携帯データを使用するので、デバイスが切断されている可能性があります。</string>
     <string name="fireware_update_tips">Bug fixes and performance improvements</string>
 
-    <!-- 3.80 -->
     <string name="tc_local_album">ローカル・ギャラリー</string>
     <string name="tc_connect_device">接続装置</string>
     <string name="tc_connect_tips">接続するデバイスを選択します。</string>
@@ -635,7 +623,6 @@
     <string name="tc_reset_tips">すべてのデバイス設定が工場出荷時の設定に復元されます。復元するかを確認しますか?</string>
     <string name="coming_soon">お楽しみにしてください…</string>
 
-    <!-- 3.90 -->
     <string name="tc007_connect_tips1">1.設備に十分な電力量があり、距離が十分に近いことを保証する</string>
     <string name="tc007_connect_tips2">2.携帯電話のBluetoothとWiFiをオンにする</string>
     <string name="tc007_connect_tips3">3.APPスキャンページに進む</string>
@@ -652,7 +639,6 @@
     <string name="wifi_connect_loading">15秒ほどかかると予想されます...</string>
     <string name="tc007_done_fast">頻繁な操作</string>
 
-    <!-- 房屋检测 -->
     <string name="main_professional_test">専門試験</string>
     <string name="main_temperature_test">温度試験</string>
     <string name="main_thermal_tips">専門的な熱画像試験</string>
@@ -821,7 +807,6 @@
     <string name="abnormal_description17">リアミラーヒータの温度は、周囲温度やヒータ負荷など多くの要因に影響されます。熱イメージャでヒーター温度を監視し、リアミラーが有効に加熱できるかどうかを評価することができます。</string>
     <string name="abnormal_description18">ウィンドウ・モータの温度は、周囲温度やモータ負荷など、多くの要因に影響されます。熱イメージャでモータ温度を監視します。温度が高すぎる場合は、窓の昇降機構やモータ自体の故障が原因である可能性があります。</string>
 
-    <!-- 房屋检测新增 -->
     <string name="vehicle_function">機能</string>
     <string name="ability_find">検出</string>
     <string name="ability_monitory">リアルタイム視聴物体温度生成データ</string>
@@ -847,7 +832,6 @@
     <string name="pdf_project_item">プロジェクト</string>
     <string name="house_sign_finish_tips">電子署名を完了してください</string>
 
-    <!-- 4.50 -->
     <string name="thermal_trend">トレンドチャート</string>
     <string name="thermal_trend_tips">画像上に線分を描き、線分内の温度変化の傾向を表示します。</string>
     <string name="material_view_all">すべて見る</string>
@@ -960,7 +944,6 @@
     <string name="tips_tisr_off">イメージング スーパー解像度が無効になりました。</string>
     <string name="tips_tisr_fail">お使いの携帯電話は OpenCL をサポートしていないため、イメージング スーパー解像度を有効にできません。</string>
 
-    <!-- 4.70 -->
     <string name="testing_guidance">検出アドバイザ</string>
     <string name="unlock_professional_perspectives">プロビジョンのロック解除</string>
     <string name="app_error_reload">リロード</string>

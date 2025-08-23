@@ -134,7 +134,6 @@
         app:layout_constraintEnd_toEndOf="@id/view_bg_theme"
         app:layout_constraintTop_toBottomOf="@id/tv_count" />
 
-    <!-- 下一步 -->
     <TextView
         android:id="@+id/tv_next2"
         android:layout_width="wrap_content"
@@ -153,7 +152,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
 
-    <!-- 跳过 -->
     <TextView
         android:id="@+id/tv_skin2"
         android:layout_width="wrap_content"

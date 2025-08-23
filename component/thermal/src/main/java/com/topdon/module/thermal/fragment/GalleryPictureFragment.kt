@@ -17,17 +17,12 @@ import com.topdon.module.thermal.viewmodel.GalleryViewModel
 import kotlinx.android.synthetic.main.fragment_gallery_picture.*
 import java.io.File
 
-
-/**
- * 图片
- */
 class GalleryPictureFragment : BaseViewModelFragment<GalleryViewModel>() {
 
     private val adapter by lazy { GalleryAdapter(requireContext()) }
 
     override fun providerVMClass() = GalleryViewModel::class.java
     override fun initContentView() = R.layout.fragment_gallery_picture
-
 
     override fun initView() {
         val span = if (ScreenUtils.isLandscape()) 6 else 3
@@ -64,14 +59,11 @@ class GalleryPictureFragment : BaseViewModelFragment<GalleryViewModel>() {
         viewModel.getData()
     }
 
-    /**
-     * 分享图片
-     */
     fun share(path: String) {
         val file = File(path)
         var intent = Intent()
-        intent.action = Intent.ACTION_SEND //设置分享行为
-        intent.type = "image/*" //设置分享内容的类型
+        intent.action = Intent.ACTION_SEND
+        intent.type = "image/*"
         val uri: Uri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             val authority = "${requireContext().packageName}.fileprovider"
             FileProvider.getUriForFile(requireContext(), authority, file)
@@ -85,9 +77,9 @@ class GalleryPictureFragment : BaseViewModelFragment<GalleryViewModel>() {
 
     fun previewPicture(path: String) {
         val imageEngine = GlideImageEngine()
-        MNImageBrowser.with(context) //当前位置
-            .setCurrentPosition(0) //图片引擎
-            .setImageEngine(imageEngine) //图片集合
+        MNImageBrowser.with(context)
+            .setCurrentPosition(0)
+            .setImageEngine(imageEngine)
             .setImageUrl(path)
             .show()
     }

@@ -66,33 +66,24 @@ import java.util.List;
 public class OpencvTools {
 
     static {
-//        new OpenCVNativeLoader().init();
         System.loadLibrary("opencv_java4");
     }
 
-
-
     private static Mat resultMat = new Mat();
     public static byte[] supImageMix(byte[] imageARGB, int width, int height, byte[] resulARGB) {
-        // Step 1: Convert byte[] to Mat
         Mat argbMat = new Mat(width, height, CvType.CV_8UC4);
         argbMat.put(0, 0, imageARGB);
-        // Step 2: Downscale the image by a factor of 2
         Mat downscaledMat = new Mat();
         Imgproc.resize(argbMat, downscaledMat, new Size(height / 2, width / 2));
-        // Step 3: Convert ARGB to BGR
         Mat bgrMat = new Mat();
         Imgproc.cvtColor(downscaledMat, bgrMat, Imgproc.COLOR_RGBA2BGR);
-        // Step 4: Process the BGR image
         try {
             SupHelp.getInstance().runImage(bgrMat, resultMat);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        // Step 5: Convert BGR back to RGBA
         Mat resulArgbMat = new Mat();
         Imgproc.cvtColor(resultMat, resulArgbMat, Imgproc.COLOR_BGR2RGBA);
-        // Step 6: Convert Mat back to byte[]
         Bitmap dstBitmap = Bitmap.createBitmap(resulArgbMat.width(), resulArgbMat.height(), Bitmap.Config.ARGB_8888);
         Utils.matToBitmap(resulArgbMat, dstBitmap);
         ByteBuffer byteBuffer = ByteBuffer.wrap(resulARGB);
@@ -100,12 +91,6 @@ public class OpencvTools {
         return resulARGB;
     }
 
-
-    /**
-     * 效果更好的超分，但是此函数耗时过长，应用于拍照
-     * @param inBitmap
-     * @return
-     */
     public static Bitmap supImageFour(Bitmap inBitmap){
         long startTime = System.currentTimeMillis();
         ByteBuffer rawData = ByteBuffer.wrap(SupRUtils.INSTANCE.bitmapToByteArray(inBitmap));
@@ -113,24 +98,18 @@ public class OpencvTools {
         dataIn.put(rawData);
         ByteBuffer dataOut = ByteBuffer.allocateDirect(rawData.array().length * 4);
         SupHelp.getInstance().imgUpScalerFour(BaseApplication.instance,dataIn,dataOut);
-        // 创建一个普通的 byte[] 数组来存储数据
         byte[] byteArray = new byte[dataOut.capacity()];
-        // 将 ByteBuffer 的内容复制到 byteArray 中
         dataOut.get(byteArray);
         Log.e("4倍超分模型：", String.valueOf((System.currentTimeMillis() - startTime)));
         return SupRUtils.INSTANCE.byteArrayToBitmap(byteArray);
     }
 
-
     public static byte[] supImageFourExToByte(byte[] imgByte) {
         long startTime = System.currentTimeMillis();
-        ByteBuffer dataIn = ByteBuffer.wrap(imgByte);// 创建一个 ByteBuffer
-        // 创建用于输出的 ByteBuffer
-        ByteBuffer dataOut = ByteBuffer.allocateDirect(imgByte.length * 4); // 假设输出数据大小为输入的 4 倍
-        // 调用 imgUpScalerFour 方法
+        ByteBuffer dataIn = ByteBuffer.wrap(imgByte);
+        ByteBuffer dataOut = ByteBuffer.allocateDirect(imgByte.length * 4);
         SupHelp.getInstance().imgUpScalerFour(BaseApplication.instance, dataIn, dataOut);
         Log.e("AI_UPSCALE 4倍超分模型2：", String.valueOf((System.currentTimeMillis() - startTime)));
-        // 创建一个普通的 byte[] 数组来存储输出数据
         byte[] outputData = new byte[dataOut.capacity()];
         dataOut.get(outputData);
         Log.e("4倍超分模型：", String.valueOf((System.currentTimeMillis() - startTime)));
@@ -140,95 +119,71 @@ public class OpencvTools {
     public static Bitmap supImageFourExToBitmap(byte[] dstArgbBytes, int width, int height) {
         long startTime = System.currentTimeMillis();
 
-        // 创建 ByteBuffer 并填充数据
         ByteBuffer dataIn = ByteBuffer.allocateDirect(dstArgbBytes.length);
         dataIn.put(dstArgbBytes);
 
-        // 创建用于输出的 ByteBuffer
-        ByteBuffer dataOut = ByteBuffer.allocateDirect(dstArgbBytes.length * 4); // 假设输出数据大小为输入的 4 倍
+        ByteBuffer dataOut = ByteBuffer.allocateDirect(dstArgbBytes.length * 4);
 
-        // 调用 imgUpScalerFour 方法
         SupHelp.getInstance().imgUpScalerFour(BaseApplication.instance, dataIn, dataOut);
         Log.e("AI_UPSCALE 4倍超分模型2：", String.valueOf((System.currentTimeMillis() - startTime)) + "////" + dstArgbBytes.length);
 
-        // 创建一个普通的 byte[] 数组来存储输出数据
         byte[] outputData = new byte[dataOut.capacity()];
         dataOut.get(outputData);
 
-        // 将输出数据转换为 Bitmap
         Bitmap outputBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         outputBitmap.copyPixelsFromBuffer(ByteBuffer.wrap(outputData));
 
-        // 将 Bitmap 转换为 Mat
         Mat srcMat = new Mat();
         Utils.bitmapToMat(outputBitmap, srcMat);
 
-        // 在这里可以使用 OpenCV 进行进一步处理，例如缩放
         Mat dstMat = new Mat();
         Imgproc.resize(srcMat, dstMat, new org.opencv.core.Size(srcMat.cols() * 4, srcMat.rows() * 4));
 
-        // 将处理后的 Mat 转换回 Bitmap
         Bitmap finalBitmap = Bitmap.createBitmap(dstMat.cols(), dstMat.rows(), Bitmap.Config.ARGB_8888);
         Utils.matToBitmap(dstMat, finalBitmap);
 
-        // 释放 Mat 资源
         srcMat.release();
         dstMat.release();
         Log.e("4倍超分模型：", String.valueOf((System.currentTimeMillis() - startTime)));
 
         return finalBitmap;
     }
-
 
     public static Bitmap supImageFourExToBitmap(Bitmap inBitmap) {
         long startTime = System.currentTimeMillis();
-        // 将 Bitmap 转换为字节数组
         byte[] rawData = SupRUtils.INSTANCE.bitmapToByteArray(inBitmap);
-        // 创建 ByteBuffer 并填充数据
         ByteBuffer dataIn = ByteBuffer.allocateDirect(rawData.length);
         dataIn.put(rawData);
-        // 创建用于输出的 ByteBuffer
-        ByteBuffer dataOut = ByteBuffer.allocateDirect(256 * 192 * 4 * 4); // 假设输出数据大小为输入的 4 倍
-        // 调用 imgUpScalerFour 方法
+        ByteBuffer dataOut = ByteBuffer.allocateDirect(256 * 192 * 4 * 4);
         SupHelp.getInstance().imgUpScalerFour(BaseApplication.instance, dataIn, dataOut);
         Log.e("AI_UPSCALE 4倍超分模型2：", String.valueOf((System.currentTimeMillis() - startTime))+"////"+rawData.length);
-        // 创建一个普通的 byte[] 数组来存储输出数据
         byte[] outputData = new byte[dataOut.capacity()];
         dataOut.get(outputData);
-        // 将输出数据转换为 Bitmap
         Bitmap outputBitmap = SupRUtils.INSTANCE.byteArrayToBitmap(outputData);
-        // 将 Bitmap 转换为 Mat
         Mat srcMat = new Mat();
         Utils.bitmapToMat(outputBitmap, srcMat);
-        // 在这里可以使用 OpenCV 进行进一步处理，例如缩放
         Mat dstMat = new Mat();
         Imgproc.resize(srcMat, dstMat, new org.opencv.core.Size(srcMat.cols() * 4, srcMat.rows() * 4));
-        // 将处理后的 Mat 转换回 Bitmap
         Bitmap finalBitmap = Bitmap.createBitmap(dstMat.cols(), dstMat.rows(), Bitmap.Config.ARGB_8888);
         Utils.matToBitmap(dstMat, finalBitmap);
-        // 释放 Mat 资源
         srcMat.release();
         dstMat.release();
         Log.e("4倍超分模型：", String.valueOf((System.currentTimeMillis() - startTime)));
         return finalBitmap;
     }
 
-
     public static byte[] supImage(byte[] imageARGB, int width, int height, byte[] resulARGB){
-        // Step 1: 将 byte[] 转换成 Mat 对象
-        Mat argbMat = new Mat(width, height, CvType.CV_8UC4); // CV_8UC4 表示 4 通道（ARGB 格式）
+        Mat argbMat = new Mat(width, height, CvType.CV_8UC4);
         argbMat.put(0, 0, imageARGB);
-        // Step 2: 将 ARGB 格式转换为 BGR 格式
         Mat bgrMat = new Mat();
-        Imgproc.cvtColor(argbMat, bgrMat, Imgproc.COLOR_RGBA2BGR); // 使用 RGBA2BGR，忽略 Alpha 通道
+        Imgproc.cvtColor(argbMat, bgrMat, Imgproc.COLOR_RGBA2BGR);
         try {
             SupHelp.getInstance().runImage(bgrMat,resultMat);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
         Mat resulArgbMat = new Mat();
-        Imgproc.cvtColor(resultMat, resulArgbMat, Imgproc.COLOR_BGR2RGBA); // 将 BGR 转换为 RGBA
-        // Step 2: 将 Mat 转换为 byte[]
+        Imgproc.cvtColor(resultMat, resulArgbMat, Imgproc.COLOR_BGR2RGBA);
         Bitmap dstBitmap = Bitmap.createBitmap(resulArgbMat.width(), resulArgbMat.height(), Bitmap.Config.ARGB_8888);
         Utils.matToBitmap(resulArgbMat, dstBitmap);
         ByteBuffer byteBuffer = ByteBuffer.wrap(resulARGB);
@@ -241,48 +196,30 @@ public class OpencvTools {
             throw new IllegalArgumentException("输入的byte数组不能为null");
         }
         int singleLength = singleByteImage.length;
-        // 新数组是原来长度的两倍
         int doubleLength = singleLength * 2;
         byte[] doubleByteImage = new byte[doubleLength];
 
         for (int i = 0; i < singleLength; i++) {
-            // 这里假定我们只将原本一个字节的数据复制到新的两个字节中的第一个
-            // 这种情况下第二个字节可能是保留为0，用于表示较大的颜色空间或者进行格式对齐。
-            // 您可能需要根据具体的图片数据格式来调整这部分代码
             doubleByteImage[2 * i] = singleByteImage[i];
-            // 如果需要其它处理 (例如设置第二个字节的值) 在这里操作
-            // doubleByteImage[2 * i + 1] = <some value>;
         }
         return doubleByteImage;
     }
 
-
-
-    /**
-     * 温度转成开尔文
-     * @param temp
-     * @return
-     */
     public static byte[] convertCelsiusToOriginalBytes(float[] temp) {
         if (temp == null) {
             return new byte[0];
         }
         float maxValue = 0f;
-        // 初始化temperature数组的长度为temp数组的两倍。
         byte[] temperature = new byte[temp.length * 2];
         for (int i = 0, j = 0; i < temp.length; i++, j += 2) {
             if (maxValue < temp[i]){
                 maxValue = temp[i];
             }
-            // 将摄氏温度转换回开尔文，并逆转之前的缩放操作
             float tempInKelvin = temp[i] + 273.15f;
             float originalValue = tempInKelvin * 64;
-            // 将浮点数转换为整数
             int intValue = (int) originalValue;
-            // 分离整数的低8位和高8位
             byte low = (byte) (intValue & 0xFF);
             byte high = (byte) ((intValue >> 8) & 0xFF);
-            // 将分离出的字节存回temperature数组
             temperature[j] = low;
             temperature[j + 1] = high;
         }
@@ -301,7 +238,7 @@ public class OpencvTools {
             float ratio = (i - customMinTemp) / tempValue;
             int colorNumber = colorList.length - 1;
             float avg = 1.f / colorNumber;
-            int colorIndex = colorNumber;//当前上色的属于哪个渐变区域
+            int colorIndex = colorNumber;
             for (int index = 1; index <= colorNumber;index++){
                 if (ratio == 0){
                     colorIndex = 0;
@@ -316,15 +253,12 @@ public class OpencvTools {
             r = interpolateR(lastColor(colorList,colorIndex), colorList[colorIndex], ratio);
             g = interpolateG(lastColor(colorList,colorIndex), colorList[colorIndex], ratio);
             b = interpolateB(lastColor(colorList,colorIndex), colorList[colorIndex], ratio);
-//            Log.e("色值计算耗时：",System.currentTimeMillis()-time+"//");
             int intKey = (int) (i * 10);
             int[] rgb = new int[]{r,g,b};
             map.put(intKey, rgb);
         }
         return map;
     }
-
-
 
     public static byte[] matToByteArray(Mat mat) {
         int rows = mat.rows();
@@ -357,10 +291,7 @@ public class OpencvTools {
         im.put(0, 0, image);
         cvtColor(im, im, COLOR_YUV2GRAY_YUYV);
         normalize(im, im, 0, 255, NORM_MINMAX);
-//        cvtColor(im, im, CV_8UC1);
         Mat colorMat = generateColorBar(colorList, maxTemp,minTemp,customMaxTemp,customMinTemp,isGrayUse);
-//        Log.e("测试mat小值",colorMat.at(double[].class,0,0)+"");
-//        Log.e("测试mat大值",colorMat.at(double[].class,255,0)+"");
         if (colorMat!=null){
             applyColorMap(im, im, colorMat);
             Imgproc.cvtColor(im, im, Imgproc.COLOR_BGR2RGBA);
@@ -368,14 +299,6 @@ public class OpencvTools {
         return im;
     }
 
-    /**
-     * 自定义伪彩
-     * @param image       RGBA 32bit图像数据
-     * @param temperature 温度数据
-     * @param cols        宽
-     * @param rows        高
-     * @param lut         伪彩图,高度必须是256
-     */
     private static Mat draw_high_temp_edge_argb_pse(byte[] image, byte[] temperature, Bitmap lut, int cols, int rows, double high_t, int color_h, int type) throws IOException {
         double[] temp = new double[cols * rows];
         int t = 0;
@@ -384,7 +307,6 @@ public class OpencvTools {
                 float temperature0 = (temperature[i] & 0xff) + (temperature[i + 1] & 0xff) * 256;
                 temperature0 = (float) (temperature0 / 64 - 273.15);
                 temp[t] = temperature0;
-                //cout << temp[t] << " ";
                 t++;
             }
         }
@@ -394,30 +316,18 @@ public class OpencvTools {
         cvtColor(im, im, Imgproc.COLOR_RGBA2GRAY);
         normalize(im, im, 0, 255, NORM_MINMAX);
         im.convertTo(im, CV_8UC1);
-//        applyColorMap(im, im, 15);
         Mat colorMat = new Mat();
         Utils.bitmapToMat(lut, colorMat);
         Imgproc.cvtColor(colorMat, colorMat, Imgproc.COLOR_RGBA2BGR);
         Size colorSize = new Size(1.0, 256.0);
         Imgproc.resize(colorMat, colorMat, colorSize);
-//        if (colorMat.size() != colorSize) {
-//            Log.w("123", "lut映射表尺寸不符合Size(1, 256), colorMat: " + colorMat);
-//            return null;
-//        }
         applyColorMap(im, im, colorMat);
         Mat tem;
         tem = new Mat(rows, cols, CV_64FC1);
         tem.put(0, 0, temp);
         tem.convertTo(tem, CV_8UC1);
-        //Mat kernal = Mat.ones(5, 5, CV_8UC1);
-        //Mat es = getStructuringElement(MORPH_ELLIPSE,new Size(9, 4));
         Mat thres_gray = new Mat();
-        //Mat temperature = Mat::zeros(192, 256, CV_8UC1);
-        //threshold(temperature, thres_gray, 50, 255, THRESH_BINARY);
-        //int thres = int(high_t);
-        //src = 255 - src;
         threshold(tem, thres_gray, high_t, 255, THRESH_BINARY);
-        //vector<vector<Point>> cnts;
         List<MatOfPoint> cnts = new ArrayList<MatOfPoint>();
         Mat hierarchy = new Mat();
         findContours(thres_gray, cnts, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
@@ -445,15 +355,9 @@ public class OpencvTools {
                     rectangle(im, rect.tl(), rect.br(), color, 1, 8, 0);
                 }
             }
-            //minEnclosingCircle(cnts[i], center[i], radius[i]);
         }
-        //cv::Mat imageContours = cv::Mat::zeros(cv::Size(W, H), CV_8UC1);
-        //Bezier
-        //Mat drawing = Mat::zeros(image.size(), CV_8UC3);imshow("Contours", im)
-        // waitKey(0);
         return im;
     }
-
 
     private static Mat draw_high_temp_edge_argb_pse(byte[] image, byte[] temperature, int cols, int rows, double high_t, int color_h, int type) throws IOException {
         double[] temp = new double[cols * rows];
@@ -463,7 +367,6 @@ public class OpencvTools {
                 float temperature0 = (temperature[i] & 0xff) + (temperature[i + 1] & 0xff) * 256;
                 temperature0 = (float) (temperature0 / 64 - 273.15);
                 temp[t] = temperature0;
-                //cout << temp[t] << " ";
                 t++;
             }
         }
@@ -471,33 +374,11 @@ public class OpencvTools {
         im = new Mat(rows, cols, CvType.CV_8UC4);
         im.put(0, 0, image);
         cvtColor(im, im, Imgproc.COLOR_RGBA2BGR);
-//        normalize(im, im, 0, 255, NORM_MINMAX);
-//        im.convertTo(im, CV_8UC1);
-//        applyColorMap(im, im, 15);
-//        Mat colorMat = new Mat();
-//        Utils.bitmapToMat(lut, colorMat);
-//        Imgproc.cvtColor(colorMat, colorMat, Imgproc.COLOR_RGBA2BGR);
-//        Size colorSize = new Size(1.0, 256.0);
-//        Imgproc.resize(colorMat, colorMat, colorSize);
-//        if (colorMat.size() != colorSize) {
-//            Log.w("123", "lut映射表尺寸不符合Size(1, 256), colorMat: " + colorMat);
-//            return null;
-//        }
         Mat tem;
         tem = new Mat(rows, cols, CV_64FC1);
         tem.put(0, 0, temp);
-//        Log.w("矩阵", Arrays.toString(temp));
-        //tem.convertTo(tem, CV_8UC1);
-//        Log.w("123矩阵", "bs: "+tem.colRange(0,192*256).toString());
-        //Mat kernal = Mat.ones(5, 5, CV_8UC1);
-        //Mat es = getStructuringElement(MORPH_ELLIPSE,new Size(9, 4));
         Mat thres_gray = new Mat();
-        //Mat temperature = Mat::zeros(192, 256, CV_8UC1);
-        //threshold(temperature, thres_gray, 50, 255, THRESH_BINARY);
-        //int thres = int(high_t);
-        //src = 255 - src;
         threshold(tem, thres_gray, high_t, 255, THRESH_BINARY);
-        //vector<vector<Point>> cnts;
         thres_gray.convertTo(thres_gray, CV_8UC1);
         List<MatOfPoint> cnts = new ArrayList<MatOfPoint>();
         Mat hierarchy = new Mat();
@@ -526,12 +407,7 @@ public class OpencvTools {
                     rectangle(im, rect.tl(), rect.br(), color, 1, Imgproc.LINE_8, 0);
                 }
             }
-            //minEnclosingCircle(cnts[i], center[i], radius[i]);
         }
-        //cv::Mat imageContours = cv::Mat::zeros(cv::Size(W, H), CV_8UC1);
-        //Bezier
-        //Mat drawing = Mat::zeros(image.size(), CV_8UC3);imshow("Contours", im)
-        // waitKey(0);
         return im;
     }
     public static Bitmap cropBitmap(Bitmap src, int x, int y, int width, int height, boolean isRecycle) {
@@ -545,12 +421,6 @@ public class OpencvTools {
         return dst;
     }
 
-    /**
-     * @param image       RGBA 32bit图像数据
-     * @param temperature 温度数据
-     * @param cols        宽
-     * @param rows        高
-     */
     private static Mat draw_high_temp_edge_argb(byte[] image, byte[] temperature, int cols, int rows, double high_t, int color_h, int type) throws IOException {
         double[] temp = new double[cols * rows];
         int t = 0;
@@ -559,7 +429,6 @@ public class OpencvTools {
                 float temperature0 = (temperature[i] & 0xff) + (temperature[i + 1] & 0xff) * 256;
                 temperature0 = (float) (temperature0 / 64 - 273.15);
                 temp[t] = temperature0;
-                //cout << temp[t] << " ";
                 t++;
             }
         }
@@ -574,15 +443,8 @@ public class OpencvTools {
         tem = new Mat(rows, cols, CV_64FC1);
         tem.put(0, 0, temp);
         tem.convertTo(tem, CV_8UC1);
-        //Mat kernal = Mat.ones(5, 5, CV_8UC1);
-        //Mat es = getStructuringElement(MORPH_ELLIPSE,new Size(9, 4));
         Mat thres_gray = new Mat();
-        //Mat temperature = Mat::zeros(192, 256, CV_8UC1);
-        //threshold(temperature, thres_gray, 50, 255, THRESH_BINARY);
-        //int thres = int(high_t);
-        //src = 255 - src;
         threshold(tem, thres_gray, high_t, 255, THRESH_BINARY);
-        //vector<vector<Point>> cnts;
         List<MatOfPoint> cnts = new ArrayList<MatOfPoint>();
         Mat hierarchy = new Mat();
         findContours(thres_gray, cnts, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
@@ -610,21 +472,10 @@ public class OpencvTools {
                     rectangle(im, rect.tl(), rect.br(), color, 1, 8, 0);
                 }
             }
-            //minEnclosingCircle(cnts[i], center[i], radius[i]);
         }
-        //cv::Mat imageContours = cv::Mat::zeros(cv::Size(W, H), CV_8UC1);
-        //Bezier
-        //Mat drawing = Mat::zeros(image.size(), CV_8UC3);imshow("Contours", im)
-        // waitKey(0);
         return im;
     }
 
-    /**
-     * @param image       yuv 16bit图像数据
-     * @param temperature 温度数据
-     * @param cols        宽
-     * @param rows        高
-     */
     private static Mat draw_high_temp_edge(byte[] image, byte[] temperature, int cols, int rows, double high_t, int color_h, int type) throws IOException {
         double[] temp = new double[cols * rows];
         int t = 0;
@@ -633,7 +484,6 @@ public class OpencvTools {
                 float temperature0 = (temperature[i] & 0xff) + (temperature[i + 1] & 0xff) * 256;
                 temperature0 = (float) (temperature0 / 64 - 273.15);
                 temp[t] = temperature0;
-                //cout << temp[t] << " ";
                 t++;
             }
         }
@@ -648,15 +498,8 @@ public class OpencvTools {
         tem = new Mat(rows, cols, CV_64FC1);
         tem.put(0, 0, temp);
         tem.convertTo(tem, CV_8UC1);
-        //Mat kernal = Mat.ones(5, 5, CV_8UC1);
-        //Mat es = getStructuringElement(MORPH_ELLIPSE,new Size(9, 4));
         Mat thres_gray = new Mat();
-        //Mat temperature = Mat::zeros(192, 256, CV_8UC1);
-        //threshold(temperature, thres_gray, 50, 255, THRESH_BINARY);
-        //int thres = int(high_t);
-        //src = 255 - src;
         threshold(tem, thres_gray, high_t, 255, THRESH_BINARY);
-        //vector<vector<Point>> cnts;
         List<MatOfPoint> cnts = new ArrayList<MatOfPoint>();
         Mat hierarchy = new Mat();
         findContours(thres_gray, cnts, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
@@ -684,12 +527,7 @@ public class OpencvTools {
                     rectangle(im, rect.tl(), rect.br(), color, 1, 8, 0);
                 }
             }
-            //minEnclosingCircle(cnts[i], center[i], radius[i]);
         }
-        //cv::Mat imageContours = cv::Mat::zeros(cv::Size(W, H), CV_8UC1);
-        //Bezier
-        //Mat drawing = Mat::zeros(image.size(), CV_8UC3);imshow("Contours", im)
-        // waitKey(0);
         return im;
     }
 
@@ -701,14 +539,12 @@ public class OpencvTools {
                 float temperature0 = (temperature[i] & 0xff) + (temperature[i + 1] & 0xff) * 256;
                 temperature0 = (float) (temperature0 / 64 - 273.15);
                 temp[t] = temperature0;
-                //cout << temp[t] << " ";
                 t++;
             }
         }
         Mat tem;
         tem = new Mat(src.rows(), src.cols(), CV_64FC1);
         tem.put(0, 0, temp);
-        //tem.convertTo(tem, CV_8UC1);
         Mat thres_gray = new Mat();
         threshold(tem, thres_gray, low_t, 255, 4);
         thres_gray.convertTo(thres_gray, CV_8UC1);
@@ -765,12 +601,6 @@ public class OpencvTools {
 
     }
 
-
-    /**
-     * @param image   原图像YUV格式
-     * @param image_w 图像宽度
-     * @param image_h 图像高度
-     */
     public static Bitmap draw_edge_from_temp_reigon_bitmap(byte[] image, byte[] temperature, int image_h, int image_w, double high_t, double low_t, int color_h, int color_l, int type) throws IOException {
         Mat src = draw_high_temp_edge(image, temperature, image_h, image_w, high_t, color_h, type);
         Mat mat = draw_temp_edge(src, temperature, low_t, color_l, type);
@@ -780,11 +610,6 @@ public class OpencvTools {
         return dstBitmap;
     }
 
-    /**
-     * @param image   图像ARGB格式
-     * @param image_w 图像宽度
-     * @param image_h 图像高度
-     */
     public static Bitmap draw_edge_from_temp_reigon_bitmap_argb(byte[] image, byte[] temperature, int image_h, int image_w, double high_t, double low_t, int color_h, int color_l, int type) throws IOException {
         Mat src = draw_high_temp_edge_argb(image, temperature, image_h, image_w, high_t, color_h, type);
         Mat mat = draw_temp_edge(src, temperature, low_t, color_l, type);
@@ -793,12 +618,7 @@ public class OpencvTools {
         Utils.matToBitmap(mat, dstBitmap);
         return dstBitmap;
     }
-    /**
-     * @param image   图像ARGB格式
-     * @param lut     伪彩图,高度必须是256
-     * @param image_w 图像宽度
-     * @param image_h 图像高度
-     */
+    
     public static Bitmap draw_edge_from_temp_reigon_bitmap_argb_psd(byte[] image, byte[] temperature, Bitmap lut, int image_h, int image_w, double high_t, double low_t, int color_h, int color_l, int type) throws IOException {
         Mat src = draw_high_temp_edge_argb_pse(image, temperature, image_h, image_w, high_t, color_h, type);
         Mat mat = draw_temp_edge(src, temperature, low_t, color_l, type);
@@ -807,11 +627,7 @@ public class OpencvTools {
         Utils.matToBitmap(mat, dstBitmap);
         return dstBitmap;
     }
-    /**
-     * @param image   图像ARGB格式
-     * @param image_w 图像宽度
-     * @param image_h 图像高度
-     */
+    
     public static Bitmap draw_edge_from_temp_reigon_bitmap_argb_psd(byte[] image, byte[] temperature,
                                                                     int image_h, int image_w, float high_t,
                                                                     float low_t, int color_h, int color_l, int type) throws IOException {
@@ -823,9 +639,6 @@ public class OpencvTools {
         Utils.matToBitmap(mat, dstBitmap);
         return dstBitmap;
     }
-
-
-
 
     public static Mat calcHU(Size size,double t2){
         Mat hu = new Mat(size,CV_32FC1);
@@ -844,7 +657,6 @@ public class OpencvTools {
         homo.add(new Mat(hu.size(),CV_32FC1,new Scalar(0)));
         Mat hu2c = new Mat(size,CV_32FC2);
         Core.merge(homo,hu2c);
-        //System.out.println(hu.dump());
         return hu2c;
     }
 
@@ -854,7 +666,6 @@ public class OpencvTools {
         int dy = src.cols() / 2;
         float[] data = new float[dy];
 
-        //System.out.println(src.dump());
         if(src.rows() % 2 == 0) {
             if (src.cols() % 2 == 0) {
                 for(int i = 0; i < dx; i++){
@@ -878,7 +689,6 @@ public class OpencvTools {
                 System.out.println("copy failed");
             }
         }
-        //System.out.println(dst.dump());
         return dst;
     }
 
@@ -888,11 +698,9 @@ public class OpencvTools {
         Mat image;
         image = new Mat(r, c, CV_8UC2);
         image.put(0, 0, im);
-//        cvtColor(image, image, Imgproc.COLOR_RGBA2BGR);
         cvtColor(image, image, COLOR_YUV2GRAY_YUYV);
         normalize(image, image, 0, 255, NORM_MINMAX);
         image.convertTo(image, CV_8UC1);
-        //imshow("src", image);
         CLAHE clahe = Imgproc.createCLAHE();
         clahe.setClipLimit(1.0);
         clahe.setTilesGridSize(new Size(3,3));
@@ -921,7 +729,6 @@ public class OpencvTools {
         Core.idft(image_padd_2c,image_padd_2c,DFT_SCALE);
         System.out.println(image_padd_2c.channels());
 
-
         Core.exp(image_padd_2c,image_padd_2c);
         Core.subtract(image_padd_2c,new Scalar(1),image_padd_2c);
         List<Mat> image_padd_s = new ArrayList<Mat>();
@@ -939,33 +746,11 @@ public class OpencvTools {
         applyColorMap(result,result,15);
         cvtColor(result,result,COLOR_RGB2BGR);
 
-//        cvtColor(result,result,COLOR_RGB2RGBA);
         Log.w("1234",result.toString());
-        //applyColorMap(image,image,15);
-        //imshow("image", image);
-        //equalizeHist(result,result);
-//        CLAHE clahe = Imgproc.createCLAHE();
-//        clahe.setClipLimit(2);
-//        clahe.setTilesGridSize(new Size(3,3));
-//        clahe.apply(result,result);
-//        applyColorMap(result,result,15);
-        //imshow("result", result);
-        //waitKey(0);
         return result;
 
     }
 
-
-    /**
-     * 支持多颜色的伪彩条
-     * @param colorList : 颜色条
-     * @param maxTemp : 实际温度最大值
-     * @param minTemp ： 实际温度最小值
-     * @param customMaxTemp : 用户设置的最大值
-     * @param customMinTemp : 用户设置的最小值
-     * @param isGrayUse : 是否是灰度渐变
-     * @return
-     */
     public static Mat generateColorBar(int[] colorList, float maxTemp,float minTemp,float customMaxTemp,
                                        float customMinTemp, boolean isGrayUse) {
         if (colorList == null){
@@ -976,14 +761,13 @@ public class OpencvTools {
         float minGrey = minTemp < customMinTemp ? (customMinTemp - minTemp) / (maxTemp - minTemp) : -1;
         int[] colors = new int[3];
         for (int i = 0; i < 256; i++) {
-            double ratio = (double) i / 255.0; // 因为列数是从0到255
+            double ratio = (double) i / 255.0;
             int r = 0;
             int g = 0;
             int b = 0;
             if (minGrey != -1 && minGrey > 0 && ratio < minGrey){
                 if (isGrayUse){
                     ratio =  ratio / minGrey;
-                    //最小值
                     r = interpolateR(0x858585, 0x000000, ratio);
                     g = interpolateR(0x858585, 0x000000, ratio);
                     b = interpolateR(0x858585, 0x000000, ratio);
@@ -999,13 +783,11 @@ public class OpencvTools {
                 Log.w("测试","低于最小值");
             }else if (maxGrey != -1 && ratio > maxGrey){
                 if (isGrayUse){
-                    //超出最大值
                     ratio =  (1 - ratio) / (1 - maxGrey);
                     r = interpolateR(0xFFFFFF, 0x858585, ratio);
                     g = interpolateR(0xFFFFFF, 0x858585, ratio);
                     b = interpolateR(0xFFFFFF, 0x858585, ratio);
                 }else {
-                    //超出最大值
                     r = (colorList[colorList.length-1] >> 16) & 0xFF;
                     g = (colorList[colorList.length-1] >> 8) & 0xFF;
                     b = colorList[colorList.length-1] & 0xFF;
@@ -1017,16 +799,13 @@ public class OpencvTools {
                 Log.w("测试","大于于最大值");
             }else if (maxTemp >= customMaxTemp && minTemp <= customMinTemp){
                 Log.w("测试","实际温度大于并且小于自定义的最高低温");
-                //实际温度大于并且小于自定义的最高低温
                colors = capColor(colorList,maxTemp,minTemp,customMaxTemp,customMinTemp,isGrayUse,ratio);
             }else if (customMinTemp > maxTemp){
                 if (isGrayUse){
-                    //超出最小值,灰度化
                     r = interpolateR(0xFFFFFF, 0x000000, ratio);
                     g = interpolateR(0xFFFFFF, 0x000000, ratio);
                     b = interpolateR(0xFFFFFF, 0x000000, ratio);
                 }else {
-                    //超出最小值
                     r = (colorList[0] >> 16) & 0xFF;
                     g = (colorList[0] >> 8) & 0xFF;
                     b = colorList[0] & 0xFF;
@@ -1036,13 +815,9 @@ public class OpencvTools {
                 colors[1] = grey;
                 colors[2] = grey;
             }else if (maxTemp < customMaxTemp && minTemp < customMinTemp){
-                //实际最大温度小于自定义最高温，最低温小于自定义最低温度
-                //重新算出最高低温的颜色
                 colors = capColor(getStartColor(colorList,customMaxTemp,customMinTemp,maxTemp),
                         maxTemp,minTemp,maxTemp,customMinTemp,isGrayUse,ratio);
             }else if (maxTemp > customMaxTemp && minTemp > customMinTemp){
-                //实际最高温度大于自定义最高温度，实际最低温度大于自定义最低温度
-                //重新算出最高低温的颜色
                 colors = capColor(getEndColor(colorList,customMaxTemp,customMinTemp,minTemp),
                         maxTemp,minTemp,customMaxTemp,minTemp,isGrayUse,ratio);
             }else if (maxTemp < customMaxTemp && minTemp > customMinTemp){
@@ -1056,18 +831,11 @@ public class OpencvTools {
         return colorBar;
     }
 
-    /**
-     * 获取某个温度的梯度颜色值
-     * @param colorList
-     * @param customMaxTemp
-     * @param customMinTemp
-     * @return
-     */
     static int[] getStartColor(int[] colorList, float customMaxTemp,float customMinTemp,float nowTemp){
         double ratio = (nowTemp - customMinTemp) / (customMaxTemp - customMinTemp);
         int colorNumber = colorList.length - 1;
         float avg = 1.f / colorNumber;
-        int colorIndex = colorNumber;//当前上色的属于哪个渐变区域
+        int colorIndex = colorNumber;
         int r = 0;
         int g = 0;
         int b = 0;
@@ -1087,21 +855,14 @@ public class OpencvTools {
         b = interpolateB(lastColor(colorList,colorIndex), colorList[colorIndex], ratio);
         int nowColor = convertTo16Bit(r,g,b);
         int[] nowColorList = Arrays.copyOfRange(colorList,0,colorIndex+1);
-//        nowColorList[colorIndex] = nowColor;
        return nowColorList;
     }
-    /**
-     * 获取某个温度的梯度颜色值
-     * @param colorList
-     * @param customMaxTemp
-     * @param customMinTemp
-     * @return
-     */
+    
     static int[] getEndColor(int[] colorList, float customMaxTemp,float customMinTemp,float nowTemp){
         double ratio = (nowTemp - customMinTemp) / (customMaxTemp - customMinTemp);
         int colorNumber = colorList.length - 1;
         float avg = 1.f / colorNumber;
-        int colorIndex = colorNumber;//当前上色的属于哪个渐变区域
+        int colorIndex = colorNumber;
         int r = 0;
         int g = 0;
         int b = 0;
@@ -1136,7 +897,7 @@ public class OpencvTools {
         double minRatio = (nowMinTemp - customMinTemp) / (customMaxTemp - customMinTemp);
         int colorNumber = colorList.length - 1;
         float avg = 1.f / colorNumber;
-        int maxColorIndex = colorNumber;//当前上色的属于哪个渐变区域
+        int maxColorIndex = colorNumber;
         int r = 0;
         int g = 0;
         int b = 0;
@@ -1156,7 +917,7 @@ public class OpencvTools {
         b = interpolateB(colorList[maxColorIndex-1], colorList[maxColorIndex], maxRatio);
         int nowMaxColor = convertTo16Bit(r,g,b);
 
-        int minColorIndex = colorNumber;//当前上色的属于哪个渐变区域
+        int minColorIndex = colorNumber;
         for (int index = 1; index <= colorNumber;index++){
             if (minRatio == 0){
                 minColorIndex = 0;
@@ -1203,7 +964,6 @@ public class OpencvTools {
         if (minGrayRatio > 0 && ratio < minGrayRatio){
             if (isGrayUse){
                 ratio =  ratio / minGrayRatio;
-                //最小值
                 r = interpolateR(0x858585, 0x000000, ratio);
                 g = interpolateR(0x858585, 0x000000, ratio);
                 b = interpolateR(0x858585, 0x000000, ratio);
@@ -1214,13 +974,11 @@ public class OpencvTools {
             }
         }else if (ratio > maxGrayRatio){
             if (isGrayUse){
-                //超出最大值
                 ratio =  (1 - ratio) / (1 - maxGrayRatio);
                 r = interpolateR(0xFFFFFF, 0x858585, ratio);
                 g = interpolateR(0xFFFFFF, 0x858585, ratio);
                 b = interpolateR(0xFFFFFF, 0x858585, ratio);
             }else {
-                //超出最大值
                 r = (colorList[colorList.length-1] >> 16) & 0xFF;
                 g = (colorList[colorList.length-1] >> 8) & 0xFF;
                 b = colorList[colorList.length-1] & 0xFF;
@@ -1231,7 +989,7 @@ public class OpencvTools {
             }
             int colorNumber = colorList.length - 1;
             float avg = 1.f / colorNumber;
-            int colorIndex = colorNumber;//当前上色的属于哪个渐变区域
+            int colorIndex = colorNumber;
             for (int index = 1; index <= colorNumber;index++){
                 if (ratio == 0){
                     colorIndex = 0;
@@ -1250,12 +1008,6 @@ public class OpencvTools {
         return new int[]{r,g,b};
     }
 
-    /**
-     * 上一个颜色值
-     * @param colorList
-     * @param index
-     * @return
-     */
     public static int lastColor(int[] colorList,int index){
         if (index == 0){
             return colorList[0];
@@ -1263,30 +1015,21 @@ public class OpencvTools {
         return colorList[index-1];
     }
 
-    /**
-     * 伪彩梯度条,固定三个渐变颜色
-     * @param customMinColor
-     * @param customMiddleColor
-     * @param customMaxColor
-     * @return
-     */
     public static Mat generateColorBarThree(int customMinColor, int customMiddleColor, int customMaxColor,
                                        float maxTemp,float minTemp,float customMaxTemp,float customMinTemp,
                                        boolean isGrayUse) {
         Mat colorBar = new Mat(256, 1, CvType.CV_8UC3);
-        //总
         float tempValue = (maxTemp - minTemp);
         float maxGrayRatio = (maxTemp - customMaxTemp) / tempValue;
         float minGrayRatio = (maxTemp - customMinTemp) / tempValue;
         for (int i = 0; i < 256; i++) {
-            double ratio = (double) i / 255.0; // 因为列数是从0到255
+            double ratio = (double) i / 255.0;
             int r = 0;
             int g = 0;
             int b = 0;
             if (maxGrayRatio > 0 && ratio < maxGrayRatio){
                 if (isGrayUse){
                     ratio =  ratio / maxGrayRatio;
-                    //超出最大值
                     r = interpolateR(0xC2C2C2, 0xADADAD, ratio);
                     g = interpolateR(0xC2C2C2, 0xADADAD, ratio);
                     b = interpolateR(0xC2C2C2, 0xADADAD, ratio);
@@ -1297,13 +1040,11 @@ public class OpencvTools {
                 }
             }else if (ratio > minGrayRatio){
                 if (isGrayUse){
-                    //超出最小值,灰度化
                     ratio =  (1 - ratio) / (1 - minGrayRatio);
                     r = interpolateR(0xADADAD, 0x707070, ratio);
                     g = interpolateR(0xADADAD, 0x707070, ratio);
                     b = interpolateR(0xADADAD, 0x707070, ratio);
                 }else {
-                    //超出最小值
                     r = (customMinColor >> 16) & 0xFF;
                     g = (customMinColor >> 8) & 0xFF;
                     b = customMinColor & 0xFF;
@@ -1335,7 +1076,7 @@ public class OpencvTools {
         float ratio = (nowTemp - customMinTemp) / tempValue;
         int colorNumber = colorList.length - 1;
         float avg = 1.f / colorNumber;
-        int colorIndex = colorNumber;//当前上色的属于哪个渐变区域
+        int colorIndex = colorNumber;
         if (Math.abs(nowTemp -customMaxTemp)==0.1f) {
             int lastColor = colorList[colorNumber];
             result[0] = (lastColor >> 16) & 0xFF;
@@ -1350,7 +1091,6 @@ public class OpencvTools {
             return result;
         }
         if (ratio - 0f > 0){
-//            int index = (int) Math.ceil(ratio / avg);
             int avgColorIndex = (int) (ratio / avg);
             int addNumber = 0;
             if ((ratio % avg) > 0){
@@ -1360,12 +1100,10 @@ public class OpencvTools {
         }else {
             colorIndex = 0;
         }
-//        Log.e("色值计算耗时3：",System.nanoTime()-time+"//");
         ratio = (ratio - (avg * (colorIndex - 1))) / avg;
         result[0] = interpolateR(lastColor(colorList,colorIndex), colorList[colorIndex], ratio);
         result[1] = interpolateG(lastColor(colorList,colorIndex), colorList[colorIndex], ratio);
         result[2] = interpolateB(lastColor(colorList,colorIndex), colorList[colorIndex], ratio);
-//        Log.e("色值计算耗时：",System.nanoTime()-time+"//");
         return result;
     }
     private static int interpolateR(int startColor, int endColor, double ratio) {
@@ -1387,9 +1125,6 @@ public class OpencvTools {
         return interpolatedB;
     }
 
-    /**
-     * 统一自定义伪彩入口
-     */
     public static int[] getOneColorByTempUnif(float customMaxTemp, float customMinTemp, float nowTemp,
                                               int[] colorList, float[] positionList){
        if (positionList!=null){
@@ -1401,7 +1136,6 @@ public class OpencvTools {
                     positionList
             );
         }else{
-            //等比
           return getOneColorByTemp(
                     customMaxTemp,
                     customMinTemp,
@@ -1419,12 +1153,11 @@ public class OpencvTools {
 
         float tempRange = customMaxTemp - customMinTemp;
         float ratio = (nowTemp - customMinTemp) / tempRange;
-        ratio = Math.min(Math.max(ratio, 0), 1); // Clamp ratio between 0 and 1
+        ratio = Math.min(Math.max(ratio, 0), 1);
 
         int[] result = new int[3];
         int colorCount = colorList.length;
 
-        // Directly return the first or last color if at bounds
         if (Math.abs(nowTemp - customMaxTemp) < 0.1f) {
             return new int[] {
                     (colorList[colorCount - 1] >> 16) & 0xFF,
@@ -1454,7 +1187,6 @@ public class OpencvTools {
         if (Math.abs((positionList[lowerColorIndex+1] - positionList[lowerColorIndex])) > 0){
             regionRatio = (ratio - positionList[lowerColorIndex]) / Math.abs((positionList[lowerColorIndex] - positionList[lowerColorIndex+1]));
         }
-        // 找到对应的颜色
         int startColor = colorList[lowerColorIndex];
         int endColor = colorList[lowerColorIndex + 1];
 
@@ -1465,13 +1197,9 @@ public class OpencvTools {
         return result;
     }
 
-
-
-    // 自定义比较器，用于比较双精度浮点数
     static class CustomComparator implements Comparator<Float> {
         @Override
         public int compare(Float key1, Float key2) {
-            // 在这里进行自定义比较逻辑
             if ((key1 - key2) <= 0.01) {
                 return 0;
             } else if (key1 < key2) {
@@ -1482,8 +1210,6 @@ public class OpencvTools {
         }
     }
 
-
-
     private static double calculateHistogram(Mat image1, Mat image2) {
         Mat hist1 = calculateHistogram(image1);
         Mat hist2 = calculateHistogram(image2);
@@ -1491,7 +1217,6 @@ public class OpencvTools {
         final double similarity = Imgproc.compareHist(hist1, hist2, Imgproc.CV_COMP_CORREL);
         return similarity;
     }
-
 
     private static double calculateMSE(Mat image1, Mat image2) {
         Mat diff = new Mat();
@@ -1557,7 +1282,6 @@ public class OpencvTools {
         Mat src;
         src = new Mat(256, 192, CV_64FC1);
         src.put(0,0,temp);
-        //src.convertTo(src, CV_8UC1);
         return src;
     }
 
@@ -1568,17 +1292,11 @@ public class OpencvTools {
         cvtColor(mat1, mat1, Imgproc.COLOR_BGR2GRAY);
         cvtColor(mat2, mat2, Imgproc.COLOR_BGR2GRAY);
         boolean isSame =  getStatus(mat1,mat2);
-//        Log.e("静态检测耗时：", String.valueOf(System.currentTimeMillis() - time));
         return isSame;
     }
 
     public static Mat highTemTrack(byte[] image, byte[] temperature) throws IOException{
-//        temperatureRegion tr = new temperatureRegion();
-//        List<Mat> getMat = tr.read_byte();
-//        Mat im = getMat.get(0);
-//        Mat tempMat = getMat.get(1);
         Mat im = getImageData(image);
-        //applyColorMap(im,im,15);
         Mat tempMat = getTempData(temperature);
         tempMat.convertTo(tempMat, CV_8UC1);
         Mat thresMat = new Mat();
@@ -1611,13 +1329,9 @@ public class OpencvTools {
                 }
             }
         }
-//        imshow("im", im);
-//        imshow("test", thresMat);
-//        waitKey(0);
         return im;
 
     }
-    // Mat image, Mat temperature
     public static Mat lowTemTrack(byte[] image, byte[] temperature) throws IOException{
         Mat im = getImageData(image);
         Mat tempMat = getTempData(temperature);
@@ -1652,28 +1366,10 @@ public class OpencvTools {
                 }
             }
         }
-//        imshow("im", im);
-//        imshow("test", thresMat);
-//        waitKey(0);
         return im;
     }
-    //Mat image1, Mat image2
     public static boolean getStatus(Mat image1, Mat image2){
-//        Mat image1 = imread("E:/sharp/1696821350963.jpg");
-//        Mat image2 = imread("E:/sharp/1696821354162.jpg");
-        // 计算均方差（MSE）
-//        double mse = calculateMSE(image1, image2);
-        //System.out.println("均方差（MSE）: " + mse);
 
-        // 计算结构相似性指数（SSIM）
-//        double ssim = calculateSSIM(image1, image2);
-        //System.out.println("结构相似性指数（SSIM）: " + ssim);
-
-        // 计算峰值信噪比（PSNR）
-//        double psnr = calculatePSNR(image1, image2);
-        //System.out.println("峰值信噪比（PSNR）: " + psnr);
-
-        // 计算直方图
         final double similarity = calculateHistogram(image1, image2);
         return similarity > 0.9;
     }
@@ -1684,10 +1380,6 @@ public class OpencvTools {
         Mat background_gray = new Mat();
         background.convertTo(background_gray, CV_8UC1);
         Mat es = getStructuringElement(MORPH_ELLIPSE, new Size(9, 4));
-//        Mat background_gray_gauss = new Mat();
-//        Mat add_target_gray_gauss = new Mat();
-//        GaussianBlur(background_gray, background_gray_gauss, new Size(21, 21), 0);
-//        GaussianBlur(add_target_gray, add_target_gray_gauss, new Size(21, 21), 0);
         Mat diff = new Mat();
         absdiff(background_gray, add_target_gray, diff);
         Mat thres_diff = new Mat();

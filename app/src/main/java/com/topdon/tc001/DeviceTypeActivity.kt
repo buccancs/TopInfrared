@@ -117,9 +117,6 @@ class DeviceTypeActivity : BaseActivity() {
         }
     }
 
-    /**
-     * 支持的热成像设备类型.
-     */
     enum class IRDeviceType {
         TC001 {
             override fun isLine(): Boolean = true

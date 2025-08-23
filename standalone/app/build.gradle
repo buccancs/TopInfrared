@@ -52,21 +52,17 @@ dependencies {
     implementation project(':libir-standalone')
     implementation project(':common')
     
-    // Core Android libraries
     implementation "androidx.appcompat:appcompat:${versions.appcompat}"
     implementation "com.google.android.material:material:${versions.material}"
     implementation "androidx.constraintlayout:constraintlayout:${versions.constraintlayout}"
     implementation "androidx.recyclerview:recyclerview:${versions.recyclerview}"
     implementation "androidx.cardview:cardview:1.0.0"
     
-    // Kotlin & Coroutines
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}"
     
-    // Lifecycle
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycle}"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycle}"
     
-    // Permissions
     implementation 'com.guolindev.permissionx:permissionx:1.7.1'
 }

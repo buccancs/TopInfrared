@@ -15,14 +15,9 @@ import java.nio.ByteBuffer;
 
 import static com.example.opengl.render.IROpen3DTools.IntArrayToByteArray;
 
-/**
- * @author: CaiSongL
- * @date: 2023/8/18 11:45
- */
 public class ImageColorTools {
 
     static {
-//        new OpenCVNativeLoader().init();
         System.loadLibrary("opencv_java4");
     }
 
@@ -61,16 +56,11 @@ public class ImageColorTools {
 
         Mat imageMat = new Mat(192, 256, CvType.CV_8UC2);
         imageMat.put(0,0,IntArrayToByteArray(image));
-//        for (int i = 0; i < image.length; i += 2) {
-//            imageMat.put(i / 512, (i / 2) % 256, image[i]);
-//            imageMat.put(i / 512, (i / 2) % 256 + 1, image[i + 1]);
-//        }
         int[] colorList = new int[]{
                 Color.parseColor("#ff0000"),
                 Color.parseColor("#00ff00"),
                 Color.parseColor("#0000ff")};
         Imgproc.cvtColor(imageMat, imageMat, Imgproc.COLOR_YUV2GRAY_YUYV);
-//        Imgproc.cvtColor(imageMat, imageMat, Imgproc.COLOR_GRAY2BGRA);
         byte[] imageDst = matToByteArrayBy4(imageMat);
         double srcValue = 0.1f;
         long time = System.currentTimeMillis();
@@ -78,9 +68,7 @@ public class ImageColorTools {
         long startTimeAll = System.currentTimeMillis();
         int j = 0;
         int imageDstLength = imageDst.length;
-        // 遍历像素点，过滤温度阈值
         for (int index = 0; index < imageDstLength; ) {
-            // 温度换算公式
             float temperature0 = (temperature[j] & 0xff) + (temperature[j + 1] & 0xff) * 256;
             temperature0 = (float) (temperature0 / 64 - 273.15);
             if (temperature0 >= customMinTemp && temperature0 <= customMaxTemp) {
@@ -95,16 +83,8 @@ public class ImageColorTools {
             index += 4;
             j += 2;
         }
-//        Log.e("执行耗时：",System.currentTimeMillis() - time+"//");
-        // Convert OpenCV Mat to Android Bitmap
         Bitmap outputBitmap = Bitmap.createBitmap(256, 192, Bitmap.Config.ARGB_8888);
         outputBitmap.copyPixelsFromBuffer(ByteBuffer.wrap(imageDst));
-//        Bitmap outputBitmap = Bitmap.createBitmap(imageColor.cols(), imageColor.rows(), Bitmap.Config.ARGB_8888);
-//        Utils.matToBitmap(imageColor, outputBitmap);
-        // Display or use the resulting Bitmap as needed
-        // For example, you can set this Bitmap to an ImageView
-        // imageView.setImageBitmap(outputBitmap);
-        // Release Mats
         src.release();
         imageMat.release();
         imageColor.release();
@@ -155,10 +135,6 @@ public class ImageColorTools {
 
         Mat imageMat = new Mat(192, 256, CvType.CV_8UC2);
         imageMat.put(0,0,IntArrayToByteArray(image));
-//        for (int i = 0; i < image.length; i += 2) {
-//            imageMat.put(i / 512, (i / 2) % 256, image[i]);
-//            imageMat.put(i / 512, (i / 2) % 256 + 1, image[i + 1]);
-//        }
 
         Imgproc.cvtColor(imageMat, imageMat, Imgproc.COLOR_YUV2GRAY_YUYV);
         double srcValue = 0.1f;
@@ -199,18 +175,8 @@ public class ImageColorTools {
             }
         }
         Log.e("执行耗时：",System.currentTimeMillis() - time+"//");
-//        Imgproc.cvtColor(imageColor, imageColor, Imgproc.COLOR_BGR2RGBA);
-//        byte[] imageDst = matToByteArray(imageColor);
-//        Bitmap outputBitmap = Bitmap.createBitmap(imageColor.width(),
-//                imageColor.height(), Bitmap.Config.ARGB_8888);
-//        outputBitmap.copyPixelsFromBuffer(ByteBuffer.wrap(imageDst));
-        // Convert OpenCV Mat to Android Bitmap
         Bitmap outputBitmap = Bitmap.createBitmap(imageColor.cols(), imageColor.rows(), Bitmap.Config.ARGB_8888);
         Utils.matToBitmap(imageColor, outputBitmap);
-        // Display or use the resulting Bitmap as needed
-        // For example, you can set this Bitmap to an ImageView
-        // imageView.setImageBitmap(outputBitmap);
-        // Release Mats
         src.release();
         imageMat.release();
         imageColor.release();
@@ -249,66 +215,15 @@ public class ImageColorTools {
 
         Mat imageMat = new Mat(192, 256, CvType.CV_8UC2);
         imageMat.put(0,0,image);
-//        for (int i = 0; i < image.length; i += 2) {
-//            imageMat.put(i / 512, (i / 2) % 256, image[i]);
-//            imageMat.put(i / 512, (i / 2) % 256 + 1, image[i + 1]);
-//        }
 
         Imgproc.cvtColor(imageMat, imageMat, Imgproc.COLOR_YUV2GRAY_YUYV);
-//        Imgproc.cvtColor(imageMat, imageMat, Imgproc.COLOR_BGR2RGB);
         double srcValue = 0.1f;
         long time = System.currentTimeMillis();
-//        Mat imageColor = new Mat(192, 256, CvType.CV_8UC3, new Scalar(255, 255, 255));
-//        for (int i = 0; i < src.rows(); i++) {
-//            for (int j = 0; j < src.cols(); j++) {
-//                srcValue = src.get(i, j)[0];
-//                if (srcValue > tempt[num_of_tem - 1]) {
-//                    imageColor.put(i, j, 0, 0, 0);
-//                } else if (srcValue < tempt[0]) {
-//                    imageColor.put(i, j, 255, 255, 255);
-//                } else {
-//                    for (int m = 0; m < num_of_tem - 1; m++) {
-//                        if (srcValue >= tempt[m] && srcValue <= tempt[m + 1]) {
-//                            int rMax = Math.max(r[m], r[m + 1]);
-//                            int rMin = Math.min(r[m], r[m + 1]);
-//                            int rColor = (r[m] >= r[m + 1])
-//                                    ? rMax - (int) (((float) (rMax - rMin) / (tempt[m + 1] - tempt[m])) * (srcValue - tempt[m]))
-//                                    : (int) (((float) (rMax - rMin) / (tempt[m + 1] - tempt[m])) * (srcValue - tempt[m]) + rMin);
-//
-//                            int gMax = Math.max(g[m], g[m + 1]);
-//                            int gMin = Math.min(g[m], g[m + 1]);
-//                            int gColor = (g[m] >= g[m + 1])
-//                                    ? gMax - (int) (((float) (gMax - gMin) / (tempt[m + 1] - tempt[m])) * (srcValue - tempt[m]))
-//                                    : (int) (((float) (gMax - gMin) / (tempt[m + 1] - tempt[m])) * (srcValue - tempt[m]) + gMin);
-//
-//                            int bMax = Math.max(b[m], b[m + 1]);
-//                            int bMin = Math.min(b[m], b[m + 1]);
-//                            int bColor = (b[m] >= b[m + 1])
-//                                    ? bMax - (int) (((float) (bMax - bMin) / (tempt[m + 1] - tempt[m])) * (srcValue - tempt[m]))
-//                                    : (int) (((float) (bMax - bMin) / (tempt[m + 1] - tempt[m])) * (srcValue - tempt[m]) + bMin);
-//
-//                            imageColor.put(i, j, bColor, gColor, rColor);
-//                        }
-//                    }
-//                }
-//            }
-//        }
         Log.e("执行耗时：",System.currentTimeMillis() - time+"//");
-//        Imgproc.cvtColor(imageMat, imageMat, Imgproc.COLOR_BGR2RGBA);
-//        byte[] imageDst = matToByteArray(imageMat);
-//        Bitmap outputBitmap = Bitmap.createBitmap(imageMat.width(),
-//                imageMat.height(), Bitmap.Config.ARGB_8888);
-//        outputBitmap.copyPixelsFromBuffer(ByteBuffer.wrap(imageDst));
-        // Convert OpenCV Mat to Android Bitmap
         Bitmap outputBitmap = Bitmap.createBitmap(imageMat.cols(), imageMat.rows(), Bitmap.Config.ARGB_8888);
         Utils.matToBitmap(imageMat, outputBitmap,true);
-        // Display or use the resulting Bitmap as needed
-        // For example, you can set this Bitmap to an ImageView
-        // imageView.setImageBitmap(outputBitmap);
-        // Release Mats
         src.release();
         imageMat.release();
-//        imageColor.release();
 
         return outputBitmap;
     }
@@ -319,12 +234,6 @@ public class ImageColorTools {
         mat.release();
         return outputBitmap;
     }
-
-
-
-
-
-
 
     public static int[] getOneColorByTempEx(float customMaxTemp, float customMinTemp, float nowTemp, int[] colorList) {
         if (colorList == null){
@@ -371,7 +280,6 @@ public class ImageColorTools {
         result[2] = b;
         return result;
     }
-
 
     private static int interpolateR(int startColor, int endColor, double ratio) {
         int startR = (startColor >> 16) & 0xFF;

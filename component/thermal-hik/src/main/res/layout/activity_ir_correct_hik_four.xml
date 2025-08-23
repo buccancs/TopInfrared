@@ -22,7 +22,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- 热成像画面图层 -->
         <com.topdon.module.thermal.ir.view.HikSurfaceView
             android:id="@+id/hik_surface_view"
             android:layout_width="0dp"

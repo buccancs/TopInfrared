@@ -10,9 +10,7 @@ import com.topdon.lib.ui.R;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-
 public class PageFragment extends BaseFragment {
-
 
     public static PageFragment newInstance(int res) {
         PageFragment fragmentFirst = new PageFragment();
@@ -21,7 +19,6 @@ public class PageFragment extends BaseFragment {
         fragmentFirst.setArguments(bundle);
         return fragmentFirst;
     }
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

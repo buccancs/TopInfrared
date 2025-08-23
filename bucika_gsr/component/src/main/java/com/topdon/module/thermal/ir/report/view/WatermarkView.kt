@@ -9,9 +9,6 @@ import com.blankj.utilcode.util.SizeUtils
 
 class WatermarkView: View {
 
-    /**
-     * 水印文字.
-     */
     var watermarkText: String? = null
         set(value) {
             field = value
@@ -21,7 +18,6 @@ class WatermarkView: View {
     private val marginTop = SizeUtils.dp2px(220f).toFloat()
 
     private val textPaint: TextPaint = TextPaint()
-
 
     constructor(context: Context) : this(context, null)
 

@@ -31,7 +31,6 @@ class MenuSecondNightAdapter(val context: Context) : RecyclerView.Adapter<Recycl
         ColorBean(R.drawable.selector_menu2_del, context.getString(R.string.thermal_delete), CameraHelp.TYPE_SET_DETELE),
     )
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ItemView(LayoutInflater.from(parent.context).inflate(R.layout.ui_item_menu_second_view, parent, false))
     }
@@ -55,7 +54,6 @@ class MenuSecondNightAdapter(val context: Context) : RecyclerView.Adapter<Recycl
     }
 
     private fun multipleChoice(position: Int) {
-        //1.计算curMultipleArray
         if (position == secondBean.size - 1) {
             curMultipleArray.clear()
             curMultipleArray[position] = secondBean[position].code
@@ -69,9 +67,7 @@ class MenuSecondNightAdapter(val context: Context) : RecyclerView.Adapter<Recycl
                 curMultipleArray.remove(secondBean.size - 1)
             }
         }
-        //2.执行listener
         multipleListener?.invoke(secondBean[position].code, curMultipleArray.contains(position))
-        //3.刷新数据
         notifyDataSetChanged()
     }
 

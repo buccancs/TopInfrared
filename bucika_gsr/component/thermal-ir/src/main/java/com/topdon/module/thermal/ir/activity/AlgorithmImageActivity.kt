@@ -18,12 +18,7 @@ import org.opencv.imgproc.Imgproc.*
 import java.io.IOException
 import java.io.InputStream
 
-/**
- * @author: CaiSongL
- * @date: 2023/10/28 15:35
- */
 class AlgorithmImageActivity : AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,13 +88,9 @@ class AlgorithmImageActivity : AppCompatActivity() {
             val baseTemperatureBytes = ByteArray(192*256*2)
             val nextTemperatureBytes = ByteArray(192*256*2)
             val nextImageBytes = ByteArray(192*256*2)
-            //获取上一帧的温度数据
             System.arraycopy(buffer, 1024 + baseTemperatureBytes.size, baseTemperatureBytes, 0, baseTemperatureBytes.size)
-            //获取下一帧的温度数据
             System.arraycopy(bufferB, 1024 + nextTemperatureBytes.size , nextTemperatureBytes, 0, nextTemperatureBytes.size)
-            //获取下一帧的图像数据
             System.arraycopy(bufferB, 1024, nextImageBytes, 0, nextImageBytes.size)
-            //转成3通道数据
             val resMat = Mat(192, 256, CvType.CV_8UC2)
             resMat.put(0,0,nextImageBytes)
             Imgproc.cvtColor(resMat, resMat, Imgproc.COLOR_YUV2GRAY_YUYV)
@@ -117,12 +108,9 @@ class AlgorithmImageActivity : AppCompatActivity() {
         findViewById<View>(R.id.btn_u4).setOnClickListener {
             val baseImageBytes = ByteArray(192*256*2)
             val nextImageBytes = ByteArray(192*256*2)
-            //获取上一帧的图像数据
             System.arraycopy(buffer, 1024, baseImageBytes, 0, baseImageBytes.size)
-            //获取下一帧的图像数据
             System.arraycopy(bufferB, 1024, nextImageBytes, 0, nextImageBytes.size)
 
-            //转成4通道数据
             val resMat = Mat(192, 256, CvType.CV_8UC2)
             resMat.put(0,0,nextImageBytes)
             Imgproc.cvtColor(resMat, resMat, Imgproc.COLOR_YUV2GRAY_YUYV)
@@ -130,17 +118,12 @@ class AlgorithmImageActivity : AppCompatActivity() {
             applyColorMap(resMat, nextImage, 15)
             Imgproc.cvtColor(nextImage, nextImage, Imgproc.COLOR_BGR2RGBA)
 
-            //转成4通道数据
             val baseMat = Mat(192, 256, CvType.CV_8UC2)
             baseMat.put(0,0,baseImageBytes)
             Imgproc.cvtColor(baseMat, baseMat, Imgproc.COLOR_YUV2GRAY_YUYV)
             val baseImage = Mat()
             applyColorMap(baseMat, baseImage, 15)
             Imgproc.cvtColor(baseImage, baseImage, Imgproc.COLOR_BGR2RGBA)
-
-//            val tmp = Mat(192, 256, CvType.CV_8UC4)
-//            tmp.put(0,0,ImageColorTools.matToByteArrayBy4(baseImage))
-//            Imgproc.cvtColor(tmp,tmp, COLOR_RGBA2GRAY)
 
             val startTime = System.currentTimeMillis()
             val matByteArray = JNITool.diff2firstFrameU4(ImageColorTools.matToByteArrayBy4(baseImage), ImageColorTools.matToByteArrayBy4(nextImage))

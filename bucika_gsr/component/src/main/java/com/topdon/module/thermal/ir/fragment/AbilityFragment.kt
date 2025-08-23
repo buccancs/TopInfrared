@@ -21,12 +21,6 @@ import com.topdon.module.thermal.ir.activity.MonitoryHomeActivity
 import kotlinx.android.synthetic.main.fragment_ability.*
 import org.greenrobot.eventbus.EventBus
 
-/**
- * 功能 Tab 页
- *
- * 需要传递参数：
- * - [ExtraKeyConfig.IS_TC007] - 当前设备是否为 TC007（不使用，透传）
- */
 class AbilityFragment : BaseFragment(), View.OnClickListener {
     private var mIsTC007 = false
 
@@ -45,7 +39,7 @@ class AbilityFragment : BaseFragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v) {
-            iv_winter -> {//冬季特辑入口
+            iv_winter -> {
                 SharedManager.hasClickWinter = true
                 EventBus.getDefault().post(WinterClickEvent())
                 val url = if (UrlConstant.BASE_URL == "https://api.topdon.com/") {
@@ -58,19 +52,19 @@ class AbilityFragment : BaseFragment(), View.OnClickListener {
                     .withString(ExtraKeyConfig.URL, url)
                     .navigation(requireContext())
             }
-            view_monitory -> {//温度监控
+            view_monitory -> {
                 val intent = Intent(requireContext(), MonitoryHomeActivity::class.java)
                 intent.putExtra(ExtraKeyConfig.IS_TC007, mIsTC007)
                 startActivity(intent)
             }
 
-            view_house -> {//房屋检测
+            view_house -> {
                 val intent = Intent(requireContext(), HouseHomeActivity::class.java)
                 intent.putExtra(ExtraKeyConfig.IS_TC007, mIsTC007)
                 startActivity(intent)
             }
 
-            view_car -> {//汽车检测
+            view_car -> {
                 if (mIsTC007) {
                     if (WebSocketProxy.getInstance().isConnected()) {
                         ARouter.getInstance().build(RouterConfig.IR_THERMAL_07)

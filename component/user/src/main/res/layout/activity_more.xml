@@ -119,13 +119,10 @@
                     app:setting_more_night="true"
                     app:setting_text_night="@string/ts004_device_disconnect"/>
 
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -36,11 +36,6 @@ android {
     buildFeatures{
         dataBinding = true
     }
-//    repositories {
-//        flatDir {
-//            dirs '../../libir/libs'
-//        }
-//    }
 
     flavorDimensions 'app'
     productFlavors {
@@ -74,16 +69,10 @@ dependencies {
     implementation project(':libir')
     implementation project(':libmenu')
     implementation project(':libui')
-    // Excluded house and pseudo modules for bucika_gsr version
     
-    // ARouter replaced with ModernRouter (no external dependencies needed)
-    // ksp 'com.alibaba:arouter-compiler:1.5.2'
     api 'com.airbnb.android:lottie:6.1.0'
     api 'com.github.anzaizai:EasySwipeMenuLayout:1.1.4'
 
-    // Note: Compass dependencies to be added when needed
-
-    // gsy player
     implementation "com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer-java:v8.1.4"
     implementation "com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer-exo_player2:v8.1.4"
     implementation "com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer-armv64:v8.1.4"

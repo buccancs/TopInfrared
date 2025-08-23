@@ -15,16 +15,8 @@ import com.topdon.lib.core.tools.DeviceTools
 import kotlinx.android.synthetic.main.activity_device_type.*
 import kotlinx.android.synthetic.main.item_device_type.view.*
 
-/**
- * 设备类型选择.
- *
- * Created by LCG on 2024/4/22.
- */
 class DeviceTypeActivity : BaseActivity() {
 
-    /**
-     * 当前点击的设备类型.
-     */
     private var clientType: IRDeviceType? = null
 
     override fun initContentView(): Int = R.layout.activity_device_type
@@ -88,7 +80,6 @@ class DeviceTypeActivity : BaseActivity() {
 
         private data class ItemInfo(val isTitle:Boolean, val firstType: IRDeviceType, val secondType: IRDeviceType?)
 
-        // Modified for bucika_gsr - only TC001 support
         private val dataList: ArrayList<ItemInfo> = arrayListOf(
             ItemInfo(true, IRDeviceType.TC001, null),
         )
@@ -105,7 +96,6 @@ class DeviceTypeActivity : BaseActivity() {
 
             holder.itemView.tv_item1.text = firstType.getDeviceName()
             when (firstType) {
-                // TODO: 替换 TC002 Duo 图标
                 IRDeviceType.TC001 -> holder.itemView.iv_item1.setImageResource(R.drawable.ic_device_type_tc001)
                 IRDeviceType.TC001_PLUS -> holder.itemView.iv_item1.setImageResource(R.drawable.ic_device_type_tc001_plus)
                 IRDeviceType.TC002C_DUO -> holder.itemView.iv_item1.setImageResource(R.drawable.ic_device_type_tc001_plus)
@@ -118,7 +108,6 @@ class DeviceTypeActivity : BaseActivity() {
             if (secondType != null) {
                 holder.itemView.tv_item2.text = secondType.getDeviceName()
                 when (secondType) {
-                    // TODO: 替换 TC002 Duo 图标
                     IRDeviceType.TC001 -> holder.itemView.iv_item2.setImageResource(R.drawable.ic_device_type_tc001)
                     IRDeviceType.TC001_PLUS -> holder.itemView.iv_item2.setImageResource(R.drawable.ic_device_type_tc001_plus)
                     IRDeviceType.TC002C_DUO -> holder.itemView.iv_item2.setImageResource(R.drawable.ic_device_type_tc001_plus)
@@ -150,9 +139,6 @@ class DeviceTypeActivity : BaseActivity() {
         }
     }
 
-    /**
-     * 支持的热成像设备类型.
-     */
     enum class IRDeviceType {
         TC001 {
             override fun isLine(): Boolean = true

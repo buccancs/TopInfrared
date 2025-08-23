@@ -41,9 +41,6 @@ public class YAxisRenderer extends AxisRenderer {
         }
     }
 
-    /**
-     * draws the y-axis labels to the screen
-     */
     @Override
     public void renderAxisLabels(Canvas c) {
 
@@ -106,12 +103,6 @@ public class YAxisRenderer extends AxisRenderer {
         }
     }
 
-    /**
-     * draws the y-labels on the specified x-position
-     *
-     * @param fixedPosition
-     * @param positions
-     */
     protected void drawYLabels(Canvas c, float fixedPosition, float[] positions, float offset) {
 
         final int from = mYAxis.isDrawBottomYLabelEntryEnabled() ? 0 : 1;
@@ -119,7 +110,6 @@ public class YAxisRenderer extends AxisRenderer {
                 ? mYAxis.mEntryCount
                 : (mYAxis.mEntryCount - 1);
 
-        // draw
         for (int i = from; i < to; i++) {
 
             String text = mYAxis.getFormattedLabel(i);
@@ -149,10 +139,8 @@ public class YAxisRenderer extends AxisRenderer {
             Path gridLinePath = mRenderGridLinesPath;
             gridLinePath.reset();
 
-            // draw the grid
             for (int i = 0; i < positions.length; i += 2) {
 
-                // draw a path because lines don't support dashing on lower android versions
                 c.drawPath(linePath(gridLinePath, i, positions), mGridPaint);
                 gridLinePath.reset();
             }
@@ -173,14 +161,6 @@ public class YAxisRenderer extends AxisRenderer {
         return mGridClippingRect;
     }
 
-    /**
-     * Calculates the path for a grid line.
-     *
-     * @param p
-     * @param i
-     * @param positions
-     * @return
-     */
     protected Path linePath(Path p, int i, float[] positions) {
 
         p.moveTo(mViewPortHandler.offsetLeft(), positions[i + 1]);
@@ -190,12 +170,7 @@ public class YAxisRenderer extends AxisRenderer {
     }
 
     protected float[] mGetTransformedPositionsBuffer = new float[2];
-    /**
-     * Transforms the values contained in the axis entries to screen pixels and returns them in form of a float array
-     * of x- and y-coordinates.
-     *
-     * @return
-     */
+    
     protected float[] getTransformedPositions() {
 
         if(mGetTransformedPositionsBuffer.length != mYAxis.mEntryCount * 2){
@@ -204,7 +179,6 @@ public class YAxisRenderer extends AxisRenderer {
         float[] positions = mGetTransformedPositionsBuffer;
 
         for (int i = 0; i < positions.length; i += 2) {
-            // only fill y values, x values are not needed for y-labels
             positions[i + 1] = mYAxis.mEntries[i / 2];
         }
 
@@ -215,9 +189,6 @@ public class YAxisRenderer extends AxisRenderer {
     protected Path mDrawZeroLinePath = new Path();
     protected RectF mZeroLineClippingRect = new RectF();
 
-    /**
-     * Draws the zero line.
-     */
     protected void drawZeroLine(Canvas c) {
 
         int clipRestoreCount = c.save();
@@ -225,7 +196,6 @@ public class YAxisRenderer extends AxisRenderer {
         mZeroLineClippingRect.inset(0.f, -mYAxis.getZeroLineWidth());
         c.clipRect(mZeroLineClippingRect);
 
-        // draw zero line
         MPPointD pos = mTrans.getPixelForValues(0f, 0f);
 
         mZeroLinePaint.setColor(mYAxis.getZeroLineColor());
@@ -237,7 +207,6 @@ public class YAxisRenderer extends AxisRenderer {
         zeroLinePath.moveTo(mViewPortHandler.contentLeft(), (float) pos.y);
         zeroLinePath.lineTo(mViewPortHandler.contentRight(), (float) pos.y);
 
-        // draw a path because lines don't support dashing on lower android versions
         c.drawPath(zeroLinePath, mZeroLinePaint);
 
         c.restoreToCount(clipRestoreCount);
@@ -246,11 +215,7 @@ public class YAxisRenderer extends AxisRenderer {
     protected Path mRenderLimitLines = new Path();
     protected float[] mRenderLimitLinesBuffer = new float[2];
     protected RectF mLimitLineClippingRect = new RectF();
-    /**
-     * Draws the LimitLines associated with this axis to the screen.
-     *
-     * @param c
-     */
+    
     @Override
     public void renderLimitLines(Canvas c) {
 
@@ -291,11 +256,9 @@ public class YAxisRenderer extends AxisRenderer {
 
             c.drawPath(limitLinePath, mLimitLinePaint);
             limitLinePath.reset();
-            // c.drawLines(pts, mLimitLinePaint);
 
             String label = l.getLabel();
 
-            // if drawing the limit-value label is enabled
             if (label != null && !label.equals("")) {
 
                 mLimitLinePaint.setStyle(l.getTextStyle());

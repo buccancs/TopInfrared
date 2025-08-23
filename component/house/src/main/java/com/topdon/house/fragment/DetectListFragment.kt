@@ -28,14 +28,6 @@ import kotlinx.coroutines.withContext
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
-/**
- * 检测列表.
- *
- * 需要传递参数：
- * - [ExtraKeyConfig.IS_TC007] - 当前设备是否为 TC007（不使用，透传）
- *
- * Created by LCG on 2024/8/20.
- */
 internal class DetectListFragment : BaseFragment(), View.OnClickListener {
     private lateinit var adapter: HouseAdapter
 
@@ -60,15 +52,15 @@ internal class DetectListFragment : BaseFragment(), View.OnClickListener {
         adapter.onMoreClickListener = { position, v ->
             ThreePickPopup(requireContext(), arrayListOf(R.string.app_edit, R.string.paste, R.string.report_delete)) {
                 when (it) {
-                    0 -> {//编辑
+                    0 -> {
                         val intent = Intent(requireContext(), DetectAddActivity::class.java)
                         intent.putExtra(ExtraKeyConfig.DETECT_ID, adapter.dataList[position].id)
                         startActivity(intent)
                     }
-                    1 -> {//复制
+                    1 -> {
                         viewModel.copyDetect(position, adapter.dataList[position] as HouseDetect)
                     }
-                    2 -> {//删除
+                    2 -> {
                         TipDialog.Builder(requireContext())
                             .setTitleMessage(getString(R.string.monitor_report_delete))
                             .setMessage(R.string.report_delete_tips)
@@ -100,7 +92,6 @@ internal class DetectListFragment : BaseFragment(), View.OnClickListener {
 
         tv_add.setOnClickListener(this)
         cl_del.setOnClickListener(this)
-
 
         tabViewModel.isEditModeLD.observe(viewLifecycleOwner) {
             adapter.isEditMode = it
@@ -151,12 +142,12 @@ internal class DetectListFragment : BaseFragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v) {
-            tv_add -> {//添加
+            tv_add -> {
                 val intent = Intent(requireContext(), DetectAddActivity::class.java)
                 intent.putExtra(ExtraKeyConfig.IS_TC007, arguments?.getBoolean(ExtraKeyConfig.IS_TC007, false) ?: false)
                 startActivity(intent)
             }
-            cl_del -> {//批量删除
+            cl_del -> {
                 if (adapter.selectIndexList.isNotEmpty()) {
                     TipDialog.Builder(requireContext())
                         .setTitleMessage(getString(R.string.monitor_report_delete))

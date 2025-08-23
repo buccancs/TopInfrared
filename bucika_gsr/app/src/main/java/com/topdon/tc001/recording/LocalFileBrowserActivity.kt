@@ -15,10 +15,6 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
-/**
- * Local File Browser Activity for bucika_gsr
- * Browse and manage recorded video files and GSR data
- */
 class LocalFileBrowserActivity : BaseActivity() {
 
     private lateinit var fileAdapter: FileAdapter
@@ -35,7 +31,6 @@ class LocalFileBrowserActivity : BaseActivity() {
     }
 
     override fun initData() {
-        // No additional data initialization needed
     }
 
     private fun setupRecyclerView() {
@@ -51,9 +46,9 @@ class LocalFileBrowserActivity : BaseActivity() {
 
     private fun loadFiles() {
         val recordingDirs = listOf(
-            File(FileConfig.lineGalleryDir), // Main gallery directory
-            File(FileConfig.lineGalleryDir, "enhanced_recordings"), // Enhanced recordings
-            File(FileConfig.lineGalleryDir, "gsr_data") // GSR data files
+            File(FileConfig.lineGalleryDir),
+            File(FileConfig.lineGalleryDir, "enhanced_recordings"),
+            File(FileConfig.lineGalleryDir, "gsr_data")
         )
         
         val allFiles = mutableListOf<FileItem>()
@@ -68,12 +63,10 @@ class LocalFileBrowserActivity : BaseActivity() {
             }
         }
         
-        // Sort by modification date (newest first)
         allFiles.sortByDescending { it.file.lastModified() }
         
         fileAdapter.submitList(allFiles)
         
-        // Update UI based on file count
         if (allFiles.isEmpty()) {
             tv_empty_state.visibility = android.view.View.VISIBLE
             recycler_files.visibility = android.view.View.GONE
@@ -103,138 +96,7 @@ class LocalFileBrowserActivity : BaseActivity() {
             )
             
             val mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(file.extension)
-                ?: "*/*"
-            
-            val intent = Intent(Intent.ACTION_VIEW).apply {
-                setDataAndType(uri, mimeType)
-                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-            }
-            
-            val chooser = Intent.createChooser(intent, "Open with...")
-            if (intent.resolveActivity(packageManager) != null) {
-                startActivity(chooser)
-            } else {
-                android.widget.Toast.makeText(
-                    this,
-                    "No app found to open ${file.name}",
-                    android.widget.Toast.LENGTH_SHORT
-                ).show()
-            }
-        } catch (e: Exception) {
-            android.widget.Toast.makeText(
-                this,
-                "Error opening file: ${e.message}",
-                android.widget.Toast.LENGTH_SHORT
-            ).show()
-        }
-    }
-
-    enum class FileType {
-        VIDEO, DATA, JSON, OTHER
-    }
-
-    data class FileItem(
-        val file: File,
-        val type: FileType
-    )
-
-    private inner class FileAdapter(
-        private val onFileClick: (File) -> Unit
-    ) : RecyclerView.Adapter<FileViewHolder>() {
-        
-        private var files = listOf<FileItem>()
-        
-        fun submitList(newFiles: List<FileItem>) {
-            files = newFiles
-            notifyDataSetChanged()
-        }
-        
-        override fun onCreateViewHolder(parent: android.view.ViewGroup, viewType: Int): FileViewHolder {
-            val view = layoutInflater.inflate(R.layout.item_file, parent, false)
-            return FileViewHolder(view)
-        }
-        
-        override fun onBindViewHolder(holder: FileViewHolder, position: Int) {
-            holder.bind(files[position])
-        }
-        
-        override fun getItemCount(): Int = files.size
-    }
-
-    private inner class FileViewHolder(itemView: android.view.View) : RecyclerView.ViewHolder(itemView) {
-        
-        private val tvFileName = itemView.findViewById<android.widget.TextView>(R.id.tv_file_name)
-        private val tvFileSize = itemView.findViewById<android.widget.TextView>(R.id.tv_file_size)
-        private val tvFileDate = itemView.findViewById<android.widget.TextView>(R.id.tv_file_date)
-        private val ivFileType = itemView.findViewById<android.widget.ImageView>(R.id.iv_file_type)
-        
-        fun bind(fileItem: FileItem) {
-            val file = fileItem.file
-            
-            tvFileName.text = file.name
-            tvFileSize.text = formatFileSize(file.length())
-            tvFileDate.text = dateFormat.format(Date(file.lastModified()))
-            
-            // Set file type icon
-            val iconRes = when (fileItem.type) {
-                FileType.VIDEO -> R.drawable.ic_video_white_svg
-                FileType.DATA -> android.R.drawable.ic_menu_agenda
-                FileType.JSON -> android.R.drawable.ic_menu_info_details
-                FileType.OTHER -> android.R.drawable.ic_menu_gallery
-            }
-            ivFileType.setImageResource(iconRes)
-            
-            itemView.setOnClickListener {
-                onFileClick(file)
-            }
-            
-            // Add long click for file operations
-            itemView.setOnLongClickListener {
-                showFileOptions(file)
-                true
-            }
-        }
-    }
-
-    private fun formatFileSize(bytes: Long): String {
-        val kb = bytes / 1024.0
-        val mb = kb / 1024.0
-        val gb = mb / 1024.0
-        
-        return when {
-            gb >= 1 -> "%.2f GB".format(gb)
-            mb >= 1 -> "%.2f MB".format(mb)
-            kb >= 1 -> "%.2f KB".format(kb)
-            else -> "$bytes B"
-        }
-    }
-
-    private fun showFileOptions(file: File) {
-        val options = arrayOf("Open", "Share", "Delete", "Properties")
-        
-        androidx.appcompat.app.AlertDialog.Builder(this)
-            .setTitle(file.name)
-            .setItems(options) { _, which ->
-                when (which) {
-                    0 -> openFile(file) // Open
-                    1 -> shareFile(file) // Share
-                    2 -> deleteFile(file) // Delete
-                    3 -> showFileProperties(file) // Properties
-                }
-            }
-            .show()
-    }
-
-    private fun shareFile(file: File) {
-        try {
-            val uri = FileProvider.getUriForFile(
-                this,
-                "${packageName}.fileprovider",
-                file
-            )
-            
-            val shareIntent = Intent(Intent.ACTION_SEND).apply {
-                type = "*/*"
+                ?: "**"
                 putExtra(Intent.EXTRA_STREAM, uri)
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             }
@@ -256,7 +118,7 @@ class LocalFileBrowserActivity : BaseActivity() {
             .setPositiveButton("Delete") { _, _ ->
                 if (file.delete()) {
                     android.widget.Toast.makeText(this, "File deleted", android.widget.Toast.LENGTH_SHORT).show()
-                    loadFiles() // Refresh the list
+                    loadFiles()
                 } else {
                     android.widget.Toast.makeText(this, "Failed to delete file", android.widget.Toast.LENGTH_SHORT).show()
                 }

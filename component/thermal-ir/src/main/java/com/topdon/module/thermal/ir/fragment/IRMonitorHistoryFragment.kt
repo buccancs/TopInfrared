@@ -41,7 +41,6 @@ class IRMonitorHistoryFragment : Fragment() {
 
     private val viewModel: IRMonitorViewModel by viewModels()
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         EventBus.getDefault().register(this)
         return inflater.inflate(R.layout.fragment_ir_monitor_history, container)
@@ -120,15 +119,9 @@ class IRMonitorHistoryFragment : Fragment() {
     private class MyAdapter(dataList: MutableList<ThermalDao.Record>?) : BaseQuickAdapter<ThermalDao.Record,
             BaseViewHolder>(R.layout.item_monitory_history, dataList), LoadMoreModule {
 
-        /**
-         * item 点击事件监听.
-         */
         var onItemClickListener: ((position: Int) -> Unit)? = null
-        /**
-         * item 长按事件监听.
-         */
+        
         var onItemLongClickListener: ((position: Int) -> Unit)? = null
-
 
         override fun convert(holder: BaseViewHolder, item: ThermalDao.Record) {
             val position = data.indexOf(item)

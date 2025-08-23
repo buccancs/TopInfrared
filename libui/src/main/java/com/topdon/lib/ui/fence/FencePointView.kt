@@ -23,7 +23,6 @@ class FencePointView : View {
 
     constructor (context: Context, attrs: AttributeSet) : super(context, attrs)
 
-
     constructor (context: Context, attrs: AttributeSet, defStyle: Int) : super(
         context,
         attrs,
@@ -53,7 +52,6 @@ class FencePointView : View {
             null
         ) as BitmapDrawable
     }
-
 
     @SuppressLint("UseCompatLoadingForDrawables", "DrawAllocation")
     override fun onDraw(canvas: Canvas) {
@@ -110,7 +108,6 @@ class FencePointView : View {
                 invalidate()
             }
             MotionEvent.ACTION_UP -> {
-//                Log.i("123", "onTouchEvent: ACTION_UP")
                 startPoint[0] = mX.toInt()
                 startPoint[1] = mY.toInt()
                 result()
@@ -127,19 +124,15 @@ class FencePointView : View {
     private fun result() {
         val point1 = intArrayOf(startPoint[0], startPoint[1])
         if (startPoint[0] - destW / 2 < 0) {
-            //left
             point1[0] = destW / 2
         }
         if (startPoint[0] + destW / 2 > width) {
-            //right
             point1[0] = width - destW / 2
         }
         if (startPoint[1] - destW / 2 < 0) {
-            //top
             point1[1] = destH / 2
         }
         if (startPoint[1] + destW / 2 > height) {
-            //bottom
             point1[1] = height - destH / 2
         }
         Log.w("123", "坐标 point:${point1.contentToString()}")
@@ -155,10 +148,7 @@ class FencePointView : View {
     }
 
     interface CallBack {
-        /**
-         * startPoint: 左上角
-         * endPoint: 右下角
-         */
+        
         fun callback(startPoint: IntArray, srcRect: IntArray)
     }
 }
