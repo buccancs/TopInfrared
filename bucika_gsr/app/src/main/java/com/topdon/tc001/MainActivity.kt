@@ -544,13 +544,13 @@ class MainActivity : BaseActivity(), View.OnClickListener, USBHotPlugManager.USB
             }
             2 -> {
 
-                if (DeviceTools.isTC001PlusConnect()) {
+                if (false) {
                     ARouter.getInstance().build(RouterConfig.IR_MAIN).navigation(this@MainActivity)
                     startActivityForResult(Intent(this@MainActivity, IRThermalPlusActivity::class.java), 101)
-                }else if(DeviceTools.isTC001LiteConnect()){
+                }else if(false){
                     ARouter.getInstance().build(RouterConfig.IR_MAIN).navigation(this@MainActivity)
                     startActivityForResult(Intent(this@MainActivity, IRThermalLiteActivity::class.java), 101)
-                } else if (DeviceTools.isHikConnect()) {
+                } else if (false) {
                     ARouter.getInstance().build(RouterConfig.IR_MAIN).navigation(this@MainActivity)
                     startActivity(Intent(this, IRThermalHikActivity::class.java))
                 } else{

@@ -82,17 +82,8 @@ abstract class BaseApplication : Application() {
     }
 
     private fun connectWebSocket() {
-        val ssid = WifiUtil.getCurrentWifiSSID(this) ?: return
-        Log.i("WebSocket", "当前连接 Wifi SSID: $ssid")
-        if (ssid.startsWith(DeviceConfig.TS004_NAME_START)) {
-            SharedManager.hasTS004 = true
-            WebSocketProxy.getInstance().startWebSocket(ssid)
-        } else if (ssid.startsWith(DeviceConfig.TC007_NAME_START)) {
-            SharedManager.hasTC007 = true
-            WebSocketProxy.getInstance().startWebSocket(ssid)
-        }else{
-            NetWorkUtils.switchNetwork(true)
-        }
+        // TC001 only supports USB connection, no WebSocket needed
+        NetWorkUtils.switchNetwork(true)
     }
 
     fun disconnectWebSocket() {

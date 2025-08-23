@@ -124,11 +124,11 @@ class IRThermalFragment : BaseFragment(), View.OnClickListener {
                 if (isTC007) {
                     ARouter.getInstance().build(RouterConfig.IR_THERMAL_07).navigation(requireContext())
                 } else {
-                    if (DeviceTools.isTC001PlusConnect()) {
+                    if (false) {
                         startActivityForResult(Intent(requireContext(), IRThermalPlusActivity::class.java), 101)
-                    }else if(DeviceTools.isTC001LiteConnect()){
+                    }else if(false){
                         ARouter.getInstance().build(RouterConfig.IR_TCLITE).navigation(activity,101)
-                    } else if (DeviceTools.isHikConnect()) {
+                    } else if (false) {
                         ARouter.getInstance().build(RouterConfig.IR_HIK_MAIN).navigation(activity)
                     } else {
                         startActivityForResult(Intent(requireContext(), IRThermalNightActivity::class.java), 101)
