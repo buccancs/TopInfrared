@@ -95,7 +95,6 @@ public class ScatterChartRenderer extends LineScatterCandleRadarRenderer {
     @Override
     public void drawValues(Canvas c) {
 
-        // if values are drawn
         if (isDrawingValuesAllowed(mChart)) {
 
             List<IScatterDataSet> dataSets = mChart.getScatterData().getDataSets();
@@ -107,7 +106,6 @@ public class ScatterChartRenderer extends LineScatterCandleRadarRenderer {
                 if (!shouldDrawValues(dataSet) || dataSet.getEntryCount() < 1)
                     continue;
 
-                // apply the text-styling defined by the DataSet
                 applyValueTextStyle(dataSet);
 
                 mXBounds.set(mChart, dataSet);
@@ -129,7 +127,6 @@ public class ScatterChartRenderer extends LineScatterCandleRadarRenderer {
                     if (!mViewPortHandler.isInBoundsRight(positions[j]))
                         break;
 
-                    // make sure the lines don't do shitty things outside bounds
                     if ((!mViewPortHandler.isInBoundsLeft(positions[j])
                             || !mViewPortHandler.isInBoundsY(positions[j + 1])))
                         continue;
@@ -191,7 +188,6 @@ public class ScatterChartRenderer extends LineScatterCandleRadarRenderer {
 
             high.setDraw((float) pix.x, (float) pix.y);
 
-            // draw the lines
             drawHighlightLines(c, (float) pix.x, (float) pix.y, set);
         }
     }

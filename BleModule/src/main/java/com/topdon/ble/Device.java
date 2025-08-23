@@ -6,19 +6,12 @@ import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import java.util.Objects;
 
-/**
- * BLE设备实体类
- * <p>
- * date: 2021/8/12 00:08
- * author: bichuanfeng
- */
 public class Device implements Comparable<Device>, Cloneable, Parcelable {
     private final BluetoothDevice originDevice;
     ConnectionState connectionState = ConnectionState.DISCONNECTED;
@@ -93,24 +86,15 @@ public class Device implements Comparable<Device>, Cloneable, Parcelable {
         return null;
     }
 
-    /**
-     * 是否已连接并成功发现服务
-     */
     public boolean isConnected() {
         return getConnectionState() == ConnectionState.SERVICE_DISCOVERED;
     }
 
-    /**
-     * 是否已断开连接
-     */
     public boolean isDisconnected() {
         ConnectionState state = getConnectionState();
         return state == ConnectionState.DISCONNECTED || state == ConnectionState.RELEASED;
     }
 
-    /**
-     * 是否正在连接
-     */
     public boolean isConnecting() {
         ConnectionState state = getConnectionState();
         return state != ConnectionState.DISCONNECTED && state != ConnectionState.SERVICE_DISCOVERED &&

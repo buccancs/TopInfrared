@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="#16131e">
 
-    <!-- 标题栏 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_title_bar"
         android:layout_width="0dp"
@@ -67,7 +66,6 @@
             app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- 进入编辑模式时标题栏 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_edit_bar"
         android:layout_width="0dp"
@@ -126,5 +124,4 @@
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
 

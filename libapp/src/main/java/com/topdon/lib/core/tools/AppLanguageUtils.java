@@ -16,16 +16,9 @@ import com.topdon.lib.core.BuildConfig;
 import java.util.HashMap;
 import java.util.Locale;
 
-
-/**
- * @author YanLu
- * @since 17/5/12
- */
-
 public class AppLanguageUtils {
 
     private static HashMap<String, Locale> mAllLanguages = new HashMap<String, Locale>(1) {{
-        // Only English support - all international support removed
         put(ConstantLanguages.ENGLISH, Locale.ENGLISH);
     }};
 
@@ -33,11 +26,7 @@ public class AppLanguageUtils {
         return ConstantLanguages.ZH_CN;
     }
 
-    /**
-     * 获取系统默认语言 - Modified to only support English
-     */
     public static String getSystemLanguage() {
-        // Always return English - all international support removed
         return ConstantLanguages.ENGLISH;
     }
 
@@ -46,10 +35,8 @@ public class AppLanguageUtils {
         Resources resources = context.getResources();
         Configuration configuration = resources.getConfiguration();
 
-        // app locale
         Locale locale = getLocaleByLanguage(newLanguage);
         configuration.setLocale(locale);
-        // updateConfiguration
         DisplayMetrics dm = resources.getDisplayMetrics();
         resources.updateConfiguration(configuration, dm);
     }
@@ -57,7 +44,6 @@ public class AppLanguageUtils {
     public static void getConf(){
 
     }
-
 
     private static boolean isSupportLanguage(String language) {
         return mAllLanguages.containsKey(language);
@@ -71,12 +57,6 @@ public class AppLanguageUtils {
         return ConstantLanguages.ENGLISH;
     }
 
-    /**
-     * 获取指定语言的locale信息，如果指定语言不存在{@link #mAllLanguages}，返回本机语言，如果本机语言不是语言集合中的一种{@link #mAllLanguages}，返回英语
-     *
-     * @param language language
-     * @return
-     */
     public static Locale getLocaleByLanguage(String language) {
         if (isSupportLanguage(language)) {
             return mAllLanguages.get(language);
@@ -91,7 +71,6 @@ public class AppLanguageUtils {
         return Locale.ENGLISH;
     }
 
-
     public static Context attachBaseContext(Context context, String language) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             return updateResources(context, language);
@@ -99,7 +78,6 @@ public class AppLanguageUtils {
             return context;
         }
     }
-
 
     @TargetApi(Build.VERSION_CODES.N)
     private static Context updateResources(Context context, String language) {

@@ -229,7 +229,6 @@
     <string name="auto_shutter">自动快门</string>
     <string name="color_board">颜色板</string>
 
-    <!--    2022-11-16-->
     <string name="user_services_agreement">《用户服务协议》</string>
     <string name="privacy_policy">《隐私政策》</string>
     <string name="third_party_components">《第三方组件》</string>
@@ -241,8 +240,6 @@
     <string name="device_loading_tip">加载中...</string>
     <string name="edit_image_error_tip">该图像缺少温度数据，不支持编辑。</string>
 
-    <!--	中文-->
-    <!-- 2.00版本 -->
     <string name="app_lapsePhotography">延时拍照</string>
     <string name="app_Manual_Shutter">手动快门</string>
     <string name="app_record_sound">录制声音</string>
@@ -285,7 +282,6 @@
     <string name="album_report_aleart">手机内存不足，录像停止</string>
     <string name="tip_video_record">每次录制时间最长60分钟</string>
 
-    <!--	2.10-->
     <string name="status_error_load_fail">加载失败，请重试~</string>
     <string name="status_check_more">查看更多</string>
 
@@ -348,7 +344,6 @@
     <string name="start_fail_and_restart">启动失败！请退出APP重新打开</string>
     <string name="app_Low_temperature">低温</string>
 
-
     <string name="monitor_finish">结束</string>
     <string name="album_menu_2d">2D编辑</string>
     <string name="album_menu_3d">3D编辑</string>
@@ -387,7 +382,6 @@
     <string name="tip_change_pseudo_mode">是否切回动态渲染模式？</string>
     <string name="color_p8_ios">辉金</string>
 
-    <!--2.3.0-->
     <string name="menu_3d_visual">视角</string>
     <string name="menu_3d_calibrate">标定</string>
     <string name="model">模式</string>
@@ -400,7 +394,6 @@
     <string name="menu_3d_x_axis">X轴</string>
     <string name="menu_3d_y_axis">Y轴</string>
 
-    <!--TS001-->
     <string name="album_menu_Photos">照片</string>
     <string name="feedback_problem_type_6">其他</string>
     <string name="app_got_it">我知道了</string>
@@ -472,7 +465,6 @@
     <string name="installation_package_downloading_tips">开始下载，请在通知中心查看进度</string>
     <string name="welcome_use_app">欢迎使用%1$s</string>
 
-
     <string name="dual_light_correction">双光校正</string>
     <string name="dual_light_correction_tips_1">由于两个摄像头的焦点不在同一条直线上，因此不同距离的双镜头画面会有偏差导致无法对齐。\n通过本功能可以单独进行画面的对齐。</string>
     <string name="dual_light_correction_tips_2">1.将温度源放在画面中，约0.5米远（比如手掌）。\n2.点击拍照。</string>
@@ -494,7 +486,6 @@
 
     <string name="text_p_umeng">为了提供更好的功能体验，我们的产品集成友盟+SDK进行数据统计和日志收集，SDK将采集您的设备标识和账户信息</string>
 
-    <!--TS004-->
     <string name="ts004_connection_device">有线连接设备</string>
     <string name="func_test_distance">测距</string>
     <string name="func_focal_distance">放大倍数</string>
@@ -608,12 +599,10 @@
     <string name="ts004_faq_q5">我如何在PC上查看用TS004拍摄的照片或录像？</string>
     <string name="ts004_faq_a5">通过USB线将TS004连接到PC上，打开设备对应的文件夹即可查看存储在TS004上的照片或录像。</string>
 
-    <!-- TC001 老 APP 引流 -->
     <string name="gallery_transfer">相册迁移</string>
     <string name="gallery_transfer_wait">数据迁移中，请稍等…</string>
     <string name="gallery_transfer_complete">迁移完成！</string>
 
-    <!-- 3.70 -->
     <string name="user_jump">跳过</string>
     <string name="tc_guide_tips1">查看实时监控图及历史监控记录。</string>
     <string name="tc_guide_tips2">为确保测温准确，请在进行温度测量前设置好相关参数。</string>
@@ -630,7 +619,6 @@
     <string name="ts004_conntenct_tip">您将使用数据流量，设备连接可能断开</string>
     <string name="fireware_update_tips">修复了Bug和优化性能</string>
 
-    <!-- 3.80 -->
     <string name="tc_local_album">本地图库</string>
     <string name="tc_connect_device">连接设备</string>
     <string name="tc_connect_tips">请选择要连接的设备</string>
@@ -642,7 +630,6 @@
     <string name="tc_reset_tips">设备的各项设置将恢复到出厂状态，确认恢复吗？</string>
     <string name="coming_soon">敬请期待…</string>
 
-    <!-- 3.90 -->
     <string name="tc007_connect_tips1">1.保证设备有充足电量，距离足够近</string>
     <string name="tc007_connect_tips2">2.打开手机的蓝牙和WiFi</string>
     <string name="tc007_connect_tips3">3.进入APP扫描页</string>
@@ -659,7 +646,6 @@
     <string name="wifi_connect_loading">预计需要15s...</string>
     <string name="tc007_done_fast">操作频繁</string>
 
-    <!-- 房屋检测 -->
     <string name="main_professional_test">专业检测</string>
     <string name="main_temperature_test">温度检测</string>
     <string name="main_thermal_tips">专业热成像检测</string>
@@ -828,7 +814,6 @@
     <string name="abnormal_description17">后视镜加热器温度受到多种因素的影响，如环境温度、加热器负载等。使用热成像仪监测后视镜加热器温度，您可以评估后视镜加热的有效性。</string>
     <string name="abnormal_description18">车窗电机温度受到多种因素的影响，如环境温度、电机负载等。使用热成像仪监测车窗电机温度，如果车窗电机温度过高，则可能是车窗升降机构或电机本身故障所致。</string>
 
-    <!-- 房屋检测新增 -->
     <string name="vehicle_function">功能</string>
     <string name="ability_find">发现</string>
     <string name="ability_monitory">实时观看物体温度生成数据</string>
@@ -854,7 +839,6 @@
     <string name="pdf_project_item">项目</string>
     <string name="house_sign_finish_tips">请完成电子签名</string>
 
-    <!-- 4.50 -->
     <string name="thermal_trend">趋势图</string>
     <string name="thermal_trend_tips">在图像上绘制一根线段，查看线段内的温度变化趋势。</string>
     <string name="material_view_all">查看全部</string>
@@ -963,12 +947,10 @@
     <string name="material_copper_wire">铜丝</string>
     <string name="temp_add_button">添加</string>
 
-
     <string name="tips_tisr_on">高分辨率热成像已开启</string>
     <string name="tips_tisr_off">高分辨率热成像已关闭</string>
     <string name="tips_tisr_fail">您的手机不支持OpenCL，无法开启TISR高分辨算法功能。</string>
 
-    <!-- 4.70 -->
     <string name="testing_guidance">检测指导</string>
     <string name="unlock_professional_perspectives">解锁专业视野</string>
     <string name="app_error_reload">重新加载</string>

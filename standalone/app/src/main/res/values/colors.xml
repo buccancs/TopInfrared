@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
-    <!-- TC001 Color Palette -->
+
     <color name="tc001_primary">#2196F3</color>
     <color name="tc001_primary_variant">#1976D2</color>
     <color name="tc001_secondary">#FF9800</color>
@@ -12,19 +11,16 @@
     
     <color name="tc001_surface">#FFFFFF</color>
     <color name="tc001_on_surface">#333333</color>
-    
-    <!-- Thermal colors -->
+
     <color name="thermal_cold">#0000FF</color>
     <color name="thermal_warm">#FF9800</color>
     <color name="thermal_hot">#FF0000</color>
-    
-    <!-- UI colors -->
+
     <color name="button_background">#2196F3</color>
     <color name="button_disabled">#CCCCCC</color>
     <color name="text_primary">#333333</color>
     <color name="text_secondary">#666666</color>
-    
-    <!-- Enhanced recording colors -->
+
     <color name="purple_700">#673AB7</color>
     <color name="design_default_color_primary">#FF5722</color>
 

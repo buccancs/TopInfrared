@@ -22,10 +22,6 @@ object TimeTool {
         return dateFormat.format(date)
     }
 
-    /**
-     * long: 时间戳(毫秒)
-     * 精确到秒
-     */
     @SuppressLint("SimpleDateFormat")
     fun reportTime(time: Long): String {
         val date = Date(time)
@@ -35,10 +31,6 @@ object TimeTool {
         return dateFormat.format(date)
     }
 
-    /**
-     * 时间转时间戳
-     * 2021-01-01 00:00:00 => 1609430400000
-     */
     @SuppressLint("SimpleDateFormat")
     fun strToTime(timeStr: String): Long {
         return try {
@@ -47,19 +39,13 @@ object TimeTool {
             dateFormat.timeZone = timeZone
             dateFormat.parse(timeStr, ParsePosition(0)).time
         } catch (e: Exception) {
-            //2021-01-01 00:00:00
             1609430400000
         }
     }
 
-
-    /**
-     * @param type 1:秒 2:分 3:时 4:天
-     */
     @SuppressLint("SimpleDateFormat")
     fun showDateType(time: Long, type: Int = 0): String {
         val date = Date(time)
-        //yyyy-MM-dd HH:mm:ss.SSS
         val pattern = when (type) {
             1 -> "HH:mm:ss.SSS"
             2 -> "HH:mm"
@@ -73,16 +59,13 @@ object TimeTool {
         return dateFormat.format(date)
     }
 
-    /**
-     * 精度秒转分
-     */
     @SuppressLint("SimpleDateFormat")
     fun timeToMinute(time: Long, type: Int): Long {
         val dateFormat = when (type) {
-            1 -> SimpleDateFormat("yyyy-MM-dd HH:mm:ss")//秒
-            2 -> SimpleDateFormat("yyyy-MM-dd HH:mm:00")//分
-            3 -> SimpleDateFormat("yyyy-MM-dd HH:00:00")//时
-            4 -> SimpleDateFormat("yyyy-MM-dd 00:00:0")//天
+            1 -> SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+            2 -> SimpleDateFormat("yyyy-MM-dd HH:mm:00")
+            3 -> SimpleDateFormat("yyyy-MM-dd HH:00:00")
+            4 -> SimpleDateFormat("yyyy-MM-dd 00:00:0")
             else -> SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
         }
         val date = Date(time)
@@ -90,10 +73,6 @@ object TimeTool {
         return strToTime(str)
     }
 
-    /**
-     * long: 时间戳(毫秒)
-     * 精确到分
-     */
     @SuppressLint("SimpleDateFormat")
     fun showTimeSecond(time: Long): String {
         val date = Date(time)
@@ -112,9 +91,6 @@ object TimeTool {
         return dateFormat.format(date)
     }
 
-    /**
-     * 视频时长
-     */
     @SuppressLint("SimpleDateFormat")
     fun showVideoTime(time: Long): String {
         val totalSeconds = time / 1000
@@ -128,10 +104,6 @@ object TimeTool {
         }
     }
 
-
-    /**
-     * 视频时长
-     */
     @SuppressLint("SimpleDateFormat")
     fun showVideoLongTime(time: Long): String {
         val totalSeconds = time / 1000

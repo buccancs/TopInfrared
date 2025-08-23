@@ -24,9 +24,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.*
 
-/**
- * 条款
- */
 @Route(path = RouterConfig.CLAUSE)
 class ClauseActivity : AppCompatActivity() {
 
@@ -36,7 +33,6 @@ class ClauseActivity : AppCompatActivity() {
         setContentView(R.layout.activity_clause)
         initView()
     }
-
 
     private fun initView() {
         dialog = TipProgressDialog.Builder(this)
@@ -51,7 +47,6 @@ class ClauseActivity : AppCompatActivity() {
             confirmInitApp()
         }
         clause_disagree_btn.setOnClickListener {
-            //再次弹框确认是否退出
             TipDialog.Builder(this)
                 .setMessage(getString(R.string.privacy_tips))
                 .setPositiveListener(R.string.privacy_confirm) {
@@ -68,7 +63,6 @@ class ClauseActivity : AppCompatActivity() {
             if (!NetworkUtil.isConnected(this)) {
                 TToast.shortToast(this, R.string.lms_setting_http_error)
             } else {
-                //服务条款
                 ARouter.getInstance()
                     .build(RouterConfig.POLICY)
                     .withInt(PolicyActivity.KEY_THEME_TYPE, 1)
@@ -80,7 +74,6 @@ class ClauseActivity : AppCompatActivity() {
             if (!NetworkUtil.isConnected(this)) {
                 TToast.shortToast(this, R.string.lms_setting_http_error)
             } else {
-                //隐私条款
                 ARouter.getInstance()
                     .build(RouterConfig.POLICY)
                     .withInt(PolicyActivity.KEY_THEME_TYPE, 2)
@@ -89,7 +82,6 @@ class ClauseActivity : AppCompatActivity() {
             }
         }
         clause_item3.setOnClickListener {
-            //第三方
             if (!NetworkUtil.isConnected(this)) {
                 TToast.shortToast(this, R.string.lms_setting_http_error)
             } else {
@@ -114,10 +106,8 @@ class ClauseActivity : AppCompatActivity() {
     private fun confirmInitApp() {
         lifecycleScope.launch {
             showLoading()
-            //初始化
             App.delayInit()
             async(Dispatchers.IO) {
-                //等待1000ms 初始化结束
                 delay(1000)
                 return@async
             }.await().let {

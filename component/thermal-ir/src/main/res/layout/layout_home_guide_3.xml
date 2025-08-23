@@ -143,7 +143,6 @@
         app:layout_constraintEnd_toEndOf="@id/view_bg_theme"
         app:layout_constraintBottom_toTopOf="@id/tv_tips" />
 
-    <!-- 我知道了 -->
     <TextView
         android:id="@+id/tv_i_know"
         android:layout_width="wrap_content"

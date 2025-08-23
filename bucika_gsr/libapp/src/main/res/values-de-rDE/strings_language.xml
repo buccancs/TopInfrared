@@ -228,7 +228,6 @@
     <string name="auto_shutter">Automatischer Verschluss</string>
     <string name="color_board">Farbtafel</string>
 
-    <!--    2022-11-16-->
     <string name="user_services_agreement">Nutzungsbedingungen</string>
     <string name="privacy_policy">Datenschutz-Bestimmungen</string>
     <string name="third_party_components">Komponenten von Drittanbietern</string>
@@ -240,8 +239,6 @@
     <string name="device_loading_tip">Laden…</string>
     <string name="edit_image_error_tip">Das bild fehlen temperaturangaben und unterstützt die bearbeitung nicht.</string>
 
-    <!--	德语deutsch-->
-    <!-- 2.00版本 -->
     <string name="app_lapsePhotography">Zeitgesteuertes Foto</string>
     <string name="app_Manual_Shutter">Manueller Verschluss</string>
     <string name="app_record_sound">Audio-Aufnahme</string>
@@ -343,7 +340,6 @@
     <string name="start_fail_and_restart">Start fehlgeschlagen! Bitte verlassen Sie die App und öffnen Sie sie erneut</string>
     <string name="app_Low_temperature">niedrige Temperatur</string>
 
-
     <string name="monitor_finish">Beenden</string>
     <string name="album_menu_2d">2D Bearbeiten</string>
     <string name="album_menu_3d">3D Bearbeiten</string>
@@ -393,7 +389,6 @@
     <string name="menu_3d_x_axis">X-Achse</string>
     <string name="menu_3d_y_axis">Y-Achse</string>
 
-    <!--TS001-->
     <string name="album_menu_Photos">Foto</string>
     <string name="feedback_problem_type_6">Andere</string>
     <string name="app_got_it">Verstanden</string>
@@ -498,8 +493,6 @@
     <string name="installation_package_downloading_tips">Das Herunterladen beginnt. Bitte überprüfen Sie den Fortschritt in den Benachrichtigungen</string>
     <string name="welcome_use_app">Willkommen bei %1$s</string>
 
-    <!--德语-->
-
     <string name="dual_light_correction">Doppelte Lichtkorrektur</string>
     <string name="dual_light_correction_tips_1">Da die Fokuspunkte der beiden Kameras nicht aufeinander abgestimmt sind, werden die Bilder, die aus unterschiedlichen Entfernungen von den beiden Kameras aufgenommen wurden, nicht aufeinander abgestimmt.\nDiese Funktion kann bei der Bildausrichtung separat helfen.</string>
     <string name="dual_light_correction_tips_2">1. Lassen Sie eine Wärmequelle (z. B. Ihre Handfläche) in einem Abstand von etwa 0,5 Metern von der Kamera im Bild stehen.\n2. Tippen Sie, um ein Foto zu machen.</string>
@@ -520,7 +513,6 @@
 
     <string name="text_p_umeng">Um ein besseres Funktionserlebnis zu bieten, integrieren unsere Produkte Umeng+SDK für Datenstatistiken und Protokollerfassung. Das SDK erfasst Ihre Geräteidentifikation und Kontoinformationen</string>
 
-    <!--TS004-->
     <string name="ts004_connection_device">Kabelgebundene Geräte</string>
     <string name="ts004_auto_save">Automatisch auf Ihrem Telefon speichern</string>
     <string name="ts004_save_tips">Wenn Sie diese Funktion aktivieren, werden die Fotos und Videos automatisch auf Ihrem Telefon gespeichert, wenn Sie sich mit der App verbinden, um Fotos aufzunehmen oder Videos aufzuzeichnen.</string>
@@ -600,12 +592,10 @@
     <string name="ts004_faq_q5">Wie kann ich die aufgenommenen Wärmebilder auf einem PC betrachten?</string>
     <string name="ts004_faq_a5">Schließen Sie das TS004 über das USB-Kabel an einen PC an, und Sie können die auf dem TS004 gespeicherten Wärmebilder anzeigen.</string>
 
-    <!-- TC001 老 APP 引流 -->
     <string name="gallery_transfer">Galerieübertragung</string>
     <string name="gallery_transfer_wait">Die Daten werden übertragen. Bitte warten Sie.</string>
     <string name="gallery_transfer_complete">Datenübertragung abgeschlossen.</string>
 
-    <!-- 3.70 -->
     <string name="user_jump">Überspringen</string>
     <string name="tc_guide_tips1">Zeige Echtzeit-Überwachungsdiagramme und historische Überwachungsaufzeichnungen an</string>
     <string name="tc_guide_tips2">Um eine genaue Temperaturmessung zu gewährleisten, stellen Sie die entsprechenden Parameter vor der Temperaturmessung ein.</string>
@@ -622,7 +612,6 @@
     <string name="ts004_conntenct_tip">Sie werden Mobilfunkdaten verwenden. Das Gerät kann getrennt werden.</string>
     <string name="fireware_update_tips">Bug fixes and performance improvements</string>
 
-    <!-- 3.80 -->
     <string name="tc_local_album">Lokale Galerie</string>
     <string name="tc_connect_device">Gerät verbinden</string>
     <string name="tc_connect_tips">Wählen Sie das Gerät, das Sie verbinden möchten.</string>
@@ -634,7 +623,6 @@
     <string name="tc_reset_tips">Alle Geräteeinstellungen werden auf die Werkseinstellungen zurückgesetzt. Bestätigen Sie die Wiederherstellung?</string>
     <string name="coming_soon">Bleib dran...</string>
 
-    <!-- 3.90 -->
     <string name="tc007_connect_tips1">1. Stellen Sie sicher, dass die Ausrüstung genügend Leistung hat und nah genug ist</string>
     <string name="tc007_connect_tips2">2. Schalten Sie Bluetooth und WLAN auf Ihrem Telefon ein</string>
     <string name="tc007_connect_tips3">3. Geben Sie die APP Scanseite ein</string>
@@ -651,7 +639,6 @@
     <string name="wifi_connect_loading">Es wird voraussichtlich 15 Sekunden dauern…</string>
     <string name="tc007_done_fast">Häufige Operationen</string>
 
-    <!-- 房屋检测 -->
     <string name="main_professional_test">Professionelle Prüfung</string>
     <string name="main_temperature_test">Temperaturprüfung</string>
     <string name="main_thermal_tips">Professionelle Wärmebildprüfung</string>
@@ -820,7 +807,6 @@
     <string name="abnormal_description17">Die Temperatur der Heizung des Rückspiegels wird von vielen Faktoren beeinflusst, wie zum Beispiel der Umgebungstemperatur und der Last der Heizung. Überwachen Sie die Temperatur der Heizung mit einer Wärmebildkamera, dann können Sie beurteilen, ob der Rückspiegel effektiv beheizt werden kann.</string>
     <string name="abnormal_description18">Die Temperatur des Fenstermotors wird von vielen Faktoren beeinflusst, z. B. von der Umgebungstemperatur und der Motorlast. Überwachen Sie die Motortemperatur mit einer Wärmebildkamera. Wenn die Temperatur zu hoch ist, kann dies durch einen Ausfall des Fensterhebers oder des Motors selbst verursacht werden.</string>
 
-    <!-- 房屋检测新增 -->
     <string name="vehicle_function">Funktion</string>
     <string name="ability_find">finden</string>
     <string name="ability_monitory">Echtzeit-Anzeige der Objekttemperatur zur Erzeugung von Daten</string>
@@ -846,7 +832,6 @@
     <string name="pdf_project_item">Projekt</string>
     <string name="house_sign_finish_tips">Bitte füllen Sie die elektronische Unterschrift aus</string>
 
-    <!-- 4.50 -->
     <string name="thermal_trend">Trenddiagramm</string>
     <string name="thermal_trend_tips">Zeichnen Sie ein Liniensegment in das Bild, um die Temperaturänderung anzuzeigen.</string>
     <string name="material_view_all">Alle Anzeigen</string>
@@ -959,7 +944,6 @@
     <string name="tips_tisr_off">Imaging Super Resolution wurde deaktiviert.</string>
     <string name="tips_tisr_fail">Ihr Telefon unterstützt OpenCL nicht und kann Imaging Super Resolution nicht aktivieren.</string>
 
-    <!-- 4.70 -->
     <string name="testing_guidance">Prüfleitlinien</string>
     <string name="unlock_professional_perspectives">Entfesseln Sie berufliche Perspektiven</string>
     <string name="app_error_reload">Neu laden</string>

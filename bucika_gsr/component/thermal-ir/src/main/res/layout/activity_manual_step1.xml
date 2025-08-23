@@ -118,7 +118,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/iv_before"
         app:layout_constraintBottom_toBottomOf="@id/iv_before" />
-    <!-- 校准 -->
+    
     <TextView
         android:id="@+id/tv_manual"
         android:layout_width="match_parent"

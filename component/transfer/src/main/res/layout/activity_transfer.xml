@@ -33,7 +33,6 @@
             android:textSize="@dimen/app_font" />
     </androidx.appcompat.widget.Toolbar>
 
-    <!-- 迁移成功界面 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_success"
         android:layout_width="match_parent"

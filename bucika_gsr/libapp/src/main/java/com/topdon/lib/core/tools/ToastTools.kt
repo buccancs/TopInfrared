@@ -13,10 +13,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-
-/**
- * create by fylder on 2018/7/4
- **/
 object ToastTools {
 
     var mPublicToast: Toast? = null

@@ -9,20 +9,11 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-/**
- * @Desc 文件大小工具类
- * @ClassName FileSizeUtil
- * @Email 616862466@qq.com
- * @Author 子墨
- * @Date 2022/12/14 18:40
- */
-
 public class FileSizeUtil {
-    public static final int SIZETYPE_B = 1;//获取文件大小单位为B的double值
-    public static final int SIZETYPE_KB = 2;//获取文件大小单位为KB的double值
-    public static final int SIZETYPE_MB = 3;//获取文件大小单位为MB的double值
-    public static final int SIZETYPE_GB = 4;//获取文件大小单位为GB的double值
-
+    public static final int SIZETYPE_B = 1;
+    public static final int SIZETYPE_KB = 2;
+    public static final int SIZETYPE_MB = 3;
+    public static final int SIZETYPE_GB = 4;
 
     public static double getFileOrFilesSize(String filePath, int sizeType) {
         File file = new File(filePath);
@@ -40,12 +31,6 @@ public class FileSizeUtil {
         return FormetFileSize(blockSize, sizeType);
     }
 
-    /**
-     * 返回内容类型
-     *
-     * @param sizeType 内存类型
-     * @return String
-     */
     public static String getUnit(int sizeType) {
         String memoryUnit;
         if (sizeType == SIZETYPE_B) {
@@ -60,12 +45,6 @@ public class FileSizeUtil {
         return memoryUnit;
     }
 
-    /**
-     * 调用此方法自动计算指定文件或指定文件夹的大小
-     *
-     * @param filePath 文件路径
-     * @return 计算好的带B、KB、MB、GB的字符串
-     */
     public static long getFilesSize(String filePath) {
         File file = new File(filePath);
         long blockSize = 0;
@@ -78,17 +57,10 @@ public class FileSizeUtil {
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("bcf获取文件大小--getFilesSize-2-获取失败!");
-//            Log.e("获取文件大小", "getFilesSize-2-获取失败!");
         }
         return blockSize;
     }
 
-    /**
-     * 调用此方法自动计算指定文件或指定文件夹的大小
-     *
-     * @param filePath 文件路径
-     * @return 计算好的带B、KB、MB、GB的字符串
-     */
     public static String getAutoFileOrFilesSize(String filePath, int sizeType) {
         File file = new File(filePath);
         long blockSize = 0;
@@ -105,13 +77,6 @@ public class FileSizeUtil {
         return FormetFileSize(blockSize, sizeType) + getUnit(sizeType);
     }
 
-
-    /**
-     * 调用此方法自动计算指定文件或指定文件夹的大小
-     *
-     * @param filePath 文件路径
-     * @return 计算好的带B、KB、MB、GB的字符串
-     */
     public static String getAutoFileOrFilesSize(String filePath) {
         File file = new File(filePath);
         long blockSize = 0;
@@ -128,12 +93,6 @@ public class FileSizeUtil {
         return FormetFileSize(blockSize);
     }
 
-    /**
-     * 获取指定文件大小
-     *
-     * @return
-     * @throws Exception
-     */
     private static long getFileSize(File file) throws Exception {
         FileChannel fc = null;
         try {
@@ -146,7 +105,6 @@ public class FileSizeUtil {
             }
         } catch (Exception e) {
             System.out.println("bcf获取文件大小--getFilesSize-5-获取失败!");
-//            Log.e("获取文件大小", "getFileSize-5-获取失败!");
             e.printStackTrace();
         } finally {
             if (fc != null) {
@@ -156,13 +114,6 @@ public class FileSizeUtil {
         return 0;
     }
 
-    /**
-     * 获取指定文件夹
-     *
-     * @param f
-     * @return
-     * @throws Exception
-     */
     private static long getFileSizes(File f) throws Exception {
         long size = 0;
         File flist[] = f.listFiles();
@@ -176,12 +127,6 @@ public class FileSizeUtil {
         return size;
     }
 
-    /**
-     * 转换文件大小
-     *
-     * @param fileS
-     * @return
-     */
     public static String FormetFileSize(long fileS) {
         DecimalFormat df = new DecimalFormat("#.00");
         String fileSizeString = "";
@@ -201,13 +146,6 @@ public class FileSizeUtil {
         return fileSizeString;
     }
 
-    /**
-     * 转换文件大小,指定转换的类型
-     *
-     * @param fileS
-     * @param sizeType
-     * @return
-     */
     public static double FormetFileSize(long fileS, int sizeType) {
         Locale enlocale = new Locale("en", "US");
         DecimalFormat df = (DecimalFormat) NumberFormat.getNumberInstance(enlocale);
@@ -232,14 +170,6 @@ public class FileSizeUtil {
         return fileSizeLong;
     }
 
-
-    /**
-     * 获取文件大小
-     * 写入日志读取
-     *
-     * @param filename 文件名
-     * @return long
-     */
     public static long getFileSizeByWriteLog(String filename) {
         try {
             File file = new File(filename);

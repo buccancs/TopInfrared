@@ -26,10 +26,6 @@ import java.util.*
 import java.util.concurrent.Semaphore
 import java.util.concurrent.TimeUnit
 
-/**
- * Enhanced Video Recorder for bucika_gsr
- * Supports Samsung specific 4K30FPS recording and STAGE 3/LEVEL 3 RAD DNG recording
- */
 @SuppressLint("MissingPermission")
 class EnhancedVideoRecorder(
     private val context: Context,
@@ -37,18 +33,15 @@ class EnhancedVideoRecorder(
     private val visualView: TextureView?
 ) {
 
-    // Recording modes
     enum class RecordingMode {
         SAMSUNG_4K_30FPS,
-        RAD_DNG_LEVEL3_30FPS,  // Updated to DNG format
+        RAD_DNG_LEVEL3_30FPS,
         PARALLEL_DUAL_STREAM
     }
 
-    // Recording state
     private var isRecording = false
     private var recordingMode: RecordingMode = RecordingMode.SAMSUNG_4K_30FPS
 
-    // Camera2 API components
     private var cameraManager: CameraManager? = null
     private var cameraDevice: CameraDevice? = null
     private var cameraCaptureSession: CameraCaptureSession? = null
@@ -56,35 +49,28 @@ class EnhancedVideoRecorder(
     private var backgroundThread: HandlerThread? = null
     private val cameraOpenCloseLock = Semaphore(1)
 
-    // MediaRecorder components
     private var mediaRecorder: MediaRecorder? = null
     private var thermalRecorder: MediaRecorder? = null
     private var visualRecorder: MediaRecorder? = null
     
-    // DNG Capture Manager for RAD DNG Level 3
     private var dngCaptureManager: DNGCaptureManager? = null
 
-    // Recording parameters
-    private val samsung4KSize = Size(3840, 2160) // 4K UHD
-    private val radDngSize = Size(1920, 1080)    // Full HD for RAD DNG
+    private val samsung4KSize = Size(3840, 2160)
+    private val radDngSize = Size(1920, 1080)
     private val targetFps = 30
 
-    // File paths
     private var currentVideoFile: File? = null
     private var currentThermalFile: File? = null
 
-    // Temperature overlay manager
     private val overlayManager = TemperatureOverlayManager()
 
     companion object {
         private const val TAG = "EnhancedVideoRecorder"
         
-        // Samsung specific camera characteristics
         private const val SAMSUNG_CAMERA_ID = "0"
         
-        // STAGE 3/LEVEL 3 RAD DNG specifications
-        private const val RAD_DNG_BITRATE = 8000000 // 8 Mbps for high quality
-        private const val SAMSUNG_4K_BITRATE = 20000000 // 20 Mbps for 4K
+        private const val RAD_DNG_BITRATE = 8000000
+        private const val SAMSUNG_4K_BITRATE = 20000000
     }
 
     init {
@@ -92,9 +78,6 @@ class EnhancedVideoRecorder(
         dngCaptureManager = DNGCaptureManager(context)
     }
 
-    /**
-     * Start enhanced recording with specified mode
-     */
     fun startRecording(mode: RecordingMode): Boolean {
         if (isRecording) {
             XLog.w(TAG, "Recording already in progress")
@@ -108,7 +91,7 @@ class EnhancedVideoRecorder(
             
             when (mode) {
                 RecordingMode.SAMSUNG_4K_30FPS -> startSamsung4KRecording()
-                RecordingMode.RAD_DNG_LEVEL3_30FPS -> startRadDngRecording()  // Updated method
+                RecordingMode.RAD_DNG_LEVEL3_30FPS -> startRadDngRecording()
                 RecordingMode.PARALLEL_DUAL_STREAM -> startParallelRecording()
             }
         } catch (e: Exception) {
@@ -117,9 +100,6 @@ class EnhancedVideoRecorder(
         }
     }
 
-    /**
-     * Start Samsung specific 4K 30FPS recording
-     */
     private fun startSamsung4KRecording(): Boolean {
         XLog.i(TAG, "Starting Samsung 4K 30FPS recording")
         
@@ -127,20 +107,17 @@ class EnhancedVideoRecorder(
         currentVideoFile = videoFile
         
         mediaRecorder = MediaRecorder().apply {
-            // Samsung optimized settings for 4K recording
             setVideoSource(MediaRecorder.VideoSource.SURFACE)
             setAudioSource(MediaRecorder.AudioSource.MIC)
             
             setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
             setOutputFile(videoFile.absolutePath)
             
-            // 4K video settings optimized for Samsung devices
             setVideoEncoder(VideoEncoder.H264)
             setVideoSize(samsung4KSize.width, samsung4KSize.height)
             setVideoFrameRate(targetFps)
             setVideoEncodingBitRate(SAMSUNG_4K_BITRATE)
             
-            // Audio settings
             setAudioEncoder(AudioEncoder.AAC)
             setAudioSamplingRate(44100)
             setAudioEncodingBitRate(128000)
@@ -179,9 +156,6 @@ class EnhancedVideoRecorder(
         }
     }
 
-    /**
-     * Start parallel dual stream recording (thermal + visual)
-     */
     private fun startParallelRecording(): Boolean {
         XLog.i(TAG, "Starting parallel dual stream recording")
         
@@ -191,7 +165,6 @@ class EnhancedVideoRecorder(
         currentVideoFile = visualFile
         currentThermalFile = thermalFile
         
-        // Setup thermal stream recorder
         thermalRecorder = MediaRecorder().apply {
             setVideoSource(MediaRecorder.VideoSource.SURFACE)
             setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
@@ -203,7 +176,6 @@ class EnhancedVideoRecorder(
             setVideoEncodingBitRate(RAD_DNG_BITRATE)
         }
         
-        // Setup visual stream recorder
         visualRecorder = MediaRecorder().apply {
             setVideoSource(MediaRecorder.VideoSource.SURFACE)
             setAudioSource(MediaRecorder.AudioSource.MIC)
@@ -237,9 +209,6 @@ class EnhancedVideoRecorder(
         }
     }
 
-    /**
-     * Stop recording
-     */
     fun stopRecording(): Boolean {
         if (!isRecording) {
             XLog.w(TAG, "No recording in progress")
@@ -249,7 +218,7 @@ class EnhancedVideoRecorder(
         return try {
             when (recordingMode) {
                 RecordingMode.PARALLEL_DUAL_STREAM -> stopParallelRecording()
-                RecordingMode.RAD_DNG_LEVEL3_30FPS -> stopDNGRecording()  // Updated method
+                RecordingMode.RAD_DNG_LEVEL3_30FPS -> stopDNGRecording()
                 else -> stopSingleRecording()
             }
             
@@ -294,9 +263,6 @@ class EnhancedVideoRecorder(
         visualRecorder = null
     }
 
-    /**
-     * Add temperature measurement overlay to frame
-     */
     fun addTemperatureOverlay(
         frame: Bitmap, 
         temperature: Float, 
@@ -317,9 +283,6 @@ class EnhancedVideoRecorder(
         )
     }
 
-    /**
-     * Add dual stream overlays for parallel recording
-     */
     fun addDualStreamOverlays(
         thermalFrame: Bitmap,
         visualFrame: Bitmap,
@@ -334,25 +297,15 @@ class EnhancedVideoRecorder(
         )
     }
 
-    /**
-     * Get current recording status
-     */
     fun isRecording(): Boolean = isRecording
 
-    /**
-     * Get current recording mode
-     */
     fun getRecordingMode(): RecordingMode = recordingMode
 
-    /**
-     * Get recorded files (includes both video files and DNG files)
-     */
     fun getRecordedFiles(): List<File> {
         val files = mutableListOf<File>()
         currentVideoFile?.let { files.add(it) }
         currentThermalFile?.let { files.add(it) }
         
-        // Add DNG files if in DNG recording mode
         if (recordingMode == RecordingMode.RAD_DNG_LEVEL3_30FPS) {
             val dngFiles = dngCaptureManager?.getCapturedFiles() ?: emptyList()
             files.addAll(dngFiles)
@@ -360,10 +313,7 @@ class EnhancedVideoRecorder(
         
         return files
     }
-    
-    /**
-     * Get DNG capture statistics (frames captured, FPS, etc.)
-     */
+
     fun getDNGCaptureStats(): Map<String, Any> {
         return dngCaptureManager?.getCaptureStats() ?: emptyMap()
     }
@@ -406,9 +356,6 @@ class EnhancedVideoRecorder(
         visualRecorder = null
     }
 
-    /**
-     * Cleanup resources
-     */
     fun cleanup() {
         stopRecording()
         releaseAllRecorders()

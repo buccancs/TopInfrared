@@ -56,7 +56,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
-    <!-- 取消 -->
     <TextView
         android:id="@+id/tv_cancel"
         android:layout_width="0dp"
@@ -73,7 +72,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tv_confirm"/>
 
-    <!-- 确定 -->
     <TextView
         android:id="@+id/tv_confirm"
         android:layout_width="0dp"

@@ -15,7 +15,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- 取消 -->
     <TextView
         android:id="@+id/tv_cancel"
         android:layout_width="0dp"
@@ -33,7 +32,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tv_confirm" />
 
-    <!-- 确定 -->
     <TextView
         android:id="@+id/tv_confirm"
         android:layout_width="0dp"
@@ -63,7 +61,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <!-- 动态渲染 -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_dynamic"
                 android:layout_width="0dp"
@@ -119,7 +116,6 @@
                     app:layout_constraintBottom_toBottomOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!-- 自定义 -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_custom"
                 android:layout_width="0dp"
@@ -174,7 +170,6 @@
                     app:layout_constraintBottom_toBottomOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!-- 自定义设置内容 -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_custom_content"
                 android:layout_width="0dp"
@@ -200,7 +195,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <!-- 最高温 -->
                 <TextView
                     android:id="@+id/tv_max_temp"
                     android:layout_width="wrap_content"
@@ -245,7 +239,6 @@
                     app:layout_constraintTop_toTopOf="@id/et_max_temp"
                     app:layout_constraintBottom_toBottomOf="@id/et_max_temp" />
 
-                <!-- 最低温 -->
                 <TextView
                     android:id="@+id/tv_min_temp"
                     android:layout_width="wrap_content"
@@ -289,7 +282,6 @@
                     app:layout_constraintEnd_toEndOf="@id/et_min_temp"
                     app:layout_constraintTop_toTopOf="@id/et_min_temp"
                     app:layout_constraintBottom_toBottomOf="@id/et_min_temp" />
-
 
                 <TextView
                     android:id="@+id/tv_step2_title"
@@ -350,7 +342,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/view_color_title">
 
-                    <!-- 添加 -->
                     <ImageView
                         android:id="@+id/iv_custom_add"
                         android:layout_width="44dp"
@@ -362,7 +353,7 @@
                         android:contentDescription="@null"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
-                    <!-- 删除 -->
+                    
                     <ImageView
                         android:id="@+id/iv_custom_del"
                         android:layout_width="44dp"
@@ -416,7 +407,6 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/pseudo_pick_view" />
 
-                    <!-- 目前原型UI为6个预设值，更改的概率不大，此处直接写死，就不用 RecyclerView、自定义View 之类的去复杂化了 -->
                     <View
                         android:id="@+id/view_custom_color1"
                         android:layout_width="0dp"
@@ -501,8 +491,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/view_color_title">
-                    <!-- 目前原型UI为5个预设值，更改的概率不大，此处直接写死，就不用 RecyclerView、自定义View 之类的去复杂化了 -->
-                    <!-- 铁红 -->
+
                     <View
                         android:id="@+id/view_recommend_bg_color1"
                         android:layout_width="0dp"
@@ -541,7 +530,6 @@
                         app:layout_constraintTop_toBottomOf="@id/tv_recommend_color1"
                         app:layout_constraintBottom_toBottomOf="@id/view_recommend_bg_color1" />
 
-                    <!-- 黑红 -->
                     <View
                         android:id="@+id/view_recommend_bg_color2"
                         android:layout_width="0dp"
@@ -580,7 +568,6 @@
                         app:layout_constraintTop_toBottomOf="@id/tv_recommend_color2"
                         app:layout_constraintBottom_toBottomOf="@id/view_recommend_bg_color2" />
 
-                    <!-- 自然 -->
                     <View
                         android:id="@+id/view_recommend_bg_color3"
                         android:layout_width="0dp"
@@ -619,7 +606,6 @@
                         app:layout_constraintTop_toBottomOf="@id/tv_recommend_color3"
                         app:layout_constraintBottom_toBottomOf="@id/view_recommend_bg_color3" />
 
-                    <!-- 岩浆 -->
                     <View
                         android:id="@+id/view_recommend_bg_color4"
                         android:layout_width="0dp"
@@ -658,7 +644,6 @@
                         app:layout_constraintTop_toBottomOf="@id/tv_recommend_color4"
                         app:layout_constraintBottom_toBottomOf="@id/view_recommend_bg_color4" />
 
-                    <!-- 辉金 -->
                     <View
                         android:id="@+id/view_recommend_bg_color5"
                         android:layout_width="0dp"
@@ -719,7 +704,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/barrier_color" />
 
-                <!-- 灰度渐变 -->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_over_grey"
                     android:layout_width="0dp"
@@ -778,7 +762,6 @@
                     app:layout_constraintTop_toTopOf="@id/space_over_grey"
                     app:layout_constraintEnd_toEndOf="@id/space_over_grey" />
 
-                <!-- 等色 -->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_over_color"
                     android:layout_width="0dp"

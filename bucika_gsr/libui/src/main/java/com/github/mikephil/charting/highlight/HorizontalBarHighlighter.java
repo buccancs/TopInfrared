@@ -11,9 +11,6 @@ import com.github.mikephil.charting.utils.MPPointD;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Philipp Jahoda on 22/07/15.
- */
 public class HorizontalBarHighlighter extends BarHighlighter {
 
 	public HorizontalBarHighlighter(BarDataProvider chart) {
@@ -50,14 +47,11 @@ public class HorizontalBarHighlighter extends BarHighlighter {
 
 		ArrayList<Highlight> highlights = new ArrayList<>();
 
-		//noinspection unchecked
 		List<Entry> entries = set.getEntriesForXValue(xVal);
 		if (entries.size() == 0) {
-			// Try to find closest x-value and take all entries for that x-value
 			final Entry closest = set.getEntryForXValue(xVal, Float.NaN, rounding);
 			if (closest != null)
 			{
-				//noinspection unchecked
 				entries = set.getEntriesForXValue(closest.getX());
 			}
 		}

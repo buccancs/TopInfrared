@@ -15,10 +15,6 @@ import com.topdon.tc001.gsr.GSRManager
 import com.topdon.tc001.LocalFileBrowserActivity
 import kotlinx.android.synthetic.main.activity_enhanced_recording.*
 
-/**
- * Enhanced Recording Activity for bucika_gsr
- * Integrates Samsung 4K30FPS recording, RAD DNG Level 3 recording, and GSR monitoring
- */
 class EnhancedRecordingActivity : BaseActivity(), GSRManager.GSRDataListener {
 
     private lateinit var videoRecorder: EnhancedVideoRecorder
@@ -48,11 +44,9 @@ class EnhancedRecordingActivity : BaseActivity(), GSRManager.GSRDataListener {
         title_view.setTitle("Enhanced Recording - Bucika GSR")
         title_view.setLeftClickListener { finish() }
         
-        // Initialize texture views (these would be bound to actual camera surfaces)
         thermalView = texture_thermal
         visualView = texture_visual
         
-        // Initialize components
         videoRecorder = EnhancedVideoRecorder(this, thermalView, visualView)
         gsrManager = GSRManager.getInstance(this)
         gsrManager.setGSRDataListener(this)
@@ -66,7 +60,6 @@ class EnhancedRecordingActivity : BaseActivity(), GSRManager.GSRDataListener {
     }
 
     private fun setupClickListeners() {
-        // Recording mode selection
         btn_samsung_4k.setOnClickListener {
             currentRecordingMode = EnhancedVideoRecorder.RecordingMode.SAMSUNG_4K_30FPS
             updateRecordingModeUI()
@@ -82,7 +75,6 @@ class EnhancedRecordingActivity : BaseActivity(), GSRManager.GSRDataListener {
             updateRecordingModeUI()
         }
         
-        // Recording controls
         btn_start_recording.setOnClickListener {
             startEnhancedRecording()
         }
@@ -91,7 +83,6 @@ class EnhancedRecordingActivity : BaseActivity(), GSRManager.GSRDataListener {
             stopEnhancedRecording()
         }
         
-        // GSR controls
         btn_connect_gsr.setOnClickListener {
             connectGSRDevice()
         }
@@ -100,7 +91,6 @@ class EnhancedRecordingActivity : BaseActivity(), GSRManager.GSRDataListener {
             disconnectGSRDevice()
         }
         
-        // File browser
         btn_view_recordings.setOnClickListener {
             openRecordingsBrowser()
         }
@@ -131,7 +121,6 @@ class EnhancedRecordingActivity : BaseActivity(), GSRManager.GSRDataListener {
                 }
                 Toast.makeText(this, "$modeText recording started", Toast.LENGTH_SHORT).show()
                 
-                // Start GSR recording if connected
                 if (isGSRConnected && !gsrManager.isRecording()) {
                     gsrManager.startRecording()
                 }
@@ -148,16 +137,13 @@ class EnhancedRecordingActivity : BaseActivity(), GSRManager.GSRDataListener {
             if (success) {
                 Toast.makeText(this, "Recording stopped", Toast.LENGTH_SHORT).show()
                 
-                // Stop GSR recording
                 if (gsrManager.isRecording()) {
                     gsrManager.stopRecording()
                 }
                 
-                // Show recorded files
                 val recordedFiles = videoRecorder.getRecordedFiles()
                 val fileList = recordedFiles.joinToString("\n") { it.name }
                 
-                // Show DNG capture stats if applicable
                 if (currentRecordingMode == EnhancedVideoRecorder.RecordingMode.RAD_DNG_LEVEL3_30FPS) {
                     val dngStats = videoRecorder.getDNGCaptureStats()
                     val framesCaptured = dngStats["framesCaptured"] as? Int ?: 0
@@ -176,7 +162,7 @@ class EnhancedRecordingActivity : BaseActivity(), GSRManager.GSRDataListener {
     }
 
     private fun connectGSRDevice() {
-        val shimmerAddress = "00:06:66:XX:XX:XX" // Replace with actual address from device discovery
+        val shimmerAddress = "00:06:66:XX:XX:XX"
         gsrManager.connectToShimmer(shimmerAddress)
         Toast.makeText(this, "Connecting to GSR device...", Toast.LENGTH_SHORT).show()
     }
@@ -188,13 +174,11 @@ class EnhancedRecordingActivity : BaseActivity(), GSRManager.GSRDataListener {
     }
 
     private fun openRecordingsBrowser() {
-        // Launch local file browser activity
         val intent = Intent(this, LocalFileBrowserActivity::class.java)
         startActivity(intent)
     }
 
     private fun updateRecordingModeUI() {
-        // Update UI to show selected recording mode
         btn_samsung_4k.isSelected = (currentRecordingMode == EnhancedVideoRecorder.RecordingMode.SAMSUNG_4K_30FPS)
         btn_rad_dng_level3.isSelected = (currentRecordingMode == EnhancedVideoRecorder.RecordingMode.RAD_DNG_LEVEL3_30FPS)
         btn_parallel_recording.isSelected = (currentRecordingMode == EnhancedVideoRecorder.RecordingMode.PARALLEL_DUAL_STREAM)
@@ -213,20 +197,16 @@ class EnhancedRecordingActivity : BaseActivity(), GSRManager.GSRDataListener {
     private fun updateUI() {
         val isRecording = videoRecorder.isRecording()
         
-        // Recording controls
         btn_start_recording.isEnabled = !isRecording
         btn_stop_recording.isEnabled = isRecording
         
-        // Recording mode selection (disable during recording)
         btn_samsung_4k.isEnabled = !isRecording
         btn_rad_dng_level3.isEnabled = !isRecording
         btn_parallel_recording.isEnabled = !isRecording
         
-        // GSR controls
         btn_connect_gsr.isEnabled = !isGSRConnected
         btn_disconnect_gsr.isEnabled = isGSRConnected
         
-        // Status indicators
         tv_recording_status.text = if (isRecording) {
             "Recording: ${currentRecordingMode.name}"
         } else {
@@ -240,16 +220,12 @@ class EnhancedRecordingActivity : BaseActivity(), GSRManager.GSRDataListener {
         }
     }
 
-    // GSR Data Listener implementation
     override fun onGSRDataReceived(timestamp: Long, gsrValue: Double, skinTemperature: Double) {
         runOnUiThread {
             tv_gsr_value.text = "GSR: %.3f µS".format(gsrValue)
             tv_skin_temp.text = "Skin: %.2f °C".format(skinTemperature)
             
-            // Add timestamp overlay to recording if active
             if (videoRecorder.isRecording()) {
-                // This would integrate with the actual frame capture to add overlays
-                // For now, just update the UI display
                 tv_recording_overlay.text = "Recording with GSR: ${gsrValue}µS @ ${skinTemperature}°C"
             }
         }

@@ -239,8 +239,6 @@
 	<string name="third_party_components">komponenty třetích stran</string>
 	<string name="edit_image_error_tip">Obraz postrádá údaje o teplotě a nepodporuje úpravy.</string>
 
-	<!--	捷克czech-->
-	<!-- 2.00版本 -->
 	<string name="app_lapsePhotography">Časovaná Fotografie</string>
 	<string name="app_Manual_Shutter">Ruční Závěrka</string>
 	<string name="app_record_sound">Záznam Zvuku</string>
@@ -274,7 +272,6 @@
 	<string name="preview_step_2">2. Pinch pro Zvětšení</string>
 	<string name="preview_step_3">3. Otočit Obrázek</string>
 
-
 	<string name="app_microphone_content">Aplikace nemá přístup k Mikrofonu. Povolte přístup Mikrofonu k aplikaci v Nastavení.</string>
 	<string name="app_location_content">Aplikace nemá přístup k umístění. Umožněte aplikaci přístup k poloze v Nastavení.</string>
 	<string name="app_album_content">Aplikace nemá přístup k vašim Fotografiím. Povolte přístup k Fotografiím do aplikace v Nastavení.</string>
@@ -283,7 +280,6 @@
 	<string name="app_open">Otevřít Nastavení</string>
 	<string name="album_report_aleart">Nahrávání videa se zastavilo z důvodu nedostatečného úložiště telefonu.</string>
 	<string name="tip_video_record">Videozáznamy jsou omezeny na 60 minut.</string>
-
 
 	<string name="temp_alarm_alarm">Varování</string>
 	<string name="temp_alarm_high_alarm">Vysoká Teplota. Varování</string>
@@ -344,7 +340,6 @@
 	<string name="start_fail_and_restart">Start selhal! Prosím opusťte aplikaci a znovu ji otevřete</string>
 	<string name="app_Low_temperature">nízká teplota</string>
 
-<!--	2.20-->
 	<string name="monitor_finish">Zastavit</string>
 	<string name="album_menu_2d">2D Editovat</string>
 	<string name="album_menu_3d">3D Editovat</string>
@@ -381,7 +376,6 @@
 	<string name="tip_album_temp_exportfile">Chcete exportovat data teploty do souboru Excel?</string>
 	<string name="tip_change_pseudo_mode">Chcete přepnout do režimu Dynamického Vykreslování?</string>
 
-
 	<string name="menu_3d_visual">Pohled</string>
 	<string name="menu_3d_calibrate">Kalibrace</string>
 	<string name="model">Režim</string>
@@ -394,7 +388,6 @@
 	<string name="menu_3d_x_axis">Osa X</string>
 	<string name="menu_3d_y_axis">Osa Y</string>
 
-	<!--TS001-->
 	<string name="album_menu_Photos">fotografie</string>
 	<string name="feedback_problem_type_6">Další</string>
 	<string name="app_got_it">Rozumím</string>
@@ -499,9 +492,6 @@
 	<string name="installation_package_downloading_tips">Začne se stahovat. Zkontrolujte prosím průběh v Oznámeních</string>
 	<string name="welcome_use_app">Vítejte v %1$s</string>
 
-
-	<!--捷克-->
-
 	<string name="dual_light_correction">Duální Korekce Světla</string>
 	<string name="dual_light_correction_tips_1">Vzhledem k tomu, že zaostření obou kamer není zarovnáno, obrázky zachycené z různých vzdáleností těmito dvěma kamerami nebudou zarovnány.\nTato funkce může pomoci se zarovnáním obrazu samostatně.</string>
 	<string name="dual_light_correction_tips_2">1. Nechte zdroj tepla (například dlaň) zůstat v obraze ve vzdálenosti asi 0,5 metru od fotoaparátu.\n2. Klepnutím pořídíte fotografii.</string>
@@ -523,7 +513,6 @@
 
 	<string name="text_p_umeng">Za účelem poskytování lepšího funkčního prostředí naše produkty integrují Umeng+SDK pro statistiky dat a shromažďování protokolů SDK bude shromažďovat identifikaci vašeho zařízení a informace o účtu</string>
 
-	<!--TS004-->
 	<string name="ts004_connection_device">Drátově připojená zařízení</string>
 	<string name="ts004_auto_save">Automatické Ukládání Do Telefonu</string>
 	<string name="ts004_save_tips">Pokud to povolíte, při připojení k aplikaci pro fotografování nebo nahrávání videa se fotografie a videa automaticky uloží lokálně do vašeho telefonu.</string>
@@ -603,12 +592,10 @@
 	<string name="ts004_faq_q5">Jak zobrazím pořízené termosnímky na počítači?</string>
 	<string name="ts004_faq_a5">Připojte TS004 k PC pomocí USB kabelu a poté si můžete prohlížet termosnímky uložené v TS004.</string>
 
-	<!-- TC001 老 APP 引流 -->
 	<string name="gallery_transfer">Přenos Galerie</string>
 	<string name="gallery_transfer_wait">Data se přenášejí. Prosím, čekejte.</string>
 	<string name="gallery_transfer_complete">Přenos Dat Dokončen</string>
 
-	<!-- 3.70 -->
 	<string name="user_jump">Přeskočit</string>
 	<string name="tc_guide_tips1">Zobrazení grafů monitoru v reálném čase a záznamů monitoru historie.</string>
 	<string name="tc_guide_tips2">Pro zajištění přesného měření teploty nastavte před měřením teploty příslušné parametry.</string>
@@ -625,7 +612,6 @@
 	<string name="ts004_conntenct_tip">Budete používat mobilní data. Zařízení může být odpojeno.</string>
 	<string name="fireware_update_tips">Bug fixes and performance improvements</string>
 
-	<!-- 3.80 -->
 	<string name="tc_local_album">Místní Galerie</string>
 	<string name="tc_connect_device">připojit zařízení</string>
 	<string name="tc_connect_tips">Vyberte zařízení, které chcete připojit.</string>
@@ -637,7 +623,6 @@
 	<string name="tc_reset_tips">Všechna nastavení zařízení budou obnovena na tovární nastavení. Potvrdit obnovení?</string>
 	<string name="coming_soon">Zůstaňte Naladěni...</string>
 
-	<!-- 3.90 -->
 	<string name="tc007_connect_tips1">1. Ujistěte se, že zařízení má dostatečný výkon a je dostatečně blízko</string>
 	<string name="tc007_connect_tips2">2. Zapněte Bluetooth a WiFi v telefonu</string>
 	<string name="tc007_connect_tips3">3. Zadejte stránku skenování aplikace APP</string>
@@ -654,7 +639,6 @@
 	<string name="wifi_connect_loading">Očekává se, že to bude trvat 15s…</string>
 	<string name="tc007_done_fast">Časté operace</string>
 
-	<!-- 房屋检测 -->
 	<string name="main_professional_test">Profesionální Testování</string>
 	<string name="main_temperature_test">Testování Teploty</string>
 	<string name="main_thermal_tips">Profesionální Termovizní Testování</string>
@@ -823,7 +807,6 @@
 	<string name="abnormal_description17">Teplota ohřívače zpětného zrcátka je ovlivněna mnoha faktory, jako je okolní teplota a zatížení ohřívače. Monitorujte teplotu ohřívače pomocí termokamery a poté můžete posoudit, zda lze zadní zrcátko účinně zahřívat.</string>
 	<string name="abnormal_description18">Teplota motoru okna je ovlivněna mnoha faktory, jako je okolní teplota a zatížení motoru. Monitorujte teplotu motoru pomocí termokamery. Pokud je teplota příliš vysoká, může to být způsobeno poruchou mechanismu zvedání okna nebo samotného motoru.</string>
 
-	<!-- 房屋检测新增 -->
 	<string name="vehicle_function">Funkce</string>
 	<string name="ability_find">najít</string>
 	<string name="ability_monitory">Zobrazení teploty objektu v reálném čase pro generování dat</string>
@@ -849,7 +832,6 @@
 	<string name="pdf_project_item">projekt</string>
 	<string name="house_sign_finish_tips">Prosím, vyplňte elektronický podpis</string>
 
-	<!-- 4.50 -->
 	<string name="thermal_trend">Trendový graf</string>
 	<string name="thermal_trend_tips">Nakreslete na obrázek čárový segment, abyste viděli změnu teploty.</string>
 	<string name="material_view_all">Zobrazit vše</string>
@@ -962,7 +944,6 @@
 	<string name="tips_tisr_off">Imaging Super Resolution bylo deaktivováno.</string>
 	<string name="tips_tisr_fail">Váš telefon nepodporuje OpenCL a nemůže povolit Imaging Super Resolution.</string>
 
-	<!-- 4.70 -->
 	<string name="testing_guidance">Pokyny ke zkouškám</string>
 	<string name="unlock_professional_perspectives">Odemknout profesní perspektivy</string>
 	<string name="app_error_reload">Znovu načíst</string>

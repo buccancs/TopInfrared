@@ -22,7 +22,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- 两个 item 中间间隔 -->
     <View
         android:id="@+id/view_space"
         android:layout_width="15dp"

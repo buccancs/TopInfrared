@@ -81,58 +81,30 @@ import kotlinx.coroutines.withContext
 import org.greenrobot.eventbus.EventBus
 import kotlin.math.roundToInt
 
-/**
- * 热成像-海康.
- *
- * Created by LCG on 2024/11/30.
- */
 @Route(path = RouterConfig.IR_HIK_MAIN)
 class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() {
 
-    /**
-     * 保存设置开关影响的相关配置项.
-     */
     private val saveSetBean = SaveSettingBean()
 
-    /**
-     * 自定义渲染相关配置.
-     */
     private var customPseudoBean = CustomPseudoBean.loadFromShared()
 
-
-    /**
-     * 双光-融合度、设置-对比度、设置-锐度 PopupWindow，用于在点击其他操作时关掉.
-     */
     private var popupWindow: PopupWindow? = null
 
-
-    /**
-     * 等温尺限制的低温值，单位摄氏度，MIN_VALUE 表示未设置。
-     * 伪彩条里的逻辑太乱了，先这么顶着吧
-     */
     private var limitTempMin = Float.MIN_VALUE
         set(value) {
             field = value
             binding.hikSurfaceView.limitTempMin = value
         }
-    /**
-     * 等温尺限制的高温值，单位摄氏度，MAX_VALUE 表示未设置
-     */
+    
     private var limitTempMax = Float.MAX_VALUE
         set(value) {
             field = value
             binding.hikSurfaceView.limitTempMax = value
         }
-    /**
-     * 当前全图最低温，单位跟随用户设置。
-     * 本来这个东西可以直接从伪彩条里取的，但伪彩条里的逻辑太乱了，先这么顶着吧
-     */
+    
     private var currentMin: Float = 0f
-    /**
-     * 当前全图最高温，单位跟随用户设置。
-     */
+    
     private var currentMax: Float = 0f
-
 
     override fun initContentLayoutId(): Int = R.layout.activity_ir_thermal_hik
 
@@ -146,7 +118,6 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
             binding.hikSurfaceView.refresh(yuvArray, tempArray)
         }
         HikHelper.onTimeoutListener = {
-            // TODO: 跟进超时弹框逻辑
             TipDialog.Builder(this)
                 .setMessage("机芯出了毛病，5秒了没个回调过来")
                 .setPositiveListener(R.string.app_got_it) {
@@ -155,12 +126,11 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
                 .create().show()
         }
         HikHelper.onReadyListener = {
-            //热成像机芯相关参数初始化
             lifecycleScope.launch {
                 HikHelper.initConfig()
                 HikHelper.setAutoShutter(saveSetBean.isAutoShutter)
-                HikHelper.setContrast((saveSetBean.contrastValue * 100 / 255f).toInt()) //重置对比度
-                HikHelper.setEnhanceLevel((saveSetBean.ddeConfig * 100f / 4).toInt()) //重置细节增强等级
+                HikHelper.setContrast((saveSetBean.contrastValue * 100 / 255f).toInt())
+                HikHelper.setEnhanceLevel((saveSetBean.ddeConfig * 100f / 4).toInt())
                 HikHelper.setMirror(saveSetBean.rotateAngle, saveSetBean.isOpenMirror)
                 HikHelper.setTemperatureMode(saveSetBean.temperatureMode)
 
@@ -172,7 +142,7 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
 
         binding.titleView.setRight2Drawable(if (saveSetBean.isOpenAmplify) R.drawable.svg_tisr_on else R.drawable.svg_tisr_off)
         binding.titleView.setLeftClickListener {
-            if (!binding.timeDownView.isRunning) {//未在延时拍照录像
+            if (!binding.timeDownView.isRunning) {
                 finish()
             }
         }
@@ -188,11 +158,8 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
             switchAmplify()
         }
 
-
-
         binding.timeDownView.onFinishListener = {
             if (!saveSetBean.isVideoMode) {
-                //延迟拍照倒计时结束后，要把中间按钮的状态重置，放出 拍照/录像 切换；视频本来就这个状态，不用改
                 binding.menuSecondView.updateCameraModel()
             }
             centerCamera()
@@ -220,10 +187,10 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
             }
         }
 
-        initPseudoBar() //初始化伪彩条
-        initTempView()  //初始化点线面温度 View
-        initCarDetect() //初始化汽车检测 View
-        initMenu()      //初始化菜单
+        initPseudoBar()
+        initTempView()
+        initCarDetect()
+        initMenu()
         refreshCustomPseudo(customPseudoBean)
         rotateUI(saveSetBean.isRotatePortrait())
 
@@ -265,9 +232,6 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
         finish()
     }
 
-    /**
-     * 执行伪彩条的初始化
-     */
     private fun initPseudoBar() {
         binding.clPseudoBar.isVisible = saveSetBean.isOpenPseudoBar
         if (ScreenTool.isIPad(this)) {
@@ -275,12 +239,12 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
         }
 
         binding.ivPseudoBarLock.setOnClickListener {
-            if (it.isVisible) {//自定义伪彩模式下为 INVISIBLE
+            if (it.isVisible) {
                 it.isSelected = !it.isSelected
                 binding.pseudoSeekBar.isEnabled = it.isSelected
                 binding.pseudoSeekBar.leftSeekBar.indicatorBackgroundColor = if (it.isSelected) 0xffe17606.toInt() else 0
                 binding.pseudoSeekBar.rightSeekBar.indicatorBackgroundColor = if (it.isSelected) 0xffe17606.toInt() else 0
-                if (!it.isSelected) {//解锁->锁
+                if (!it.isSelected) {
                     limitTempMin = Float.MIN_VALUE
                     limitTempMax = Float.MAX_VALUE
                     binding.pseudoSeekBar.setRangeAndPro(limitTempMin, limitTempMax, currentMin, currentMax)
@@ -318,9 +282,6 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
         })
     }
 
-    /**
-     * 执行点线面温度图层的初始化
-     */
     @SuppressLint("SetTextI18n")
     private fun initTempView() {
         binding.temperatureView.mode = Mode.FULL
@@ -358,9 +319,6 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
         }
     }
 
-    /**
-     * 执行汽车检测提示 View 的初始化
-     */
     private fun initCarDetect() {
         binding.llCarDetect.isVisible = intent.getBooleanExtra(ExtraKeyConfig.IS_CAR_DETECT_ENTER, false)
         binding.tvCarDetect.text = SharedManager.getCarDetectInfo().buildString()
@@ -374,13 +332,8 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
         }
     }
 
-    /**
-     * IOS 搞成点删除后再次绘制趋势图才自动弹出折线图，还得搞个变量跟着一起卷。
-     */
     private var hasClickTrendDel = true
-    /**
-     * 执行菜单的初始化
-     */
+    
     private fun initMenu() {
         binding.menuFirstView.onTabClickListener = {
             popupWindow?.dismiss()
@@ -390,10 +343,10 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
 
         binding.menuSecondView.onCameraClickListener = {
             when (it) {
-                0 -> {//拍照 or 录像
+                0 -> {
                     when (cameraState) {
                         CameraState.INIT -> PermissionTool.requestFile(this) {
-                            if (saveSetBean.delayCaptureSecond > 0) {//开启延迟拍照或录像
+                            if (saveSetBean.delayCaptureSecond > 0) {
                                 cameraState = CameraState.DELAY
                                 binding.menuSecondView.setToRecord(true)
                                 binding.timeDownView.downSecond(saveSetBean.delayCaptureSecond)
@@ -401,21 +354,21 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
                                 centerCamera()
                             }
                         }
-                        CameraState.DELAY -> {//延迟中则取消
+                        CameraState.DELAY -> {
                             cameraState = CameraState.INIT
                             binding.timeDownView.cancel()
                             binding.menuSecondView.updateCameraModel()
                         }
-                        CameraState.TAKING -> {//拍照录像中则取消
-                            if (saveSetBean.isVideoMode) {//录像 录制中->结束录制
+                        CameraState.TAKING -> {
+                            if (saveSetBean.isVideoMode) {
                                 stopIfVideoing()
-                            } else {//拍照 连续拍照或拍照->取消连续拍照
+                            } else {
                                 stopIfContinua()
                             }
                         }
                     }
                 }
-                1 -> {//图库
+                1 -> {
                     lifecycleScope.launch {
                         stopIfVideoing()
                         delay(500)
@@ -425,14 +378,14 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
                             .navigation()
                     }
                 }
-                2 -> {//更多菜单
+                2 -> {
                     showCameraItemPopup()
                 }
-                3 -> {//切换到拍照
+                3 -> {
                     stopIfContinua()
                     saveSetBean.isVideoMode = false
                 }
-                4 -> {//切换到录像
+                4 -> {
                     stopIfContinua()
                     saveSetBean.isVideoMode = true
                 }
@@ -454,7 +407,7 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
                             }
                             .show()
                     }
-                    if (!binding.trendView.isVisible) {//当前趋势图如果已显示着的话，则不去更改
+                    if (!binding.trendView.isVisible) {
                         binding.trendView.isVisible = true
                         binding.trendView.close()
                     }
@@ -469,19 +422,18 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
         binding.menuSecondView.onTwoLightListener = { twoLightType, isSelected ->
             popupWindow?.dismiss()
             when (twoLightType) {
-                TwoLightType.P_IN_P -> {//画中画
+                TwoLightType.P_IN_P -> {
                     switchPinPState(true)
                 }
-                TwoLightType.BLEND_EXTENT -> {//融合度
+                TwoLightType.BLEND_EXTENT -> {
                     if (!binding.cameraPreView.isPreviewing && isSelected) {
-                        //未开启画中画开启融合度设置，需要把画中画打开
                         switchPinPState(false)
                     }
                     if (isSelected) {
                         showBlendExtentPopup()
                     }
                 }
-                else -> {//其他不用处理，不是双光设备
+                else -> {
 
                 }
             }
@@ -512,25 +464,25 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
         binding.menuSecondView.onSettingListener = { type, isSelected ->
             popupWindow?.dismiss()
             when (type) {
-                SettingType.PSEUDO_BAR -> {//伪彩条
+                SettingType.PSEUDO_BAR -> {
                     saveSetBean.isOpenPseudoBar = !saveSetBean.isOpenPseudoBar
                     binding.clPseudoBar.isVisible = saveSetBean.isOpenPseudoBar
                     binding.menuSecondView.setSettingSelected(SettingType.PSEUDO_BAR, saveSetBean.isOpenPseudoBar)
                 }
-                SettingType.CONTRAST -> {//对比度
+                SettingType.CONTRAST -> {
                     if (!isSelected) {
                         showContrastPopup()
                     }
                 }
-                SettingType.DETAIL -> {//细节
+                SettingType.DETAIL -> {
                     if (!isSelected) {
                         showSharpnessPopup()
                     }
                 }
-                SettingType.ALARM -> {//预警
+                SettingType.ALARM -> {
                     showTempAlarmSetDialog()
                 }
-                SettingType.ROTATE -> {//旋转
+                SettingType.ROTATE -> {
                     saveSetBean.rotateAngle = if (saveSetBean.rotateAngle == 0) 270 else (saveSetBean.rotateAngle - 90)
                     binding.menuSecondView.setSettingRotate(saveSetBean.rotateAngle)
 
@@ -546,7 +498,7 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
 
                     rotateUI(saveSetBean.isRotatePortrait())
                 }
-                SettingType.FONT -> {//字体颜色
+                SettingType.FONT -> {
                     val colorPickDialog = ColorPickDialog(this, saveSetBean.tempTextColor, saveSetBean.tempTextSize)
                     colorPickDialog.onPickListener = { color, size ->
                         saveSetBean.tempTextColor = color
@@ -557,18 +509,16 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
                     }
                     colorPickDialog.show()
                 }
-                SettingType.MIRROR -> {//镜像
+                SettingType.MIRROR -> {
                     saveSetBean.isOpenMirror = !isSelected
                     binding.menuSecondView.setSettingSelected(SettingType.MIRROR, !isSelected)
                     lifecycleScope.launch {
                         HikHelper.setMirror(saveSetBean.rotateAngle, !isSelected)
                     }
                 }
-                SettingType.COMPASS -> {//指南针
-                    //指南针只有 TS001 才有
+                SettingType.COMPASS -> {
                 }
                 SettingType.WATERMARK -> {
-                    //水印菜单只有 2D 编辑才有
                 }
             }
         }
@@ -579,7 +529,7 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
                 HikHelper.setTemperatureMode(saveSetBean.temperatureMode)
                 dismissLoadingDialog()
             }
-            if (it == CameraItemBean.TYPE_TMP_H && SharedManager.isTipHighTemp) {//切换到高温档
+            if (it == CameraItemBean.TYPE_TMP_H && SharedManager.isTipHighTemp) {
                 TipShutterDialog.Builder(this)
                     .setTitle(R.string.tc_high_temp_test)
                     .setMessage(
@@ -597,39 +547,30 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
             }
         }
 
-        binding.menuSecondView.isVideoMode = saveSetBean.isVideoMode //恢复拍照/录像状态
-        binding.menuSecondView.fenceSelectType = FenceType.FULL //默认选中全图
-        binding.menuSecondView.setPseudoColor(saveSetBean.pseudoColorMode) //选中伪彩
-        binding.menuSecondView.setSettingRotate(saveSetBean.rotateAngle) //旋转角度
-        binding.menuSecondView.setSettingSelected(SettingType.MIRROR, saveSetBean.isOpenMirror) //镜像
-        binding.menuSecondView.setSettingSelected(SettingType.PSEUDO_BAR, saveSetBean.isOpenPseudoBar) //伪彩条
-        binding.menuSecondView.setSettingSelected(SettingType.ALARM, saveSetBean.alarmBean.isOpen()) //温度报警
-        binding.menuSecondView.setSettingSelected(SettingType.FONT, !saveSetBean.isTempTextDefault())//字体颜色
-        binding.menuSecondView.setTempLevel(saveSetBean.temperatureMode) //温度档位
-        binding.menuSecondView.isUnitF = SharedManager.getTemperature() == 0 //温度档位单位
+        binding.menuSecondView.isVideoMode = saveSetBean.isVideoMode
+        binding.menuSecondView.fenceSelectType = FenceType.FULL
+        binding.menuSecondView.setPseudoColor(saveSetBean.pseudoColorMode)
+        binding.menuSecondView.setSettingRotate(saveSetBean.rotateAngle)
+        binding.menuSecondView.setSettingSelected(SettingType.MIRROR, saveSetBean.isOpenMirror)
+        binding.menuSecondView.setSettingSelected(SettingType.PSEUDO_BAR, saveSetBean.isOpenPseudoBar)
+        binding.menuSecondView.setSettingSelected(SettingType.ALARM, saveSetBean.alarmBean.isOpen())
+        binding.menuSecondView.setSettingSelected(SettingType.FONT, !saveSetBean.isTempTextDefault())
+        binding.menuSecondView.setTempLevel(saveSetBean.temperatureMode)
+        binding.menuSecondView.isUnitF = SharedManager.getTemperature() == 0
     }
 
-
-    /**
-     * 当前 拍照/录像 状态.
-     */
     private var cameraState = CameraState.INIT
     private enum class CameraState {
-        /** 拍照或录像状态-初始状态 */
+        
         INIT,
-        /** 拍照或录像状态-延迟拍照、延迟录像中 */
+        
         DELAY,
-        /** 拍照中、连续拍照中、录像中 */
+        
         TAKING,
     }
 
-    /**
-     * 执行连续拍照的 Job
-     */
     private var continuousJob: Job? = null
-    /**
-     * 如果正在连续拍照，则结束连接拍照.
-     */
+    
     private fun stopIfContinua() {
         if (cameraState == CameraState.TAKING) {
             continuousJob?.cancel()
@@ -639,13 +580,10 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
         }
     }
 
-    /**
-     * 执行 拍照 或 录像 操作.
-     */
     private fun centerCamera() {
-        if (saveSetBean.isVideoMode) {//录制视频
+        if (saveSetBean.isVideoMode) {
             startVideo()
-        } else {//拍照
+        } else {
             cameraState = CameraState.TAKING
             val continuousBean = SharedManager.continuousBean
             if (continuousBean.isOpen) {
@@ -671,18 +609,10 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
         }
     }
 
-    /**
-     * 执行视频软编码的工具类
-     */
     private var videoRecord: VideoRecordFFmpeg? = null
-    /**
-     * 录制视频时计时 Job
-     */
+    
     private var videoTimeJob: Job? = null
 
-    /**
-     * 开始录像
-     */
     private fun startVideo() {
         if (!VideoRecordFFmpeg.canStartVideoRecord(this)) {
             return
@@ -721,16 +651,11 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
                 }
             }.collect {
                 binding.tvVideoTime.text = TimeTool.showVideoTime(it * 1000L)
-                //实际上的1小时检测在视频录制里触发，故而这里结束不需要处理
             }
         }
         binding.tvVideoTime.isVisible = true
     }
 
-    /**
-     * 如果正在进行录像，则停止录像.
-     * @param isLifecycle 是否使用 lifecycleScope
-     */
     private fun stopIfVideoing(isLifecycle: Boolean = true) {
         if (cameraState == CameraState.TAKING) {
             cameraState = CameraState.INIT
@@ -749,9 +674,6 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
         }
     }
 
-    /**
-     * 执行一次拍照操作.
-     */
     private suspend fun camera() = withContext(Dispatchers.Default) {
         withContext(Dispatchers.Main) {
             binding.menuSecondView.setToCamera()
@@ -759,14 +681,11 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
 
         var bitmap: Bitmap = binding.hikSurfaceView.getScaleBitmap()
 
-        //画中画
         if (saveSetBean.isOpenTwoLight) {
             bitmap = BitmapUtils.mergeBitmapByViewNonNull(bitmap, binding.cameraPreView.getBitmap(), binding.cameraPreView)
-            //保存了画中画，但是没有使用，这里保持与旧逻辑一致，也保存一下好了
             ImageUtils.saveImageToApp(bitmap)
         }
 
-        //伪彩条
         if (binding.clPseudoBar.isVisible) {
             val seekBarBitmap = binding.clPseudoBar.drawToBitmap()
             bitmap = BitmapUtils.mergeBitmap(
@@ -777,17 +696,14 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
             )
         }
 
-        //温度、点线面
         if (binding.temperatureView.mode != Mode.CLEAR) {
             binding.temperatureView.draw(Canvas(bitmap))
         }
 
-        //汽车检测
         if (binding.llCarDetect.isVisible) {
             bitmap = BitmapUtils.mergeBitmap(bitmap, binding.llCarDetect.drawToBitmap(), 0, 0)
         }
 
-        //水印
         val watermarkBean: WatermarkBean = SharedManager.watermarkBean
         if (watermarkBean.isOpen) {
             bitmap = BitmapUtils.drawCenterLable(
@@ -830,18 +746,14 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
         EventBus.getDefault().post(GalleryAddEvent())
     }
 
-    /**
-     * 切换 画中画 开启或关闭 状态
-     * @param isShowTips 是否需要显示操作指引弹框.
-     */
     private fun switchPinPState(isShowTips: Boolean) {
-        if (!CheckDoubleClick.isFastDoubleClick()) {//防止手速快的用户快速点击
-            if (binding.cameraPreView.isPreviewing) {//开启->关闭
+        if (!CheckDoubleClick.isFastDoubleClick()) {
+            if (binding.cameraPreView.isPreviewing) {
                 saveSetBean.isOpenTwoLight = false
                 binding.cameraPreView.isVisible = false
                 binding.cameraPreView.closeCamera()
                 binding.menuSecondView.setTwoLightSelected(TwoLightType.P_IN_P, false)
-            } else {//关闭->开启
+            } else {
                 PermissionTool.requestCamera(this) {
                     saveSetBean.isOpenTwoLight = true
                     binding.cameraPreView.isVisible = true
@@ -863,11 +775,6 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
         }
     }
 
-    /**
-     * 执行 UI 相关旋转操作。
-     * 旋转除了更改机芯旋转角度外，还需要更改 APP 的显示容器尺寸、温度 View 尺寸。
-     * @param isPortrait true192x256 false-256x192
-     */
     private fun rotateUI(isPortrait: Boolean) {
         val constraintSet = ConstraintSet()
         constraintSet.clone(binding.clRoot)
@@ -877,7 +784,6 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
         binding.clPseudoBar.requestLayout()
         binding.clPseudoBar.updateBitmap()
     }
-
 
     private val pseudoSetResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         if (it.resultCode == RESULT_OK) {
@@ -889,9 +795,6 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
         }
     }
 
-    /**
-     * 刷新自定义渲染影响的相关内容.
-     */
     private fun refreshCustomPseudo(newData: CustomPseudoBean) {
         val isCustom: Boolean = newData.isUseCustomPseudo
         binding.tvTempContent.isVisible = isCustom
@@ -902,12 +805,11 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
         binding.hikSurfaceView.refreshCustomPseudo(newData)
         binding.menuSecondView.setPseudoColor(if (isCustom) -1 else saveSetBean.pseudoColorMode)
 
-        //动态渲染或自定义渲染切换时，要将等温尺重置
         limitTempMin = Float.MIN_VALUE
         limitTempMax = Float.MAX_VALUE
         binding.pseudoSeekBar.setRangeAndPro(limitTempMin, limitTempMax, currentMin, currentMax)
 
-        if (isCustom) {//使用自定义渲染
+        if (isCustom) {
             val min: Float = UnitTools.showUnitValue(newData.minTemp)
             val max: Float = UnitTools.showUnitValue(newData.maxTemp)
             binding.pseudoSeekBar.isEnabled = false
@@ -919,9 +821,6 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
         this.customPseudoBean = newData
     }
 
-    /**
-     * 切换超分开关
-     */
     private fun switchAmplify() {
         if (SupHelp.getInstance().loadOpenclSuccess) {
             lifecycleScope.launch {
@@ -959,10 +858,6 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
         }
     }
 
-
-    /**
-     * 显示材料发射率提示弹窗.
-     */
     private fun showEmissivityTipsDialog() {
         if (SharedManager.isHideEmissivityTips) {
             return
@@ -978,11 +873,7 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
         dialog.show()
     }
 
-    /**
-     * 显示 拍照/录像 菜单
-     */
     private fun showCameraItemPopup() {
-        //这个菜单跟融合度、对比度、锐度不太一样，只有点菜单时才切换显示隐藏/隐藏
         if (popupWindow?.isShowing == true) {
             popupWindow?.dismiss()
             return
@@ -1003,11 +894,11 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
             }
         }
         cameraItemPopup.onAudioCLickListener = {
-            if (saveSetBean.isRecordAudio) {//开启->关闭
+            if (saveSetBean.isRecordAudio) {
                 saveSetBean.isRecordAudio = false
                 cameraItemPopup.isAudioSelect = false
                 videoRecord?.updateAudioState(false)
-            } else {//关闭->开启
+            } else {
                 PermissionTool.requestRecordAudio(this) {
                     saveSetBean.isRecordAudio = true
                     cameraItemPopup.isAudioSelect = true
@@ -1019,9 +910,6 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
         popupWindow = cameraItemPopup
     }
 
-    /**
-     * 显示融合度设置弹框
-     */
     private fun showBlendExtentPopup() {
         val seekBarPopup = SeekBarPopup(this, true)
         seekBarPopup.isRealTimeTrigger = true
@@ -1037,13 +925,10 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
         popupWindow = seekBarPopup
     }
 
-    /**
-     * 显示对比度设置 PopupWindow
-     */
     private fun showContrastPopup() {
         binding.menuSecondView.setSettingSelected(SettingType.CONTRAST, true)
 
-        val maxContrast = 255 //saveSettingBean 里对比度取值 [0, 255]
+        val maxContrast = 255
         val seekBarPopup = SeekBarPopup(this)
         seekBarPopup.progress = (saveSetBean.contrastValue * 100 / 255f).toInt()
         seekBarPopup.onValuePickListener = {
@@ -1059,13 +944,10 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
         popupWindow = seekBarPopup
     }
 
-    /**
-     * 显示细节(锐度) 设置 PopupWindow
-     */
     private fun showSharpnessPopup() {
         binding.menuSecondView.setSettingSelected(SettingType.DETAIL, true)
 
-        val maxSharpness = 4 //实际对比度取值 [0, 4]，用于百分比转换
+        val maxSharpness = 4
         val seekBarPopup = SeekBarPopup(this)
         seekBarPopup.progress = (saveSetBean.ddeConfig * 100f / maxSharpness).toInt()
         seekBarPopup.onValuePickListener = {
@@ -1083,9 +965,6 @@ class IRThermalHikActivity : BaseBindingActivity<ActivityIrThermalHikBinding>() 
         popupWindow = seekBarPopup
     }
 
-    /**
-     * 显示温度报警设置弹窗.
-     */
     private fun showTempAlarmSetDialog() {
         val tempAlarmSetDialog = TempAlarmSetDialog(this, false)
         tempAlarmSetDialog.alarmBean = saveSetBean.alarmBean

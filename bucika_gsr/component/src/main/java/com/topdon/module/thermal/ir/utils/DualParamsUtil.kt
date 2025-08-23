@@ -3,13 +3,7 @@ package com.topdon.module.thermal.ir.utils
 import com.energy.iruvc.utils.DualCameraParams
 import com.topdon.lib.core.common.SaveSettingUtil
 
-/**
-author: CaiSongL
-date: 2024/2/1 17:59
-des:艾睿枚举参数转换工具
- **/
 object DualParamsUtil {
-
 
     fun wifiFusionTypeToParams(fusionType: Int) : Int{
         return when(fusionType){
@@ -20,7 +14,6 @@ object DualParamsUtil {
             else -> 3
         }
     }
-
 
     fun fusionTypeToParams(fusionType: Int) : DualCameraParams.FusionType {
         return when(fusionType){
@@ -46,6 +39,5 @@ object DualParamsUtil {
             else -> SaveSettingUtil.FusionTypeLPYFusion
         }
     }
-
 
 }

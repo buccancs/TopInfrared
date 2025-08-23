@@ -21,25 +21,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
 
-/**
- * 报告详情界面.
- *
- * 需要传递
- * - 一份报告所有信息 [ExtraKeyConfig.REPORT_BEAN]
- */
 @Route(path = RouterConfig.REPORT_DETAIL)
 class ReportDetailActivity: BaseActivity() {
 
-    /**
-     * 从上一界面传递过来的，报告所有信息.
-     */
     private var reportBean: ReportBean? = null
 
-    /**
-     * 当前预览页面已生成的 PDF 文件绝对路径
-     */
     private var pdfFilePath: String? = null
-
 
     override fun initContentView() = R.layout.activity_report_detail
 
@@ -116,10 +103,6 @@ class ReportDetailActivity: BaseActivity() {
         startActivity(Intent.createChooser(shareIntent, getString(R.string.battery_share)))
     }
 
-    /**
-     * 获取需要转为 PDF 的所有 View 列表.
-     * 注意：水印 View 不在列表内，需要自行处理.
-     */
     private fun getPrintViewList(): ArrayList<View> {
         val result = ArrayList<View>()
         result.add(report_info_view)

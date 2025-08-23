@@ -31,22 +31,9 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import java.io.File
 
-/**
- * 生成报告图片拾取.
- *
- * 需要传递参数：
- * - 是否 TC007: [ExtraKeyConfig.IS_TC007] 进入目录不同
- * - [ExtraKeyConfig.REPORT_INFO] - 报告信息
- * - [ExtraKeyConfig.REPORT_CONDITION] - 检测条件
- * - [ExtraKeyConfig.REPORT_IR_LIST] - 当前已添加的图片对应数据列表
- */
 @Route(path = RouterConfig.REPORT_PICK_IMG)
 class ReportPickImgActivity : BaseActivity(), View.OnClickListener {
 
-    /**
-     * 从上一界面传递过来的，当前是否为 TC007 设备类型.
-     * true-TC007 false-其他插件式设备
-     */
     private var isTC007 = false
 
     private val viewModel: IRGalleryViewModel by viewModels()
@@ -140,7 +127,6 @@ class ReportPickImgActivity : BaseActivity(), View.OnClickListener {
     private fun initRecycler() {
         val spanCount = 3
         val gridLayoutManager = GridLayoutManager(this, spanCount)
-        //动态设置span
         gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
                 return if (adapter.dataList[position] is GalleryTitle) spanCount else 1
@@ -150,7 +136,6 @@ class ReportPickImgActivity : BaseActivity(), View.OnClickListener {
         ir_gallery_recycler.layoutManager = gridLayoutManager
 
         adapter.onLongEditListener = {
-            // adapter 里面的切换编辑太乱了，先这么顶着
             group_bottom.isVisible = true
             title_view.setTitleText(getString(R.string.chosen_item, adapter.selectList.size))
             title_view.setLeftDrawable(R.drawable.svg_x_cc)

@@ -15,13 +15,7 @@ import com.topdon.lib.core.R
 import com.topdon.lib.core.utils.ScreenUtil
 import kotlinx.android.synthetic.main.dialog_tip_otg.view.*
 
-
-/**
- * 提示窗
- * create by fylder on 2018/6/15
- **/
 class TipOtgDialog : Dialog {
-
 
     constructor(context: Context) : super(context)
 
@@ -89,7 +83,6 @@ class TipOtgDialog : Dialog {
             this.dialog!!.dismiss()
         }
 
-
         fun create(): TipOtgDialog {
             if (dialog == null) {
                 dialog = TipOtgDialog(context!!, R.style.InfoDialog)
@@ -108,13 +101,11 @@ class TipOtgDialog : Dialog {
             val lp = dialog!!.window!!.attributes
             val wRatio =
                 if (context!!.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
-                    //竖屏
                     0.85
                 } else {
-                    //横屏
                     0.35
                 }
-            lp.width = (ScreenUtil.getScreenWidth(context!!) * wRatio).toInt() //设置宽度
+            lp.width = (ScreenUtil.getScreenWidth(context!!) * wRatio).toInt()
             dialog!!.window!!.attributes = lp
 
             dialog!!.setCanceledOnTouchOutside(canceled)
@@ -142,7 +133,6 @@ class TipOtgDialog : Dialog {
                 cancelBtn.visibility = View.GONE
                 cancelBtn.text = ""
             }
-            //msg
             if (message != null) {
                 messageText.visibility = View.VISIBLE
                 messageText.setText(message, TextView.BufferType.NORMAL)

@@ -12,9 +12,6 @@ import com.github.mikephil.charting.utils.ObjectPool;
 import com.github.mikephil.charting.utils.Transformer;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
-/**
- * Created by Philipp Jahoda on 19/02/16.
- */
 @SuppressLint("NewApi")
 public class AnimatedZoomJob extends AnimatedViewPortJob implements Animator.AnimatorListener {
 

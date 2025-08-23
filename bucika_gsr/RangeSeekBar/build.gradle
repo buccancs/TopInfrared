@@ -5,7 +5,6 @@ android {
     namespace 'com.jaygoo.widget'
     compileSdk rootProject.ext.android.compileSdk
 
-
     defaultConfig {
         minSdk rootProject.ext.android.minSdk
         targetSdk rootProject.ext.android.targetSdk
@@ -28,18 +27,12 @@ dependencies {
 
 }
 
-// 指定编码
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
 
-// 打包源码
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
     archiveClassifier = 'sources'
 }
-
-
-
-
 

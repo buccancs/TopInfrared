@@ -15,16 +15,8 @@ import com.topdon.lib.core.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-/**
- * 图片加载
- * Created by fylder on 2018/6/23.
- */
 object GlideLoader {
 
-
-    /**
-     * 图像默认图
-     */
     private fun getPhotoOptions(): RequestOptions {
         val multi = MultiTransformation(CenterCrop(), RoundedCorners(SizeUtils.dp2px(6f)))
         return RequestOptions
@@ -32,9 +24,6 @@ object GlideLoader {
             .error(R.mipmap.ic_default_head)
     }
 
-    /**
-     * 圆形图片
-     */
     fun loadCircle(img: ImageView, resourceId: Int, options: RequestOptions) {
         Glide.with(img)
             .load(resourceId)
@@ -42,9 +31,6 @@ object GlideLoader {
             .into(img)
     }
 
-    /**
-     * 圆形图片
-     */
     fun loadCircle(img: ImageView, url: String, options: RequestOptions) {
         Glide.with(img)
             .load(url)
@@ -52,9 +38,6 @@ object GlideLoader {
             .into(img)
     }
 
-    /**
-     * 圆形图片
-     */
     fun loadCircle(img: ImageView, drawable: Drawable, options: RequestOptions) {
         Glide.with(img)
             .load(drawable)
@@ -62,9 +45,6 @@ object GlideLoader {
             .into(img)
     }
 
-    /**
-     * 圆形图片
-     */
     fun loadCircle(img: ImageView, uri: Uri, options: RequestOptions) {
         Glide.with(img)
             .load(uri)
@@ -72,9 +52,6 @@ object GlideLoader {
             .into(img)
     }
 
-    /**
-     * 圆形图片
-     */
     fun loadCircle(img: ImageView, url: String, resourceId: Int, options: RequestOptions) {
         Glide.with(img)
             .load(url)
@@ -84,9 +61,6 @@ object GlideLoader {
             .into(img)
     }
 
-    /**
-     * 圆角形图片
-     */
     fun loadRounded(img: ImageView, resourceId: Int) {
         Glide.with(img)
             .load(resourceId)
@@ -94,9 +68,6 @@ object GlideLoader {
             .into(img)
     }
 
-    /**
-     * 圆角形图片
-     */
     fun loadRounded(img: ImageView, url: String) {
         Glide.with(img)
             .load(url)
@@ -104,9 +75,6 @@ object GlideLoader {
             .into(img)
     }
 
-    /**
-     * 圆角形图片
-     */
     fun loadRounded(img: ImageView, drawable: Drawable) {
         Glide.with(img)
             .load(drawable)
@@ -114,9 +82,6 @@ object GlideLoader {
             .into(img)
     }
 
-    /**
-     * 圆角形图片
-     */
     fun loadRounded(img: ImageView, uri: Uri) {
         Glide.with(img)
             .load(uri)
@@ -124,9 +89,6 @@ object GlideLoader {
             .into(img)
     }
 
-    /**
-     * 加载图片
-     */
     fun load(img: ImageView, url: String?) {
         val multi = MultiTransformation(
             CenterCrop()
@@ -141,9 +103,6 @@ object GlideLoader {
             .into(img)
     }
 
-    /**
-     * 加载图片
-     */
     fun loadGallery(img: ImageView, url: String?) {
         val multi = MultiTransformation(
             CenterCrop()
@@ -158,9 +117,6 @@ object GlideLoader {
             .into(img)
     }
 
-    /**
-     * 加载图片
-     */
     fun loadFit(img: ImageView, url: String?) {
         val multi = MultiTransformation(
             FitCenter()
@@ -175,9 +131,6 @@ object GlideLoader {
             .into(img)
     }
 
-    /**
-     * 加载图片
-     */
     fun load(img: ImageView, resourceId: Int) {
         val multi = MultiTransformation(
             FitCenter()
@@ -190,7 +143,6 @@ object GlideLoader {
             .apply(options)
             .into(img)
     }
-
 
     fun loadP(img: ImageView, url: String?) {
         Glide.with(img)

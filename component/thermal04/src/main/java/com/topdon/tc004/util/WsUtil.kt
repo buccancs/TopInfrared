@@ -28,7 +28,7 @@ object WsUtil {
         return wsMode
     }
 
-    fun getBrightness(brightness : Int) : Int{//先按目前的接口来，后续会换成档位
+    fun getBrightness(brightness : Int) : Int{
         var wsLight :Int = MenuBean.TYPE_LIGHT_MIDDLE
         when (brightness) {
             in 81..100 -> {

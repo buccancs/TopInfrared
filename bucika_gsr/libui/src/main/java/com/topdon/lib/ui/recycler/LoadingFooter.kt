@@ -13,9 +13,6 @@ import com.scwang.smart.refresh.layout.constant.RefreshState
 import com.scwang.smart.refresh.layout.constant.SpinnerStyle
 import com.topdon.lib.ui.R
 
-/**
- * 自定义FooterView
- */
 class LoadingFooter : LinearLayout, RefreshFooter {
 
     private val llLoading: LinearLayout
@@ -29,7 +26,6 @@ class LoadingFooter : LinearLayout, RefreshFooter {
         llLoading = findViewById(R.id.ll_loading)
         clLoadEnd = findViewById(R.id.cl_load_end)
     }
-
 
     override fun isSupportHorizontalDrag(): Boolean = false
 
@@ -56,8 +52,6 @@ class LoadingFooter : LinearLayout, RefreshFooter {
     }
 
     override fun onFinish(refreshLayout: RefreshLayout, success: Boolean): Int = 0
-
-
 
     override fun onStateChanged(refreshLayout: RefreshLayout, oldState: RefreshState, newState: RefreshState) {
 

@@ -35,11 +35,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 
-
-/**
- * date: 2021/8/12 11:50
- * author: bichuanfeng
- */
 public class EasyBLE {
     static volatile EasyBLE instance;
     private static final EasyBLEBuilder DEFAULT_BUILDER = new EasyBLEBuilder();
@@ -57,7 +52,6 @@ public class EasyBLE {
     private BluetoothAdapter bluetoothAdapter;
     private BroadcastReceiver broadcastReceiver;
     private final Map<String, Connection> connectionMap = new ConcurrentHashMap<>();
-    //已连接的设备MAC地址集合
     private final List<String> addressList = new CopyOnWriteArrayList<>();
     private final boolean internalObservable;
 
@@ -85,9 +79,6 @@ public class EasyBLE {
         }    
     }
 
-    /**
-     * 获取实例。单例的
-     */
     public static EasyBLE getInstance() {
         if (instance == null) {
             synchronized (EasyBLE.class) {
@@ -158,9 +149,6 @@ public class EasyBLE {
         return isInitialized && application != null && instance != null;
     }
 
-    /**
-     * 蓝牙是否开启
-     */
     public boolean isBluetoothOn() {
         return bluetoothAdapter != null && bluetoothAdapter.isEnabled();
     }
@@ -171,21 +159,17 @@ public class EasyBLE {
             String action = intent.getAction();
             if (action != null) {
                 switch (action) {
-                    case BluetoothAdapter.ACTION_STATE_CHANGED: //蓝牙开关状态变化 
+                    case BluetoothAdapter.ACTION_STATE_CHANGED:
                         if (bluetoothAdapter != null) {
-                            //通知观察者蓝牙状态
                             observable.notifyObservers(MethodInfoGenerator.onBluetoothAdapterStateChanged(bluetoothAdapter.getState()));
-                            if (bluetoothAdapter.getState() == BluetoothAdapter.STATE_OFF) { //蓝牙关闭
+                            if (bluetoothAdapter.getState() == BluetoothAdapter.STATE_OFF) {
                                 logger.log(Log.DEBUG, Logger.TYPE_GENERAL, "蓝牙关闭了");
-                                //通知搜索器
                                 if (scanner != null) {
                                     scanner.onBluetoothOff();
                                 }
-                                //断开所有连接
                                 disconnectAllConnections();
                             } else if (bluetoothAdapter.getState() == BluetoothAdapter.STATE_ON) {
                                 logger.log(Log.DEBUG, Logger.TYPE_GENERAL, "蓝牙开启了");
-                                //重连所有设置了自动重连的连接
                                 for (Connection connection : connectionMap.values()) {
                                     if (connection.isAutoReconnectEnabled()) {
                                         connection.reconnect();
@@ -219,21 +203,17 @@ public class EasyBLE {
                         break;    
                 }
             }
-            if (BluetoothAdapter.ACTION_STATE_CHANGED.equals(intent.getAction())) { //蓝牙开关状态变化 
+            if (BluetoothAdapter.ACTION_STATE_CHANGED.equals(intent.getAction())) {
                 if (bluetoothAdapter != null) {
-                    //通知观察者蓝牙状态
                     observable.notifyObservers(MethodInfoGenerator.onBluetoothAdapterStateChanged(bluetoothAdapter.getState()));
-                    if (bluetoothAdapter.getState() == BluetoothAdapter.STATE_OFF) { //蓝牙关闭
+                    if (bluetoothAdapter.getState() == BluetoothAdapter.STATE_OFF) {
                         logger.log(Log.DEBUG, Logger.TYPE_GENERAL, "蓝牙关闭了");
-                        //通知搜索器
                         if (scanner != null) {
                             scanner.onBluetoothOff();
                         }
-                        //断开所有连接
                         disconnectAllConnections();
                     } else if (bluetoothAdapter.getState() == BluetoothAdapter.STATE_ON) {
                         logger.log(Log.DEBUG, Logger.TYPE_GENERAL, "蓝牙开启了");
-                        //重连所有设置了自动重连的连接
                         for (Connection connection : connectionMap.values()) {
                             if (connection.isAutoReconnectEnabled()) {
                                 connection.reconnect();
@@ -251,17 +231,14 @@ public class EasyBLE {
         }
         Inspector.requireNonNull(application, "application can't be");
         this.application = application;
-        //检查是否支持BLE
         if (!application.getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
             return;
         }
-        //获取蓝牙配置器
         BluetoothManager bluetoothManager = (BluetoothManager) application.getSystemService(Context.BLUETOOTH_SERVICE);
         if (bluetoothManager == null || bluetoothManager.getAdapter() == null) {
             return;
         }
         bluetoothAdapter = bluetoothManager.getAdapter();
-        //注册蓝牙开关状态广播接收者
         if (broadcastReceiver == null) {
             broadcastReceiver = new InnerBroadcastReceiver();
             IntentFilter filter = new IntentFilter();
@@ -296,16 +273,10 @@ public class EasyBLE {
         return isInitialized();
     }
 
-    /**
-     * 日志输出控制
-     */
     public void setLogEnabled(boolean isEnabled) {
         logger.setEnabled(isEnabled);
     }
 
-    /**
-     * 关闭所有连接并释放资源
-     */
     public synchronized void release() {
         if (broadcastReceiver != null) {
             application.unregisterReceiver(broadcastReceiver);
@@ -322,9 +293,6 @@ public class EasyBLE {
         }
     }
 
-    /**
-     * 销毁，可重新构建
-     */
     public void destroy() {
         release();
         synchronized (EasyBLE.class) {
@@ -332,41 +300,26 @@ public class EasyBLE {
         }
     }
 
-    /**
-     * 注册连接状态及数据接收观察者
-     */
     public void registerObserver(EventObserver observer) {
         if (checkStatus()) {
             observable.registerObserver(observer);
         }
     }
 
-    /**
-     * 查询观察者是否注册
-     */
     public boolean isObserverRegistered(EventObserver observer) {
         return observable.isRegistered(observer);
     }
 
-    /**
-     * 取消注册连接状态及数据接收观察者
-     */
     public void unregisterObserver(EventObserver observer) {
         observable.unregisterObserver(observer);
     }
 
-    /**
-     * 通知所有观察者事件变化，通常只用在
-     *
-     * @param info 方法信息实例
-     */
     public void notifyObservers(MethodInfo info) {
         if (checkStatus()) {
             observable.notifyObservers(info);
         }
     }
     
-    //检查并实例化搜索器
     private void checkAndInstanceScanner() {
         if (scanner == null) {
             synchronized (this) {
@@ -388,10 +341,7 @@ public class EasyBLE {
             }
         }        
     }
-    
-    /**
-     * 添加搜索监听器
-     */
+
     public void addScanListener(ScanListener listener) {
         checkAndInstanceScanner();
         if (checkStatus() && scanner != null) {
@@ -399,25 +349,16 @@ public class EasyBLE {
         }
     }
 
-    /**
-     * 移除搜索监听器
-     */
     public void removeScanListener(ScanListener listener) {
         if (scanner != null) {
             scanner.removeScanListener(listener);
         }
     }
 
-    /**
-     * 是否正在搜索
-     */
     public boolean isScanning() {
         return scanner != null && scanner.isScanning();
     }
 
-    /**
-     * 搜索BLE设备
-     */
     public void startScan() {
         checkAndInstanceScanner();
         if (checkStatus() && scanner != null) {
@@ -425,67 +366,33 @@ public class EasyBLE {
         }
     }
 
-    /**
-     * 停止搜索
-     */
     public void stopScan() {
         if (checkStatus() && scanner != null) {
             scanner.stopScan(false);
         }
     }
 
-    /**
-     * 停止搜索，不触发回调
-     */
     public void stopScanQuietly() {
         if (checkStatus() && scanner != null) {
             scanner.stopScan(true);
         }
     }
 
-    /**
-     * 创建连接
-     *
-     * @param address 蓝牙地址
-     * @return 返回创建的连接实例，创建失败则返回null
-     */
     @Nullable
     public Connection connect(String address) {
         return connect(address, null, null);
     }
 
-    /**
-     * 创建连接
-     *
-     * @param address       蓝牙地址
-     * @param configuration 连接配置
-     * @return 返回创建的连接实例，创建失败则返回null
-     */
     @Nullable
     public Connection connect(String address, ConnectionConfiguration configuration) {
         return connect(address, configuration, null);
     }
 
-    /**
-     * 创建连接
-     *
-     * @param address  蓝牙地址
-     * @param observer 伴生观察者
-     * @return 返回创建的连接实例，创建失败则返回null
-     */
     @Nullable
     public Connection connect(String address, EventObserver observer) {
         return connect(address, null, observer);
     }
 
-    /**
-     * 创建连接
-     *
-     * @param address       蓝牙地址
-     * @param configuration 连接配置
-     * @param observer      伴生观察者
-     * @return 返回创建的连接实例，创建失败则返回null
-     */
     @Nullable
     public Connection connect(String address, ConnectionConfiguration configuration,
                               EventObserver observer) {
@@ -499,56 +406,27 @@ public class EasyBLE {
         return null;
     }
 
-    /**
-     * 创建连接
-     *
-     * @param device 蓝牙设备实例
-     * @return 返回创建的连接实例，创建失败则返回null
-     */
     @Nullable
     public Connection connect(Device device) {
         return connect(device, null, null);
     }
 
-    /**
-     * 创建连接
-     *
-     * @param device        蓝牙设备实例
-     * @param configuration 连接配置
-     * @return 返回创建的连接实例，创建失败则返回null
-     */
     @Nullable
     public Connection connect(Device device, ConnectionConfiguration configuration) {
         return connect(device, configuration, null);
     }
 
-    /**
-     * 创建连接
-     *
-     * @param device   蓝牙设备实例
-     * @param observer 伴生观察者
-     * @return 返回创建的连接实例，创建失败则返回null
-     */
     @Nullable
     public Connection connect(Device device, EventObserver observer) {
         return connect(device, null, observer);
     }
 
-    /**
-     * 创建连接
-     *
-     * @param device        蓝牙设备实例
-     * @param configuration 连接配置
-     * @param observer      伴生观察者
-     * @return 返回创建的连接实例，创建失败则返回null
-     */
     @Nullable
     public synchronized Connection connect(final Device device, ConnectionConfiguration configuration,
                                            final EventObserver observer) {
         if (checkStatus()) {
             Inspector.requireNonNull(device, "device can't be null");
             Connection connection = connectionMap.remove(device.getAddress());
-            //如果连接已存在，先释放掉
             if (connection != null) {
                 connection.releaseNoEvent();
             }
@@ -578,17 +456,11 @@ public class EasyBLE {
         return null;
     }
 
-    /**
-     * 获取所有连接，无序的
-     */
     @NonNull
     public Collection<Connection> getConnections() {
         return connectionMap.values();
     }
 
-    /**
-     * 获取所有连接，有序的
-     */
     @NonNull
     public List<Connection> getOrderedConnections() {
         List<Connection> list = new ArrayList<>();
@@ -601,17 +473,11 @@ public class EasyBLE {
         return list;
     }
 
-    /**
-     * 获取第一个连接
-     */
     @Nullable
     public Connection getFirstConnection() {
         return addressList.isEmpty() ? null : connectionMap.get(addressList.get(0));
     }
 
-    /**
-     * 获取最后一个连接
-     */
     @Nullable
     public Connection getLastConnection() {
         return addressList.isEmpty() ? null : connectionMap.get(addressList.get(addressList.size() - 1));
@@ -627,9 +493,6 @@ public class EasyBLE {
         return address == null ? null : connectionMap.get(address);
     }
 
-    /**
-     * 断开连接
-     */
     public void disconnectConnection(Device device) {
         if (checkStatus() && device != null) {
             Connection connection = connectionMap.get(device.getAddress());
@@ -639,9 +502,6 @@ public class EasyBLE {
         }
     }
 
-    /**
-     * 断开连接
-     */
     public void disconnectConnection(String address) {
         if (checkStatus() && address != null) {
             Connection connection = connectionMap.get(address);
@@ -651,9 +511,6 @@ public class EasyBLE {
         }
     }
 
-    /**
-     * 断开所有连接
-     */
     public void disconnectAllConnections() {
         if (checkStatus()) {
             for (Connection connection : connectionMap.values()) {
@@ -662,9 +519,6 @@ public class EasyBLE {
         }
     }
 
-    /**
-     * 释放所有连接
-     */
     public void releaseAllConnections() {
         if (checkStatus()) {
             for (Connection connection : connectionMap.values()) {
@@ -675,9 +529,6 @@ public class EasyBLE {
         }
     }
 
-    /**
-     * 释放连接
-     */
     public void releaseConnection(String address) {
         if (checkStatus() && address != null) {
             addressList.remove(address);
@@ -688,9 +539,6 @@ public class EasyBLE {
         }
     }
 
-    /**
-     * 释放连接
-     */
     public void releaseConnection(Device device) {
         if (checkStatus() && device != null) {
             addressList.remove(device.getAddress());
@@ -701,9 +549,6 @@ public class EasyBLE {
         }
     }
 
-    /**
-     * 重连所有设备
-     */
     public void reconnectAll() {
         if (checkStatus()) {
             for (Connection connection : connectionMap.values()) {
@@ -714,9 +559,6 @@ public class EasyBLE {
         }
     }
 
-    /**
-     * 重连设备
-     */
     public void reconnect(Device device) {
         if (checkStatus() && device != null) {
             Connection connection = connectionMap.get(device.getAddress());
@@ -726,11 +568,6 @@ public class EasyBLE {
         }
     }
 
-    /**
-     * 根据MAC地址获取设备的配对状态
-     *
-     * @return {@link BluetoothDevice#BOND_NONE}，{@link BluetoothDevice#BOND_BONDED}，{@link BluetoothDevice#BOND_BONDING}
-     */
     public int getBondState(String address) {
         checkStatus();
         try {
@@ -740,11 +577,6 @@ public class EasyBLE {
         }
     }
 
-    /**
-     * 开始配对
-     *
-     * @param address 设备地址
-     */
     public boolean createBond(String address) {
         checkStatus();
         try {
@@ -755,9 +587,6 @@ public class EasyBLE {
         }
     }
 
-    /**
-     * 根据过滤器，清除配对
-     */
     @SuppressWarnings("all")
     public void clearBondDevices(RemoveBondFilter filter) {
         checkStatus();
@@ -774,11 +603,6 @@ public class EasyBLE {
         }
     }
 
-    /**
-     * 解除配对
-     *
-     * @param address 设备地址
-     */
     @SuppressWarnings("all")
     public void removeBond(String address) {
         checkStatus();

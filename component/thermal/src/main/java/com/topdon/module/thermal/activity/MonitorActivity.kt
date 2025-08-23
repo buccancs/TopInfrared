@@ -24,8 +24,8 @@ class MonitorActivity : BaseActivity(), View.OnClickListener {
 
     var MONITOR_ACTION = STATS_START
 
-    private var selectType = 1//选取点类型(点 线 面)
-    private var selectIndex: ArrayList<Int> = arrayListOf()//选取点
+    private var selectType = 1
+    private var selectIndex: ArrayList<Int> = arrayListOf()
 
     override fun initContentView() = R.layout.activity_monitor
 
@@ -37,11 +37,6 @@ class MonitorActivity : BaseActivity(), View.OnClickListener {
         motion_log_btn.setOnClickListener(this)
         motion_btn.setOnClickListener(this)
         motion_start_btn.setOnClickListener(this)
-//        if (BaseApplication.instance.isConnected()) {
-//            mHandler.postDelayed({
-//                EventBus.getDefault().post(ThermalActionEvent(action = 2001))
-//            }, 300)
-//        }
     }
 
     override fun initData() {
@@ -94,7 +89,6 @@ class MonitorActivity : BaseActivity(), View.OnClickListener {
         motion_btn.visibility = View.GONE
     }
 
-    //秒
     fun updateTime(time: Long) {
         val ss = time % 60
         val mm = time / 60 % 60
@@ -102,6 +96,5 @@ class MonitorActivity : BaseActivity(), View.OnClickListener {
         val mmStr = String.format("%02d", mm)
         motion_start_btn.text = "${mmStr}:${ssStr}"
     }
-
 
 }

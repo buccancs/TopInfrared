@@ -17,19 +17,9 @@ import com.topdon.module.user.R
 import kotlinx.android.synthetic.main.activity_device_details.*
 import kotlinx.coroutines.launch
 
-/**
- * TS004、TC007 设备信息
- *
- * 需要传递参数：
- * - [ExtraKeyConfig.IS_TC007] - 当前设备是否为 TC007
- */
 @Route(path = RouterConfig.DEVICE_INFORMATION)
 class DeviceDetailsActivity : BaseActivity(), View.OnClickListener {
 
-    /**
-     * 从上一界面传递过来的，当前是否为 TC007 设备类型.
-     * true-TC007 false-其他插件式设备
-     */
     private var isTC007 = false
 
     override fun initContentView() = R.layout.activity_device_details
@@ -68,7 +58,7 @@ class DeviceDetailsActivity : BaseActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v) {
-            cl_layout_copy -> {//复制信息
+            cl_layout_copy -> {
                 val text = "${tv_sn.text}:${tv_sn_value.text}  ${tv_device_model.text}:${tv_device_model_value.text}"
                 val cm = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager?
                 val mClipData = ClipData.newPlainText("text", text)

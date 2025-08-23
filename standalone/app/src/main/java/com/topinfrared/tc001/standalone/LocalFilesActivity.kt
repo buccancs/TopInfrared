@@ -49,7 +49,6 @@ class LocalFilesActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_local_files, menu)
         
-        // Setup search
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -100,7 +99,6 @@ class LocalFilesActivity : AppCompatActivity() {
     
     private fun setupUI() {
         binding.apply {
-            // Setup RecyclerView with enhanced adapter
             filesAdapter = LocalFilesAdapter(
                 onFileClick = { file -> openFile(file) },
                 onFileLongClick = { file -> 
@@ -117,7 +115,6 @@ class LocalFilesActivity : AppCompatActivity() {
                 adapter = filesAdapter
             }
             
-            // Setup toolbar buttons
             btnRefresh.setOnClickListener {
                 loadLocalFiles()
             }
@@ -126,7 +123,6 @@ class LocalFilesActivity : AppCompatActivity() {
                 showClearAllDialog()
             }
             
-            // Selection mode buttons
             btnCancelSelection.setOnClickListener {
                 exitSelectionMode()
             }
@@ -139,7 +135,6 @@ class LocalFilesActivity : AppCompatActivity() {
                 shareSelectedFiles()
             }
             
-            // Filter chips
             chipAll.setOnClickListener {
                 filterFiles(LocalFilesAdapter.FileFilter.ALL)
                 updateFilterChips(LocalFilesAdapter.FileFilter.ALL)
@@ -200,60 +195,8 @@ class LocalFilesActivity : AppCompatActivity() {
     private fun openFile(file: File) {
         try {
             if (file.name.lowercase().run { endsWith(".jpg") || endsWith(".jpeg") || endsWith(".png") }) {
-                // Open image file with system viewer
                 val intent = Intent(Intent.ACTION_VIEW).apply {
-                    setDataAndType(Uri.fromFile(file), "image/*")
-                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                }
-                startActivity(Intent.createChooser(intent, "Open Image"))
-                
-            } else if (file.name.lowercase().endsWith(".mp4")) {
-                // Open video file with system player
-                val intent = Intent(Intent.ACTION_VIEW).apply {
-                    setDataAndType(Uri.fromFile(file), "video/*")
-                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                }
-                startActivity(Intent.createChooser(intent, "Play Video"))
-                
-            } else {
-                // Show file details for other files
-                showFileDetailsDialog(file)
-            }
-            
-        } catch (e: Exception) {
-            Toast.makeText(
-                this,
-                "Failed to open file: ${e.message}",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-    }
-    
-    private fun showFileDetailsDialog(file: File) {
-        val details = """
-            Name: ${file.name}
-            Size: ${FileUtils.formatFileSize(file.length())}
-            Modified: ${java.text.SimpleDateFormat("MMM dd, yyyy HH:mm", java.util.Locale.getDefault()).format(java.util.Date(file.lastModified()))}
-            Path: ${file.absolutePath}
-            Type: ${file.extension.uppercase()}
-        """.trimIndent()
-        
-        AlertDialog.Builder(this)
-            .setTitle("File Details")
-            .setMessage(details)
-            .setPositiveButton("OK", null)
-            .setNeutralButton("Share") { _, _ -> shareFile(file) }
-            .setNegativeButton("Delete") { _, _ -> deleteFile(file) }
-            .show()
-    }
-    
-    private fun shareFile(file: File) {
-        try {
-            val intent = Intent(Intent.ACTION_SEND).apply {
-                type = when {
-                    file.name.lowercase().run { endsWith(".jpg") || endsWith(".jpeg") || endsWith(".png") } -> "image/*"
-                    file.name.lowercase().endsWith(".mp4") -> "video/*"
-                    else -> "*/*"
+                    setDataAndType(Uri.fromFile(file), "image*"
                 }
                 putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file))
                 putExtra(Intent.EXTRA_SUBJECT, "Thermal capture from TC001")
@@ -272,7 +215,7 @@ class LocalFilesActivity : AppCompatActivity() {
             .setPositiveButton("Delete") { _, _ ->
                 if (file.delete()) {
                     Toast.makeText(this, "File deleted", Toast.LENGTH_SHORT).show()
-                    loadLocalFiles() // Refresh list
+                    loadLocalFiles()
                 } else {
                     Toast.makeText(this, "Failed to delete file", Toast.LENGTH_SHORT).show()
                 }
@@ -323,7 +266,6 @@ class LocalFilesActivity : AppCompatActivity() {
         }
     }
     
-    // Enhanced UI methods
     private fun searchFiles(query: String) {
         searchQuery = query
         filesAdapter.searchFiles(query)
@@ -350,7 +292,7 @@ class LocalFilesActivity : AppCompatActivity() {
         } else {
             LinearLayoutManager(this)
         }
-        invalidateOptionsMenu() // Update menu icon
+        invalidateOptionsMenu()
     }
     
     private fun showSortDialog() {
@@ -477,9 +419,7 @@ class LocalFilesActivity : AppCompatActivity() {
     }
     
     private fun updateFileCount() {
-        // This will be called after adapter updates to show current file count
         binding.apply {
-            // Update UI based on current adapter state if needed
         }
     }
 }

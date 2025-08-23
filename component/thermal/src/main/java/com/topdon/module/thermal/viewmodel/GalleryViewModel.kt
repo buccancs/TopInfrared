@@ -23,7 +23,6 @@ class GalleryViewModel : BaseViewModel() {
                 if (it.size == 0) {
                     Log.w("123", "文件不存在")
                 } else {
-//                    it.forEach { Log.w("123", "it:$it") }
                     galleryLiveData.postValue(it)
                 }
             }
@@ -36,7 +35,6 @@ class GalleryViewModel : BaseViewModel() {
                 if (it.size == 0) {
                     Log.w("123", "文件不存在")
                 } else {
-//                    it.forEach { Log.w("123", "it:$it") }
                     galleryLiveData.postValue(it)
                 }
             }
@@ -62,7 +60,6 @@ class GalleryViewModel : BaseViewModel() {
         }
         return flow
     }
-
 
     private fun getVideoList(): Flow<ArrayList<String>> {
         val flow = flow {

@@ -3,7 +3,6 @@ package com.example.thermal_lite.camera;
 import android.hardware.usb.UsbDevice;
 import android.util.Log;
 
-
 import com.blankj.utilcode.util.Utils;
 import com.energy.iruvccamera.usb.DeviceFilter;
 import com.energy.iruvccamera.usb.USBMonitor;
@@ -45,8 +44,6 @@ public class USBMonitorManager {
             mUSBMonitor = new USBMonitor(Utils.getApp().getApplicationContext(),
                     new USBMonitor.OnDeviceConnectListener() {
 
-                // called by checking usb device
-                // do request device permission
                 @Override
                 public void onAttach(UsbDevice device) {
                     Log.w(TAG, "onAttach" + device.getProductId());
@@ -64,8 +61,6 @@ public class USBMonitorManager {
                     }
                 }
 
-                // called by taking out usb device
-                // do close camera
                 @Override
                 public void onDetach(UsbDevice device) {
                     Log.d(TAG, "onDetach");
@@ -75,8 +70,6 @@ public class USBMonitorManager {
                     }
                 }
 
-                // called by connect to usb camera
-                // do open camera,start previewing
                 @Override
                 public void onConnect(final UsbDevice device, USBMonitor.UsbControlBlock ctrlBlock, boolean createNew) {
                     if (createNew) {
@@ -88,8 +81,6 @@ public class USBMonitorManager {
                     }
                 }
 
-                // called by disconnect to usb camera
-                // do nothing
                 @Override
                 public void onDisconnect(UsbDevice device, USBMonitor.UsbControlBlock ctrlBlock) {
                     Log.w(TAG, "onDisconnect");

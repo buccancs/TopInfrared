@@ -7,14 +7,10 @@ import com.topdon.lib.core.utils.SingleLiveEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-
 class PolicyViewModel : BaseViewModel() {
 
     val htmlViewData = SingleLiveEvent<HtmlBean>()
 
-    /**
-     * @param type 1: 用户服务协议 2: 隐私政策 3: 第三方组件
-     */
     fun getUrl(type: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             val urlType = when (type) {

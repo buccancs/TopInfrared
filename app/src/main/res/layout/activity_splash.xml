@@ -58,5 +58,4 @@
         app:layout_constraintTop_toTopOf="@id/iv_logo"
         app:layout_constraintBottom_toBottomOf="@id/iv_logo" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>

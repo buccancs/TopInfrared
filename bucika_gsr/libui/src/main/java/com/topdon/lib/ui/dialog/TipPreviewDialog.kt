@@ -99,7 +99,6 @@ class TipPreviewDialog : DialogFragment() {
         })
     }
 
-
     fun updateIndex(position : Int){
         if (index == position){
             return

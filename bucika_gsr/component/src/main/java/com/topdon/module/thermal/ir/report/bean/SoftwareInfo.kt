@@ -9,15 +9,15 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class SoftwareInfo(
-    val app_language: String,   // APP语言
-    val sdk_version: String,    // SDK版本
+    val app_language: String,
+    val sdk_version: String,
 ) : Parcelable {
 
-    val software_code = BaseApplication.instance.getSoftWareCode() //软件编码
-    val system_language = AppLanguageUtils.getSystemLanguage()// 系统语言
-    val app_version = BuildConfig.VERSION_NAME//软件版本
-    val hardware_version = ""//硬件版本
+    val software_code = BaseApplication.instance.getSoftWareCode()
+    val system_language = AppLanguageUtils.getSystemLanguage()
+    val app_version = BuildConfig.VERSION_NAME
+    val hardware_version = ""
     val app_sn = ""
-    val mobile_phone_model = Build.BRAND//手机型号
-    val system_version = Build.VERSION.RELEASE//系统版本
+    val mobile_phone_model = Build.BRAND
+    val system_version = Build.VERSION.RELEASE
 }

@@ -13,18 +13,11 @@ import com.topdon.lib.core.R
 import com.topdon.lib.core.utils.ScreenUtil
 import kotlinx.android.synthetic.main.dialog_tip_progress.view.*
 
-
-/**
- * 提示窗
- * create by fylder on 2018/6/15
- **/
 class TipProgressDialog : Dialog {
-
 
     constructor(context: Context) : super(context)
 
     constructor(context: Context, themeResId: Int) : super(context, themeResId)
-
 
     class Builder {
         var dialog: TipProgressDialog? = null
@@ -59,7 +52,6 @@ class TipProgressDialog : Dialog {
             this.dialog!!.dismiss()
         }
 
-
         fun create(): TipProgressDialog {
             if (dialog == null) {
                 dialog = TipProgressDialog(context!!, R.style.InfoDialog)
@@ -76,17 +68,14 @@ class TipProgressDialog : Dialog {
             val lp = dialog!!.window!!.attributes
             val wRatio =
                 if (context!!.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
-                    //竖屏
                     0.52
                 } else {
-                    //横屏
                     0.35
                 }
-            lp.width = (ScreenUtil.getScreenWidth(context!!) * wRatio).toInt() //设置宽度
+            lp.width = (ScreenUtil.getScreenWidth(context!!) * wRatio).toInt()
             dialog!!.window!!.attributes = lp
 
             dialog!!.setCanceledOnTouchOutside(canceleable)
-            //msg
             if (message != null) {
                 messageText?.visibility = View.VISIBLE
                 messageText?.setText(message, TextView.BufferType.NORMAL)
@@ -99,10 +88,6 @@ class TipProgressDialog : Dialog {
         }
     }
 
-
-    /**
-     * 提交回调
-     */
     interface OnClickListener {
         fun onClick(dialog: DialogInterface)
     }

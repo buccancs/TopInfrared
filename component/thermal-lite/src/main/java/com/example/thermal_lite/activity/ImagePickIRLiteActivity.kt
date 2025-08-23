@@ -9,14 +9,8 @@ import com.topdon.lib.core.ktbase.BaseActivity
 import com.topdon.lib.core.ktbase.BasePickImgActivity
 import com.topdon.module.thermal.ir.R
 
-/**
- * des:单光红外拍照
- * author: CaiSongL
- * date: 2024/8/24 18:10
- **/
 @Route(path = RouterConfig.IR_IMG_PICK_LITE)
 class ImagePickIRLiteActivity : BasePickImgActivity() {
-
 
     var irFragment : IRMonitorLiteFragment ?= null
 
@@ -42,6 +36,5 @@ class ImagePickIRLiteActivity : BasePickImgActivity() {
     override fun initData() {
 
     }
-
 
 }

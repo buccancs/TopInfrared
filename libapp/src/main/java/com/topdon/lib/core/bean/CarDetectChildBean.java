@@ -2,9 +2,6 @@ package com.topdon.lib.core.bean;
 
 import com.topdon.lib.core.utils.TemperatureUtil;
 
-/**
- * @author qiang.lv
- */
 public class CarDetectChildBean {
     public int type;
     public int pos;

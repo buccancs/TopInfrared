@@ -9,10 +9,6 @@ import com.topdon.lib.ui.transform.HorizontalScrollItemTransformer
 import com.topdon.lib.ui.utils.DSVOrientation
 import com.topdon.lib.ui.utils.HorizontalLayoutManager
 
-/**
- * @author: CaiSongL
- * @date: 2023/4/1 13:59
- */
 @Deprecated("热成像-菜单-拍照已重构，不需要这个类了")
 class HorizontalItemView : RecyclerView {
     private val layoutManager: HorizontalLayoutManager
@@ -20,8 +16,6 @@ class HorizontalItemView : RecyclerView {
     private val onItemChangedListeners: ArrayList<OnItemChangedListener<ViewHolder>> = ArrayList()
     
     private var isOverScrollEnabled = false
-
-
 
     constructor(context: Context) : this(context, null)
 
@@ -70,8 +64,6 @@ class HorizontalItemView : RecyclerView {
     fun addOnItemChangedListener(onItemChangedListener: OnItemChangedListener<*>) {
         onItemChangedListeners.add(onItemChangedListener as OnItemChangedListener<ViewHolder>)
     }
-
-
 
     private inner class ScrollStateListener : HorizontalLayoutManager.ScrollStateListener {
         override fun onIsBoundReachedFlagChange(isBoundReached: Boolean) {
@@ -152,10 +144,7 @@ class HorizontalItemView : RecyclerView {
     }
 
     interface OnItemChangedListener<T : ViewHolder?> {
-        /*
-         * This method will be also triggered when view appears on the screen for the first time.
-         * If data set is empty, viewHolder will be null and adapterPosition will be NO_POSITION
-         */
+        
         fun onCurrentItemChanged(viewHolder: T?, adapterPosition: Int)
     }
 }

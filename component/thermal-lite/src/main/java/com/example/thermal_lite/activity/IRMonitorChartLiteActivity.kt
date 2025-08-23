@@ -42,15 +42,9 @@ import org.greenrobot.eventbus.ThreadMode
 import java.math.BigDecimal
 import java.math.RoundingMode
 
-/**
- * 温度实时监控
- */
 @Route(path = RouterConfig.IR_MONITOR_CHART_LITE)
 class IRMonitorChartLiteActivity : BaseActivity(),ITsTempListener {
 
-    /**
-     * 从上一界面传递过来的，当前选中的 点/线/面 信息.
-     */
     private var selectBean: SelectPositionBean = SelectPositionBean()
 
     private val bean = ThermalBean()
@@ -59,7 +53,6 @@ class IRMonitorChartLiteActivity : BaseActivity(),ITsTempListener {
     protected var tau_data_L: ByteArray? = null
 
     override fun initContentView() = R.layout.activity_ir_monitor_chart_lite
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,7 +73,7 @@ class IRMonitorChartLiteActivity : BaseActivity(),ITsTempListener {
             irMonitorLiteFragment?.arguments = args
             supportFragmentManager.beginTransaction().add(R.id.thermal_lay, irMonitorLiteFragment!!).commit()
             delay(1000)
-            recordThermal()//开始记录
+            recordThermal()
         }
     }
 
@@ -145,7 +138,7 @@ class IRMonitorChartLiteActivity : BaseActivity(),ITsTempListener {
                         bean.maxTemp = maxBigDecimal.setScale(1, RoundingMode.HALF_UP).toFloat()
                         bean.minTemp = minBigDecimal.setScale(1, RoundingMode.HALF_UP).toFloat()
                         bean.createTime = System.currentTimeMillis()
-                        canUpdate = true//可以开始更新记录
+                        canUpdate = true
                     }
                 }
             }
@@ -160,15 +153,13 @@ class IRMonitorChartLiteActivity : BaseActivity(),ITsTempListener {
     override fun onResume() {
         super.onResume()
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-        mp_chart_view.highlightValue(null) //关闭高亮点Marker
+        mp_chart_view.highlightValue(null)
     }
 
     override fun onPause() {
         super.onPause()
         window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
     }
-
-
 
     override fun onDestroy() {
         super.onDestroy()
@@ -181,13 +172,11 @@ class IRMonitorChartLiteActivity : BaseActivity(),ITsTempListener {
     }
 
     private var isRecord = false
-    private var timeMillis = 1000L //间隔1s
+    private var timeMillis = 1000L
     private var canUpdate = false
 
     private var recordJob: Job? = null
-    /**
-     * 开始每隔1秒记录一个温度数据到数据库.
-     */
+    
     private fun recordThermal() {
         recordJob = lifecycleScope.launch(Dispatchers.IO) {
             isRecord = true
@@ -231,21 +220,17 @@ class IRMonitorChartLiteActivity : BaseActivity(),ITsTempListener {
     fun cameraEvent(event: DeviceCameraEvent) {
         when (event.action) {
             100 -> {
-                //准备图像
                 showCameraLoading()
             }
             101 -> {
-                //显示图像
                 dismissCameraLoading()
             }
         }
     }
 
-
     var config : DataBean ?= null
     val basicGainGetValue = IntArray(1)
     var basicGainGetTime = 0L
-
 
     override fun tempCorrectByTs(temp: Float?): Float {
         var tempNew = temp
@@ -260,7 +245,6 @@ class IRMonitorChartLiteActivity : BaseActivity(),ITsTempListener {
                 return temp!!
             }
 
-            //获取增益状态 PASS
             if (System.currentTimeMillis() - basicGainGetTime > 5000L){
                 try {
                     val basicGainGet: IrcmdError? = DeviceIrcmdControlManager.getInstance().getIrcmdEngine()

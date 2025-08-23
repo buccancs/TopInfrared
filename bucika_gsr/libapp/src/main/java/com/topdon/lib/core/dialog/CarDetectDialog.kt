@@ -24,16 +24,12 @@ import kotlinx.android.synthetic.main.item_car_detect_child_layout.view.*
 import kotlinx.android.synthetic.main.item_car_detect_layout.view.*
 import kotlinx.android.synthetic.main.toolbar_lay.view.*
 
-/**
- * 汽车检测类型拾取弹框.
- */
 class CarDetectDialog(context: Context, val listener: ((bean: CarDetectChildBean) -> Unit)) :
     Dialog(context, R.style.DefaultDialog) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setCancelable(true)
         setCanceledOnTouchOutside(false)
-
 
         val rootView: View = LayoutInflater.from(context).inflate(R.layout.dialog_car_detect, null)
         setContentView(rootView)
@@ -44,13 +40,6 @@ class CarDetectDialog(context: Context, val listener: ((bean: CarDetectChildBean
             LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         rootView.rcy_detect?.adapter = CarDetectAdapter(context, getDetectList())
 
-
-        /*window?.let {
-            val layoutParams = it.attributes
-            layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
-            layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT
-            it.attributes = layoutParams
-        }*/
     }
 
     companion object {
@@ -270,7 +259,6 @@ class CarDetectDialog(context: Context, val listener: ((bean: CarDetectChildBean
             val rcyDetectChild: RecyclerView = itemView.rcy_detect_child
         }
     }
-
 
     class CarDetectChildAdapter(
         val context: Context,

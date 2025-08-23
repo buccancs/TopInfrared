@@ -18,16 +18,8 @@ import com.topdon.lib.core.utils.ByteUtils.toBytes
 import com.topdon.lib.core.utils.ByteUtils.toHexString
 import org.greenrobot.eventbus.EventBus
 
-/**
- * 先获取权限
- */
 object DeviceTools {
 
-    /**
-     * 判断当前是否已连接 插件式设备 且有权限.
-     * 若已连接且有权限默认不发送已连接事件.
-     * 若已连接但无权限默认触发权限申请.
-     */
     fun isConnect(isSendConnectEvent: Boolean = false, isAutoRequest: Boolean = true): Boolean {
         val usbManager = Utils.getApp().getSystemService(Context.USB_SERVICE) as UsbManager
         val deviceList: HashMap<String, UsbDevice> = usbManager.deviceList
@@ -66,9 +58,6 @@ object DeviceTools {
         return null
     }
 
-    /**
-     * 判断当前是否已连接 TC001 Plus 且有权限.
-     */
     fun isTC001PlusConnect(): Boolean {
         val usbManager = Utils.getApp().getSystemService(Context.USB_SERVICE) as UsbManager
         val deviceList: HashMap<String, UsbDevice> =  usbManager.deviceList
@@ -85,9 +74,6 @@ object DeviceTools {
         return isTcTsDev && usbCameraNumber > 1
     }
 
-    /**
-     * 判断是否连接了TC001 Lite 且有权限
-     */
     fun isTC001LiteConnect() : Boolean{
         val usbManager = Utils.getApp().getSystemService(Context.USB_SERVICE) as UsbManager
         val deviceList: HashMap<String, UsbDevice> =  usbManager.deviceList
@@ -99,9 +85,6 @@ object DeviceTools {
         return false
     }
 
-    /**
-     * 判断海康 256 是否已连接
-     */
     fun isHikConnect(): Boolean {
         val usbManager: UsbManager = Utils.getApp().getSystemService(Context.USB_SERVICE) as UsbManager
         for (usbDevice in usbManager.deviceList.values) {
@@ -112,14 +95,6 @@ object DeviceTools {
         return false
     }
 
-
-    /**
-     * 获取usb权限
-     *
-     * UsbManager.requestPermission
-     * 在android 10无法弹出授权框
-     * targetSdk 27
-     */
     fun requestUsb(activity: Activity, requestCode: Int, device: UsbDevice) {
         val usbManager = Utils.getApp().getSystemService(Context.USB_SERVICE) as UsbManager
         val intent = Intent(DeviceBroadcastReceiver.ACTION_USB_PERMISSION)
@@ -128,6 +103,5 @@ object DeviceTools {
         usbManager.requestPermission(device, pendingIntent)
         XLog.i("申请usb权限")
     }
-
 
 }

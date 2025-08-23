@@ -16,14 +16,6 @@ import android.util.Log;
 import androidx.annotation.ColorRes;
 import androidx.core.content.ContextCompat;
 
-/**
- * ================================================
- * 作    者：JayGoo
- * 版    本：
- * 创建日期：2018/5/8
- * 描    述:
- * ================================================
- */
 public class Utils {
 
     private static final String TAG = "RangeSeekBar";
@@ -49,12 +41,6 @@ public class Utils {
         }
     }
 
-    /**
-     * make a drawable to a bitmap
-     *
-     * @param drawable drawable you want convert
-     * @return converted bitmap
-     */
     public static Bitmap drawableToBitmap(int width, int height, Drawable drawable) {
         Bitmap bitmap = null;
         try {
@@ -80,13 +66,6 @@ public class Utils {
         return bitmap;
     }
 
-    /**
-     * draw 9Path
-     *
-     * @param canvas Canvas
-     * @param bmp    9path bitmap
-     * @param rect   9path rect
-     */
     public static void drawNinePath(Canvas canvas, Bitmap bmp, Rect rect) {
         NinePatch.isNinePatchChunk(bmp.getNinePatchChunk());
         NinePatch patch = new NinePatch(bmp, bmp.getNinePatchChunk(), null);
@@ -110,15 +89,6 @@ public class Utils {
         return (int) (dpValue * scale + 0.5f);
     }
 
-    /**
-     * Compare the size of two floating point numbers
-     *
-     * @param a
-     * @param b
-     * @return 1 is a > b
-     * -1 is a < b
-     * 0 is a == b
-     */
     public static int compareFloat(float a, float b) {
         int ta = Math.round(a * 1000000);
         int tb = Math.round(b * 1000000);
@@ -131,15 +101,6 @@ public class Utils {
         }
     }
 
-    /**
-     * Compare the size of two floating point numbers with accuracy
-     *
-     * @param a
-     * @param b
-     * @return 1 is a > b
-     * -1 is a < b
-     * 0 is a == b
-     */
     public static int compareFloat(float a, float b, int degree) {
         if (Math.abs(a-b) < Math.pow(0.1, degree)) {
             return 0;

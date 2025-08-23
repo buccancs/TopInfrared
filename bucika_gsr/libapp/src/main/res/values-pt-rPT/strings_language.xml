@@ -229,7 +229,6 @@
     <string name="color_board">quadro de cores</string>
     <string name="edit_image_error_tip">La imagen carece de datos de temperatura y no admite edición.</string>
 
-    <!--    2022-11-16-->
     <string name="user_services_agreement">Termos de Serviço</string>
     <string name="privacy_policy">Política de Privacidade</string>
     <string name="third_party_components">Componentes de terceiros</string>
@@ -240,8 +239,6 @@
     <string name="app_tip">Dicas</string>
     <string name="device_loading_tip">Carregando…</string>
 
-    <!--	葡萄牙语portugues-->
-    <!-- 2.00版本 -->
     <string name="app_lapsePhotography">Foto Temporizada</string>
     <string name="app_Manual_Shutter">Obturador Manual</string>
     <string name="app_record_sound">Gravar Áudio</string>
@@ -342,7 +339,6 @@
     <string name="start_fail_and_restart">Iniciar falhou! Por favor, saia do aplicativo e reabra-o</string>
     <string name="app_Low_temperature">temperatura baixa</string>
 
-
     <string name="monitor_finish">Parar</string>
     <string name="album_menu_2d">Editar 2D</string>
     <string name="album_menu_3d">Editar 3D</string>
@@ -392,7 +388,6 @@
     <string name="menu_3d_x_axis">Eixo X</string>
     <string name="menu_3d_y_axis">Eixo Y</string>
 
-    <!--TS001-->
     <string name="album_menu_Photos">foto</string>
     <string name="feedback_problem_type_6">Outros</string>
     <string name="app_got_it">Ir</string>
@@ -497,13 +492,10 @@
     <string name="installation_package_downloading_tips">Começando a baixar Por favor, verifique o progresso nas Notificações</string>
     <string name="welcome_use_app">Bem-vindo a %1$s</string>
 
-    <!--葡萄牙语-->
-
     <string name="dual_light_correction">Correção de Luz Dupla</string>
     <string name="dual_light_correction_tips_1">Como os focos das duas câmeras não estão alinhados, as imagens capturadas de diferentes distâncias pelas duas câmeras não estarão alinhadas.\nEsta função pode ajudar com o alinhamento de imagem separadamente.</string>
     <string name="dual_light_correction_tips_2">1. Deixe uma fonte de calor (como a palma de sua mão) dentro da imagem a uma distância de aproximadamente 0.5 metros da câmera.\n2. Toque para tirar uma foto.</string>
     <string name="dual_light_correction_tips_3">1. Arraste as imagens para alinhá-las.\n2. Role a barra de progresso para ajustar o ângulo de alinhamento.\n3. Pressione o botão OK para completar a correção.</string>
-
 
     <string name="menu_thermal_visible_light">Luz visível</string>
     <string name="menu_thermal_imaging">Infravermelho</string>
@@ -522,7 +514,6 @@
 
     <string name="text_p_umeng">Para fornecer uma melhor experiência funcional, nossos produtos integram Umeng+SDK para estatísticas de dados e coleta de registros. O SDK coletará a identificação do seu dispositivo e informações da conta</string>.
 
-    <!--TS004-->
     <string name="ts004_connection_device">Dispositivos conectados com fio</string>
     <string name="ts004_auto_save">Salvamento Automático em Seu Telefone</string>
     <string name="ts004_save_tips">Quando ativado, ao conectar ao aplicativo para tomar fotos ou vídeos, as fotos e vídeos serão salvos automaticamente localmente em seu telefone.</string>
@@ -602,12 +593,10 @@
     <string name="ts004_faq_q5">Como posso ver as imagens térmicas capturadas em um PC?</string>
     <string name="ts004_faq_a5">Conecte o TS004 a um PC usando o cabo USB, e então você poderá visualizar as imagens térmicas armazenadas no TS004.</string>
 
-    <!-- TC001 老 APP 引流 -->
     <string name="gallery_transfer">Transferência de Galeria</string>
     <string name="gallery_transfer_wait">Os dados estão sendo transferidos. Por favor, espere.</string>
     <string name="gallery_transfer_complete">Transferência de Dados Concluída</string>
 
-    <!-- 3.70 -->
     <string name="user_jump">Pular</string>
     <string name="tc_guide_tips1">Ver gráficos de monitoramento em tempo real e registros de monitoramento.</string>
     <string name="tc_guide_tips2">Para garantir uma medição precisa de temperatura, defina parâmetros relevantes antes da medição de temperatura.</string>
@@ -624,7 +613,6 @@
     <string name="ts004_conntenct_tip">Você irá usar dados móveis. O dispositivo poderá ser desconectado.</string>
     <string name="fireware_update_tips">Bug fixes and performance improvements</string>
 
-    <!-- 3.80 -->
     <string name="tc_local_album">Galeria Local</string>
     <string name="tc_connect_device">Conectar Dispositivo</string>
     <string name="tc_connect_tips">Escolha o dispositivo que você deseja conectar.</string>
@@ -636,7 +624,6 @@
     <string name="tc_reset_tips">Todas as configurações de dispositivo serão restauradas para a configuração de fábrica. Confirma esta restauração?</string>
     <string name="coming_soon">Fique Ligado...</string>
 
-    <!-- 3.90 -->
     <string name="tc007_connect_tips1">1. Certifique-se de que o equipamento tem energia suficiente e está perto o suficiente</string>
     <string name="tc007_connect_tips2">2. Ligue o Bluetooth e WiFi no seu telefone</string>
     <string name="tc007_connect_tips3">3. Entre na página de digitalização do APP</string>
@@ -653,7 +640,6 @@
     <string name="wifi_connect_loading">A previsão é de 15s...</string>
     <string name="tc007_done_fast">Operações frequentes</string>
 
-    <!-- 房屋检测 -->
     <string name="main_professional_test">Teste Profissional</string>
     <string name="main_temperature_test">Teste de Temperatura</string>
     <string name="main_thermal_tips">Teste de Imagem Térmica Profissional</string>
@@ -822,7 +808,6 @@
     <string name="abnormal_description17">A temperatura do aquecedor do vidro traseiro é afetada por diversos fatores, como a temperatura ambiente, e a carga do aquecedor. Monitore a temperatura do aquecedor com um sensor de imagem térmica, e então você poderá analisar se o vidro traseiro pode ser aquecido de maneira eficaz.</string>
     <string name="abnormal_description18">A temperatura do motor da janela é afetada por diversos fatores, tais como a temperatura ambiente, e a carga do motor. Monitore a temperatura do motor com um sensor de imagem térmica. Caso a temperatura esteja muito alta, isso pode ser causado por uma falha no mecanismo de levantamento da janela ou pelo próprio motor.</string>
 
-    <!-- 房屋检测新增 -->
     <string name="vehicle_function">Função</string>
     <string name="ability_find">encontrar</string>
     <string name="ability_monitory">Visualização em tempo real da temperatura do objeto para gerar dados</string>
@@ -848,7 +833,6 @@
     <string name="pdf_project_item">projecto</string>
     <string name="house_sign_finish_tips">Preencha a assinatura electrónica</string>
 
-    <!-- 4.50 -->
     <string name="thermal_trend">Gráfico de tendências</string>
     <string name="thermal_trend_tips">Desenhe um segmento de linha na imagem para ver a mudança de temperatura.</string>
     <string name="material_view_all">Ver tudo</string>
@@ -957,12 +941,10 @@
     <string name="material_copper_wire">Fio de cobre</string>
     <string name="temp_add_button">Adicionar</string>
 
-
     <string name="tips_tisr_on">A super resolução de imagem foi ativada.</string>
     <string name="tips_tisr_off">A super resolução de imagem foi desativada.</string>
     <string name="tips_tisr_fail">O seu telefone não suporta OpenCL e não consegue activar a super resolução de imagem.</string>
 
-    <!-- 4.70 -->
     <string name="testing_guidance">Orientação de ensaio</string>
     <string name="unlock_professional_perspectives">Desbloquear perspectivas profissionais</string>
     <string name="app_error_reload">Recarregar</string>

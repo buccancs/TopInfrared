@@ -1,6 +1,5 @@
 package com.topdon.module.thermal.ir.video.media;
 
-
 import org.jetbrains.annotations.NotNull;
 
 public class EncodingOptions {

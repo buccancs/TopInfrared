@@ -8,10 +8,6 @@ import android.hardware.usb.UsbDevice
 import android.hardware.usb.UsbManager
 import com.elvishew.xlog.XLog
 
-/**
- * USB Hot-Plug Manager for bucika_gsr
- * Enhanced USB device detection and connection management
- */
 class USBHotPlugManager private constructor(private val context: Context) {
 
     companion object {
@@ -26,11 +22,10 @@ class USBHotPlugManager private constructor(private val context: Context) {
             }
         }
         
-        // Known device identifiers for TC001 and related devices
         private val SUPPORTED_DEVICES = mapOf(
-            0x3537 to listOf(0x0001, 0x0002), // TC001 thermal camera
-            0x0403 to listOf(0x6001), // FTDI devices
-            0x067B to listOf(0x2303)  // Additional supported devices
+            0x3537 to listOf(0x0001, 0x0002),
+            0x0403 to listOf(0x6001),
+            0x067B to listOf(0x2303)
         )
     }
 
@@ -98,7 +93,6 @@ class USBHotPlugManager private constructor(private val context: Context) {
         
         XLog.i(TAG, "USB hot-plug monitoring started")
         
-        // Check for already connected devices
         checkConnectedDevices()
     }
 
@@ -125,7 +119,6 @@ class USBHotPlugManager private constructor(private val context: Context) {
         if (deviceType != DeviceType.UNSUPPORTED) {
             listener?.onSupportedDeviceDetected(device, deviceType)
             
-            // Auto-request permission for supported devices
             requestPermission(device)
         }
     }

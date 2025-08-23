@@ -35,7 +35,6 @@
         app:layout_constraintTop_toTopOf="@id/view_bg_dir"
         app:layout_constraintStart_toStartOf="@id/view_bg_dir" />
 
-    <!-- 三角形 -->
     <ImageView
         android:id="@+id/iv_triangle"
         android:layout_width="0dp"
@@ -48,7 +47,6 @@
         app:layout_constraintBottom_toBottomOf="@id/view_space_title"
         app:layout_constraintStart_toStartOf="@id/view_space_title" />
 
-    <!-- 编辑 -->
     <ImageView
         android:id="@+id/iv_dir_edit"
         android:layout_width="0dp"
@@ -62,7 +60,6 @@
         app:layout_constraintTop_toTopOf="@id/view_bg_dir"
         app:layout_constraintEnd_toEndOf="@id/view_bg_dir" />
 
-    <!-- 复制 -->
     <ImageView
         android:id="@+id/iv_dir_copy"
         android:layout_width="0dp"
@@ -75,7 +72,6 @@
         app:layout_constraintTop_toTopOf="@id/iv_dir_edit"
         app:layout_constraintEnd_toStartOf="@id/iv_dir_edit" />
 
-    <!-- 编辑 及 复制实际触控区域 -->
     <View
         android:id="@+id/view_icon_bottom"
         android:layout_width="0dp"
@@ -108,8 +104,6 @@
         app:layout_constraintTop_toTopOf="@id/view_bg_dir"
         app:layout_constraintBottom_toBottomOf="@id/view_icon_bottom" />
 
-
-
     <TextView
         android:id="@+id/tv_dir_name"
         android:layout_width="0dp"
@@ -123,7 +117,6 @@
         app:layout_constraintStart_toEndOf="@id/iv_triangle"
         app:layout_constraintEnd_toStartOf="@id/iv_dir_copy" />
 
-    <!-- 绿色数量 -->
     <TextView
         android:id="@+id/tv_good_count"
         android:layout_width="wrap_content"
@@ -141,7 +134,7 @@
         tools:text="99"
         app:layout_constraintStart_toStartOf="@id/view_bg_dir"
         app:layout_constraintTop_toBottomOf="@id/tv_dir_name" />
-    <!-- 黄色数量 -->
+    
     <TextView
         android:id="@+id/tv_warn_count"
         android:layout_width="wrap_content"
@@ -158,7 +151,7 @@
         tools:text="99"
         app:layout_constraintTop_toTopOf="@id/tv_good_count"
         app:layout_constraintStart_toEndOf="@id/tv_good_count" />
-    <!-- 红色数量 -->
+    
     <TextView
         android:id="@+id/tv_danger_count"
         android:layout_width="wrap_content"

@@ -8,11 +8,6 @@ import com.topdon.lib.core.config.RouterConfig
 import com.topdon.lib.core.ktbase.BasePickImgActivity
 import com.topdon.module.thermal.ir.R
 
-/**
- * 房屋检测-红外拍照.
- *
- * Created by LCG on 2025/1/9.
- */
 @Route(path = RouterConfig.IR_HIK_IMG_PICK)
 class ImagePickIRHikActivity : BasePickImgActivity() {
 

@@ -27,22 +27,15 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.UUID;
 import java.util.concurrent.LinkedBlockingQueue;
 
-/**
- * BluetoothManager
- * 蓝牙管理工具
- *
- * @author chuanfeng.bi
- * @date 2021/11/19 11:10
- */
 @SuppressLint("MissingPermission")
 public class BluetoothManager implements EventObserver {
-    public static boolean iSReset = false;//是否复位
-    public static boolean isSending = false;//是否正在发送蓝牙数据
-    public static boolean isClickStopCharging = false;//是否点击了停止充电
+    public static boolean iSReset = false;
+    public static boolean isSending = false;
+    public static boolean isClickStopCharging = false;
     private static BluetoothManager instance = null;
     private Device mDevice;
     private Connection connection;
-    public static boolean isReceiveBleData = false;//是否接收蓝牙数据
+    public static boolean isReceiveBleData = false;
     private BluetoothGattCharacteristic writeCharact = null;
 
     public static BluetoothManager getInstance() {
@@ -60,7 +53,6 @@ public class BluetoothManager implements EventObserver {
 
     private void setMTUValue() {
         if (mDevice.isConnected()) {
-            //设置MTU
             Log.e("bcf_ble", "连接设备名称：" + mDevice.getName() + "");
             RequestBuilder<MtuChangeCallback> builder = null;
             if (mDevice.getName().contains("T-darts") || mDevice.getName().contains("TD")) {
@@ -88,18 +80,15 @@ public class BluetoothManager implements EventObserver {
     private void setReadCallback() {
         if (mDevice.isConnected()) {
             isSending = false;
-            //开关通知
             boolean isEnabled = connection.isNotificationOrIndicationEnabled(UUID.fromString(UUIDManager.SERVICE_UUID), UUID.fromString(UUIDManager.NOTIFY_UUID));
             LLog.w("bcf_ble", "是否打开了Notifycation: " + isEnabled);
             RequestBuilder<NotificationChangeCallback> builder = new RequestBuilderFactory().getSetNotificationBuilder(UUID.fromString(UUIDManager.SERVICE_UUID), UUID.fromString(UUIDManager.NOTIFY_UUID), true);
             RequestBuilder<ReadCharacteristicCallback> builder1 = new RequestBuilderFactory().getReadCharacteristicBuilder(UUID.fromString(UUIDManager.SERVICE_UUID), UUID.fromString(UUIDManager.READ_UUID));
-            //不设置回调，使用观察者模式接收结果
             builder.build().execute(connection);
             builder1.build().execute(connection);
         }
     }
 
-    //取消监听
     public void setCancelListening() {
         Observable observable = EasyBLE.getInstance().getObservable();
         if (observable != null) {
@@ -114,7 +103,7 @@ public class BluetoothManager implements EventObserver {
         config.setRequestTimeoutMillis(7000);
         config.setAutoReconnect(false);
         config.setReconnectImmediatelyMaxTimes(3);
-        connection = EasyBLE.getInstance().connect(device, config, this);//回调监听连接状态，设置此回调不影响观察者接收连接状态消息
+        connection = EasyBLE.getInstance().connect(device, config, this);
         connection.setBluetoothGattCallback(new BluetoothGattCallback() {
             @Override
             public void onCharacteristicWrite(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
@@ -150,9 +139,6 @@ public class BluetoothManager implements EventObserver {
         return mDevice.isConnected();
     }
 
-    /**
-     * 使用{@link Observe}确定要接收消息，{@link RunOn}指定在主线程执行方法，设置{@link Tag}防混淆后找不到方法
-     */
     @Tag("onConnectionStateChanged")
     @Observe
     @RunOn(ThreadMode.MAIN)
@@ -178,7 +164,6 @@ public class BluetoothManager implements EventObserver {
                 break;
             case SERVICE_DISCOVERED:
                 setMTUValue();
-//                setReadCallback();
                 if (device.isConnected()) {
                     EventBus.getDefault().post(ConnectionState.SERVICE_DISCOVERED.name());
                 }
@@ -197,9 +182,6 @@ public class BluetoothManager implements EventObserver {
         Log.e("bcf_ble", "连接超时");
     }
 
-    /**
-     * 使用{@link Observe}确定要接收消息，方法在{@link EasyBLEBuilder#setMethodDefaultThreadMode(ThreadMode)}指定的线程执行
-     */
     @Observe
     @Override
     public void onNotificationChanged(@NonNull Request request, boolean isEnabled) {
@@ -213,40 +195,23 @@ public class BluetoothManager implements EventObserver {
         Log.d("bcf_ble", "onNotificationChanged ：" + typeTag + "：" + (isEnabled ? "开启" : "关闭"));
     }
 
-    /**
-     * 向蓝牙写入数据
-     *
-     * @param data
-     */
     public boolean writeBuletoothData(byte[] data) {
         if (mDevice == null || !mDevice.isConnected()) {
             return false;
         }
         writeCharact = connection.getCharacteristic(UUID.fromString(UUIDManager.SERVICE_UUID), UUID.fromString(UUIDManager.WRITE_UUID));
-        connection.getGatt().setCharacteristicNotification(writeCharact, true); // 设置监听
-        // 当数据传递到蓝牙之后 会回调BluetoothGattCallback里面的write方法
+        connection.getGatt().setCharacteristicNotification(writeCharact, true);
         writeCharact.setWriteType(BluetoothGattCharacteristic.WRITE_TYPE_NO_RESPONSE);
         writeCharact.setValue(data);
-//        LLog.d("ble_bcf_data", "发送到蓝牙的数据为：" + StringUtils.toHex(data));
         return connection.getGatt().writeCharacteristic(writeCharact);
     }
 
     @Observe
     @Override
     public void onCharacteristicRead(Request request, byte[] value) {
-        //如果推送的是十六进制的数据的写法
-        String data = StringUtils.toHex(value); // 将字节转化为String字符串
-//        Log.d("ble_bcf_data", "onCharacteristicRead: " + data);
+        String data = StringUtils.toHex(value);
     }
 
-    /**
-     * 接收蓝牙设备返回的数据
-     *
-     * @param device         设备
-     * @param service        服务UUID
-     * @param characteristic 特征UUID
-     * @param value          数据
-     */
     @Observe
     @Override
     public void onCharacteristicChanged(Device device, UUID service, UUID characteristic, byte[] value) {
@@ -255,16 +220,6 @@ public class BluetoothManager implements EventObserver {
     }
 
     public static void setBleData(String message) {
-//        String savePath = ActivityUtils.getTopActivity().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath();
-//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");// HH:mm:ss
-//        //获取当前时间
-//        Date date = new Date(System.currentTimeMillis());
-//
-//        SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// HH:mm:ss
-//        //获取当前时间
-//        Date date1 = new Date(System.currentTimeMillis());
-//
-//        FileIOUtils.writeFileFromString(savePath + "/log/" + simpleDateFormat.format(date) + ".txt", simpleDateFormat1.format(date1) + ":" + message + "\n", true);
     }
 
 }

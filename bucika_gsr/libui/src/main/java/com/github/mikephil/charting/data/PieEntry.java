@@ -4,9 +4,6 @@ import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 
-/**
- * @author Philipp Jahoda
- */
 @SuppressLint("ParcelCreator")
 public class PieEntry extends Entry {
 
@@ -48,11 +45,6 @@ public class PieEntry extends Entry {
         this.label = label;
     }
 
-    /**
-     * This is the same as getY(). Returns the value of the PieEntry.
-     *
-     * @return
-     */
     public float getValue() {
         return getY();
     }

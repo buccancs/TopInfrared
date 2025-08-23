@@ -6,12 +6,7 @@ import com.elvishew.xlog.XLog
 import com.topdon.lib.core.utils.ByteUtils.bytesToInt
 import com.topdon.lib.core.utils.ByteUtils.descBytes
 
-/**
- * @author: CaiSongL
- * @date: 2023/4/13 9:33
- */
 object BitmapTools {
-
 
     private fun readTempValue(bytes: ByteArray): Float {
         val data: ByteArray = bytes.descBytes()
@@ -44,16 +39,13 @@ object BitmapTools {
                     data = tempBytes.copyOfRange(i * 2, i * 2 + 2)
                     value = readTempValue(data)
                     if (value > max || value < min) {
-                        //max color
                         r = imageBytes[i * 4].toInt() and 0xff
                         g = imageBytes[i * 4 + 1].toInt() and 0xff
                         b = imageBytes[i * 4 + 2].toInt() and 0xff
-                        //灰度
                         grey = (r * 0.3f).toInt() + (g * 0.59f).toInt() + (b * 0.11f).toInt()
                         imageBytes[i * 4] = grey.toByte()
                         imageBytes[i * 4 + 1] = grey.toByte()
                         imageBytes[i * 4 + 2] = grey.toByte()
-//                        Log.e("测试","灰度化"+value)
                     }
                 }
             } else {
@@ -72,14 +64,12 @@ object BitmapTools {
                     data = tempBytes.copyOfRange(i * 2, i * 2 + 2)
                     value = readTempValue(data)
                     if (value > max) {
-                        //max color
-                        imageBytes[i * 4] = maxR //r
-                        imageBytes[i * 4 + 1] = maxG //g
-                        imageBytes[i * 4 + 2] = maxB //b
-                        imageBytes[i * 4 + 3] = maxA //a
+                        imageBytes[i * 4] = maxR
+                        imageBytes[i * 4 + 1] = maxG
+                        imageBytes[i * 4 + 2] = maxB
+                        imageBytes[i * 4 + 3] = maxA
                     }
                     if (value < min) {
-                        //min color
                         imageBytes[i * 4] = minR
                         imageBytes[i * 4 + 1] = minG
                         imageBytes[i * 4 + 2] = minB

@@ -8,9 +8,6 @@ import android.widget.LinearLayout
 import com.topdon.lib.ui.R
 import kotlinx.android.synthetic.main.ui_steering_wheel_view.view.*
 
-/**
- * 校准方向
- */
 class SteeringWheelView : LinearLayout, OnClickListener {
 
     var listener: ((action: Int, moveX: Int) -> Unit)? = null
@@ -75,6 +72,5 @@ class SteeringWheelView : LinearLayout, OnClickListener {
             }
         }
     }
-
 
 }

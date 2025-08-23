@@ -125,7 +125,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- 中间部分 -->
     <FrameLayout
         android:id="@+id/fl_rtsp"
         android:layout_width="0dp"

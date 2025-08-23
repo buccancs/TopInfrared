@@ -8,18 +8,15 @@
         android:minSdkVersion="24"
         android:targetSdkVersion="35" />
 
-    <!-- USB permissions for TC001 device -->
     <uses-permission android:name="android.permission.USB_PERMISSION" />
 
     <uses-feature
         android:name="android.hardware.usb.host"
         android:required="true" />
 
-    <!-- Storage permissions for local recording -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-    <!-- Camera permissions -->
     <uses-permission android:name="android.permission.CAMERA" />
 
     <permission
@@ -57,7 +54,6 @@
             android:exported="false"
             android:screenOrientation="portrait" />
 
-        <!-- USB device filter for TC001 -->
         <receiver
             android:name="com.topinfrared.tc001.standalone.usb.UsbReceiver"
             android:exported="false" >

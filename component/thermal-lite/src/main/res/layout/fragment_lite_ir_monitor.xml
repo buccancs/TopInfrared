@@ -11,13 +11,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-        <!-- 红外出图图层 -->
+        
         <com.topdon.lib.ui.widget.LiteSurfaceView
             android:id="@+id/cameraView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />
-        <!-- 温度图层 -->
+        
         <com.infisense.usbir.view.TemperatureView
             android:id="@+id/temperatureView"
             android:layout_width="match_parent"

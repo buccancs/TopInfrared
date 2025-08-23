@@ -6,7 +6,6 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <!-- 温度、最低温~最高温 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_range"
         android:layout_width="match_parent"
@@ -65,7 +64,6 @@
             app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- 平均温 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_average"
         android:layout_width="match_parent"
@@ -114,7 +112,6 @@
             app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- 注释 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_explain"
         android:layout_width="match_parent"

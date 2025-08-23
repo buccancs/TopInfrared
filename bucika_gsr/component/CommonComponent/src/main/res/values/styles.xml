@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- 自定义button样式 -->
     <style name="myBtnStyle">
         <item name="android:layout_marginRight">5dp</item>
         <item name="android:paddingTop">8dp</item>
@@ -29,11 +28,11 @@
     </style>
 
     <style name="SwitchCompatStyle" parent="Theme.AppCompat.Light">
-        <!--开启时的颜色-->
+        
         <item name="colorControlActivated">#7080FF</item>
-        <!--关闭时的颜色-->
+        
         <item name="colorSwitchThumbNormal">#FFFFFF</item>
-        <!--关闭时的轨迹颜色-->
+        
         <item name="android:colorForeground">#FFB444</item>
     </style>
     <style name="BottomSheetDialogStyle" parent="Theme.Design.BottomSheetDialog">

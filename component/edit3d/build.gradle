@@ -61,7 +61,7 @@ android {
 
 dependencies {
     implementation project(':libapp')
-    implementation project(':libui') //需要使用 BarPickView
+    implementation project(':libui')
     implementation(name: 'opengl_1.3.2_standard', ext: 'aar')
 
 }

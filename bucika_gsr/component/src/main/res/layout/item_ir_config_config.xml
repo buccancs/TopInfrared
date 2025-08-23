@@ -10,7 +10,6 @@
     android:background="@drawable/bg_corners04_stroke_5b5961"
     tools:background="#16131e">
 
-    <!-- 选中 -->
     <ImageView
         android:id="@+id/iv_selector"
         android:layout_width="44dp"
@@ -23,7 +22,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- 删除 -->
     <ImageView
         android:id="@+id/iv_del"
         android:layout_width="38dp"
@@ -56,7 +54,6 @@
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="tv_name,iv_selector" />
 
-    <!-- 环境温度 -->
     <TextView
         android:id="@+id/tv_temp_title"
         android:layout_width="0dp"
@@ -111,7 +108,6 @@
         app:layout_constraintTop_toTopOf="@id/view_temp_bg"
         app:layout_constraintBottom_toBottomOf="@id/view_temp_bg" />
 
-    <!-- 测温距离 -->
     <TextView
         android:id="@+id/tv_dis_title"
         android:layout_width="0dp"
@@ -167,7 +163,6 @@
         app:layout_constraintTop_toTopOf="@id/view_dis_bg"
         app:layout_constraintBottom_toBottomOf="@id/view_dis_bg" />
 
-    <!-- 发射率 -->
     <TextView
         android:id="@+id/tv_em_title"
         android:layout_width="0dp"

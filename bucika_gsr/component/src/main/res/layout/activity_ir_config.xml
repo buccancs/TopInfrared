@@ -62,7 +62,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_default_title" />
 
-                <!-- 环境温度 -->
                 <TextView
                     android:id="@+id/tv_default_temp_title"
                     android:layout_width="0dp"
@@ -118,7 +117,6 @@
                     app:layout_constraintTop_toTopOf="@id/view_default_temp_bg"
                     app:layout_constraintBottom_toBottomOf="@id/view_default_temp_bg" />
 
-                <!-- 测温距离 -->
                 <TextView
                     android:id="@+id/tv_default_dis_title"
                     android:layout_width="0dp"
@@ -174,7 +172,6 @@
                     app:layout_constraintTop_toTopOf="@id/view_default_dis_bg"
                     app:layout_constraintBottom_toBottomOf="@id/view_default_dis_bg" />
 
-                <!-- 发射率 -->
                 <TextView
                     android:id="@+id/tv_default_em_title"
                     android:layout_width="0dp"

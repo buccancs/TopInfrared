@@ -63,7 +63,6 @@ class MenuFiveNightAdapter(val context: Context) : RecyclerView.Adapter<Recycler
         "${(min * 1.8 + 32).toInt()}\n~\n${(max * 1.8 + 32).toInt()}°F"
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.ui_item_menu_five_view, parent, false)
         return ItemView(view)
@@ -97,16 +96,6 @@ class MenuFiveNightAdapter(val context: Context) : RecyclerView.Adapter<Recycler
     }
 
     inner class ItemView(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        //        init {
-//            val canSeeCount = itemCount.toFloat() //一屏可见的 item 数量，目前都是全都显示完
-//            val with = (ScreenUtils.getScreenWidth() / canSeeCount).toInt()
-//            itemView.layoutParams = ViewGroup.LayoutParams(with, ViewGroup.LayoutParams.WRAP_CONTENT)
-//            val imageSize = (ScreenUtils.getScreenWidth() * 62 / 375f).toInt()
-//            val layoutParams = itemView.item_menu_tab_fl.layoutParams
-//            layoutParams.width = imageSize
-//            layoutParams.height = imageSize
-//            itemView.item_menu_tab_fl.layoutParams = layoutParams
-//        }
         val lay: View = itemView.item_menu_tab_lay
         val img: ImageView = itemView.item_menu_tab_img
         val name: TextView = itemView.item_menu_tab_text

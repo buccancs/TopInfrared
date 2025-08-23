@@ -7,7 +7,6 @@
     android:padding="13dp"
     tools:ignore="SmallSp">
 
-    <!-- 房屋图片 -->
     <ImageView
         android:id="@+id/iv_house_image"
         android:layout_width="0dp"
@@ -21,7 +20,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- 报告名称 -->
     <TextView
         android:id="@+id/tv_report_name"
         android:layout_width="0dp"
@@ -36,7 +34,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_house_image" />
 
-    <!-- 时间 -->
     <TextView
         android:id="@+id/tv_time"
         android:layout_width="0dp"
@@ -49,7 +46,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_report_name" />
 
-    <!-- 房屋详细地址 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_address"
         android:layout_width="0dp"
@@ -96,7 +92,6 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.5" />
 
-        <!-- 检测师姓名 -->
         <ImageView
             android:id="@+id/iv_inspector_name"
             android:layout_width="10sp"
@@ -132,7 +127,6 @@
             app:layout_constraintEnd_toEndOf="@id/tv_inspector_name_title"
             app:layout_constraintTop_toBottomOf="@id/tv_inspector_name_title" />
 
-        <!-- 建筑年份 -->
         <ImageView
             android:id="@+id/iv_house_year"
             android:layout_width="10sp"
@@ -175,7 +169,6 @@
             app:barrierDirection="bottom"
             app:constraint_referenced_ids="tv_inspector_name,tv_house_year" />
 
-        <!-- 建筑面积 -->
         <ImageView
             android:id="@+id/iv_house_space"
             android:layout_width="10sp"
@@ -211,7 +204,6 @@
             app:layout_constraintEnd_toEndOf="@id/tv_house_space_title"
             app:layout_constraintTop_toBottomOf="@id/tv_house_space_title" />
 
-        <!-- 检测费用 -->
         <ImageView
             android:id="@+id/iv_cost"
             android:layout_width="10sp"

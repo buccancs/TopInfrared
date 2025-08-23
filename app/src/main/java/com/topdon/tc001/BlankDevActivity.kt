@@ -11,11 +11,6 @@ import com.topdon.lib.core.config.RouterConfig
 import com.topdon.module.thermal.ir.activity.IRMainActivity
 import com.topdon.tc001.app.App
 
-/**
- * des:usb识别的之后进行界面中转，所有的设备中转逻辑可参考次界面
- * author: CaiSongL
- * date: 2024/3/25 16:50
- **/
 class BlankDevActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

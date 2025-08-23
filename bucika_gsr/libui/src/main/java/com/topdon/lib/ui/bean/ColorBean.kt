@@ -6,6 +6,6 @@ data class ColorBean(
     val code: Int,
     var isSelect : Boolean = false,
     var n_res : Int = 0,
-    var isMutually : Boolean = false//是否互斥条件
+    var isMutually : Boolean = false
 
 )

@@ -19,8 +19,7 @@ class LanguageActivity : BaseActivity() {
     override fun initContentView() = R.layout.activity_language
 
     override fun initView() {
-        title_view.setRightClickListener {//保存
-            // Only English is supported - always return English
+        title_view.setRightClickListener {
             val localeStr: String = ConstantLanguages.ENGLISH
             setResult(RESULT_OK, Intent().also { it.putExtra("localeStr", localeStr) })
             finish()
@@ -46,7 +45,6 @@ class LanguageActivity : BaseActivity() {
     }
 
     private fun showLanguage() {
-        // Only English is supported - always select index 0
         val selectIndex = 0
         adapter.setSelect(selectIndex)
         this.selectIndex = selectIndex

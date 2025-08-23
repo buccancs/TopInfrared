@@ -20,9 +20,9 @@ class MenuSixAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.V
     var listener: ((index: Int, code: Int) -> Unit)? = null
     private var type = 0
     private var selected = -1
-    private var colorEnable = false //伪彩条
-    private var contrastEnable = false //对比度
-    private var ddeEnable = false //细节
+    private var colorEnable = false
+    private var contrastEnable = false
+    private var ddeEnable = false
 
     fun selected(index: Int) {
         selected = index
@@ -49,7 +49,6 @@ class MenuSixAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.V
         ColorBean(R.drawable.selector_menu2_setting_2, context.getString(R.string.thermal_contrast), 2),
         ColorBean(R.drawable.selector_menu2_setting_3, context.getString(R.string.thermal_sharpen), 3),
     )
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.ui_item_menu_four_view, parent, false)
@@ -85,7 +84,6 @@ class MenuSixAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.V
         }
     }
 
-    // 状态变化
     private fun iconUI(isActive: Boolean, img: ImageView, nameText: TextView) {
         img.isSelected = isActive
         if (isActive) {

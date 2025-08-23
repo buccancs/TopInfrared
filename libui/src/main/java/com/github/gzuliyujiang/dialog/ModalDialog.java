@@ -1,15 +1,4 @@
-/*
- * Copyright (c) 2016-present 贵州纳雍穿青人李裕江<1032694760@qq.com>
- *
- * The software is licensed under the Mulan PSL v2.
- * You can use this software according to the terms and conditions of the Mulan PSL v2.
- * You may obtain a copy of Mulan PSL v2 at:
- *     http://license.coscl.org.cn/MulanPSL2
- * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
- * PURPOSE.
- * See the Mulan PSL v2 for more details.
- */
+
 
 package com.github.gzuliyujiang.dialog;
 
@@ -34,10 +23,6 @@ import androidx.annotation.StyleRes;
 
 import com.topdon.lib.ui.R;
 
-/**
- * @author 贵州山野羡民（1032694760@qq.com）
- * @since 2021/6/3 15:23
- */
 @SuppressWarnings("unused")
 public abstract class ModalDialog extends BottomDialog implements View.OnClickListener {
     protected View headerView;
@@ -198,21 +183,11 @@ public abstract class ModalDialog extends BottomDialog implements View.OnClickLi
             cancelDrawable.setCornerRadius(okView.getResources().getDisplayMetrics().density * 999);
             cancelDrawable.setColor(DialogConfig.getDialogColor().cancelEllipseColor());
             cancelView.setBackground(cancelDrawable);
-//            if (ColorUtils.calculateLuminance(DialogConfig.getDialogColor().cancelEllipseColor()) < 0.5f) {
-//                cancelView.setTextColor(0xFFFFFFFF);
-//            } else {
-//                cancelView.setTextColor(0xFF666666);
-//            }
         }
         GradientDrawable okDrawable = new GradientDrawable();
         okDrawable.setCornerRadius(okView.getResources().getDisplayMetrics().density * 999);
         okDrawable.setColor(DialogConfig.getDialogColor().okEllipseColor());
         okView.setBackground(okDrawable);
-//        if (ColorUtils.calculateLuminance(DialogConfig.getDialogColor().okEllipseColor()) < 0.5f) {
-//            okView.setTextColor(0xFFFFFFFF);
-//        } else {
-//            okView.setTextColor(0xFF333333);
-//        }
     }
 
     @Override

@@ -10,7 +10,6 @@
     android:paddingBottom="16dp"
     android:background="@drawable/bg_corners10_solid_23202e">
 
-    <!-- 房屋图片 -->
     <com.topdon.lib.ui.widget.RoundImageView
         android:id="@+id/iv_house_image"
         android:layout_width="0dp"
@@ -23,7 +22,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- 半透明遮罩 -->
     <View
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -33,7 +31,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/iv_house_image" />
 
-    <!-- 右上角3个点菜单 -->
     <ImageView
         android:id="@+id/iv_menu_more"
         android:layout_width="0dp"
@@ -47,7 +44,7 @@
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-    <!-- 编辑模式下选中状态指示图片 -->
+    
     <ImageView
         android:id="@+id/iv_select"
         android:layout_width="0dp"
@@ -63,7 +60,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- 房屋地址 -->
     <com.topdon.lib.core.view.MyTextView
         android:id="@+id/tv_address"
         android:layout_width="0dp"
@@ -82,7 +78,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/iv_house_image" />
 
-    <!-- 检测或报告名称 -->
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="0dp"
@@ -99,7 +94,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_house_image" />
 
-    <!-- 检测时间 -->
     <TextView
         android:id="@+id/tv_detect_time"
         android:layout_width="0dp"
@@ -114,7 +108,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_name" />
 
-    <!-- 多语言时建筑面积与建筑年份高度可能不一样，用该 View 对齐 -->
     <TextView
         android:id="@+id/view_space_year"
         android:layout_width="wrap_content"
@@ -125,7 +118,7 @@
         tools:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_detect_time" />
-    <!-- 建筑面积 -->
+    
     <TextView
         android:id="@+id/tv_house_space"
         android:layout_width="wrap_content"
@@ -141,7 +134,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/view_space_year"
         app:layout_constraintBottom_toBottomOf="@id/view_space_year" />
-    <!-- 建筑年份 -->
+    
     <TextView
         android:id="@+id/tv_house_year"
         android:layout_width="wrap_content"
@@ -159,7 +152,6 @@
         app:layout_constraintTop_toTopOf="@id/view_space_year"
         app:layout_constraintBottom_toBottomOf="@id/view_space_year" />
 
-    <!-- 检测费用单位 -->
     <TextView
         android:id="@+id/tv_cost_unit"
         android:layout_width="wrap_content"
@@ -171,7 +163,7 @@
         tools:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBaseline_toBaselineOf="@+id/tv_cost" />
-    <!-- 检测费用 -->
+    
     <TextView
         android:id="@+id/tv_cost"
         android:layout_width="wrap_content"
@@ -185,7 +177,6 @@
         app:layout_constraintStart_toEndOf="@id/tv_cost_unit"
         app:layout_constraintTop_toBottomOf="@id/view_space_year" />
 
-    <!-- 检测 or 分享 -->
     <TextView
         android:id="@+id/tv_detect_share"
         android:layout_width="0dp"

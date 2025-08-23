@@ -14,7 +14,6 @@ class MarqueeTextView : AppCompatTextView {
         private const val BASE_TIME = 2000
     }
 
-
     private val rect = Rect()
 
     private var scroller: Scroller? = null

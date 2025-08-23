@@ -227,7 +227,7 @@
 	<string name="app_manual">Gebruikershandleiding</string>
 	<string name="auto_shutter">Automatische sluiter</string>
 	<string name="color_board">kleurenbord</string>
-    <!--    2022-11-16-->
+    
     <string name="user_services_agreement">Gebruikersserviceovereenkomst</string>
     <string name="privacy_policy">Privacybeleid</string>
     <string name="third_party_components">componenten van derden</string>
@@ -239,9 +239,6 @@
 	<string name="device_loading_tip">Bezig met laden…</string>
 	<string name="edit_image_error_tip">De afbeelding mist temperatuurgegevens en ondersteunt geen bewerking.</string>
 
-
-	<!--	荷兰dutch-->
-	<!-- 2.00版本 -->
 	<string name="app_lapsePhotography">Getimede foto</string>
 	<string name="app_Manual_Shutter">Handmatige Sluiter</string>
 	<string name="app_record_sound">Audio opnemen</string>
@@ -282,7 +279,6 @@
 	<string name="app_open">Ga naar Instellingen</string>
 	<string name="album_report_aleart">Video-opname stopt vanwege onvoldoende opslagruimte op uw telefoon.</string>
 	<string name="tip_video_record">Elke video-opname is beperkt tot 60 minuten.</string>
-
 
 	<string name="temp_alarm_alarm">Alarm</string>
 	<string name="temp_alarm_high_alarm">Hoge Temp. Alarm</string>
@@ -343,7 +339,6 @@
 	<string name="start_fail_and_restart">Start mislukt! Gelieve de app te verlaten en opnieuw te openen</string>
 	<string name="app_Low_temperature">lage temperatuur</string>
 
-
 	<string name="monitor_finish">Stop</string>
 	<string name="album_menu_2d">2D Bewerken</string>
 	<string name="album_menu_3d">3D Bewerken</string>
@@ -393,7 +388,6 @@
 	<string name="menu_3d_x_axis">X-as</string>
 	<string name="menu_3d_y_axis">Y-as</string>
 
-	<!--TS001-->
 	<string name="album_menu_Photos">foto</string>
 	<string name="feedback_problem_type_6">Andere</string>
 	<string name="app_got_it">Ik snap het</string>
@@ -498,8 +492,6 @@
 	<string name="installation_package_downloading_tips">Het downloaden begint. Controleer de voortgang in de meldingen</string>
 	<string name="welcome_use_app">Welkom bij %1$s</string>
 
-	<!--荷兰语（机翻）-->
-
 	<string name="dual_light_correction">Dubbele lichtcorrectie</string>
 	<string name="dual_light_correction_tips_1">Omdat de scherpstellingen van de twee camera\'s niet op elkaar zijn afgestemd, zullen de afbeeldingen die door de twee camera\'s vanaf verschillende afstanden zijn vastgelegd niet op elkaar afgestemd worden.\nDeze functie kan afzonderlijk helpen bij het uitlijnen van de afbeeldingen.</string>
 	<string name="dual_light_correction_tips_2">1. Laat een warmtebron (zoals uw handpalm) in de afbeelding staan op een afstand van ongeveer 0,5 meter van de camera.\n2. Tik op om een foto te maken.</string>
@@ -521,7 +513,6 @@
 
 	<string name="text_p_umeng">Om een betere functionele ervaring te bieden, integreren onze producten Umeng+SDK voor gegevensstatistieken en logverzameling. De SDK verzamelt uw apparaatidentificatie en accountinformatie</string>
 
-	<!--TS004-->
 	<string name="ts004_connection_device">Bekabelde aangesloten apparaten</string>
 	<string name="ts004_auto_save">Automatisch opslaan op uw telefoon</string>
 	<string name="ts004_save_tips">Als u dit inschakelt, worden de foto\'s en video\'s automatisch lokaal op uw telefoon opgeslagen als u verbinding met de APP maakt om foto\'s te maken of video\'s op te nemen.</string>
@@ -601,12 +592,10 @@
 	<string name="ts004_faq_q5">Hoe bekijk ik de vastgelegde warmtebeelden op een pc?</string>
 	<string name="ts004_faq_a5">Sluit TS004 aan op een pc via de USB-kabel, waarna u de warmtebeelden kunt bekijken die zijn opgeslagen op TS004.</string>
 
-	<!-- TC001 老 APP 引流 -->
 	<string name="gallery_transfer">Galerij overzetten</string>
 	<string name="gallery_transfer_wait">De gegevens worden overgezet. Even geduld.</string>
 	<string name="gallery_transfer_complete">Gegevens overzetten voltooid</string>
 
-	<!-- 3.70 -->
 	<string name="user_jump">Sla over</string>
 	<string name="tc_guide_tips1">Bekijk realtime monitoringdiagrammen en geschiedenis monitorrecords.</string>
 	<string name="tc_guide_tips2">Om een nauwkeurige temperatuurmeting te garanderen, moet u vóór de temperatuurmeting de relevante parameters instellen.</string>
@@ -623,7 +612,6 @@
 	<string name="ts004_conntenct_tip">U gebruikt mobiele data. Het apparaat kan worden losgekoppeld.</string>
 	<string name="fireware_update_tips">Bug fixes and performance improvements</string>
 
-	<!-- 3.80 -->
 	<string name="tc_local_album">Lokale Galerij</string>
 	<string name="tc_connect_device">Verbind Apparaat</string>
 	<string name="tc_connect_tips">Kies het apparaat dat u wilt verbinden.</string>
@@ -635,7 +623,6 @@
 	<string name="tc_reset_tips">Alle apparaatinstellingen zullen naar de fabrieksinstellingen worden teruggezet. Bevestig om te herstellen?</string>
 	<string name="coming_soon">Blijf op de hoogte...</string>
 
-	<!-- 3.90 -->
 	<string name="tc007_connect_tips1">1. Zorg ervoor dat het materiaal voldoende macht heeft en dicht genoeg is</string>
 	<string name="tc007_connect_tips2">2. Schakel Bluetooth en WiFi in op uw telefoon</string>
 	<string name="tc007_connect_tips3">3. Voer de APP scanpagina in</string>
@@ -652,7 +639,6 @@
 	<string name="wifi_connect_loading">Het zal naar verwachting 15 seconden duren…</string>
 	<string name="tc007_done_fast">Frequente operaties</string>
 
-	<!-- 房屋检测 -->
 	<string name="main_professional_test">Professionele testen</string>
 	<string name="main_temperature_test">Temperatuur testen</string>
 	<string name="main_thermal_tips">Professionele warmtebeeld testen</string>
@@ -821,7 +807,6 @@
 	<string name="abnormal_description17">De temperatuur van de achterruitverwarming wordt door veel factoren beïnvloed, zoals omgevingstemperatuur en belasting van de verwarming. Controleer de verwarmingstemperatuur met een warmtebeeldcamera en dan kunt u beoordelen of de achteruitkijkspiegel effectief kan worden verwarmd.</string>
 	<string name="abnormal_description18">De temperatuur van de raammotor wordt door veel factoren beïnvloed, zoals omgevingstemperatuur en motorbelasting. Controleer de motortemperatuur met een warmtebeeldcamera. Als de temperatuur te hoog is, kan dit worden veroorzaakt door een defect aan het hefmechanisme voor de ramen of de motor zelf.</string>
 
-	<!-- 房屋检测新增 -->
 	<string name="vehicle_function">Functie</string>
 	<string name="ability_find">vinden</string>
 	<string name="ability_monitory">Realtime weergave van objecttemperatuur om gegevens te genereren</string>
@@ -847,7 +832,6 @@
 	<string name="pdf_project_item">project</string>
 	<string name="house_sign_finish_tips">Vul de elektronische handtekening in</string>
 
-	<!-- 4.50 -->
 	<string name="thermal_trend">Trendgrafiek</string>
 	<string name="thermal_trend_tips">Teken een lijnstuk op de afbeelding om de temperatuurverandering te zien.</string>
 	<string name="material_view_all">Bekijk alles</string>
@@ -960,7 +944,6 @@
 	<string name="tips_tisr_off">Imaging Super Resolution is gedeactiveerd.</string>
 	<string name="tips_tisr_fail">Uw telefoon ondersteunt OpenCL niet en kan Imaging Super Resolution niet inschakelen.</string>
 
-	<!-- 4.70 -->
 	<string name="testing_guidance">Testrichtsnoeren</string>
 	<string name="unlock_professional_perspectives">Professionele perspectieven ontsluiten</string>
 	<string name="app_error_reload">Herladen</string>

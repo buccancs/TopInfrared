@@ -7,24 +7,21 @@ import com.topdon.pseudo.constant.ColorRecommend
 import kotlinx.android.parcel.Parcelize
 import java.nio.ByteBuffer
 
-/**
- * 自定义渲染的相关配置.
- */
 @Parcelize
 data class CustomPseudoBean (
-    var selectIndex: Int = 0,                       //当前选中色块在列表中 index
-    var colors: IntArray? = null,                   //7 个色块颜色值
-    var zAltitudes: IntArray? = null,               //7 个色块海拔
-    var places: FloatArray? = null,                 //7 个色块占比值
-    var isUseCustomPseudo: Boolean = false,         //true-自定义渲染 false-动态渲染
-    var maxTemp: Float = 50f,                       //自定义渲染最高温，单位摄氏度，默认50摄氏度
-    var minTemp: Float = 0f,                        //自定义渲染最低温，单位摄氏度，默认0摄氏度
-    var isColorCustom: Boolean = true,              //true-自定义渲染颜色为自定义 false-自定义渲染颜色为推荐
-    var customMinColor: Int = 0xff0000FF.toInt(),   //自定义渲染自定义颜色最小值(最低温)
-    var customMiddleColor: Int = 0xFFFF0000.toInt(),//自定义渲染自定义颜色中间值
-    var customMaxColor: Int = 0xFFFFFF00.toInt(),   //自定义渲染自定义颜色最大值(最高温)
-    var customRecommendIndex: Int = 0,              //自定义渲染颜色推荐 index
-    var isUseGray: Boolean = true,                  //true-自定义渲染使用灰度渐变 false-自定义渲染使用等色
+    var selectIndex: Int = 0,
+    var colors: IntArray? = null,
+    var zAltitudes: IntArray? = null,
+    var places: FloatArray? = null,
+    var isUseCustomPseudo: Boolean = false,
+    var maxTemp: Float = 50f,
+    var minTemp: Float = 0f,
+    var isColorCustom: Boolean = true,
+    var customMinColor: Int = 0xff0000FF.toInt(),
+    var customMiddleColor: Int = 0xFFFF0000.toInt(),
+    var customMaxColor: Int = 0xFFFFFF00.toInt(),
+    var customRecommendIndex: Int = 0,
+    var isUseGray: Boolean = true,
 ) : Parcelable {
 
     companion object {
@@ -111,11 +108,10 @@ data class CustomPseudoBean (
     }
 
     fun getColorList(isTC007: Boolean = false): IntArray? {
-        // TODO: 排查所有使用的地方，要同步获取 places 计算
-        if (!isUseCustomPseudo) {//都没开自定义渲染
+        if (!isUseCustomPseudo) {
             return null
         }
-        return if (isColorCustom) {//自定义颜色
+        return if (isColorCustom) {
             val sourceColors = getCustomColors()
             val places = getCustomPlaces()
             val actualColors = IntArray(sourceColors.size)
@@ -126,24 +122,24 @@ data class CustomPseudoBean (
                 }
             }
             actualColors
-        } else {//推荐颜色
+        } else {
             ColorRecommend.getColorByIndex(isTC007, customRecommendIndex)
         }
     }
 
     fun getPlaceList(): FloatArray? {
-        if (!isUseCustomPseudo) {//都没开自定义渲染
+        if (!isUseCustomPseudo) {
             return null
         }
-        return if (isColorCustom) {//自定义颜色
+        return if (isColorCustom) {
             getCustomPlaces()
-        } else {//推荐颜色
+        } else {
             null
         }
     }
 
     fun getCustomColors(): IntArray {
-        if (colors == null) {//老数据
+        if (colors == null) {
             colors = intArrayOf(customMinColor, customMiddleColor, customMaxColor)
         }
         return colors!!
@@ -168,7 +164,7 @@ data class CustomPseudoBean (
 
         val colors: IntArray = getCustomColors()
 
-        buffer.put(colors.size.toByte()) //colorSize
+        buffer.put(colors.size.toByte())
         buffer.put(selectIndex.toByte())
 
         for (color in colors) {
@@ -187,7 +183,6 @@ data class CustomPseudoBean (
             buffer.putFloat(place)
         }
         buffer.position(2 + 7 * 4 + 7 + 7 * 4)
-
 
         buffer
             .put(if (isUseCustomPseudo) 1.toByte() else 0.toByte())

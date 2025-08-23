@@ -118,7 +118,6 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.5" />
 
-
         <Button
             android:id="@+id/dialog_tip_cancel_btn"
             android:layout_width="0dp"

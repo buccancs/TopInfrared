@@ -7,7 +7,6 @@
     android:background="#F5F5F5"
     tools:context=".MainActivity">
 
-    <!-- App Header -->
     <TextView
         android:id="@+id/tvAppTitle"
         android:layout_width="wrap_content"
@@ -21,7 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- TC001 Icon/Logo -->
     <ImageView
         android:id="@+id/ivTC001Logo"
         android:layout_width="120dp"
@@ -35,7 +33,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvAppTitle" />
 
-    <!-- Connection Status -->
     <TextView
         android:id="@+id/tvConnectionStatus"
         android:layout_width="wrap_content"
@@ -48,8 +45,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ivTC001Logo" />
-        
-    <!-- Device Info -->
+
     <TextView
         android:id="@+id/tvDeviceInfo"
         android:layout_width="wrap_content"
@@ -62,8 +58,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvConnectionStatus" />
-        
-    <!-- Status Message -->
+
     <TextView
         android:id="@+id/tvStatusMessage"
         android:layout_width="wrap_content"
@@ -77,7 +72,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvDeviceInfo" />
 
-    <!-- Connect Button -->
     <Button
         android:id="@+id/btnConnectTC001"
         android:layout_width="200dp"
@@ -91,7 +85,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvStatusMessage" />
 
-    <!-- Local Files Button -->
     <Button
         android:id="@+id/btnLocalFiles"
         android:layout_width="200dp"
@@ -105,7 +98,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnConnectTC001" />
 
-    <!-- Features List -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

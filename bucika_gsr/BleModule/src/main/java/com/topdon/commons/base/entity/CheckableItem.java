@@ -1,12 +1,7 @@
 package com.topdon.commons.base.entity;
 
-
 import com.topdon.commons.base.interfaces.Checkable;
 
-/**
- * date: 2019/8/6 12:35
- * author: chuanfeng.bi
- */
 public class CheckableItem<T> implements Checkable<CheckableItem<T>> {
     private T data;
     private boolean isChecked;

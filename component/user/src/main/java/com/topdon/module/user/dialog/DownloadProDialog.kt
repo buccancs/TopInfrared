@@ -11,10 +11,6 @@ import com.topdon.module.user.R
 import kotlinx.android.synthetic.main.dialog_download_pro.view.*
 import java.text.DecimalFormat
 
-/**
- * 下载进度提示弹框.
- * Created by LCG on 2024/3/5.
- */
 class DownloadProDialog(context: Context) : Dialog(context, R.style.InfoDialog) {
 
     private val rootView: View = LayoutInflater.from(context).inflate(R.layout.dialog_download_pro, null)
@@ -33,9 +29,6 @@ class DownloadProDialog(context: Context) : Dialog(context, R.style.InfoDialog) 
         }
     }
 
-    /**
-     * 刷新进度值
-     */
     fun refreshProgress(current: Long, total: Long) {
         val progress = (current * 100f / total).toInt()
         rootView.tv_size.text = "${context.getString(R.string.detail_len)}: ${getFileSizeStr(current)}/${getFileSizeStr(total)}"

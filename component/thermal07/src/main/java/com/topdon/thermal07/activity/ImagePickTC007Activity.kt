@@ -12,11 +12,6 @@ import com.topdon.module.thermal.ir.R
 import com.topdon.tc004.activity.video.PlayFragment
 import org.easydarwin.video.Client
 
-/**
- * des:双光的红外拍照
- * author: CaiSongL
- * date: 2024/8/24 18:10
- **/
 @Route(path = RouterConfig.IR_IMG_PICK_07)
 class ImagePickTC007Activity : BasePickImgActivity() {
     companion object {
@@ -24,11 +19,6 @@ class ImagePickTC007Activity : BasePickImgActivity() {
     }
     var playFragment : PlayFragment ?= null
     override fun initView() {
-//        val layoutParams = fragmentContainerView.layoutParams as ConstraintLayout.LayoutParams
-//        layoutParams.dimensionRatio = "256:192"
-//        layoutParams.topToBottom = R.id.toolbar_lay;
-//        layoutParams.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
-//        fragmentContainerView.layoutParams = layoutParams
         if (savedInstanceState == null) {
             playFragment = PlayFragment.newInstance(RTSP_URL, Client.TRANSTYPE_TCP, 1, null,true)
             supportFragmentManager.beginTransaction().add(R.id.fragment_container_view, playFragment!!).commit()
@@ -53,7 +43,5 @@ class ImagePickTC007Activity : BasePickImgActivity() {
     override fun initData() {
 
     }
-
-
 
 }

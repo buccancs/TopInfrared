@@ -7,12 +7,6 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 
-/**
- * 执行后台任务
- * <p>
- * date: 2019/8/7 10:40
- * author: chuanfeng.bi
- */
 final class BackgroundPoster implements Runnable, Poster {
     private final ExecutorService executorService;
     private final Queue<Runnable> queue;

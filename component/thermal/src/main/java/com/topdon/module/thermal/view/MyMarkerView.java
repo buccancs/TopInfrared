@@ -15,12 +15,6 @@ import com.topdon.lib.core.db.entity.ThermalEntity;
 import com.topdon.lib.core.tools.TimeTool;
 import com.topdon.module.thermal.R;
 
-
-/**
- * Custom implementation of the MarkerView.
- *
- * @author Philipp Jahoda
- */
 @SuppressLint("ViewConstructor")
 public class MyMarkerView extends MarkerView {
 
@@ -33,12 +27,10 @@ public class MyMarkerView extends MarkerView {
         timeText = findViewById(R.id.time_text);
     }
 
-    // runs every time the MarkerView is redrawn, can be used to update the
-    // content (user-interface)
     @SuppressLint("DefaultLocale")
     @Override
     public void refreshContent(Entry e, Highlight highlight) {
-        int index = highlight.getDataIndex();//曲线序号
+        int index = highlight.getDataIndex();
         ThermalEntity data = (ThermalEntity) e.getData();
         if (e instanceof CandleEntry) {
             CandleEntry ce = (CandleEntry) e;

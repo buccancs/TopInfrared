@@ -83,7 +83,6 @@
             />
     </RelativeLayout>
 
-    <!-- 趋势图 -->
     <Space
         android:id="@+id/space_chart"
         android:layout_width="0dp"
@@ -150,7 +149,6 @@
             app:layout_constraintEnd_toEndOf="parent" />
     </LinearLayout>
 
-    <!-- 伪彩条 -->
     <com.topdon.lib.ui.widget.BitmapConstraintLayout
         android:id="@+id/cl_seek_bar"
         android:layout_width="wrap_content"
@@ -269,7 +267,6 @@
         app:layout_constraintStart_toStartOf="@id/thermal_lay"
         app:layout_constraintEnd_toEndOf="@id/thermal_lay" />
 
-    <!-- 拍照-更多 5 选项菜单 -->
     <ViewStub
         android:id="@+id/view_stub_camera"
         android:layout_width="0dp"

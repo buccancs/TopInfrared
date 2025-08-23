@@ -42,7 +42,6 @@ class TC001ThermalManager(
     private var recordingSurface: Surface? = null
     private var recordingStartTime: Long = 0
     
-    // Enhanced recording capabilities
     private val enhancedRecordingScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
     private var enhancedRecordingManager: EnhancedRecordingManager? = null
     
@@ -50,7 +49,6 @@ class TC001ThermalManager(
         try {
             Log.d(TAG, "Starting thermal capture for TC001")
             
-            // Initialize camera handler
             cameraHandler = TC001CameraHandler(context) { bitmap ->
                 currentThermalBitmap = bitmap
                 frameCallback(bitmap)
@@ -62,14 +60,12 @@ class TC001ThermalManager(
                 return@withContext false
             }
             
-            // Connect to TC001 device (mock connection for demo)
             val connected = cameraHandler?.connectToDevice(null) ?: false
             if (!connected) {
                 Log.e(TAG, "Failed to connect to TC001 device")
                 return@withContext false
             }
             
-            // Start thermal preview
             val started = cameraHandler?.startPreview() ?: false
             if (!started) {
                 Log.e(TAG, "Failed to start thermal preview")
@@ -78,7 +74,6 @@ class TC001ThermalManager(
             
             isCapturing = true
             
-            // Initialize enhanced recording manager
             enhancedRecordingManager = EnhancedRecordingManager(context, enhancedRecordingScope)
             
             true
@@ -91,19 +86,16 @@ class TC001ThermalManager(
     
     fun pauseCapture() {
         Log.d(TAG, "Pausing thermal capture")
-        // Pause camera preview but keep connection
     }
     
     fun resumeCapture() {
         Log.d(TAG, "Resuming thermal capture")
-        // Resume camera preview
     }
     
     fun setTemperatureMeasureMode(mode: TempMode) {
         currentTempMode = mode
         Log.d(TAG, "Temperature measurement mode set to: $mode")
         
-        // Configure TC001 temperature measurement mode
         configureTC001MeasurementMode(mode)
     }
     
@@ -134,42 +126,33 @@ class TC001ThermalManager(
             
             Log.d(TAG, "Starting enhanced thermal recording with MediaRecorder")
             
-            // Create video file with proper naming
             val filename = FileUtils.generateVideoFilename()
             val videosDir = FileUtils.getVideosDirectory(context)
             currentVideoFile = File(videosDir, filename)
             
-            // Initialize MediaRecorder with proper configuration
             mediaRecorder = MediaRecorder().apply {
-                // Set video source - for thermal camera, we'd use Camera or Surface
                 setVideoSource(MediaRecorder.VideoSource.SURFACE)
                 
-                // Set output format
                 setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
                 
-                // Set video encoder and configuration
                 setVideoEncoder(MediaRecorder.VideoEncoder.H264)
-                setVideoEncodingBitRate(8000000) // 8 Mbps for good quality
-                setVideoFrameRate(30) // 30 FPS for smooth playback
-                setVideoSize(640, 480) // TC001 resolution
+                setVideoEncodingBitRate(8000000)
+                setVideoFrameRate(30)
+                setVideoSize(640, 480)
                 
-                // Set output file
                 setOutputFile(currentVideoFile!!.absolutePath)
                 
-                // Set maximum duration (10 minutes) and file size (500MB)
-                setMaxDuration(600000) // 10 minutes in milliseconds
-                setMaxFileSize(500 * 1024 * 1024) // 500MB
+                setMaxDuration(600000)
+                setMaxFileSize(500 * 1024 * 1024)
                 
                 setOnInfoListener { _, what, _ ->
                     when (what) {
                         MediaRecorder.MEDIA_RECORDER_INFO_MAX_DURATION_REACHED -> {
                             Log.w(TAG, "Maximum recording duration reached")
-                            // Signal that recording should be stopped
                             isRecording = false
                         }
                         MediaRecorder.MEDIA_RECORDER_INFO_MAX_FILESIZE_REACHED -> {
                             Log.w(TAG, "Maximum file size reached")
-                            // Signal that recording should be stopped
                             isRecording = false
                         }
                     }
@@ -177,18 +160,14 @@ class TC001ThermalManager(
                 
                 setOnErrorListener { _, what, extra ->
                     Log.e(TAG, "MediaRecorder error: what=$what, extra=$extra")
-                    // Handle recording error
                     isRecording = false
                 }
                 
-                // Prepare the recorder
                 prepare()
                 
-                // Get the surface for recording
                 recordingSurface = surface
             }
             
-            // Start recording
             mediaRecorder?.start()
             recordingStartTime = System.currentTimeMillis()
             isRecording = true
@@ -232,9 +211,7 @@ class TC001ThermalManager(
             val videoFile = currentVideoFile
             currentVideoFile = null
             
-            // Verify the recorded file
             if (videoFile != null && videoFile.exists() && videoFile.length() > 0) {
-                // Add metadata to the video file
                 try {
                     addVideoMetadata(videoFile, recordingDuration)
                 } catch (e: Exception) {
@@ -263,7 +240,6 @@ class TC001ThermalManager(
     fun cleanup() {
         isCapturing = false
         
-        // Stop recording if active
         if (isRecording) {
             isRecording = false
             mediaRecorder?.apply {
@@ -280,7 +256,6 @@ class TC001ThermalManager(
         mediaRecorder = null
         recordingSurface = null
         
-        // Cleanup enhanced recording manager
         enhancedRecordingManager?.cleanup()
         enhancedRecordingManager = null
         
@@ -292,31 +267,20 @@ class TC001ThermalManager(
         recordingStartTime = 0
         Log.d(TAG, "TC001 thermal manager cleaned up")
     }
-    
-    /**
-     * Get the recording surface for thermal data input
-     */
+
     fun getRecordingSurface(): Surface? = recordingSurface
-    
-    /**
-     * Get current recording duration in seconds
-     */
+
     fun getRecordingDuration(): Long {
         return if (isRecording) {
             (System.currentTimeMillis() - recordingStartTime) / 1000
         } else 0
     }
-    
-    /**
-     * Add metadata to recorded video file
-     */
+
     private fun addVideoMetadata(videoFile: File, durationMs: Long) {
         try {
-            // Use MediaMetadataRetriever to add thermal-specific metadata
             val retriever = MediaMetadataRetriever()
             retriever.setDataSource(videoFile.absolutePath)
             
-            // Log video properties
             val width = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH)
             val height = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT)
             val duration = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)
@@ -325,7 +289,6 @@ class TC001ThermalManager(
             
             retriever.release()
             
-            // Create a companion metadata file for thermal-specific info
             val metadataFile = File(videoFile.parent, "${videoFile.nameWithoutExtension}.json")
             val metadata = """
                 {
@@ -348,26 +311,18 @@ class TC001ThermalManager(
     
     private fun configureTC001MeasurementMode(mode: TempMode) {
         try {
-            // Configure TC001 device for specific measurement mode
             when (mode) {
                 TempMode.POINT -> {
                     Log.d(TAG, "Configuring TC001 for point temperature measurement")
-                    // Point mode: single temperature reading at cursor location
-                    // In a real implementation, this would send USB commands to TC001
                 }
                 TempMode.LINE -> {
                     Log.d(TAG, "Configuring TC001 for line temperature measurement")
-                    // Line mode: temperature profile along a line
-                    // Enhanced thermal processing for line analysis
                 }
                 TempMode.AREA -> {
                     Log.d(TAG, "Configuring TC001 for area temperature measurement")
-                    // Area mode: statistical analysis of temperature regions
-                    // Configure for min/max/avg calculations
                 }
             }
             
-            // Apply mode-specific settings to mock thermal processing
             adjustMockThermalGeneration(mode)
             
         } catch (e: Exception) {
@@ -376,83 +331,51 @@ class TC001ThermalManager(
     }
     
     private fun adjustMockThermalGeneration(mode: TempMode) {
-        // Adjust mock thermal data generation based on measurement mode
-        // This simulates how real TC001 hardware would behave differently
         when (mode) {
             TempMode.POINT -> {
-                // Generate focused temperature data for point measurements
                 Log.v(TAG, "Mock thermal: Enhanced point resolution")
             }
             TempMode.LINE -> {
-                // Generate gradient thermal data for line profiles  
                 Log.v(TAG, "Mock thermal: Enhanced line gradient data")
             }
             TempMode.AREA -> {
-                // Generate varied thermal data for statistical analysis
                 Log.v(TAG, "Mock thermal: Enhanced area temperature variation")
             }
         }
     }
-    
-    /**
-     * Start Samsung-specific 4K recording at 30 FPS
-     */
+
     suspend fun startSamsung4KRecording(): Boolean {
         return enhancedRecordingManager?.startSamsung4KRecording() ?: false
     }
-    
-    /**
-     * Start DNG RAW Level 3 recording at 30 FPS  
-     */
+
     suspend fun startDngRawLevel3Recording(): Boolean {
         return enhancedRecordingManager?.startDngRawLevel3Recording() ?: false
     }
-    
-    /**
-     * Start parallel Samsung 4K + DNG RAW Level 3 recording
-     */
+
     suspend fun startParallelRecording(): Pair<Boolean, Boolean> {
         return enhancedRecordingManager?.startParallelRecording() ?: Pair(false, false)
     }
-    
-    /**
-     * Stop specific enhanced recording type
-     */
+
     suspend fun stopEnhancedRecording(type: EnhancedRecordingManager.Companion.RecordingType): String? {
         return enhancedRecordingManager?.stopRecording(type)
     }
-    
-    /**
-     * Stop all enhanced recordings
-     */
+
     suspend fun stopAllEnhancedRecordings(): List<String> {
         return enhancedRecordingManager?.stopAllRecordings() ?: emptyList()
     }
-    
-    /**
-     * Check if specific enhanced recording is active
-     */
+
     fun isEnhancedRecordingActive(type: EnhancedRecordingManager.Companion.RecordingType): Boolean {
         return enhancedRecordingManager?.isRecording(type) ?: false
     }
-    
-    /**
-     * Get enhanced recording duration for specific type
-     */
+
     fun getEnhancedRecordingDuration(type: EnhancedRecordingManager.Companion.RecordingType): Long {
         return enhancedRecordingManager?.getRecordingDuration(type) ?: 0
     }
-    
-    /**
-     * Check if any enhanced recording is active
-     */
+
     fun isAnyEnhancedRecordingActive(): Boolean {
         return enhancedRecordingManager?.isAnyRecordingActive() ?: false
     }
-    
-    /**
-     * Get all active enhanced recording types
-     */
+
     fun getActiveEnhancedRecordingTypes(): Set<EnhancedRecordingManager.Companion.RecordingType> {
         return enhancedRecordingManager?.getActiveRecordingTypes() ?: emptySet()
     }

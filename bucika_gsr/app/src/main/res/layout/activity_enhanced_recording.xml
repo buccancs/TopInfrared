@@ -20,7 +20,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Video Previews -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -93,7 +92,6 @@
 
             </androidx.cardview.widget.CardView>
 
-            <!-- Recording Mode Selection -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -155,7 +153,6 @@
 
             </androidx.cardview.widget.CardView>
 
-            <!-- Recording Controls -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -231,7 +228,6 @@
 
             </androidx.cardview.widget.CardView>
 
-            <!-- GSR Integration -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -325,7 +321,6 @@
 
             </androidx.cardview.widget.CardView>
 
-            <!-- File Management -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

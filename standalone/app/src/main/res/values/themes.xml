@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    
-    <!-- Base application theme -->
+
     <style name="Theme.TC001Standalone" parent="Theme.Material3.DayNight">
         <item name="colorPrimary">@color/tc001_primary</item>
         <item name="colorPrimaryVariant">@color/tc001_primary_variant</item>

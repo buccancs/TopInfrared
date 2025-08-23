@@ -228,7 +228,6 @@
     <string name="auto_shutter">автоматический затвор</string>
     <string name="color_board">цветная доска</string>
 
-    <!--    2022-11-16-->
     <string name="user_services_agreement">Условия предоставления услуг</string>
     <string name="privacy_policy">Политика конфиденциальности</string>
     <string name="third_party_components">Компоненты сторонних производителей</string>
@@ -240,8 +239,6 @@
     <string name="device_loading_tip">Идет загрузка…</string>
     <string name="edit_image_error_tip">Изображение не имеет температурных данных и не поддерживает редактирование.</string>
 
-    <!--	俄语-->
-    <!-- 2.00版本 -->
     <string name="app_lapsePhotography">Фото с таймером</string>
     <string name="app_Manual_Shutter">Ручной затвор</string>
     <string name="app_record_sound">Запись аудио</string>
@@ -282,7 +279,6 @@
     <string name="app_open">Перейти в настройки</string>
     <string name="album_report_aleart">Запись видео остановлена из-за недостаточного объема памяти телефона.</string>
     <string name="tip_video_record">Продолжительность видеозаписей ограничена 60 мин.</string>
-
 
     <string name="temp_alarm_alarm">Тревога</string>
     <string name="temp_alarm_high_alarm">Тревога: выс. температура</string>
@@ -392,7 +388,6 @@
     <string name="menu_3d_x_axis">Ось X</string>
     <string name="menu_3d_y_axis">Ось Y</string>
 
-    <!--TS001-->
     <string name="album_menu_Photos">Фото</string>
     <string name="feedback_problem_type_6">Другие</string>
     <string name="app_got_it">Ясно</string>
@@ -497,8 +492,6 @@
     <string name="installation_package_downloading_tips">Начинает загружаться. Смотрите прогресс в уведомлениях.</string>
     <string name="welcome_use_app">Добро пожаловать в %1$s.</string>
 
-    <!--俄语-->
-
     <string name="dual_light_correction">Двойная световая коррекция</string>
     <string name="dual_light_correction_tips_1">Поскольку фокусы двух камер не выровнены, изображения, снятые двумя камерами с разных расстояний, не будут выровнены.\nЭта функция может помочь с выравниванием изображения по отдельности.</string>
     <string name="dual_light_correction_tips_2">1. Пусть источник тепла (например, ваша ладонь) остается на изображении на расстоянии около 0,5 метра от камеры.\n2. Нажмите, чтобы сделать снимок.</string>
@@ -520,7 +513,6 @@
 
     <string name="text_p_umeng">Чтобы обеспечить более эффективное функционирование, наши продукты интегрируют Umeng+SDK для сбора статистики данных и журналов. SDK будет собирать идентификацию вашего устройства и информацию об учетной записи</string>.
 
-    <!--TS004-->
     <string name="ts004_connection_device">Проводные подключенные устройства</string>
     <string name="ts004_auto_save">Автоматическое сохранение на телефон</string>
     <string name="ts004_save_tips">Если вы включите эту функцию, то при подключении к APP для фото- или видеосъемки фотографии и видео будут автоматически сохраняться на телефоне.</string>
@@ -600,12 +592,10 @@
     <string name="ts004_faq_q5">Как просмотреть снятые термические изображения на компьютере?</string>
     <string name="ts004_faq_a5">Подключите TS004 к компьютеру с помощью USB-кабеля, и вы сможете просматривать термические изображения, сохраненные на TS004.</string>
 
-    <!-- TC001 老 APP 引流 -->
     <string name="gallery_transfer">Галерея Трансфер</string>
     <string name="gallery_transfer_wait">Данные передаются. Пожалуйста, подождите.</string>
     <string name="gallery_transfer_complete">Передача данных завершена</string>
 
-    <!-- 3.70 -->
     <string name="user_jump">Пропустить</string>
     <string name="tc_guide_tips1">Просматривайте графики наблюдения в режиме реального времени и исторические записи.</string>
     <string name="tc_guide_tips2">Чтобы обеспечить точное измерение температуры, установите соответствующие параметры, прежде чем проводить измерение.</string>
@@ -622,7 +612,6 @@
     <string name="ts004_conntenct_tip">Вы будете использовать мобильный трафик. Возможно, устройство отключено.</string>
     <string name="fireware_update_tips">Bug fixes and performance improvements</string>
 
-    <!-- 3.80 -->
     <string name="tc_local_album">Местная галерея</string>
     <string name="tc_connect_device">Подключить устройство</string>
     <string name="tc_connect_tips">Выберите устройство для подключения.</string>
@@ -634,7 +623,6 @@
     <string name="tc_reset_tips">Все настройки устройства будут восстановлены до заводских. Подтвердить восстановление?</string>
     <string name="coming_soon">Следите за обновлениями...</string>
 
-    <!-- 3.90 -->
     <string name="tc007_connect_tips1">1. Обеспечить достаточное количество электроэнергии для оборудования, достаточное расстояние</string>
     <string name="tc007_connect_tips2">2. Включите Bluetooth и WiFi для телефона</string>
     <string name="tc007_connect_tips3">3. Доступ к странице сканирования приложения</string>
@@ -651,7 +639,6 @@
     <string name="wifi_connect_loading">Ожидается, что это займет 15 секунд...</string>
     <string name="tc007_done_fast">Частые операции</string>
 
-    <!-- 房屋检测 -->
     <string name="main_professional_test">Профессиональное тестирование</string>
     <string name="main_temperature_test">Температурное тестирование</string>
     <string name="main_thermal_tips">Профессиональное тепловизионное тестирование</string>
@@ -820,7 +807,6 @@
     <string name="abnormal_description17">Температура обогревателя заднего зеркала зависит от многих факторов, таких как температура окружающей среды и нагрузка на обогреватель. Проследите за температурой нагревателя с помощью тепловизора, и тогда вы сможете оценить, насколько эффективен обогрев заднего зеркала.</string>
     <string name="abnormal_description18">Температура двигателя стеклоподъемника зависит от многих факторов, таких как температура окружающей среды и нагрузка на двигатель. Контролируйте температуру двигателя с помощью тепловизора. Если температура слишком высока, это может быть вызвано неисправностью механизма стеклоподъемника или самого мотора.</string>
 
-    <!-- 房屋检测新增 -->
     <string name="vehicle_function">Функция</string>
     <string name="ability_find">Обнаружено</string>
     <string name="ability_monitory">Просмотр данных о температуре тела в реальном времени</string>
@@ -846,7 +832,6 @@
     <string name="pdf_project_item">Проекты</string>
     <string name="house_sign_finish_tips">Пожалуйста, заполните электронную подпись</string>
 
-    <!-- 4.50 -->
     <string name="thermal_trend">График тренда</string>
     <string name="thermal_trend_tips">Нарисуйте отрезок линии на изображении, чтобы увидеть изменение температуры.</string>
     <string name="material_view_all">Просмотреть все</string>
@@ -955,12 +940,10 @@
     <string name="material_copper_wire">Медная проволока</string>
     <string name="temp_add_button">Добавлять</string>
 
-
     <string name="tips_tisr_on">Сверхразрешение изображений активировано.</string>
     <string name="tips_tisr_off">Сверхразрешение изображений деактивировано.</string>
     <string name="tips_tisr_fail">Ваш телефон не поддерживает OpenCL и не может включить сверхразрешение изображений.</string>
 
-    <!-- 4.70 -->
     <string name="testing_guidance">Руководство по тестированию</string>
     <string name="unlock_professional_perspectives">Разблокировать профессиональный обзор</string>
     <string name="app_error_reload">Перезагрузить</string>

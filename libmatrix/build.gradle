@@ -4,8 +4,6 @@ plugins {
     id 'com.google.devtools.ksp'
 }
 
-
-
 android {
     namespace 'com.guide.zm04c.matrix'
     compileSdk rootProject.ext.android.compileSdk

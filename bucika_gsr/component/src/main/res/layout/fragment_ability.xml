@@ -19,7 +19,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- 冬季特辑入口 -->
     <ImageView
         android:id="@+id/iv_winter"
         android:layout_width="0dp"
@@ -31,7 +30,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title" />
-    <!-- 右侧图标占位 -->
+    
     <View
         android:id="@+id/space_winter_right"
         android:layout_width="0dp"
@@ -40,7 +39,7 @@
         app:layout_constraintEnd_toEndOf="@id/iv_winter"
         app:layout_constraintTop_toTopOf="@id/iv_winter"
         app:layout_constraintBottom_toBottomOf="@id/iv_winter" />
-    <!-- 标题 -->
+    
     <TextView
         android:id="@+id/tv_winter_title"
         android:layout_width="0dp"
@@ -58,7 +57,7 @@
         app:layout_constraintEnd_toStartOf="@+id/space_winter_right"
         app:layout_constraintTop_toTopOf="@id/iv_winter"
         app:layout_constraintBottom_toTopOf="@+id/tv_winter_sub_title" />
-    <!-- 副标题 -->
+    
     <TextView
         android:id="@+id/tv_winter_sub_title"
         android:layout_width="0dp"
@@ -74,8 +73,6 @@
         app:layout_constraintTop_toBottomOf="@id/tv_winter_title"
         app:layout_constraintBottom_toBottomOf="@id/iv_winter" />
 
-
-    <!-- 温度监控 -->
     <ImageView
         android:id="@+id/iv_monitory"
         android:layout_width="0dp"
@@ -135,7 +132,6 @@
         app:layout_constraintStart_toStartOf="@id/tv_monitory_title"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- 房屋检测 -->
     <ImageView
         android:id="@+id/iv_house"
         android:layout_width="0dp"
@@ -195,7 +191,6 @@
         app:layout_constraintStart_toStartOf="@id/tv_house_title"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- 汽车检测 -->
     <ImageView
         android:id="@+id/iv_car"
         android:layout_width="0dp"
@@ -246,6 +241,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/iv_car"
         app:layout_constraintBottom_toBottomOf="@id/iv_car" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

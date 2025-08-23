@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- 低于 Android12 显示操作指引时模糊背景图片 -->
     <ImageView
         android:id="@+id/iv_blur_bg"
         android:layout_width="0dp"

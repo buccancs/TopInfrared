@@ -10,12 +10,6 @@ import org.bytedeco.javacv.FFmpegFrameRecorder
 import java.lang.ref.WeakReference
 import java.nio.ShortBuffer
 
-
-/**
- * 音频采集并且与视频合并一起
- * @author: CaiSongL
- * @date: 2023/3/28
- */
 class AudioRecordHelp private constructor() {
     private var audioRecord: AudioRecord? = null
     private var audioRecordRunnable: AudioRecordRunnable? = null
@@ -57,11 +51,9 @@ class AudioRecordHelp private constructor() {
         }
     }
 
-
     private fun initRecorder(recorder: FFmpegFrameRecorder) {
         audioRecordRunnable = AudioRecordRunnable(recorder)
         audioThread = Thread(audioRecordRunnable)
-//        audioThread?.priority = THREAD_PRIORITY_URGENT_AUDIO
         runAudioThread = true
     }
 
@@ -69,18 +61,14 @@ class AudioRecordHelp private constructor() {
         private val recorder : WeakReference<FFmpegFrameRecorder> = WeakReference(recorder)
         @SuppressLint("MissingPermission")
         override fun run() {
-//            Process.setThreadPriority(Process.THREAD_PRIORITY_URGENT_AUDIO)
             if (audioRecord == null){
                 return
             }
-            // Audio
             if (audioData == null){
                 audioData = ShortBuffer.allocate(bufferSize)
             }
             audioRecord!!.startRecording()
-            /**
-             * 音频进行循环编码
-             */
+            
             try {
                 while (runAudioThread) {
                     bufferReadResult = audioRecord!!.read(audioData!!.array(), 0, audioData!!.capacity())
@@ -91,7 +79,6 @@ class AudioRecordHelp private constructor() {
                             recorder?.get()?.recordSamples(
                                 VideoRecordFFmpeg.SAMPLE_AUDIO_RETE_INHZ,
                                 VideoRecordFFmpeg.AUDIO_CHANNELS, audioData)
-//                            Log.w("音频采集中2",""+recorder?.get()?.frameNumber)
                         }
                     }else{
                         for (i in 0 until bufferSize) {
@@ -103,7 +90,6 @@ class AudioRecordHelp private constructor() {
                         Thread.sleep(1000L/VideoRecordFFmpeg.RATE)
                     }
                 }
-//                Log.w("停止采集",""+recorder?.get()?.frameNumber)
             }catch (e:Exception){
                 XLog.e("采集容器异常")
             }
