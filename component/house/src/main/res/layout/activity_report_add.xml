@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="#16131e">
 
-    <!-- 标题栏 -->
     <View
         android:id="@+id/view_title_bar"
         android:layout_width="0dp"
@@ -65,7 +64,6 @@
         app:layout_constraintTop_toTopOf="@id/view_title_bar"
         app:layout_constraintBottom_toBottomOf="@id/view_title_bar" />
 
-    <!-- 导出报告 -->
     <TextView
         android:id="@+id/tv_export_report"
         android:layout_width="0dp"
@@ -110,7 +108,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view_title_bar"
         app:layout_constraintBottom_toBottomOf="parent">
-        <!-- 数据为空时提示图片 -->
+        
         <ImageView
             android:id="@+id/iv_empty"
             android:layout_width="0dp"

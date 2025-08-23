@@ -37,14 +37,6 @@ class ImgAdapter(
         notifyDataSetChanged()
     }
 
-    /**
-     * 调整图片大小
-     *
-     * @param bitmap 源
-     * @param dst_w  输出宽度
-     * @param dst_h  输出高度
-     * @return
-     */
     fun imageScale(bitmap: Bitmap, dst_w: Int, dst_h: Int): Bitmap {
         val src_w = bitmap.width
         val src_h = bitmap.height

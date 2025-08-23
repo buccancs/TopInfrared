@@ -6,9 +6,6 @@ import java.text.NumberFormat
 import java.util.*
 import kotlin.experimental.and
 
-/**
- * created by liuhongwei gd02527 on 2018年07月27日
- */
 class BaseDataTypeConvertUtils private constructor() {
 
     companion object {
@@ -64,12 +61,6 @@ class BaseDataTypeConvertUtils private constructor() {
             return (value * 100).toInt() / 100.0f
         }
 
-        /**
-         * 将float格式化为只带有一位小数的字符串
-         *
-         * @param number
-         * @return
-         */
         fun float2StrWithOneDecimal(number: Float): String {
             try {
                 val pattern = "0.0"
@@ -87,12 +78,6 @@ class BaseDataTypeConvertUtils private constructor() {
             }
         }
 
-        /**
-         * 将float格式化为只带有一位小数的字符串
-         *
-         * @param number
-         * @return
-         */
         fun float2StrWithTwoDecimal(number: Float): String {
             try {
                 val pattern = "0.00"
@@ -110,13 +95,6 @@ class BaseDataTypeConvertUtils private constructor() {
             }
         }
 
-        /**
-         * 将float格式化为字符串
-         *
-         * @param number 需要格式化的float字符串
-         * @param df     DecimalFormat
-         * @return
-         */
         fun float2Str(number: Float, df: DecimalFormat): String {
             return df.format(number.toDouble())
         }

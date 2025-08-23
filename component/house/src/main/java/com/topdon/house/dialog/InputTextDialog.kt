@@ -11,12 +11,6 @@ import com.topdon.lib.core.utils.ScreenUtil
 import com.topdon.lms.sdk.weiget.TToast
 import kotlinx.android.synthetic.main.dialog_input_text.view.*
 
-/**
- * 输入一项文字内容 弹框.
- *
- * Created by LCG on 2024/8/29.
- * @param inputText 预输入的文字内容
- */
 class InputTextDialog(context: Context, private val inputText: String, private val onConfirmListener: (text: String) -> Unit) :
     Dialog(context, R.style.TextInputDialog), View.OnClickListener {
 

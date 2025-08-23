@@ -15,19 +15,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-/**
- * 电子签名界面.
- *
- * 需要传递：
- * - [ExtraKeyConfig.IS_PICK_INSPECTOR] - true-检测师签名 false-房主签名
- *
- * 返回：
- * - [ExtraKeyConfig.IS_PICK_INSPECTOR] - true-检测师签名 false-房主签名
- * - [ExtraKeyConfig.RESULT_PATH_WHITE] - 白色画笔版签名图片在本地的绝对路径.
- * - [ExtraKeyConfig.RESULT_PATH_BLACK] - 黑色画笔版签名图片在本地的绝对路径.
- *
- * Created by LCG on 2024/8/28.
- */
 class SignInputActivity : BaseActivity(), View.OnClickListener {
     override fun isLockPortrait(): Boolean = false
 
@@ -49,7 +36,7 @@ class SignInputActivity : BaseActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v) {
-            cl_save -> {//保存
+            cl_save -> {
                 if (!sign_view.hasSign) {
                     ToastUtils.showShort(getString(R.string.house_sign_finish_tips))
                     return
@@ -84,7 +71,7 @@ class SignInputActivity : BaseActivity(), View.OnClickListener {
                     }
                 }
             }
-            cl_clear -> {//重签
+            cl_clear -> {
                 sign_view.clear()
             }
         }

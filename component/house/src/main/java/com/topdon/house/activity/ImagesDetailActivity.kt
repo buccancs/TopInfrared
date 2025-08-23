@@ -10,15 +10,6 @@ import com.topdon.lib.core.config.ExtraKeyConfig
 import com.topdon.lib.core.ktbase.BaseActivity
 import kotlinx.android.synthetic.main.activity_images_detail.*
 
-/**
- * 多张图片详情.
- *
- * 需要传递：
- * - [ExtraKeyConfig.CURRENT_ITEM] - 当前要查看的图片在图片列表中的 index
- * - [ExtraKeyConfig.IMAGE_PATH_LIST] - 要查看的图片在本地绝对路径列表
- *
- * Created by LCG on 2024/8/27.
- */
 class ImagesDetailActivity : BaseActivity() {
     override fun initContentView(): Int = R.layout.activity_images_detail
 

@@ -6,11 +6,6 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Data object that encapsulates all data associated with a LineChart.
- * 
- * @author Philipp Jahoda
- */
 public class LineData extends BarLineScatterCandleBubbleData<ILineDataSet> {
 
     public LineData() {

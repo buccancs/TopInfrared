@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <!-- 横屏时用于调整 item 大小的 View，竖屏时无意义 -->
     <View
         android:id="@+id/view_bg"
         android:layout_width="0dp"

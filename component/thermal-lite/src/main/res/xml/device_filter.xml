@@ -3,8 +3,8 @@
     <usb-device class="14" />
     <usb-device
         class="239"
-        subclass="2" />    <!-- all device of UVC, change to other -->
-    <!-- a few android 9.0 -->
+        subclass="2" />    
+    
     <usb-device
         class="14"
         subclass="9" />
@@ -17,7 +17,7 @@
     <usb-device
         class="39"
         subclass="0" />
-    <!-- vid若为0A0A会影响到模组重新插拔之后的数据格式转换 -->
+    
     <usb-device
         product-id="9730"
         vendor-id="2570" />

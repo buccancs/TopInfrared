@@ -14,19 +14,13 @@ import com.topdon.module.thermal.ir.report.bean.ReportTempBean
 import kotlinx.android.synthetic.main.item_report_ir_show.view.*
 import kotlinx.android.synthetic.main.view_report_ir_show.view.*
 
-/**
- * 一项红外数据预览 View.
- *
- * 包含一张图片对应的 全图、点、线、面 预览信息.
- */
 class ReportIRShowView: LinearLayout {
     companion object {
-        private const val TYPE_FULL = 0 //全图
-        private const val TYPE_POINT = 1//点
-        private const val TYPE_LINE = 2 //线
-        private const val TYPE_RECT = 3 //面
+        private const val TYPE_FULL = 0
+        private const val TYPE_POINT = 1
+        private const val TYPE_LINE = 2
+        private const val TYPE_RECT = 3
     }
-
 
     constructor(context: Context) : this(context, null)
 
@@ -65,7 +59,7 @@ class ReportIRShowView: LinearLayout {
             else -> context.getString(R.string.thermal_rect) + "(R)"
         }
         itemRoot.tv_average_title.text = when (type) {
-            TYPE_FULL, TYPE_POINT -> "" //全图、点没有平均温
+            TYPE_FULL, TYPE_POINT -> ""
             TYPE_LINE -> "L${index + 1} " + context.getString(R.string.album_report_mean_temperature)
             else -> "R${index + 1} " + context.getString(R.string.album_report_mean_temperature)
         }
@@ -77,9 +71,6 @@ class ReportIRShowView: LinearLayout {
         }
     }
 
-    /**
-     * 获取需要转为 PDF 的所有 View 列表.
-     */
     fun getPrintViewList(): ArrayList<View> {
         val result = ArrayList<View>()
         result.add(cl_image)
@@ -184,7 +175,6 @@ class ReportIRShowView: LinearLayout {
         cl_rect4.tv_title.isVisible = !cl_rect1.isVisible && !cl_rect2.isVisible && !cl_rect3.isVisible
         cl_rect5.tv_title.isVisible = !cl_rect1.isVisible && !cl_rect2.isVisible && !cl_rect3.isVisible && !cl_rect4.isVisible
 
-        // 把最后一条分割线藏起来
         if (rectList.isNotEmpty()) {
             when (rectList.size) {
                 1 -> hideLastLine(isLast, cl_rect1, rectList[0], TYPE_RECT)

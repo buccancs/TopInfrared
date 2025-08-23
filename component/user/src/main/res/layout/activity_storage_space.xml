@@ -143,7 +143,6 @@
                     app:layout_constraintBottom_toBottomOf="@+id/tv_total_value"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
             <com.topdon.module.user.view.ListItemView
                 android:id="@+id/list_storage_photo"
                 android:layout_width="match_parent"
@@ -198,6 +197,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cLayout_storage" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

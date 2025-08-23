@@ -14,12 +14,6 @@ import kotlinx.coroutines.launch
 import org.easydarwin.video.Client
 import org.greenrobot.eventbus.EventBus
 
-/**
- *
- * 锅盖矫正
- * @author: CaiSongL
- * @date: 2023/8/4 9:06
- */
 class IR07CorrectionFourActivity : BaseActivity() {
 
     companion object {
@@ -28,9 +22,6 @@ class IR07CorrectionFourActivity : BaseActivity() {
 
     val time = 60
 
-    /**
-     * 校正接口调用是否成功
-     */
     private var isSuccess = true
 
     private lateinit var time_down_view: TimeDownView
@@ -50,7 +41,6 @@ class IR07CorrectionFourActivity : BaseActivity() {
         }
 
         time_down_view.postDelayed({
-            //开始矫正
             if (time_down_view.downTimeWatcher == null){
                 time_down_view.setOnTimeDownListener(object : TimeDownView.DownTimeWatcher{
                     override fun onTime(num: Int) {

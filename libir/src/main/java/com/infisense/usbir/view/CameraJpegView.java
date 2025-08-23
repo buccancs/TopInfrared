@@ -11,7 +11,6 @@ import android.view.TextureView;
 
 import com.energy.iruvc.utils.SynchronizedBitmap;
 
-
 public class CameraJpegView extends TextureView {
 
     private String TAG = "CameraView";
@@ -57,18 +56,13 @@ public class CameraJpegView extends TextureView {
                             if (canvas == null)
                                 continue;
 
-                            //p2
-                            /*Matrix matrix = new Matrix();
-                            matrix.setRotate(90);
-                            Bitmap newBM = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, false);
-                            */
                             Bitmap mScaledBitmap = Bitmap.createScaledBitmap(bitmap, getWidth(), getHeight(), true);
                             canvas.drawBitmap(mScaledBitmap, 0, 0, null);
 
-                            Paint paint = new Paint();  //画笔
-                            paint.setStrokeWidth(2);  //设置线宽。单位为像素
-                            paint.setAntiAlias(true); //抗锯齿
-                            paint.setColor(Color.WHITE);  //画笔颜色
+                            Paint paint = new Paint();
+                            paint.setStrokeWidth(2);
+                            paint.setAntiAlias(true);
+                            paint.setColor(Color.WHITE);
 
                             int cross_len = 20;
                             canvas.drawLine(getWidth() / 2f - cross_len, getHeight() / 2f,

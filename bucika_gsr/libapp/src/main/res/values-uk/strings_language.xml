@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<!--	乌克兰-->
+	
 	<string name="main_exit">Ви впевнені, що бажаєте вийти з %s?</string>
 	<string name="app_yes">Так</string>
 	<string name="app_no">Немає</string>
@@ -240,7 +240,6 @@
 	<string name="third_party_components">сторонніх компонентів</string>
 	<string name="edit_image_error_tip">Зображення не має температурних даних і не підтримує редагування.</string>
 
-	<!-- 乌克兰2.00版本 -->
 	<string name="app_lapsePhotography">Фото з таймером</string>
 	<string name="app_Manual_Shutter">Ручний затвор</string>
 	<string name="app_record_sound">Запис аудіо</string>
@@ -281,7 +280,6 @@
 	<string name="app_open">Перейти в налаштування</string>
 	<string name="album_report_aleart">Запис відео зупинено через недостатній обсяг пам\'яті телефону.</string>
 	<string name="tip_video_record">Тривалість відеозаписів обмежена 60 хв.</string>
-
 
 	<string name="temp_alarm_alarm">Тривога</string>
 	<string name="temp_alarm_high_alarm">Тривога: вис. температура</string>
@@ -341,10 +339,7 @@
 	<string name="tips_two_light_not_video">Запис відео зараз не підтримується у двойсвітловому режимі</string>
 	<string name="start_fail_and_restart">Спроба запуску зазнала невдачі! Будь ласка, вийти з програми і перевідкрити її </string>
 
-
-
 	<string name="app_Low_temperature">низька температура</string>
-
 
 	<string name="monitor_finish">Зупинити</string>
 	<string name="album_menu_2d">Редакт. 2D</string>
@@ -382,7 +377,6 @@
 	<string name="tip_album_temp_exportfile">Ви хочете експортувати дані про температуру у файл Excel?</string>
 	<string name="tip_change_pseudo_mode">Ви хочете перейти в режим динамічного рендеринга?</string>
 
-
 	<string name="menu_3d_visual">Вид</string>
 	<string name="menu_3d_calibrate">Калібрування</string>
 	<string name="model">Режим</string>
@@ -395,7 +389,6 @@
 	<string name="menu_3d_x_axis">Вісь X</string>
 	<string name="menu_3d_y_axis">Вісь Y</string>
 
-	<!--TS001-->
 	<string name="album_menu_Photos">фото</string>
 	<string name="feedback_problem_type_6">Інше</string>
 	<string name="app_got_it">Зрозуміло</string>
@@ -500,8 +493,6 @@
 	<string name="installation_package_downloading_tips">Він починає завантажуватися. Будь ласка, слідкуйте за ходом виконання в повідомленнях</string>
 	<string name="welcome_use_app">Вітаємо у %1$s</string>
 
-	<!--乌克兰（机翻）-->
-
 	<string name="dual_light_correction">Подвійна світлова корекція</string>
 	<string name="dual_light_correction_tips_1">Оскільки фокуси двох камер не вирівняні, зображення, зняті двома камерами з різних відстаней, не будуть вирівняні.\nЦя функція може допомогти з вирівнюванням зображення окремо.</string>
 	<string name="dual_light_correction_tips_2">1. Нехай джерело тепла (наприклад, ваша долоня) залишається на зображенні приблизно на відстані 0,5 метра від камери.\n2. Натисніть, щоб зробити фото.</string>
@@ -522,7 +513,6 @@
 	<string name="menu_thermal_font">Шрифт</string>
 	<string name="text_p_umeng">Щоб забезпечити кращий функціональний досвід, наші продукти інтегрують Umeng+SDK для статистики даних і збору журналів. SDK збиратиме ідентифікаційні дані вашого пристрою та облікові записи</string>
 
-	<!--TS004-->
 	<string name="ts004_connection_device">Дротове підключення пристроїв</string>
 	<string name="ts004_auto_save">Автоматичне збереження на вашому мобільнику</string>
 	<string name="ts004_save_tips">Якщо ви відкриєте цю функцію, то фотографії та відео будуть автоматично зберігатися локально на вашому мобільнику при підключенні до прикладних програм для фотозйомки або відеозапису.</string>
@@ -602,12 +592,10 @@
 	<string name="ts004_faq_q5">Як переглянути отримані теплові зображення на ПК?</string>
 	<string name="ts004_faq_a5">Підключіть TS004 до ПК за допомогою USB-кабелю, після чого ви зможете переглядати теплові зображення, збережені на TS004.</string>
 
-	<!-- TC001 老 APP 引流 -->
 	<string name="gallery_transfer">Перенесення галереї</string>
 	<string name="gallery_transfer_wait">Дані передаються. Будь ласка, зачекайте.</string>
 	<string name="gallery_transfer_complete">Передачу даних завершено</string>
 
-	<!-- 3.70 -->
 	<string name="user_jump">Пропустити</string>
 	<string name="tc_guide_tips1">Переглядайте графіки спостереження в режимі реального часу та історичні записи.</string>
 	<string name="tc_guide_tips2">Щоб забезпечити точне вимірювання температури, встановіть відповідні параметри, перш ніж проводити вимірювання.</string>
@@ -624,7 +612,6 @@
 	<string name="ts004_conntenct_tip">Ви будете використовувати мобільний трафік. Можливо, пристрій відключено.</string>
 	<string name="fireware_update_tips">Bug fixes and performance improvements</string>
 
-	<!-- 3.80 -->
 	<string name="tc_local_album">Місцева галерея</string>
 	<string name="tc_connect_device">Підключити пристрій</string>
 	<string name="tc_connect_tips">Виберіть пристрій для підключення.</string>
@@ -636,7 +623,6 @@
 	<string name="tc_reset_tips">Всі налаштування пристрою будуть відновлені до заводських. Підтвердити відновлення?</string>
 	<string name="coming_soon">Слідкуйте за оновленнями...</string>
 
-	<!-- 3.90 -->
 	<string name="tc007_connect_tips1">1. Перевірити, що обладнання має достатньо сили і достатньо близько</string>
 	<string name="tc007_connect_tips2">2. Вмикайте Bluetooth і WiFi на вашому телефоні</string>
 	<string name="tc007_connect_tips3">3. Введіть сторінку сканування APP</string>
@@ -653,7 +639,6 @@
 	<string name="wifi_connect_loading">Очікується, що це займе 15 секунд…</string>
 	<string name="tc007_done_fast">Часті операції</string>
 
-	<!-- 房屋检测 -->
 	<string name="main_professional_test">Професійне тестування</string>
 	<string name="main_temperature_test">Температурне тестування</string>
 	<string name="main_thermal_tips">Професійне тепловізійне тестування</string>
@@ -822,7 +807,6 @@
 	<string name="abnormal_description17">Температура підігрівача заднього дзеркала піддається впливу температури навколишнього середовища і навантаження на підігрівач і інших багатьох факторів. Контролювати температуру підігрівача тепловізором, і тоді ви можете оцінити, чи можна ефективно нагрівати дзеркало заднього виду.</string>
 	<string name="abnormal_description18">Температура двигуна склопідіймача піддається впливу температури навколишнього середовища, навантаження на двигун і інших багатьох факторів. Контролювати температуру двигуна тепловізором. Якщо температура занадто висока, це може призвести до несправності механізму підйому вікна або самого двигуна.</string>
 
-	<!-- 房屋检测新增 -->
 	<string name="vehicle_function">функція</string>
 	<string name="ability_find">знайти</string>
 	<string name="ability_monitory">Перегляд температури об’ єкта у реальному часі для створення даних</string>
@@ -848,7 +832,6 @@
 	<string name="pdf_project_item">проект</string>
 	<string name="house_sign_finish_tips">Будь ласка, заповніть електронний підпис</string>
 
-	<!-- 4.50 -->
 	<string name="thermal_trend">Графік тенденцій</string>
 	<string name="thermal_trend_tips">Накресліть відрізок на зображенні, щоб побачити зміну температури.</string>
 	<string name="material_view_all">Переглянути всі</string>
@@ -961,7 +944,6 @@
 	<string name="tips_tisr_off">Надзвичайну роздільну здатність зображень вимкнено.</string>
 	<string name="tips_tisr_fail">Ваш телефон не підтримує OpenCL і не може ввімкнути Imaging Super Resolution.</string>
 
-	<!-- 4.70 -->
 	<string name="testing_guidance">Підказки для перевірки</string>
 	<string name="unlock_professional_perspectives">Розблокувати професійні перспективи</string>
 	<string name="app_error_reload">Перезавантажити</string>

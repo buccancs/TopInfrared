@@ -28,7 +28,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent">
-            <!-- 开始拾取点、线、面 -->
+            
             <Button
                 android:id="@+id/btn_select"
                 android:layout_width="0dp"
@@ -42,7 +42,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" />
-            <!-- 跳转下一步 -->
+            
             <Button
                 android:id="@+id/btn_start"
                 android:layout_width="0dp"
@@ -59,7 +59,6 @@
                 app:layout_constraintBottom_toBottomOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- 热成像画面图层 -->
         <com.topdon.module.thermal.ir.view.HikSurfaceView
             android:id="@+id/hik_surface_view"
             android:layout_width="0dp"
@@ -69,7 +68,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title_view"
             app:layout_constraintBottom_toTopOf="@id/cl_bottom_btn" />
-        <!-- 温度图层 -->
+        
         <com.topdon.module.thermal.ir.view.TemperatureHikView
             android:id="@+id/temperature_view"
             android:layout_width="0dp"

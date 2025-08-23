@@ -3,16 +3,13 @@ package com.energy.commoncomponent.view.tempcanvas;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 
-/**
- * Created by fengjibo on 2023/6/28.
- */
 public abstract class BaseView {
     protected String mId;
-    protected String mLabel; //标记内容
-    protected String mNote; //备注
-    protected double mMaxTemp;//最大温度
-    protected double mMinTemp;//最大温度
-    protected double mAvgTemp;//最小温度
+    protected String mLabel;
+    protected String mNote;
+    protected double mMaxTemp;
+    protected double mMinTemp;
+    protected double mAvgTemp;
     protected int mPointSize = 0;
     public String getId() {
         return mId;
@@ -61,7 +58,6 @@ public abstract class BaseView {
     public void setNote(String note) {
         this.mNote = note;
     }
-
 
     public Bitmap getCustomSizeImg(Bitmap rootImg, int goalW, int goalH) {
         int rootW = rootImg.getWidth();

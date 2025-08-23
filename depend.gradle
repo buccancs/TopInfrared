@@ -1,4 +1,4 @@
-/*全局配置信息及第三方依赖统一管理*/
+
 ext {
 
     android = [
@@ -13,15 +13,12 @@ ext {
             googlePlayUrl: "https://play.google.com/store/apps?hl=zh-cn",
     ]
 
-
-    // 注意软件编码是在 app module 的 build.gradle 渠道设置中使用，新增或变更渠道时注意跟进
     softCode = [
             topInfrared : "TC001_DisplaySW_Topinfrared_Adr",
             topInfrared10 : "TC001_DisplaySW_TopinfraredAndroid10_Adr",
             topInfraredCN : "TC001_DisplaySW_Topinfrared_GB_Adr",
             topInfraredCN10 : "TC001_DisplaySW_TopinfraredAndroid10_GB_Adr"
     ]
-    // appKey 和 appSecret 是后台接口用的，仅在 LMS 初始化传递，app module 的 build.gradle 渠道设置中使用
     appKey = [
             topInfrared : "5B2F6F1FD80844FCB6E50BCA19222E76",
             topInfrared10 : "AD782A05757B458391BFD695A3967EDD",

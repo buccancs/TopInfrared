@@ -6,11 +6,6 @@ import android.content.res.Configuration;
 
 import java.util.Locale;
 
-/**
- * des:
- * author: CaiSongL
- * date: 2024/9/13 18:35
- **/
 public class LocaleContextWrapper extends ContextWrapper {
 
     public LocaleContextWrapper(Context base) {

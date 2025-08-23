@@ -12,10 +12,6 @@ import com.topdon.lib.core.ktbase.BaseActivity
 import com.topdon.tc001.R
 import kotlinx.android.synthetic.main.activity_gsr.*
 
-/**
- * GSR Activity for bucika_gsr version
- * Provides UI for GSR sensor management and data visualization
- */
 class GSRActivity : BaseActivity(), GSRManager.GSRDataListener {
     
     private lateinit var gsrManager: GSRManager
@@ -28,12 +24,10 @@ class GSRActivity : BaseActivity(), GSRManager.GSRDataListener {
         title_view.setTitle("GSR Monitoring - Bucika")
         title_view.setLeftClickListener { finish() }
         
-        // Initialize GSR manager
         gsrManager = GSRManager.getInstance(this)
         gsrManager.setGSRDataListener(this)
         gsrManager.initializeShimmer()
         
-        // Initialize Bluetooth
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
         
         setupClickListeners()
@@ -41,7 +35,6 @@ class GSRActivity : BaseActivity(), GSRManager.GSRDataListener {
     }
     
     override fun initData() {
-        // Check permissions
         checkBluetoothPermissions()
     }
     
@@ -64,7 +57,6 @@ class GSRActivity : BaseActivity(), GSRManager.GSRDataListener {
             stopGSRRecording()
         }
         
-        // Enhanced Recording button
         btn_enhanced_recording.setOnClickListener {
             val intent = Intent(this, com.topdon.tc001.recording.EnhancedRecordingActivity::class.java)
             startActivity(intent)
@@ -94,8 +86,7 @@ class GSRActivity : BaseActivity(), GSRManager.GSRDataListener {
             return
         }
         
-        // For now, we'll use a demo Shimmer address - in practice, this would come from device discovery
-        val shimmerAddress = "00:06:66:XX:XX:XX" // Replace with actual Shimmer device address
+        val shimmerAddress = "00:06:66:XX:XX:XX"
         gsrManager.connectToShimmer(shimmerAddress)
         
         Toast.makeText(this, "Attempting to connect to Shimmer device...", Toast.LENGTH_SHORT).show()
@@ -143,7 +134,6 @@ class GSRActivity : BaseActivity(), GSRManager.GSRDataListener {
         }
     }
     
-    // GSRManager.GSRDataListener implementation
     override fun onGSRDataReceived(timestamp: Long, gsrValue: Double, skinTemperature: Double) {
         runOnUiThread {
             tv_gsr_value.text = "GSR: %.3f µS".format(gsrValue)
@@ -168,7 +158,6 @@ class GSRActivity : BaseActivity(), GSRManager.GSRDataListener {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == BLUETOOTH_PERMISSION_REQUEST) {
             if (grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
-                // Permissions granted
                 Toast.makeText(this, "Bluetooth permissions granted", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(this, "Bluetooth permissions required for GSR functionality", Toast.LENGTH_LONG).show()

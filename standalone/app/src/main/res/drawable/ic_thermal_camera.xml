@@ -4,28 +4,23 @@
     android:height="48dp"
     android:viewportWidth="48"
     android:viewportHeight="48">
-    
-    <!-- Camera body -->
+
     <path
         android:fillColor="#2196F3"
         android:pathData="M8,12 L40,12 A4,4 0 0,1 44,16 L44,36 A4,4 0 0,1 40,40 L8,40 A4,4 0 0,1 4,36 L4,16 A4,4 0 0,1 8,12 Z" />
-    
-    <!-- Lens -->
+
     <path
         android:fillColor="#1976D2"
         android:pathData="M24,18 m8,0 a8,8 0 1,1 -16,0 a8,8 0 1,1 16,0" />
-    
-    <!-- Lens center -->
+
     <path
         android:fillColor="#0D47A1"
         android:pathData="M24,22 m4,0 a4,4 0 1,1 -8,0 a4,4 0 1,1 8,0" />
-    
-    <!-- Thermal indicator -->
+
     <path
         android:fillColor="#FF9800"
         android:pathData="M32,16 L36,16 A2,2 0 0,1 38,18 L38,20 A2,2 0 0,1 36,22 L32,22 A2,2 0 0,1 30,20 L30,18 A2,2 0 0,1 32,16 Z" />
-        
-    <!-- Top button -->
+
     <path
         android:fillColor="#37474F"
         android:pathData="M16,8 L20,8 A2,2 0 0,1 22,10 L22,12 L14,12 L14,10 A2,2 0 0,1 16,8 Z" />

@@ -23,19 +23,12 @@ import kotlinx.coroutines.launch
 import org.easydarwin.video.Client
 import org.greenrobot.eventbus.EventBus
 
-/**
- * TC007 温度监控生成第2步 - 捕获
- * Created by LCG on 2024/5/10.
- */
 class IR07MonitorCapture2Activity : BaseActivity() {
 
     companion object {
         private const val RTSP_URL = "rtsp://192.168.40.1/stream0"
     }
 
-    /**
-     * 从上一界面传递过来的，当前选中的 点/线/面 信息.
-     */
     private var selectInfo = SelectInfoBean()
 
     override fun initContentView(): Int = R.layout.activity_ir_07_monitor_capture2
@@ -69,9 +62,8 @@ class IR07MonitorCapture2Activity : BaseActivity() {
     override fun onResume() {
         super.onResume()
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-        mp_chart_view.highlightValue(null) //关闭高亮点Marker
+        mp_chart_view.highlightValue(null)
     }
-
 
     override fun onPause() {
         super.onPause()
@@ -80,7 +72,6 @@ class IR07MonitorCapture2Activity : BaseActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        //退出时把点线面清掉
         CoroutineScope(Dispatchers.IO).launch {
             TC007Repository.clearAllTemp()
         }
@@ -94,7 +85,7 @@ class IR07MonitorCapture2Activity : BaseActivity() {
     }
 
     private fun addCallback(selectInfo: SelectInfoBean) {
-        var lastSaveTime: Long = 0 //上一次执行保存的时间戳，用于控制1秒保存1次
+        var lastSaveTime: Long = 0
         val thermalId = TimeTool.showDateSecond()
         val startTime = System.currentTimeMillis()
 

@@ -39,12 +39,10 @@ class MainActivity : AppCompatActivity() {
             }
             
             btnLocalFiles.setOnClickListener {
-                // Navigate to local files/recordings
                 val intent = Intent(this@MainActivity, LocalFilesActivity::class.java)
                 startActivity(intent)
             }
             
-            // Update connection status
             updateConnectionStatus(false)
         }
     }
@@ -116,7 +114,6 @@ class MainActivity : AppCompatActivity() {
                 )
             )
             
-            // Show/hide additional connection info
             if (isConnected && device != null) {
                 val deviceInfo = "VID: ${String.format("0x%04X", device.vendorId)}, " +
                               "PID: ${String.format("0x%04X", device.productId)}"
@@ -126,7 +123,6 @@ class MainActivity : AppCompatActivity() {
                 tvDeviceInfo.visibility = android.view.View.GONE
             }
             
-            // Update button availability
             btnConnectTC001.isEnabled = true
         }
     }
@@ -136,12 +132,11 @@ class MainActivity : AppCompatActivity() {
             tvStatusMessage.text = status
             tvStatusMessage.visibility = android.view.View.VISIBLE
             
-            // Auto-hide status messages after a delay
             tvStatusMessage.postDelayed({
                 if (tvStatusMessage.text == status) {
                     tvStatusMessage.visibility = android.view.View.GONE
                 }
-            }, 3000) // Hide after 3 seconds
+            }, 3000)
         }
     }
     

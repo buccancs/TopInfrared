@@ -14,34 +14,17 @@ import com.github.mikephil.charting.utils.MPPointF;
 
 import java.lang.ref.WeakReference;
 
-/**
- * View that can be displayed when selecting values in the chart. Extend this class to provide custom layouts for your
- * markers.
- *
- * @author Philipp Jahoda
- */
 public class MarkerView extends RelativeLayout implements IMarker {
 
     private MPPointF mOffset = new MPPointF();
     private MPPointF mOffset2 = new MPPointF();
     private WeakReference<Chart> mWeakChart;
 
-    /**
-     * Constructor. Sets up the MarkerView with a custom layout resource.
-     *
-     * @param context
-     * @param layoutResource the layout resource to use for the MarkerView
-     */
     public MarkerView(Context context, int layoutResource) {
         super(context);
         setupLayoutResource(layoutResource);
     }
 
-    /**
-     * Sets the layout resource for a custom MarkerView.
-     *
-     * @param layoutResource
-     */
     private void setupLayoutResource(int layoutResource) {
 
         View inflated = LayoutInflater.from(getContext()).inflate(layoutResource, this);
@@ -49,7 +32,6 @@ public class MarkerView extends RelativeLayout implements IMarker {
         inflated.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
         inflated.measure(MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED), MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
 
-        // measure(getWidth(), getHeight());
         inflated.layout(0, 0, inflated.getMeasuredWidth(), inflated.getMeasuredHeight());
     }
 
@@ -121,7 +103,6 @@ public class MarkerView extends RelativeLayout implements IMarker {
         MPPointF offset = getOffsetForDrawingAtPoint(posX, posY);
 
         int saveId = canvas.save();
-        // translate to the correct position and draw
         canvas.translate(posX + offset.x, posY + offset.y);
         draw(canvas);
         canvas.restoreToCount(saveId);

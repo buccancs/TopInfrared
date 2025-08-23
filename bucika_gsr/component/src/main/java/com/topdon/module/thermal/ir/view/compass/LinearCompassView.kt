@@ -20,9 +20,6 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlin.coroutines.EmptyCoroutineContext
 
-/**
- * 横向的指南针View
- */
 class LinearCompassView : View {
 
     private val paint = Paint()
@@ -46,10 +43,10 @@ class LinearCompassView : View {
     private var markerSize = SizeUtils.sp2px(2f).toFloat()
     private var backgroundColor = Color.BLACK
 
-    private var lastDrawTime = 0L //执行时间
-    private var step = 1000/10 //一秒绘制的帧数
+    private var lastDrawTime = 0L
+    private var step = 1000/10
     private val scope = CoroutineScope(EmptyCoroutineContext)
-    var curBitmap:Bitmap?= null //当前view的bitmap
+    var curBitmap:Bitmap?= null
 
     constructor(context: Context) : this(context, null) {
         initView()
@@ -145,17 +142,14 @@ class LinearCompassView : View {
     override fun draw(canvas: Canvas) {
         super.draw(canvas)
         this.canvas = canvas
-//        drawBackGround()
         drawAzimuthArrow()
         drawCompassLine()
     }
 
-    //绘制背景
     private fun drawBackGround() {
         canvas.drawRect(0f, 0f, width.toFloat(), height.toFloat(), paint)
     }
 
-    //绘制角度
     private fun drawAzimuthArrow() {
         if (!showAzimuthArrow) {
             return
@@ -165,14 +159,10 @@ class LinearCompassView : View {
         canvas.drawText(text, realX(text, endWidth,textPaint), realY(text, endHeight,textPaint), textPaint)
     }
 
-    //绘制标记线
     private fun drawCompassLine() {
-        //计算指南针的线有几等份
-//        val values = getValuesBetween(getRawMinimum(), getRawMaximum(), 5f).map { it.toInt() }
         drawCompass()
         val bottomHeight = height * 7 / 10f
         canvas.drawLine(0f, (bottomHeight - 1), width.toFloat(), bottomHeight, shortLinePaint)
-        //在中间位置绘制标志线
         canvas.drawLine(
             width / 2f + markerSize / 2,
             height * (3 / 10f),
@@ -201,25 +191,20 @@ class LinearCompassView : View {
         getValuesBetween(getRawMinimum(), getRawMaximum(), 5f).map {
             it.toInt()
         }.toMutableList().forEach {
-            //计算实际X的坐标
             val x = toPixel(it.toFloat())
 
-            // 最短：15度 最长：90度 起始点x坐标
             val lineHeight = when {
                 it % 90 == 0 -> (3 / 10f) * height
                 it % 15 == 0 -> (4 / 10f) * height
                 else -> (5 / 10f) * height
             }
-            //起始点y
             val bottomHeight = height * 7 / 10f
 
-            //绘制标记线
             when {
                 it % 90 == 0 -> canvas.drawLine(x, lineHeight, x, bottomHeight, longLinePaint)
                 else -> canvas.drawLine(x, lineHeight, x, bottomHeight, shortLinePaint)
             }
 
-            //绘制底部方位文本
             if (it % 45 == 0) {
                 val coord = getPositionText(it)
                 canvas.drawText(coord, realX(coord, x,positionPaint), realY(coord, height - 2f,positionPaint), positionPaint)

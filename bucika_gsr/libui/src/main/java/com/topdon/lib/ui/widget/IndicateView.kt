@@ -9,11 +9,6 @@ import com.blankj.utilcode.util.SizeUtils
 import com.topdon.lib.core.utils.ScreenUtil
 import com.topdon.lib.ui.R
 
-/**
- * ViewPager 指示 View.
- *
- * Created by chenggeng.lin on 2023/11/13.
- */
 class IndicateView : View {
 
     var itemCount: Int = 0
@@ -28,7 +23,6 @@ class IndicateView : View {
             invalidate()
         }
 
-
     private val itemWidth: Int = (ScreenUtil.getScreenWidth(context) * 20 / 375f).toInt()
 
     private val itemHeight: Int = (itemWidth * 2 / 20f).toInt()
@@ -37,10 +31,8 @@ class IndicateView : View {
 
     private val roundRadius: Float = SizeUtils.dp2px(2f).toFloat()
 
-
     private val defaultPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val selectPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-
 
     constructor(context: Context) : this(context, null)
 

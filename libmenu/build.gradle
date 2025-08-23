@@ -53,10 +53,10 @@ android {
 }
 
 dependencies {
-    implementation Deps.material //需要 ConstraintLayout、ViewPager2
+    implementation Deps.material
 
     implementation Deps.glide
     implementation Deps.utilcode
 
-    implementation project(':libapp') //需要使用 string 资源
+    implementation project(':libapp')
 }

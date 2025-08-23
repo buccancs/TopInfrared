@@ -26,19 +26,10 @@ import java.util.List;
 
 public class LegendRenderer extends Renderer {
 
-    /**
-     * paint for the legend labels
-     */
     protected Paint mLegendLabelPaint;
 
-    /**
-     * paint used for the legend forms
-     */
     protected Paint mLegendFormPaint;
 
-    /**
-     * the legend object this renderer renders
-     */
     protected Legend mLegend;
 
     public LegendRenderer(ViewPortHandler viewPortHandler, Legend legend) {
@@ -54,39 +45,22 @@ public class LegendRenderer extends Renderer {
         mLegendFormPaint.setStyle(Paint.Style.FILL);
     }
 
-    /**
-     * Returns the Paint object used for drawing the Legend labels.
-     *
-     * @return
-     */
     public Paint getLabelPaint() {
         return mLegendLabelPaint;
     }
 
-    /**
-     * Returns the Paint object used for drawing the Legend forms.
-     *
-     * @return
-     */
     public Paint getFormPaint() {
         return mLegendFormPaint;
     }
 
-
     protected List<LegendEntry> computedEntries = new ArrayList<>(16);
 
-    /**
-     * Prepares the legend and calculates all needed forms, labels and colors.
-     *
-     * @param data
-     */
     public void computeLegend(ChartData<?> data) {
 
         if (!mLegend.isLegendCustom()) {
 
             computedEntries.clear();
 
-            // loop for building up the colors and labels used in the legend
             for (int i = 0; i < data.getDataSetCount(); i++) {
 
                 IDataSet dataSet = data.getDataSetByIndex(i);
@@ -94,7 +68,6 @@ public class LegendRenderer extends Renderer {
                 List<Integer> clrs = dataSet.getColors();
                 int entryCount = dataSet.getEntryCount();
 
-                // if we have a barchart with stacked bars
                 if (dataSet instanceof IBarDataSet && ((IBarDataSet) dataSet).isStacked()) {
 
                     IBarDataSet bds = (IBarDataSet) dataSet;
@@ -113,7 +86,6 @@ public class LegendRenderer extends Renderer {
                     }
 
                     if (bds.getLabel() != null) {
-                        // add the legend description label
                         computedEntries.add(new LegendEntry(
                                 dataSet.getLabel(),
                                 Legend.LegendForm.NONE,
@@ -141,7 +113,6 @@ public class LegendRenderer extends Renderer {
                     }
 
                     if (pds.getLabel() != null) {
-                        // add the legend description label
                         computedEntries.add(new LegendEntry(
                                 dataSet.getLabel(),
                                 Legend.LegendForm.NONE,
@@ -176,16 +147,15 @@ public class LegendRenderer extends Renderer {
                             increasingColor
                     ));
 
-                } else { // all others
+                } else {
 
                     for (int j = 0; j < clrs.size() && j < entryCount; j++) {
 
                         String label;
 
-                        // if multiple colors are set for a DataSet, group them
                         if (j < clrs.size() - 1 && j < entryCount - 1) {
                             label = null;
-                        } else { // add label to the last entry
+                        } else {
                             label = data.getDataSetByIndex(i).getLabel();
                         }
 
@@ -216,7 +186,6 @@ public class LegendRenderer extends Renderer {
         mLegendLabelPaint.setTextSize(mLegend.getTextSize());
         mLegendLabelPaint.setColor(mLegend.getTextColor());
 
-        // calculate all dimensions of the mLegend
         mLegend.calculateDimensions(mLegendLabelPaint, mViewPortHandler);
     }
 
@@ -250,7 +219,6 @@ public class LegendRenderer extends Renderer {
         Legend.LegendDirection direction = mLegend.getDirection();
         float defaultFormSize = Utils.convertDpToPixel(mLegend.getFormSize());
 
-        // space between the entries
         float stackSpace = Utils.convertDpToPixel(mLegend.getStackSpace());
 
         float yoffset = mLegend.getYOffset();
@@ -294,8 +262,6 @@ public class LegendRenderer extends Renderer {
                         ? +xoffset
                         : -xoffset);
 
-                // Horizontally layed out legends do the center offset on a line basis,
-                // So here we offset the vertical ones only.
                 if (orientation == Legend.LegendOrientation.VERTICAL) {
                     originPosX += (direction == Legend.LegendDirection.LEFT_TO_RIGHT
                             ? -mLegend.mNeededWidth / 2.0 + xoffset
@@ -351,7 +317,7 @@ public class LegendRenderer extends Renderer {
                         lineIndex++;
                     }
 
-                    boolean isStacked = e.label == null; // grouped forms have null labels
+                    boolean isStacked = e.label == null;
 
                     if (drawingForm) {
                         if (direction == Legend.LegendDirection.RIGHT_TO_LEFT)
@@ -385,7 +351,6 @@ public class LegendRenderer extends Renderer {
             }
 
             case VERTICAL: {
-                // contains the stacked legend size in pixels
                 float stack = 0f;
                 boolean wasStacked = false;
                 float posY = 0.f;
@@ -450,7 +415,6 @@ public class LegendRenderer extends Renderer {
                             drawLabel(c, posX, posY + labelLineHeight, e.label);
                         }
 
-                        // make a step down
                         posY += labelLineHeight + labelLineSpacing;
                         stack = 0f;
                     } else {
@@ -467,16 +431,6 @@ public class LegendRenderer extends Renderer {
 
     private Path mLineFormPath = new Path();
 
-    /**
-     * Draws the Legend-form at the given position with the color at the given
-     * index.
-     *
-     * @param c      canvas to draw with
-     * @param x      position
-     * @param y      position
-     * @param entry  the entry to render
-     * @param legend the legend context
-     */
     protected void drawForm(
             Canvas c,
             float x, float y,
@@ -504,11 +458,9 @@ public class LegendRenderer extends Renderer {
 
         switch (form) {
             case NONE:
-                // Do nothing
                 break;
 
             case EMPTY:
-                // Do not draw, but keep space for the form
                 break;
 
             case DEFAULT:
@@ -546,14 +498,6 @@ public class LegendRenderer extends Renderer {
         c.restoreToCount(restoreCount);
     }
 
-    /**
-     * Draws the provided label at the given position.
-     *
-     * @param c     canvas to draw with
-     * @param x
-     * @param y
-     * @param label the label to draw
-     */
     protected void drawLabel(Canvas c, float x, float y, String label) {
         c.drawText(label, x, y, mLegendLabelPaint);
     }

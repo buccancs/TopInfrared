@@ -54,6 +54,6 @@ android {
 
 dependencies {
     implementation project(':libapp')
-    implementation project(':libmenu') //伪彩条用着 PseudoColorConfig
+    implementation project(':libmenu')
     ksp "com.alibaba:arouter-compiler:1.5.2"
 }

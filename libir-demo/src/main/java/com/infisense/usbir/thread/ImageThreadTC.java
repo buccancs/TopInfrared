@@ -11,14 +11,6 @@ import com.infisense.iruvc.utils.SynchronizedBitmap;
 
 import java.nio.ByteBuffer;
 
-/*
- * @Description:
- * @Author:         brilliantzhao
- * @CreateDate:     2022.2.24 11:06
- * @UpdateUser:
- * @UpdateDate:     2022.2.24 11:06
- * @UpdateRemark:
- */
 public class ImageThreadTC extends Thread {
     private String TAG = "ImageThread";
     private Bitmap bitmap;
@@ -27,39 +19,24 @@ public class ImageThreadTC extends Thread {
     private int imageHeight;
     private byte[] imagesrc;
     private int rotate = 0;
-    //
     private CommonParams.PseudoColorType pseudocolorMode = CommonParams.PseudoColorType.PSEUDO_WHITE_HOT;
-    //
     private CommonParams.DataFlowMode dataFlowMode = CommonParams.DataFlowMode.IMAGE_AND_TEMP_OUTPUT;
     private byte[] imageYUV422;
     private byte[] imageARGB;
     private byte[] imageDst;
 
-    /**
-     * @param syncimage
-     */
     public void setSyncimage(SynchronizedBitmap syncimage) {
         this.syncimage = syncimage;
     }
 
-    /**
-     * @param imagesrc
-     */
     public void setImagesrc(byte[] imagesrc) {
         this.imagesrc = imagesrc;
     }
 
-    /**
-     * @param rotate
-     */
     public void setRotate(int rotate) {
         this.rotate = rotate;
     }
 
-    /**
-     * @param imageWidth
-     * @param imageHeight
-     */
     public ImageThreadTC(int imageWidth, int imageHeight) {
         Log.i(TAG, "ImageThread create->imageWidth = " + imageWidth + " imageHeight = " + imageHeight);
         this.imageWidth = imageWidth;
@@ -69,23 +46,14 @@ public class ImageThreadTC extends Thread {
         imageDst = new byte[imageWidth * imageHeight * 4];
     }
 
-    /**
-     * @param dataFlowMode
-     */
     public void setDataFlowMode(CommonParams.DataFlowMode dataFlowMode) {
         this.dataFlowMode = dataFlowMode;
     }
 
-    /**
-     * @param pseudocolorMode
-     */
     public void setPseudocolorMode(CommonParams.PseudoColorType pseudocolorMode) {
         this.pseudocolorMode = pseudocolorMode;
     }
 
-    /**
-     * @param bitmap
-     */
     public void setBitmap(Bitmap bitmap) {
         this.bitmap = bitmap;
     }
@@ -100,14 +68,12 @@ public class ImageThreadTC extends Thread {
                             + " imagesrc.length = " + imagesrc.length + " imagesrc[100] = " + imagesrc[100]);
                     if (dataFlowMode == CommonParams.DataFlowMode.IMAGE_AND_TEMP_OUTPUT ||
                             dataFlowMode == CommonParams.DataFlowMode.IMAGE_OUTPUT) {
-                        // yuv422格式
                         if (pseudocolorMode != null) {
                             LibIRProcess.convertYuyvMapToARGBPseudocolor(imagesrc, (long) imageHeight * imageWidth, pseudocolorMode, imageARGB);
                         } else {
                             LibIRParse.converyArrayYuv422ToARGB(imagesrc, imageHeight * imageWidth, imageARGB);
                         }
                     } else {
-                        // 调用 startY16ModePreview 中间出图方法之后，输出的数据格式为y16,需要做转换
                         LibIRParse.convertArrayY14ToYuv422(imagesrc, imageHeight * imageWidth, imageYUV422);
                         if (pseudocolorMode != null) {
                             LibIRProcess.convertYuyvMapToARGBPseudocolor(imageYUV422, (long) imageHeight * imageWidth, pseudocolorMode, imageARGB);

@@ -33,8 +33,6 @@ public class XAxisRendererHorizontalBarChart extends XAxisRenderer {
     @Override
     public void computeAxis(float min, float max, boolean inverted) {
 
-        // calculate the starting and entry point of the y-labels (depending on
-        // zoom / contentrect bounds)
         if (mViewPortHandler.contentWidth() > 10 && !mViewPortHandler.isFullyZoomedOutY()) {
 
             MPPointD p1 = mTrans.getValuesByTouchPoint(mViewPortHandler.contentLeft(), mViewPortHandler.contentBottom());
@@ -117,7 +115,7 @@ public class XAxisRendererHorizontalBarChart extends XAxisRenderer {
             pointF.y = 0.5f;
             drawLabels(c, mViewPortHandler.contentLeft() + xoffset, pointF);
 
-        } else { // BOTH SIDED
+        } else {
             pointF.x = 0.0f;
             pointF.y = 0.5f;
             drawLabels(c, mViewPortHandler.contentRight() + xoffset, pointF);
@@ -139,7 +137,6 @@ public class XAxisRendererHorizontalBarChart extends XAxisRenderer {
 
         for (int i = 0; i < positions.length; i += 2) {
 
-            // only fill x values
             if (centeringEnabled) {
                 positions[i + 1] = mXAxis.mCenteredEntries[i / 2];
             } else {
@@ -174,7 +171,6 @@ public class XAxisRendererHorizontalBarChart extends XAxisRenderer {
         gridLinePath.moveTo(mViewPortHandler.contentRight(), y);
         gridLinePath.lineTo(mViewPortHandler.contentLeft(), y);
 
-        // draw a path because lines don't support dashing on lower android versions
         c.drawPath(gridLinePath, mGridPaint);
 
         gridLinePath.reset();
@@ -207,12 +203,7 @@ public class XAxisRendererHorizontalBarChart extends XAxisRenderer {
     }
 
     protected Path mRenderLimitLinesPathBuffer = new Path();
-    /**
-	 * Draws the LimitLines associated with this axis to the screen.
-	 * This is the standard YAxis renderer using the XAxis limit lines.
-	 *
-	 * @param c
-	 */
+    
 	@Override
 	public void renderLimitLines(Canvas c) {
 
@@ -254,11 +245,9 @@ public class XAxisRendererHorizontalBarChart extends XAxisRenderer {
 
 			c.drawPath(limitLinePath, mLimitLinePaint);
 			limitLinePath.reset();
-			// c.drawLines(pts, mLimitLinePaint);
 
 			String label = l.getLabel();
 
-			// if drawing the limit-value label is enabled
 			if (label != null && !label.equals("")) {
 
 				mLimitLinePaint.setStyle(l.getTextStyle());

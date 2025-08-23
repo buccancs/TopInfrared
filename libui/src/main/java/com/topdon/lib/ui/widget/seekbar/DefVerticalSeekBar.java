@@ -12,35 +12,6 @@ import static com.topdon.lib.ui.widget.seekbar.DefVerticalRangeSeekBar.DIRECTION
 import static com.topdon.lib.ui.widget.seekbar.DefVerticalRangeSeekBar.DIRECTION_RIGHT;
 import static com.topdon.lib.ui.widget.seekbar.DefVerticalRangeSeekBar.TEXT_DIRECTION_VERTICAL;
 
-
-/**
- * //                       _ooOoo_
- * //                      o8888888o
- * //                      88" . "88
- * //                      (| -_- |)
- * //                       O\ = /O
- * //                   ____/`---'\____
- * //                 .   ' \\| |// `.
- * //                  / \\||| : |||// \
- * //                / _||||| -:- |||||- \
- * //                  | | \\\ - /// | |
- * //                | \_| ''\---/'' | |
- * //                 \ .-\__ `-` ___/-. /
- * //              ______`. .' /--.--\ `. . __
- * //           ."" '< `.___\_<|>_/___.' >'"".
- * //          | | : `- \`.;`\ _ /`;.`/ - ` : | |
- * //            \ \ `-. \_ __\ /__ _/ .-` / /
- * //    ======`-.____`-.___\_____/___.-`____.-'======
- * //                       `=---='
- * //
- * //    .............................................
- * //             佛祖保佑             永无BUG
- * =====================================================
- * 作    者：JayGoo
- * 创建日期：2019-06-05
- * 描    述:
- * =====================================================
- */
 public class DefVerticalSeekBar extends SeekBar {
 
     private int indicatorTextOrientation;
@@ -65,7 +36,6 @@ public class DefVerticalSeekBar extends SeekBar {
     @Override
     protected void onDrawIndicator(Canvas canvas, Paint paint, String text2Draw) {
         if (text2Draw == null) return;
-        //draw indicator
         if (indicatorTextOrientation == TEXT_DIRECTION_VERTICAL) {
             drawVerticalIndicator(canvas, paint, text2Draw);
         } else {
@@ -74,7 +44,6 @@ public class DefVerticalSeekBar extends SeekBar {
     }
 
     protected void drawVerticalIndicator(Canvas canvas, Paint paint, String text2Draw) {
-        //measure indicator text
         paint.setTextSize(getIndicatorTextSize());
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(getIndicatorBackgroundColor());
@@ -95,11 +64,7 @@ public class DefVerticalSeekBar extends SeekBar {
         indicatorRect.right = indicatorRect.left + realIndicatorWidth;
         indicatorRect.bottom = indicatorRect.top + realIndicatorHeight;
 
-        //draw default indicator arrow
         if (indicatorBitmap == null) {
-            //arrow three point
-            //  b   c
-            //    a
             int ax = scaleThumbWidth / 2;
             int ay = indicatorRect.bottom;
             int bx = ax - getIndicatorArrowSize();
@@ -126,7 +91,6 @@ public class DefVerticalSeekBar extends SeekBar {
             indicatorRect.right -= rightOffset;
         }
 
-        //draw indicator background
         if (indicatorBitmap != null) {
             Utils.drawBitmap(canvas, paint, indicatorBitmap, indicatorRect);
         } else if (getIndicatorRadius() > 0f) {
@@ -135,11 +99,9 @@ public class DefVerticalSeekBar extends SeekBar {
             canvas.drawRect(indicatorRect, paint);
         }
 
-        //draw indicator content text
         int tx = indicatorRect.left + (indicatorRect.width() - indicatorTextRect.width()) / 2 + getIndicatorPaddingLeft() - getIndicatorPaddingRight();
         int ty = indicatorRect.bottom - (indicatorRect.height() - indicatorTextRect.height()) / 2 + getIndicatorPaddingTop() - getIndicatorPaddingBottom();
 
-        //draw indicator text
         paint.setColor(getIndicatorTextColor());
 
         int degrees = 0;

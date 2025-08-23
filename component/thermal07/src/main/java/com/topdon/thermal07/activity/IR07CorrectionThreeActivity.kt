@@ -14,12 +14,6 @@ import com.topdon.tc004.activity.video.PlayFragment
 import kotlinx.coroutines.launch
 import org.easydarwin.video.Client
 
-/**
- *
- * 锅盖矫正
- * @author: CaiSongL
- * @date: 2023/8/4 9:06
- */
 @Route(path = RouterConfig.IR_CORRECTION_07)
 class IR07CorrectionThreeActivity : BaseActivity() {
 
@@ -44,18 +38,15 @@ class IR07CorrectionThreeActivity : BaseActivity() {
         }
 
         lifecycleScope.launch {
-            // 读取配置设置 环境温度、测温距离、发射率
             val config = ConfigRepository.readConfig(true)
             TC007Repository.setIRConfig(config.environment, config.distance, config.radiation)
-            //清除点、线、面
             TC007Repository.clearAllTemp()
-            //全图也关掉
             TC007Repository.setTempFrame(false)
         }
     }
 
     override fun onSocketDisConnected(isTS004: Boolean) {
-        if (!isTS004) {//TC007 的 Socket 断了
+        if (!isTS004) {
             finish()
         }
     }

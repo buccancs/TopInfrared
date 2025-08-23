@@ -84,10 +84,8 @@ Java_com_guide_zm04c_matrix_NativeGuideCore_yuv2Bitmap(JNIEnv *env, jobject thiz
     jbyte* pYuv = env->GetByteArrayElements(yuv, JNI_FALSE);
     uint8_t* rgba = nullptr;
     if (AndroidBitmap_lockPixels(env, jBitmap, reinterpret_cast<void **>(&rgba)) == ANDROID_BITMAP_RESULT_SUCCESS) {
-        //yuv转换成bgra格式
         libyuv::UYVYToARGB(reinterpret_cast<const uint8_t *>(pYuv),
                            IR_WIDTH * 2, gBGRA, IR_WIDTH * 4, IR_WIDTH, IR_HEIGHT);
-        //bgra格式转rgba
         for (int i = 0; i < IR_WIDTH * IR_HEIGHT; i++) {
             rgba[i * 4] = gBGRA[i * 4 + 2];
             rgba[i * 4 + 1] = gBGRA[i * 4 + 1];

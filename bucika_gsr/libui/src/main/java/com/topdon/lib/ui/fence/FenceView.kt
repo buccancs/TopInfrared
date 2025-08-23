@@ -16,15 +16,12 @@ class FenceView : View {
     var listener: CallBack? = null
 
     private val mPaint by lazy { Paint() }
-    private val rect: Rect = Rect(0, 0, 0, 0) //手动绘制矩形
-    private val strokeWidth by lazy { SizeUtils.dp2px(2f).toFloat() } //线宽度
-
+    private val rect: Rect = Rect(0, 0, 0, 0)
+    private val strokeWidth by lazy { SizeUtils.dp2px(2f).toFloat() }
 
     constructor (context: Context) : super(context)
 
-
     constructor (context: Context, attrs: AttributeSet) : super(context, attrs)
-
 
     constructor (context: Context, attrs: AttributeSet, defStyle: Int) : super(
         context,
@@ -40,15 +37,8 @@ class FenceView : View {
         mPaint.alpha = 255
     }
 
-
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-//        //设置无锯齿
-//        canvas.drawARGB(50, 255, 227, 0)
-//        mPaint.color = Color.GREEN
-//        // 绘制绿色实心矩形
-//        canvas.drawRect(100f, 200f, 400f, 200f + 400, mPaint)
-//        mPaint.color = Color.RED
         canvas.drawRect(rect, mPaint)
     }
 
@@ -123,7 +113,6 @@ class FenceView : View {
     private fun result() {
         val point1 = intArrayOf(startPoint[0], startPoint[1])
         val point2 = intArrayOf(endPoint[0], endPoint[1])
-        //调整位置
         for (i in 0..1) {
             if (startPoint[i] > endPoint[i]) {
                 point1[i] = endPoint[i]
@@ -152,10 +141,7 @@ class FenceView : View {
     }
 
     interface CallBack {
-        /**
-         * startPoint: 左上角
-         * endPoint: 右下角
-         */
+        
         fun callback(startPoint: IntArray, endPoint: IntArray, srcRect: IntArray)
     }
 }

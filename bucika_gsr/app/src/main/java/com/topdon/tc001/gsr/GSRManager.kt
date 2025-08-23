@@ -7,11 +7,6 @@ import android.os.Looper
 import java.util.*
 import kotlin.random.Random
 
-/**
- * GSR (Galvanic Skin Response) Manager for bucika_gsr version
- * Simplified implementation ready for ShimmerAndroidAPI integration
- * Currently provides simulated data for development/testing
- */
 class GSRManager private constructor(private val context: Context) {
     
     private var isSimulating = false
@@ -43,10 +38,6 @@ class GSRManager private constructor(private val context: Context) {
     }
     
     fun initializeShimmer() {
-        // Placeholder for ShimmerAndroidAPI initialization
-        // TODO: Initialize ShimmerBluetoothManagerAndroid when dependency is available
-        // Set sampling rate to 128 Hz as per requirements
-        // Configure GSR range (auto-ranging)
     }
     
     fun startRecording(): Boolean {
@@ -70,14 +61,11 @@ class GSRManager private constructor(private val context: Context) {
     }
     
     fun connectToShimmer(bluetoothAddress: String) {
-        // Simulate connection for development
         isSimulating = true
         handler.postDelayed({
             dataListener?.onConnectionStatusChanged(true, simulatedDeviceName)
         }, 1000)
         
-        // TODO: Replace with actual ShimmerAndroidAPI connection
-        // shimmerManager?.connectShimmerDevice(bluetoothAddress, true)
     }
     
     fun disconnectShimmer() {
@@ -86,8 +74,6 @@ class GSRManager private constructor(private val context: Context) {
         stopSimulatedDataStream()
         dataListener?.onConnectionStatusChanged(false, null)
         
-        // TODO: Replace with actual Shimmer disconnection
-        // shimmerManager?.disconnectShimmerDevice(bluetoothAddress)
     }
     
     fun isConnected(): Boolean = isSimulating
@@ -102,9 +88,7 @@ class GSRManager private constructor(private val context: Context) {
             override fun run() {
                 if (isRecording) {
                     val timestamp = System.currentTimeMillis()
-                    // Simulate realistic GSR values (0.1 - 20.0 microsiemens)
                     val gsrValue = 5.0 + Random.nextDouble(-2.0, 5.0)
-                    // Simulate skin temperature (30-37°C)
                     val skinTemp = 32.0 + Random.nextDouble(-1.0, 3.0)
                     
                     handler.post {
@@ -112,7 +96,7 @@ class GSRManager private constructor(private val context: Context) {
                     }
                 }
             }
-        }, 0, (1000.0 / 128.0).toLong()) // 128 Hz sampling rate
+        }, 0, (1000.0 / 128.0).toLong())
     }
     
     private fun stopSimulatedDataStream() {

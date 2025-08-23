@@ -86,7 +86,7 @@ class StorageSpaceActivity : BaseActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v) {
-            tv_format_storage -> {//格式化存储
+            tv_format_storage -> {
                 TipDialog.Builder(this@StorageSpaceActivity)
                     .setTitleMessage(getString(R.string.more_storage_reset))
                     .setMessage(getString(R.string.more_storage_reset1))

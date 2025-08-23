@@ -18,12 +18,6 @@ import com.github.mikephil.charting.utils.MPPointF;
 
 import java.lang.ref.WeakReference;
 
-/**
- * View that can be displayed when selecting values in the chart. Extend this class to provide custom layouts for your
- * markers.
- *
- * @author Philipp Jahoda
- */
 public class MarkerImage implements IMarker {
 
     private Context mContext;
@@ -36,12 +30,6 @@ public class MarkerImage implements IMarker {
     private FSize mSize = new FSize();
     private Rect mDrawableBoundsCache = new Rect();
 
-    /**
-     * Constructor. Sets up the MarkerView with a custom layout resource.
-     *
-     * @param context
-     * @param drawableResourceId the drawable resource to render
-     */
     public MarkerImage(Context context, int drawableResourceId) {
         mContext = context;
 
@@ -157,7 +145,6 @@ public class MarkerImage implements IMarker {
                 mDrawableBoundsCache.top + (int)height);
 
         int saveId = canvas.save();
-        // translate to the correct position and draw
         canvas.translate(posX + offset.x, posY + offset.y);
         mDrawable.draw(canvas);
         canvas.restoreToCount(saveId);

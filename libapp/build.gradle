@@ -68,12 +68,6 @@ android {
     }
 }
 
-//kotlin {
-//    experimental {
-//        coroutines 'enable'
-//    }
-//}
-
 dependencies {
     api fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     api Deps.appcompat
@@ -107,7 +101,6 @@ dependencies {
     api Deps.rxlifecycle_ktx
     api Deps.rxlifecycle_android_lifecycle_ktx
 
-
     api Deps.utilcode
     api Deps.XXPermissions
     api Deps.xlog
@@ -126,16 +119,6 @@ dependencies {
     api Deps.nifty
     api Deps.nifty_effect
 
-//    devApi Deps.lms2
-//    betaApi Deps.lms2
-//    prodApi Deps.lms2
-//    prodTopdonApi Deps.lms2
-//    insideChinaApi Deps.lms3
-//    prodTopdonInsideChinaApi Deps.lms3
-
-
-
-    //javacv
     api Deps.javacv
     api Deps.javacpp
     api files('libs\\abtest-1.0.1.aar')

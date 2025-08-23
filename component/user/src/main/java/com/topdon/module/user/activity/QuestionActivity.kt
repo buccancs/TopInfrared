@@ -17,9 +17,6 @@ import kotlinx.android.synthetic.main.item_question.view.item_question_info
 import kotlinx.android.synthetic.main.item_question.view.item_question_lay
 import java.util.ArrayList
 
-/**
- * FAQ
- */
 @Route(path = RouterConfig.QUESTION)
 class QuestionActivity : BaseActivity() {
 
@@ -42,7 +39,6 @@ class QuestionActivity : BaseActivity() {
     override fun initData() {
 
     }
-
 
     private class MyAdapter(private val questionList: ArrayList<QuestionData>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

@@ -95,7 +95,6 @@
         app:layout_constraintStart_toEndOf="@id/tv_warn"
         app:layout_constraintTop_toTopOf="@id/tv_good" />
 
-    <!-- 状态对应文案 -->
     <TextView
         android:id="@+id/tv_state"
         android:layout_width="0dp"

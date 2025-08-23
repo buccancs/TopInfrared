@@ -23,13 +23,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
-        <!-- 二级菜单 -->
+        
         <com.topdon.menu.MenuSecondView
             android:id="@+id/edit_recycler_second"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:deviceType="gallery_edit"/>
-        <!-- 一级菜单 -->
+        
         <com.topdon.menu.MenuEditView
             android:id="@+id/edit_recycler_first"
             android:layout_width="match_parent"

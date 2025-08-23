@@ -14,7 +14,6 @@ import com.bumptech.glide.request.target.Target
 import com.maning.imagebrowserlibrary.ImageEngine
 import com.topdon.module.thermal.R
 
-
 class GlideImageEngine : ImageEngine {
     override fun loadImage(
         context: Context,

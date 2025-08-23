@@ -17,19 +17,10 @@ import kotlinx.android.synthetic.main.activity_image_pick_ir_plush.*
 import kotlinx.coroutines.launch
 import java.io.File
 
-/**
- * des:
- * author: CaiSongL
- * date: 2024/9/3 9:25
- **/
 abstract class BasePickImgActivity : BaseActivity(), View.OnClickListener {
-    /**
-     * String 类型 - 拾取的图片在本地的绝对路径.
-     */
+    
     val RESULT_IMAGE_PATH = "RESULT_IMAGE_PATH"
-    /**
-     * 当前是否已拍了一张照等待完成.
-     */
+    
     private var hasTakePhoto = false
 
     override fun initContentView(): Int {
@@ -44,7 +35,6 @@ abstract class BasePickImgActivity : BaseActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //默认选中画圆
         iv_edit_circle.isSelected = true
         image_edit_view.type = ImageEditView.Type.CIRCLE
         view_color.setBackgroundColor(image_edit_view.color)
@@ -82,12 +72,12 @@ abstract class BasePickImgActivity : BaseActivity(), View.OnClickListener {
         val heightPixels = resources.displayMetrics.heightPixels
         title_view.measure(MeasureSpec.makeMeasureSpec(widthPixels, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(heightPixels, MeasureSpec.AT_MOST))
 
-        val ivPickHeight = SizeUtils.dp2px(60f + 20 + 20) //拍照按钮高度，60dp+上下各20dp margin
+        val ivPickHeight = SizeUtils.dp2px(60f + 20 + 20)
         val menuHeight = (widthPixels * 75f / 384).toInt()
         val bottomHeight = ivPickHeight.coerceAtLeast(menuHeight)
         val canUseHeight = heightPixels - title_view.measuredHeight - bottomHeight
         val wantHeight = (widthPixels * 256f / 192).toInt()
-        if (wantHeight <= canUseHeight) {//够用
+        if (wantHeight <= canUseHeight) {
             fragment_container_view.layoutParams = fragment_container_view.layoutParams.apply {
                 width = widthPixels
                 height = wantHeight
@@ -108,11 +98,9 @@ abstract class BasePickImgActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
-
     open suspend fun getPickBitmap() : Bitmap?{
        return null
     }
-
 
     override fun onClick(v: View?) {
         when (v) {
@@ -163,9 +151,6 @@ abstract class BasePickImgActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
-    /**
-     * 切换 已拍照模式/未拍照模式.
-     */
     private fun switchPhotoState(hasTakePhoto: Boolean) {
         this.hasTakePhoto = hasTakePhoto
         image_edit_view.isVisible = hasTakePhoto
@@ -175,10 +160,6 @@ abstract class BasePickImgActivity : BaseActivity(), View.OnClickListener {
         title_view.setRightDrawable(if (hasTakePhoto) R.drawable.app_save else 0)
     }
 
-    /**
-     * 显示退出不保存提示弹框
-     * @param listener 点击弹框上退出事件监听
-     */
     private fun showExitTipsDialog(listener: (() -> Unit)) {
         TipDialog.Builder(this)
             .setMessage(R.string.diy_tip_save)

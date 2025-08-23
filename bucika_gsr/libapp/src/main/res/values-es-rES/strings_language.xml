@@ -228,7 +228,6 @@
     <string name="auto_shutter">Obturador automático</string>
     <string name="color_board">tablero de colores</string>
 
-    <!--    2022-11-16-->
     <string name="user_services_agreement">Términos del servicio</string>
     <string name="privacy_policy">Política de Privacidad</string>
     <string name="third_party_components">Componentes de terceros</string>
@@ -240,8 +239,6 @@
     <string name="device_loading_tip">Cargando…</string>
     <string name="edit_image_error_tip">La imagen carece de datos de temperatura y no admite edición.</string>
 
-    <!--	西班牙语espanol-->
-    <!-- 2.00版本 -->
     <string name="app_lapsePhotography">Foto Temporizada</string>
     <string name="app_Manual_Shutter">Obturador manual </string>
     <string name="app_record_sound">Grabar Audio</string>
@@ -282,8 +279,6 @@
     <string name="app_open">Ir a Configuraciones</string>
     <string name="album_report_aleart">La grabación de video se detuvo debido a que el espacio de almacenamiento del teléfono es insuficiente.</string>
     <string name="tip_video_record">Las grabaciones de video están limitadas a 60 minutos.</string>
-
-
 
     <string name="temp_alarm_alarm">Alarma</string>
     <string name="temp_alarm_high_alarm">Alarma de Alta Temp.</string>
@@ -344,7 +339,6 @@
     <string name="start_fail_and_restart">¡Falló el arranque! Por favor, salga de la aplicación y reabra</string>
     <string name="app_Low_temperature">baja temperatura</string>
 
-
     <string name="monitor_finish">Detener</string>
     <string name="album_menu_2d">Editar 2D</string>
     <string name="album_menu_3d">Editar 3D</string>
@@ -382,7 +376,6 @@
     <string name="tip_change_pseudo_mode">¿Desea cambiar al modo de Renderización Dinámica?</string>
     <string name="color_p8_ios">Huijin</string>
 
-
     <string name="menu_3d_visual">Vista</string>
     <string name="menu_3d_calibrate">Calibración</string>
     <string name="model">Modo</string>
@@ -395,7 +388,6 @@
     <string name="menu_3d_x_axis">Eje X</string>
     <string name="menu_3d_y_axis">Eje Y</string>
 
-    <!--TS001-->
     <string name="album_menu_Photos">foto</string>
     <string name="feedback_problem_type_6">Otros</string>
     <string name="app_got_it">Entendido</string>
@@ -500,8 +492,6 @@
     <string name="installation_package_downloading_tips">Comienza la descarga. Por favor, verifica el progreso en las Notificaciones.</string>
     <string name="welcome_use_app">Bienvenido a %1$s</string>
 
-    <!--西班牙语-->
-
     <string name="dual_light_correction">Corrección de Doble Luz</string>
     <string name="dual_light_correction_tips_1">Dado que los enfoques de las dos cámaras no están alineados, las imágenes capturadas desde diferentes distancias por las dos cámaras no estarán alineadas.\nEsta función puede ayudar con la alineación de las imágenes por separado.</string>
     <string name="dual_light_correction_tips_2">1. Deja una fuente de calor (como tu palma) permanecer en la imagen a una distancia de aproximadamente 0.5 metros de la cámara.\n2. Toca para tomar una foto.</string>
@@ -523,7 +513,6 @@
 
     <string name="text_p_umeng">Para brindar una mejor experiencia funcional, nuestros productos integran Umeng+SDK para estadísticas de datos y recopilación de registros. El SDK recopilará la identificación de su dispositivo y la información de su cuenta</string>.
 
-    <!--TS004-->
     <string name="ts004_connection_device">Dispositivos conectados por cable</string>
     <string name="ts004_auto_save">Guardado Automático en tu Teléfono</string>
     <string name="ts004_save_tips">Si activas esta función, al conectar con la APP para tomar fotos o grabar vídeos, las fotos y los vídeos se guardarán automáticamente en tu teléfono.</string>
@@ -603,12 +592,10 @@
     <string name="ts004_faq_q5">¿Cómo veo las imágenes térmicas capturadas en una PC?</string>
     <string name="ts004_faq_a5">Conecte el TS004 a una PC mediante el cable USB y luego podrá ver las imágenes térmicas almacenadas en el TS004.</string>
 
-    <!-- TC001 老 APP 引流 -->
     <string name="gallery_transfer">Transferencia de galería</string>
     <string name="gallery_transfer_wait">Se están transfiriendo datos. Por favor espere.</string>
     <string name="gallery_transfer_complete">Transferencia de Datos Completa</string>
 
-    <!-- 3.70 -->
     <string name="user_jump">Saltar</string>
     <string name="tc_guide_tips1">Ver gráficos de monitoreo y registros de monitoreo en tiempo real.</string>
     <string name="tc_guide_tips2">Para garantizar una medición de temperatura precisa, configure los parámetros relevantes antes de medir la temperatura.</string>
@@ -625,7 +612,6 @@
     <string name="ts004_conntenct_tip">Vas a usar datos móviles. Es posible que el dispositivo sea desconectado.</string>
     <string name="fireware_update_tips">Bug fixes and performance improvements</string>
 
-    <!-- 3.80 -->
     <string name="tc_local_album">Galería Local</string>
     <string name="tc_connect_device">Conectar Dispositivo</string>
     <string name="tc_connect_tips">Elija el dispositivo que deseas conectar</string>
@@ -637,7 +623,6 @@
     <string name="tc_reset_tips">Todas las configuraciones del dispositivo se restaurarán a la configuración de fábrica. ¿Confirmas esta restauración?</string>
     <string name="coming_soon">Manténgase al Tanto...</string>
 
-    <!-- 3.90 -->
     <string name="tc007_connect_tips1">1. asegúrese de que el equipo tenga suficiente electricidad y esté lo suficientemente cerca</string>
     <string name="tc007_connect_tips2">2. abra el Bluetooth y WiFi del teléfono</string>
     <string name="tc007_connect_tips3">3. ingrese a la página de escaneo de app</string>
@@ -654,7 +639,6 @@
     <string name="wifi_connect_loading">Se espera que tome 15 segundos...</string>
     <string name="tc007_done_fast">Operaciones frecuentes</string>
 
-    <!-- 房屋检测 -->
     <string name="main_professional_test">Pruebas Profesionales</string>
     <string name="main_temperature_test">Prueba de Temperatura</string>
     <string name="main_thermal_tips">Prueba Profesional de Imagen Térmica</string>
@@ -823,7 +807,6 @@
     <string name="abnormal_description17">La temperatura del calentador del espejo retrovisor está afectada por muchos factores, como la temperatura ambiente y la carga del calentador. Monitorea la temperatura del calentador con una cámara térmica, y luego podrás evaluar si el espejo retrovisor puede ser calentado de manera efectiva.</string>
     <string name="abnormal_description18">La temperatura del motor del elevalunas está afectada por muchos factores, como la temperatura ambiente y la carga del motor. Monitorea la temperatura del motor con una cámara térmica. Si la temperatura es demasiado alta, podría deberse a un fallo en el mecanismo de elevación de la ventana o en el motor mismo.</string>
 
-    <!-- 房屋检测新增 -->
     <string name="vehicle_function">Función</string>
     <string name="ability_find">Hallazgo</string>
     <string name="ability_monitory">Ver datos generados por la temperatura del objeto en tiempo real</string>
@@ -849,7 +832,6 @@
     <string name="pdf_project_item">Proyecto</string>
     <string name="house_sign_finish_tips">Por favor, complete la firma electrónica</string>
 
-    <!-- 4.50 -->
     <string name="thermal_trend">Gráfico de tendencias</string>
     <string name="thermal_trend_tips">Dibuje un segmento de línea en la imagen para ver el cambio de temperatura.</string>
     <string name="material_view_all">Ver todo</string>
@@ -962,7 +944,6 @@
     <string name="tips_tisr_off">La resolución súper de imágenes se ha desactivado.</string>
     <string name="tips_tisr_fail">Su teléfono no es compatible con OpenCL y no puede habilitar la resolución súper de imágenes.</string>
 
-    <!-- 4.70 -->
     <string name="testing_guidance">Orientación de detección</string>
     <string name="unlock_professional_perspectives">Desbloquear la visión profesional</string>
     <string name="app_error_reload">Recargar</string>

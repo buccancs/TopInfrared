@@ -23,10 +23,8 @@ class EnhancedRecordingManager(
     companion object {
         private const val TAG = "EnhancedRecordingManager"
         
-        // Samsung-specific device detection
         private val SAMSUNG_MANUFACTURERS = setOf("samsung", "Samsung", "SAMSUNG")
         
-        // DNG RAW Processing Levels
         enum class DngRawLevel(val stage: Int, val description: String) {
             LEVEL_1(1, "Basic DNG RAW capture"),
             LEVEL_2(2, "Enhanced DNG thermal processing"), 
@@ -56,10 +54,7 @@ class EnhancedRecordingManager(
         detectDeviceCapabilities()
         initializeDngRawProcessor()
     }
-    
-    /**
-     * Detect if device supports Samsung-specific features
-     */
+
     private fun detectDeviceCapabilities() {
         isSamsungDevice = SAMSUNG_MANUFACTURERS.contains(Build.MANUFACTURER)
         Log.d(TAG, "Samsung device detected: $isSamsungDevice (${Build.MANUFACTURER})")
@@ -69,17 +64,12 @@ class EnhancedRecordingManager(
             checkSamsung4KSupport()
         }
     }
-    
-    /**
-     * Check Samsung-specific 4K recording capabilities
-     */
+
     private fun checkSamsung4KSupport() {
         try {
-            // Check for Samsung Camera2 API support
             val hasCamera2 = context.packageManager.hasSystemFeature("android.hardware.camera2")
             Log.d(TAG, "Camera2 API support: $hasCamera2")
             
-            // Check for 4K recording profile availability
             if (CamcorderProfile.hasProfile(CamcorderProfile.QUALITY_2160P)) {
                 Log.i(TAG, "Samsung 4K (2160p) recording profile available")
             } else if (CamcorderProfile.hasProfile(CamcorderProfile.QUALITY_1080P)) {
@@ -90,20 +80,14 @@ class EnhancedRecordingManager(
             Log.w(TAG, "Failed to check Samsung 4K capabilities", e)
         }
     }
-    
-    /**
-     * Initialize DNG RAW thermal processing
-     */
+
     private fun initializeDngRawProcessor() {
         dngRawProcessor = DngRawProcessor(context).apply {
             setProcessingLevel(DngRawProcessor.ProcessingLevel.LEVEL_3)
         }
         Log.d(TAG, "DNG RAW Level 3 processor initialized")
     }
-    
-    /**
-     * Start Samsung-specific 4K recording at 30 FPS
-     */
+
     suspend fun startSamsung4KRecording(): Boolean = withContext(Dispatchers.IO) {
         try {
             if (!isSamsungDevice) {
@@ -118,28 +102,24 @@ class EnhancedRecordingManager(
             
             Log.i(TAG, "Starting Samsung-specific 4K 30FPS thermal recording")
             
-            // Create output file
             val filename = "samsung_4k_${FileUtils.generateTimestamp()}.mp4"
             val videosDir = FileUtils.getVideosDirectory(context)
             val outputFile = File(videosDir, filename)
             
-            // Configure MediaRecorder for Samsung 4K
             val mediaRecorder = MediaRecorder().apply {
                 setVideoSource(MediaRecorder.VideoSource.SURFACE)
                 setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
                 
-                // Samsung-optimized 4K settings
                 if (CamcorderProfile.hasProfile(CamcorderProfile.QUALITY_2160P)) {
                     val profile = CamcorderProfile.get(CamcorderProfile.QUALITY_2160P)
                     setVideoEncoder(MediaRecorder.VideoEncoder.H264)
-                    setVideoEncodingBitRate(20000000) // 20 Mbps for 4K
-                    setVideoFrameRate(30) // 30 FPS
-                    setVideoSize(3840, 2160) // True 4K resolution
+                    setVideoEncodingBitRate(20000000)
+                    setVideoFrameRate(30)
+                    setVideoSize(3840, 2160)
                     Log.d(TAG, "Samsung 4K profile configured: 3840x2160 @ 30fps")
                 } else {
-                    // Fallback to enhanced 1080p
                     setVideoEncoder(MediaRecorder.VideoEncoder.H264)
-                    setVideoEncodingBitRate(15000000) // 15 Mbps
+                    setVideoEncodingBitRate(15000000)
                     setVideoFrameRate(30)
                     setVideoSize(1920, 1080)
                     Log.w(TAG, "Fallback to enhanced 1080p recording")
@@ -147,12 +127,10 @@ class EnhancedRecordingManager(
                 
                 setOutputFile(outputFile.absolutePath)
                 
-                // Samsung-specific optimizations
                 configureSamsungSpecificSettings()
                 
-                // Set limits
-                setMaxDuration(1800000) // 30 minutes for 4K
-                setMaxFileSize(2L * 1024 * 1024 * 1024) // 2GB limit
+                setMaxDuration(1800000)
+                setMaxFileSize(2L * 1024 * 1024 * 1024)
                 
                 setOnInfoListener { _, what, _ ->
                     handleRecordingInfo(RecordingType.SAMSUNG_4K_30FPS, what)
@@ -185,10 +163,7 @@ class EnhancedRecordingManager(
             false
         }
     }
-    
-    /**
-     * Start DNG RAW Level 3 recording at 30 FPS
-     */
+
     suspend fun startDngRawLevel3Recording(): Boolean = withContext(Dispatchers.IO) {
         try {
             if (activeRecordings.containsKey(RecordingType.DNG_RAW_LEVEL3_30FPS)) {
@@ -198,30 +173,25 @@ class EnhancedRecordingManager(
             
             Log.i(TAG, "Starting DNG RAW Level 3 thermal recording at 30FPS")
             
-            // Create output file with DNG RAW naming convention
             val filename = "dng_raw_l3_${FileUtils.generateTimestamp()}.mp4"
             val videosDir = FileUtils.getVideosDirectory(context)
             val outputFile = File(videosDir, filename)
             
-            // Configure MediaRecorder for DNG RAW Level 3
             val mediaRecorder = MediaRecorder().apply {
                 setVideoSource(MediaRecorder.VideoSource.SURFACE)
                 setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
                 setVideoEncoder(MediaRecorder.VideoEncoder.H264)
                 
-                // DNG RAW Level 3 optimized settings
-                setVideoEncodingBitRate(12000000) // 12 Mbps for RAW thermal data
-                setVideoFrameRate(30) // Critical: 30 FPS for DNG RAW capture
-                setVideoSize(1280, 720) // Optimized for thermal processing
+                setVideoEncodingBitRate(12000000)
+                setVideoFrameRate(30)
+                setVideoSize(1280, 720)
                 
                 setOutputFile(outputFile.absolutePath)
                 
-                // DNG RAW specific configuration
                 configureDngRawSpecificSettings()
                 
-                // Extended recording for thermal analysis
-                setMaxDuration(3600000) // 1 hour for long-term analysis
-                setMaxFileSize(1L * 1024 * 1024 * 1024) // 1GB limit
+                setMaxDuration(3600000)
+                setMaxFileSize(1L * 1024 * 1024 * 1024)
                 
                 setOnInfoListener { _, what, _ ->
                     handleRecordingInfo(RecordingType.DNG_RAW_LEVEL3_30FPS, what)
@@ -243,7 +213,6 @@ class EnhancedRecordingManager(
                 surface
             )
             
-            // Start DNG RAW processor
             dngRawProcessor?.startLevel3Processing(surface)
             
             mediaRecorder.start()
@@ -257,10 +226,7 @@ class EnhancedRecordingManager(
             false
         }
     }
-    
-    /**
-     * Start parallel recording - both Samsung 4K and DNG RAW Level 3
-     */
+
     suspend fun startParallelRecording(): Pair<Boolean, Boolean> {
         Log.i(TAG, "Starting parallel Samsung 4K + DNG RAW Level 3 recording")
         
@@ -276,10 +242,7 @@ class EnhancedRecordingManager(
         Log.i(TAG, "Parallel recording started - Samsung 4K: $samsung4KResult, DNG RAW L3: $dngRawResult")
         return Pair(samsung4KResult, dngRawResult)
     }
-    
-    /**
-     * Stop specific recording type
-     */
+
     suspend fun stopRecording(type: RecordingType): String? = withContext(Dispatchers.IO) {
         try {
             val session = activeRecordings.remove(type) ?: return@withContext null
@@ -294,12 +257,10 @@ class EnhancedRecordingManager(
                 Log.w(TAG, "Error stopping MediaRecorder for $type", e)
             }
             
-            // Special handling for DNG RAW
             if (type == RecordingType.DNG_RAW_LEVEL3_30FPS) {
                 dngRawProcessor?.stopLevel3Processing()
             }
             
-            // Generate metadata
             generateRecordingMetadata(session, duration, type)
             
             val filename = session.outputFile.name
@@ -312,14 +273,10 @@ class EnhancedRecordingManager(
             null
         }
     }
-    
-    /**
-     * Stop all active recordings
-     */
+
     suspend fun stopAllRecordings(): List<String> {
         val results = mutableListOf<String>()
         
-        // Stop all active recording sessions
         activeRecordings.keys.toList().forEach { type ->
             stopRecording(type)?.let { filename ->
                 results.add(filename)
@@ -328,45 +285,29 @@ class EnhancedRecordingManager(
         
         return results
     }
-    
-    /**
-     * Configure Samsung-specific recording settings
-     */
+
     private fun MediaRecorder.configureSamsungSpecificSettings() {
         try {
-            // Samsung-specific encoder optimizations
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                // Use Samsung's enhanced encoder if available
                 Log.d(TAG, "Applying Samsung-specific encoder optimizations")
             }
             
-            // Samsung HDR and color space optimizations for thermal data
             Log.d(TAG, "Samsung 4K thermal recording configured")
             
         } catch (e: Exception) {
             Log.w(TAG, "Samsung-specific settings not available", e)
         }
     }
-    
-    /**
-     * Configure DNG RAW specific recording settings
-     */
+
     private fun MediaRecorder.configureDngRawSpecificSettings() {
         try {
-            // DNG RAW requires specific frame timing for thermal data capture
             Log.d(TAG, "Configuring DNG RAW Level 3 recording parameters")
-            
-            // Ensure precise 30 FPS timing for DNG RAW capture
-            // This is critical for proper thermal data preservation
-            
+
         } catch (e: Exception) {
             Log.w(TAG, "DNG RAW specific settings configuration failed", e)
         }
     }
-    
-    /**
-     * Handle recording information callbacks
-     */
+
     private fun handleRecordingInfo(type: RecordingType, what: Int) {
         when (what) {
             MediaRecorder.MEDIA_RECORDER_INFO_MAX_DURATION_REACHED -> {
@@ -379,18 +320,12 @@ class EnhancedRecordingManager(
             }
         }
     }
-    
-    /**
-     * Handle recording error callbacks
-     */
+
     private fun handleRecordingError(type: RecordingType, what: Int, extra: Int) {
         Log.e(TAG, "$type recording error: what=$what, extra=$extra")
         scope.launch { stopRecording(type) }
     }
-    
-    /**
-     * Generate metadata for completed recording
-     */
+
     private fun generateRecordingMetadata(session: RecordingSession, duration: Long, type: RecordingType) {
         try {
             val metadataFile = File(
@@ -448,48 +383,29 @@ class EnhancedRecordingManager(
             Log.w(TAG, "Failed to generate metadata for $type", e)
         }
     }
-    
-    /**
-     * Get recording surface for specific type
-     */
+
     fun getRecordingSurface(type: RecordingType): Surface? {
         return activeRecordings[type]?.surface
     }
-    
-    /**
-     * Get recording duration for specific type
-     */
+
     fun getRecordingDuration(type: RecordingType): Long {
         val session = activeRecordings[type] ?: return 0
         return (System.currentTimeMillis() - session.startTime) / 1000
     }
-    
-    /**
-     * Check if specific recording type is active
-     */
+
     fun isRecording(type: RecordingType): Boolean {
         return activeRecordings.containsKey(type)
     }
-    
-    /**
-     * Check if any recording is active
-     */
+
     fun isAnyRecordingActive(): Boolean {
         return activeRecordings.isNotEmpty()
     }
-    
-    /**
-     * Get all active recording types
-     */
+
     fun getActiveRecordingTypes(): Set<RecordingType> {
         return activeRecordings.keys.toSet()
     }
-    
-    /**
-     * Cleanup all resources
-     */
+
     fun cleanup() {
-        // Stop all active recordings
         activeRecordings.values.forEach { session ->
             try {
                 session.mediaRecorder.stop()

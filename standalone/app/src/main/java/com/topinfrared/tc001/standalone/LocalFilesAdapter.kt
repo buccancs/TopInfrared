@@ -61,7 +61,6 @@ class LocalFilesAdapter(
     }
     
     private fun applyFilterAndSort() {
-        // Apply filter first
         filteredFiles = when (currentFilter) {
             FileFilter.ALL -> files
             FileFilter.IMAGES -> files.filter { isImageFile(it) }
@@ -147,7 +146,6 @@ class LocalFilesAdapter(
                 tvFileSize.text = FileUtils.formatFileSize(file.length())
                 tvFileDate.text = dateFormat.format(Date(file.lastModified()))
                 
-                // Enhanced file type detection and icons
                 val isVideo = isVideoFile(file)
                 val isImage = isImageFile(file)
                 
@@ -155,13 +153,11 @@ class LocalFilesAdapter(
                     isVideo -> {
                         ivFileType.setImageResource(android.R.drawable.ic_media_play)
                         tvFileType.text = "Video"
-                        // Load video thumbnail if possible
                         loadVideoThumbnail(file)
                     }
                     isImage -> {
                         ivFileType.setImageResource(android.R.drawable.ic_menu_gallery)
                         tvFileType.text = "Image"
-                        // Load image thumbnail
                         loadImageThumbnail(file)
                     }
                     else -> {
@@ -171,7 +167,6 @@ class LocalFilesAdapter(
                     }
                 }
                 
-                // Selection mode handling
                 if (isSelectionMode) {
                     cbFileSelect.visibility = View.VISIBLE
                     cbFileSelect.isChecked = selectedFiles.contains(file)
@@ -179,10 +174,8 @@ class LocalFilesAdapter(
                     cbFileSelect.visibility = View.GONE
                 }
                 
-                // Set selection background
                 root.isSelected = selectedFiles.contains(file)
                 
-                // Click handlers
                 root.setOnClickListener {
                     if (isSelectionMode) {
                         toggleFileSelection(file)
@@ -225,7 +218,7 @@ class LocalFilesAdapter(
         private fun loadImageThumbnail(file: File) {
             try {
                 val options = BitmapFactory.Options().apply {
-                    inSampleSize = 4 // Scale down for thumbnail
+                    inSampleSize = 4
                     inPreferredConfig = android.graphics.Bitmap.Config.RGB_565
                 }
                 val bitmap = BitmapFactory.decodeFile(file.absolutePath, options)
@@ -242,8 +235,6 @@ class LocalFilesAdapter(
         
         private fun loadVideoThumbnail(file: File) {
             try {
-                // For video thumbnails, we could use MediaMetadataRetriever
-                // For now, show a generic video icon
                 binding.ivThumbnail.setImageResource(android.R.drawable.ic_media_play)
                 binding.ivThumbnail.visibility = View.VISIBLE
             } catch (e: Exception) {

@@ -11,14 +11,7 @@ import com.topdon.lib.core.R
 import com.topdon.lib.core.utils.ScreenUtil
 import kotlinx.android.synthetic.main.dialog_tip_shutter.view.*
 
-
-/**
- * 自动快门提示弹窗
- * @author: CaiSongL
- * @date: 2023/4/13 10:57
- */
 class TipShutterDialog : Dialog {
-
 
     constructor(context: Context) : super(context)
 
@@ -46,7 +39,6 @@ class TipShutterDialog : Dialog {
             return this
         }
 
-
         fun setCancelListener(event: ((check: Boolean) -> Unit)? = null): Builder {
             this.closeEvent = event
             return this
@@ -61,7 +53,6 @@ class TipShutterDialog : Dialog {
             this.dialog!!.dismiss()
         }
 
-
         fun create(): TipShutterDialog {
             if (dialog == null) {
                 dialog = TipShutterDialog(context, R.style.InfoDialog)
@@ -72,7 +63,7 @@ class TipShutterDialog : Dialog {
             dialog!!.setCanceledOnTouchOutside(canceled)
 
             val lp = dialog!!.window!!.attributes
-            lp.width = (ScreenUtil.getScreenWidth(context) * if (ScreenUtil.isPortrait(context)) 0.85 else 0.35).toInt() //设置宽度
+            lp.width = (ScreenUtil.getScreenWidth(context) * if (ScreenUtil.isPortrait(context)) 0.85 else 0.35).toInt()
             dialog!!.window!!.attributes = lp
 
             view.tv_i_know.setOnClickListener {

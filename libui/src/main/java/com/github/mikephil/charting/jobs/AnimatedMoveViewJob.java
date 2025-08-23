@@ -8,9 +8,6 @@ import com.github.mikephil.charting.utils.ObjectPool;
 import com.github.mikephil.charting.utils.Transformer;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
-/**
- * Created by Philipp Jahoda on 19/02/16.
- */
 @SuppressLint("NewApi")
 public class AnimatedMoveViewJob extends AnimatedViewPortJob {
 
@@ -30,7 +27,6 @@ public class AnimatedMoveViewJob extends AnimatedViewPortJob {
         result.view = v;
         result.xOrigin = xOrigin;
         result.yOrigin = yOrigin;
-        //result.resetAnimator();
         result.animator.setDuration(duration);
         return result;
     }
@@ -38,7 +34,6 @@ public class AnimatedMoveViewJob extends AnimatedViewPortJob {
     public static void recycleInstance(AnimatedMoveViewJob instance){
         pool.recycle(instance);
     }
-
 
     public AnimatedMoveViewJob(ViewPortHandler viewPortHandler, float xValue, float yValue, Transformer trans, View v, float xOrigin, float yOrigin, long duration) {
         super(viewPortHandler, xValue, yValue, trans, v, xOrigin, yOrigin, duration);

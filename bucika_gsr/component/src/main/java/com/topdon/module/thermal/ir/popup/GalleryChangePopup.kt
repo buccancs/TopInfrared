@@ -10,19 +10,9 @@ import com.blankj.utilcode.util.SizeUtils
 import com.topdon.module.thermal.ir.R
 import kotlinx.android.synthetic.main.popup_gallery_change.view.*
 
-/**
- * 图库目录切换 PopupWindow.
- *
- * Created by LCG on 2024/1/5.
- */
 class GalleryChangePopup(private val context: Context) : PopupWindow() {
 
-
-    /**
-     * 一个选项被选中事件监听.
-     */
     var onPickListener: ((position: Int, str: String) -> Unit)? = null
-
 
     init {
         val widthMeasureSpec = MeasureSpec.makeMeasureSpec((context.resources.displayMetrics.widthPixels * 0.6).toInt(), MeasureSpec.EXACTLY)
@@ -34,7 +24,6 @@ class GalleryChangePopup(private val context: Context) : PopupWindow() {
         height = contentView.measuredHeight
 
         isOutsideTouchable = true
-
 
         contentView.tv_line.setOnClickListener {
             dismiss()

@@ -31,9 +31,6 @@ abstract class AppDatabase : RoomDatabase() {
 
     abstract fun houseReportDao(): HouseReportDao
 
-
-
-
     companion object {
 
         @Volatile

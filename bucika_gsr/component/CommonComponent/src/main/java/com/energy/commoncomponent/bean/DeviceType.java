@@ -1,8 +1,5 @@
 package com.energy.commoncomponent.bean;
 
-/**
- * Created by fengjibo on 2023/8/10.
- */
 public enum DeviceType {
     DEVICE_TYPE_TC2C("TC2C"),
     DEVICE_TYPE_WN2256("WN2256"),

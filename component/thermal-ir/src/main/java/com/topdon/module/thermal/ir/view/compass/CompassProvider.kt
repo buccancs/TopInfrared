@@ -15,17 +15,14 @@ import com.kylecorry.sol.math.filters.MovingAverageFilter
 
 class CompassProvider(private val context: Context) {
 
-
     fun get(): ICompass {
         val smoothing = 1
         val useTrueNorth =  true
 
         var source =  CompassSource.RotationVector
 
-        // Handle if the available sources have changed (not likely)
         val allSources = getAvailableSources(context)
 
-        // There were no compass sensors found
         if (allSources.isEmpty()){
             return NullCompass()
         }
@@ -61,41 +58,8 @@ class CompassProvider(private val context: Context) {
         )
     }
 
-//    fun getOrientationSensor(): IOrientationSensor? {
-//        // TODO: This isn't used by the actual orientation sensors (they should use it)
-//        val useTrueNorth = prefs.useTrueNorth
-//
-//        var source = prefs.source
-//
-//        // Handle if the available sources have changed (not likely)
-//        val allSources = getAvailableSources(context)
-//
-//        // There were no compass sensors found
-//        if (allSources.isEmpty()){
-//            return NullOrientationSensor()
-//        }
-//
-//        if (!allSources.contains(source)) {
-//            source = allSources.firstOrNull() ?: CompassSource.CustomMagnetometer
-//        }
-//
-//        // TODO: Apply the smoothing / quality to the orientation sensor
-//        if (source == CompassSource.RotationVector){
-//            return RotationSensor(context, useTrueNorth, SensorService.MOTION_SENSOR_DELAY)
-//        }
-//
-//        if (source == CompassSource.GeomagneticRotationVector){
-//            return GeomagneticRotationSensor(context, useTrueNorth, SensorService.MOTION_SENSOR_DELAY)
-//        }
-//
-//        // TODO: Construct this from existing sensors
-//        return null
-//    }
-
     companion object {
-        /**
-         * Returns the available compass sources in order of quality
-         */
+        
         fun getAvailableSources(context: Context): List<CompassSource> {
             val sources = mutableListOf<CompassSource>()
 

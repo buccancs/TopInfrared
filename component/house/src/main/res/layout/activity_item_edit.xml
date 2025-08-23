@@ -66,7 +66,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- 全选 -->
         <View
             android:id="@+id/view_select_all"
             android:layout_width="0dp"
@@ -104,7 +103,6 @@
             app:layout_constraintTop_toBottomOf="@id/iv_select_all"
             app:layout_constraintBottom_toBottomOf="parent" />
 
-        <!-- 复制 -->
         <View
             android:id="@+id/view_copy"
             android:layout_width="0dp"
@@ -143,7 +141,6 @@
             app:layout_constraintTop_toBottomOf="@id/iv_copy"
             app:layout_constraintBottom_toBottomOf="parent" />
 
-        <!-- 删除 -->
         <View
             android:id="@+id/view_del"
             android:layout_width="0dp"
@@ -182,7 +179,6 @@
             app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- 顶部目录信息 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_dir"
         android:layout_width="0dp"
@@ -193,7 +189,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view_title_bar">
-        <!-- 三角形 -->
+        
         <ImageView
             android:id="@+id/iv_triangle"
             android:layout_width="0dp"
@@ -206,7 +202,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/et_dir_name"
             app:layout_constraintBottom_toBottomOf="@+id/et_dir_name" />
-        <!-- 目录名称 -->
+        
         <EditText
             android:id="@+id/et_dir_name"
             android:layout_width="0dp"
@@ -226,7 +222,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/iv_triangle" />
 
-        <!-- 绿色数量 -->
         <TextView
             android:id="@+id/tv_good_count"
             android:layout_width="wrap_content"
@@ -244,7 +239,7 @@
             tools:text="99+"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/et_dir_name" />
-        <!-- 黄色数量 -->
+        
         <TextView
             android:id="@+id/tv_warn_count"
             android:layout_width="wrap_content"
@@ -261,7 +256,7 @@
             tools:text="99+"
             app:layout_constraintTop_toTopOf="@id/tv_good_count"
             app:layout_constraintStart_toEndOf="@id/tv_good_count" />
-        <!-- 红色数量 -->
+        
         <TextView
             android:id="@+id/tv_danger_count"
             android:layout_width="wrap_content"
@@ -279,7 +274,6 @@
             app:layout_constraintTop_toTopOf="@id/tv_good_count"
             app:layout_constraintStart_toEndOf="@id/tv_warn_count" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -300,7 +294,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view_title_bar"
         app:layout_constraintBottom_toBottomOf="parent">
-        <!-- 数据为空时提示图片 -->
+        
         <ImageView
             android:id="@+id/iv_empty"
             android:layout_width="0dp"

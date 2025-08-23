@@ -4,10 +4,6 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * date: 2019/8/6 12:38
- * author: chuanfeng.bi
- */
 public class CheckableParcelable<T extends Parcelable> extends CheckableItem<T> implements Parcelable {
     @Override
     public int describeContents() {

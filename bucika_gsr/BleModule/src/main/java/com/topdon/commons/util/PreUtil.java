@@ -22,43 +22,19 @@ public class PreUtil {
 
     private static PreUtil instance;
 
-    /**
-     * 构造方法
-     *
-     * @param context
-     */
     private PreUtil(Context context) {
         this(context, SHARE_NAME);
     }
 
-    /**
-     * 构造方法
-     *
-     * @param context
-     * @param shareName
-     */
     private PreUtil(Context context, String shareName) {
         mContext = new WeakReference<>(context);
         preferences = context.getSharedPreferences(shareName, Context.MODE_PRIVATE);
     }
 
-    /**
-     * 得到单例模式的PreferencesManager对象
-     *
-     * @param context 上下文
-     * @return
-     */
     public static PreUtil getInstance(Context context) {
         return getInstance(context, SHARE_NAME);
     }
 
-    /**
-     * 得到单例模式的PreferencesManager对象
-     *
-     * @param context   上下文
-     * @param shareName 文件名称
-     * @return
-     */
     public static PreUtil getInstance(Context context,
                                       String shareName) {
         if (instance == null) {
@@ -137,11 +113,6 @@ public class PreUtil {
         }
     }
 
-    /**
-     * 直接存放对象，反射将根据对象的属性作为key，并将对应的值保存。
-     *
-     * @param t
-     */
     @SuppressWarnings("rawtypes")
     public <T> void put(T t) {
         try {
@@ -257,12 +228,6 @@ public class PreUtil {
         return null;
     }
 
-    /**
-     * 获取整个对象，跟put(T t)对应使用， 利用反射得到对象的属性，然后从preferences获取
-     *
-     * @param cls
-     * @return
-     */
     public <T> Object get(Class<T> cls) {
         Object obj = null;
         String fieldName = "";

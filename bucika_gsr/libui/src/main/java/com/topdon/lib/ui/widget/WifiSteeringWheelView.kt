@@ -8,9 +8,6 @@ import android.widget.LinearLayout
 import com.topdon.lib.ui.R
 import kotlinx.android.synthetic.main.ui_wifi_steering_wheel_view.view.*
 
-/**
- * 校准方向
- */
 class WifiSteeringWheelView : LinearLayout, OnClickListener {
 
     var listener: ((action: Int, moveX: Int,moveY:Int) -> Unit)? = null
@@ -61,26 +58,21 @@ class WifiSteeringWheelView : LinearLayout, OnClickListener {
     override fun onClick(v: View?) {
         when (v) {
             steering_wheel_start_btn -> {
-//                moveY -= moveI
                 listener?.invoke(-1, moveX,moveY)
             }
             steering_wheel_center_btn -> {
                 listener?.invoke(0, moveX,moveY)
             }
             steering_wheel_top_btn -> {
-//                moveX += moveI
                 listener?.invoke(2, moveX,moveY)
             }
             steering_wheel_bottom_btn ->{
-//                moveX -= moveI
                 listener?.invoke(3, moveX,moveY)
             }
             steering_wheel_end_btn -> {
-//                moveY += moveI
                 listener?.invoke(1,moveX,moveY)
             }
         }
     }
-
 
 }

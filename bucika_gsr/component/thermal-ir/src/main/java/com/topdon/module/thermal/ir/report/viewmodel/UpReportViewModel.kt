@@ -67,7 +67,7 @@ class UpReportViewModel : BaseViewModel() {
             val url = UrlConstant.BASE_URL + "api/v1/outProduce/testReport/addTestReport"
             val params = RequestParams()
             params.addBodyParameter("reportType", 2)
-            params.addBodyParameter("modelId", if (isTC007) 1783 else 950) //TC001-950, TC002-951, TC003-952 TC007-1783
+            params.addBodyParameter("modelId", if (isTC007) 1783 else 950)
             params.addBodyParameter("testTime", TimeUtils.getNowString())
             params.addBodyParameter("testInfo", GsonUtils.toJson(reportBean))
             params.addBodyParameter("sn", "")

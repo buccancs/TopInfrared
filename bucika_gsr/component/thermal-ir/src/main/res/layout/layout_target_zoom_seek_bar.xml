@@ -6,7 +6,6 @@
     android:layout_height="wrap_content"
     android:padding="10dp">
 
-    <!-- 背景 -->
     <View
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -53,21 +52,5 @@
         app:layout_constraintTop_toBottomOf="@id/tv_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/tv_value" />
-
-<!--    <com.topdon.lib.ui.widget.CommSeekBar-->
-<!--        android:id="@+id/seek_bar"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:paddingLeft="16dp"-->
-<!--        android:paddingRight="14dp"-->
-<!--        android:paddingTop="7dp"-->
-<!--        android:paddingBottom="24dp"-->
-<!--        android:progressDrawable="@drawable/ui_seek_progress_bg"-->
-<!--        android:thumb="@drawable/ui_seek_pick_thumb"-->
-<!--        android:maxHeight="6dp"-->
-<!--        tools:progress="50"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/tv_title"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toStartOf="@id/tv_value" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

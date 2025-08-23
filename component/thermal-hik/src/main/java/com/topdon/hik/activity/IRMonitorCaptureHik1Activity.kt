@@ -21,24 +21,11 @@ import com.topdon.module.thermal.ir.repository.ConfigRepository
 import com.topdon.module.thermal.ir.view.TemperatureBaseView.Mode
 import kotlinx.coroutines.launch
 
-/**
- * 海康温度监控生成第1步 - 选取区域监听.
- *
- * Created by LCG on 2025/1/10.
- */
 @Route(path = RouterConfig.IR_HIK_MONITOR_CAPTURE1)
 class IRMonitorCaptureHik1Activity : BaseBindingActivity<ActivityIrMonitorCaptureHik1Binding>(), View.OnClickListener {
 
-    /**
-     * 是否点击了下一步.
-     * 用于判断是否需要在 onStop() 阶段 stopStream()；
-     * 是否需要在 onDestroy() 阶段 release()
-     */
     private var hasClickNext = false
 
-    /**
-     * 当前拾取的点、线、面信息
-     */
     private var selectIndex: SelectPositionBean? = null
 
     override fun initContentLayoutId(): Int = R.layout.activity_ir_monitor_capture_hik1
@@ -53,7 +40,6 @@ class IRMonitorCaptureHik1Activity : BaseBindingActivity<ActivityIrMonitorCaptur
             binding.hikSurfaceView.refresh(yuvArray, tempArray)
         }
         HikHelper.onTimeoutListener = {
-            // TODO: 跟进超时弹框逻辑
             TipDialog.Builder(this)
                 .setMessage("机芯出了毛病，5秒了没个回调过来")
                 .setPositiveListener(R.string.app_got_it) {
@@ -62,20 +48,15 @@ class IRMonitorCaptureHik1Activity : BaseBindingActivity<ActivityIrMonitorCaptur
                 .create().show()
         }
         HikHelper.onReadyListener = {
-            //热成像机芯相关参数初始化
             lifecycleScope.launch {
-                //自动快门强制打开；
-                //对比度、锐度强制使用默认值；
-                //房屋检测时伪彩跟随设置，温度监控、锅盖标定伪彩强制使用铁红
-                //高低温档由于历史遗留，TC001那些都是没有重置的，这里保持一致，也不去重置
 
                 HikHelper.initConfig()
                 HikHelper.setAutoShutter(true)
-                HikHelper.setContrast(50) //使用默认对比度
-                HikHelper.setEnhanceLevel(50) //使用默认细节增强等级
+                HikHelper.setContrast(50)
+                HikHelper.setEnhanceLevel(50)
 
                 val config: DataBean = ConfigRepository.readConfig(false)
-                HikHelper.setEmissivity((config.radiation * 100).toInt()) //应用发射率
+                HikHelper.setEmissivity((config.radiation * 100).toInt())
                 HikHelper.setDistance((config.distance * 100).toInt().coerceAtLeast(30))
             }
         }
@@ -135,10 +116,10 @@ class IRMonitorCaptureHik1Activity : BaseBindingActivity<ActivityIrMonitorCaptur
 
     override fun onClick(v: View?) {
         when (v) {
-            binding.btnSelect -> {//开始拾取点、线、面
+            binding.btnSelect -> {
                 showSelectDialog()
             }
-            binding.btnStart -> {//跳转下一步
+            binding.btnStart -> {
                 if (selectIndex == null) {
                     showSelectDialog()
                 } else {
@@ -154,9 +135,6 @@ class IRMonitorCaptureHik1Activity : BaseBindingActivity<ActivityIrMonitorCaptur
         }
     }
 
-    /**
-     * 显示点、线、面拾取弹窗.
-     */
     private fun showSelectDialog() {
         MonitorSelectDialog.Builder(this)
             .setPositiveListener {

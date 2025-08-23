@@ -17,9 +17,6 @@ import java.util.concurrent.CountDownLatch
 
 object LmsRepository {
 
-    /**
-     * 查看版本信息
-     */
     suspend fun getVersionInfo(): CheckVersionJson? {
         var result: CheckVersionJson? = null
         val downLatch = CountDownLatch(1)
@@ -39,9 +36,6 @@ object LmsRepository {
         return result
     }
 
-    /**
-     * 查看声明链接
-     */
     suspend fun getStatementUrl(type: String): StatementJson? {
         var result: StatementJson? = null
         val downLatch = CountDownLatch(1)

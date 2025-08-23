@@ -86,7 +86,6 @@
         app:layout_constraintEnd_toEndOf="@id/version_year_txt"
         app:layout_constraintStart_toStartOf="@id/version_year_txt" />
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -126,6 +125,5 @@
             android:textSize="@dimen/app_small_font" />
 
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

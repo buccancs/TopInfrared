@@ -228,7 +228,6 @@
     <string name="auto_shutter">自動快門</string>
     <string name="color_board">顏色板</string>
 
-    <!--    2022-11-16-->
     <string name="user_services_agreement">用戶服務協議</string>
     <string name="privacy_policy">隱私政策</string>
     <string name="third_party_components">第三方組件</string>
@@ -238,8 +237,6 @@
     <string name="app_save_image">是否保存圖片？</string>
     <string name="app_tip">提示</string>
 
-
-    <!-- 2.00版本 -->
     <string name="app_lapsePhotography">延時拍照</string>
     <string name="app_Manual_Shutter">手動快門</string>
     <string name="app_record_sound">錄製聲音</string>
@@ -281,7 +278,6 @@
     <string name="app_open">去打開</string>
     <string name="album_report_aleart">手機記憶體不足，錄影停止</string>
     <string name="tip_video_record">每次錄製時間最長60分鐘</string>
-
 
     <string name="temp_alarm_alarm">警示</string>
     <string name="temp_alarm_high_alarm">高溫報警</string>
@@ -392,7 +388,6 @@
     <string name="menu_3d_x_axis">X軸</string>
     <string name="menu_3d_y_axis">Y軸</string>
 
-    <!--TS001-->
     <string name="album_menu_Photos">照片</string>
     <string name="feedback_problem_type_6">其他</string>
     <string name="app_got_it">明白了</string>
@@ -498,7 +493,6 @@
     <string name="installation_package_downloading_tips">開始下載，請在通知中查看進度</string>
     <string name="welcome_use_app">歡迎來到%1$s</string>
 
-
     <string name="dual_light_correction">雙光校正</string>
     <string name="dual_light_correction_tips_1">由於兩個攝像頭的焦點不在同一條直綫上，因此不同距離的雙鏡頭畫面會有偏差導致無法對齊。\n透過本功能可單獨進行畫面的對齊。</string>
     <string name="dual_light_correction_tips_2">1.將熱源（如手掌）放在畫面中約0.5米遠。\n2.點擊拍照。</string>
@@ -520,7 +514,6 @@
 
     <string name="text_p_umeng">為了提供更好的功能體驗，我們的產品整合友盟+SDK進行資料統計和日誌收集，SDK將收集您的裝置識別和帳戶資訊</string>
 
-    <!--TS004-->
     <string name="ts004_connection_device">有線連接設備</string>
     <string name="ts004_auto_save">自動保存至手機</string>
     <string name="ts004_save_tips">若啟用此功能，連接到APP進行拍照或錄像時，照片和視頻將自動保存至手機本地。</string>
@@ -600,12 +593,10 @@
     <string name="ts004_faq_q5">我如何在PC上查看用TS004拍攝的照片或錄影？</string>
     <string name="ts004_faq_a5">通過USB線將TS004連接到PC上，打開設備對應的資料夾即可查看存儲在TS004上的照片或錄影。</string>
 
-    <!-- TC001 老 APP 引流 -->
     <string name="gallery_transfer">轉移圖庫</string>
     <string name="gallery_transfer_wait">資料轉移中。請稍候。</string>
     <string name="gallery_transfer_complete">資料轉移完成。</string>
 
-    <!-- 3.70 -->
     <string name="user_jump">跳過</string>
     <string name="tc_guide_tips1">查看即時監控圖及歷史監控記錄。</string>
     <string name="tc_guide_tips2">為確保測溫準確，請在在測溫前設定相關參數。</string>
@@ -622,7 +613,6 @@
     <string name="ts004_conntenct_tip">您將使用數據流量，設備連接可能斷開。</string>
     <string name="fireware_update_tips">修復了Bug和優化效能</string>
 
-    <!-- 3.80 -->
     <string name="tc_local_album">本地圖庫</string>
     <string name="tc_connect_device">連接設備</string>
     <string name="tc_connect_tips">選擇您要連接的裝置。</string>
@@ -634,7 +624,6 @@
     <string name="tc_reset_tips">設備的各項設置將恢復到出廠狀態，確認恢復嗎？</string>
     <string name="coming_soon">敬請期待…</string>
 
-    <!-- 3.90 -->
     <string name="tc007_connect_tips1">1.保證設備有充足電量，距離足够近</string>
     <string name="tc007_connect_tips2">2.打開手機的藍牙和WiFi</string>
     <string name="tc007_connect_tips3">3.進入APP掃描頁</string>
@@ -651,7 +640,6 @@
     <string name="wifi_connect_loading">預計需要15s…</string>
     <string name="tc007_done_fast">操作頻繁</string>
 
-    <!-- 房屋检测 -->
     <string name="main_professional_test">專業檢測</string>
     <string name="main_temperature_test">溫度檢測</string>
     <string name="main_thermal_tips">專業熱成像檢測</string>
@@ -820,7 +808,6 @@
     <string name="abnormal_description17">後視鏡加熱器溫度受到如環境溫度、加熱器負載等多種因素的影響。您可以使用熱像儀監測後視鏡加熱器溫度來檢查後視鏡是否被正常加熱。</string>
     <string name="abnormal_description18">車窗電機溫度受到如環境溫度、電機負載等多種因素的影響。使用熱像儀監測車窗電機溫度時，如發現車窗電機溫度過高，則可能存在車窗升降機構或電機本身故障的問題。</string>
 
-    <!-- 房屋检测新增 -->
     <string name="vehicle_function">功能</string>
     <string name="ability_find">發現</string>
     <string name="ability_monitory">實时觀看物體溫度生成數據</string>
@@ -846,7 +833,6 @@
     <string name="pdf_project_item">項目</string>
     <string name="house_sign_finish_tips">請完成電子簽名</string>
 
-    <!-- 4.50 -->
     <string name="thermal_trend">趨勢圖</string>
     <string name="thermal_trend_tips">在影像上繪製一條線段，查看線段內的溫度變化趨勢。</string>
     <string name="material_view_all">查看全部</string>
@@ -959,7 +945,6 @@
     <string name="tips_tisr_off">成像超解析度已停用。</string>
     <string name="tips_tisr_fail">您的手機不支援 OpenCL，無法啟用影像超解析度。</string>
 
-    <!-- 4.70 -->
     <string name="testing_guidance">檢測指導</string>
     <string name="unlock_professional_perspectives">解鎖專業視野</string>
     <string name="app_error_reload">重新載入</string>

@@ -13,11 +13,8 @@ import com.topdon.module.thermal.fragment.GalleryPictureFragment
 import com.topdon.module.thermal.fragment.GalleryVideoFragment
 import kotlinx.android.synthetic.main.activity_gallery.*
 
-
 @Route(path = RouterConfig.GALLERY)
 class GalleryActivity : BaseActivity() {
-
-//    override fun providerVMClass() = GalleryViewModel::class.java
 
     private val permissionList by lazy{
         if (this.applicationInfo.targetSdkVersion >= 34){

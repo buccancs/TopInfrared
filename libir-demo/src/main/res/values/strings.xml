@@ -1,22 +1,22 @@
 <resources>
     <string name="app_name">USB_IR</string>
-    <!-- main activity navigation -->
+    
     <string name="nav_usb_monitor">Test USBMonitor connect</string>
     <string name="nav_ir_display">IR display,SDK test..</string>
     <string name="nav_ir_image_or_temp_display">Image or temp display</string>
     <string name="nav_tools">FM update,read,write..</string>
-    <!-- usb monitor connect activity -->
+    
     <string name="usb_monitor_tip">Test USBMonitor\'s plug-in process callback function, please note that the registration and de-registration must appear in pairs.</string>
-    <!-- title -->
+    
     <string name="pseudo_mode">Pseu</string>
     <string name="temperature">Temp</string>
     <string name="calibration">Cali</string>
     <string name="image">Img</string>
     <string name="information">Info</string>
     <string name="top_menu_other">Oth</string>
-    <!-- pseudocolor  -->
+    
     <string name="color_p1">White Hot</string>
-<!--    <string name="color_p3">Iron Red</string>-->
+
     <string name="color_p4">Rainbow1</string>
     <string name="color_p5">Rainbow2</string>
     <string name="color_p6">Rainbow3</string>
@@ -26,29 +26,29 @@
     <string name="color_p10">Rainbow5</string>
     <string name="color_p11">Black Hot</string>
     <string name="color_p12">Iron Red2</string>
-    <!-- temperature -->
+    
     <string name="temp_point">Point</string>
     <string name="temp_line">Line</string>
     <string name="temp_rect">Rect</string>
     <string name="temp_all">Center</string>
     <string name="temp_clear">Clear</string>
-    <!-- firmware update -->
+    
     <string name="restore_restart">Restart the module to take effect</string>
     <string name="firmware_update">Firmware update</string>
     <string name="state">State</string>
     <string name="firmware_updating">Do not power off during the upgrade</string>
     <string name="firmware_success">Success, power off and restart</string>
     <string name="firmware_fail">Failure, error code:</string>
-    <!-- others -->
+    
     <string name="temp_correction">Secondary calibration</string>
     <string name="currentVTemp">CurrentVTemp:</string>
     <string name="shutterVTemp">ShutterVTemp:</string>
     <string name="fps_status">FPS</string>
     <string name="preview_start">Y16ModePreview</string>
-    <!-- image -->
+    
     <string name="temp_measure">Point&amp;line&amp;rect temp measure</string>
     <string name="frame_temp">Frame max&amp;min temp</string>
-    <!-- -->
+    
     <string name="single_point_temperature">Single point temp(units:K)</string>
     <string name="low_temperature">Low temp(units:K)</string>
     <string name="high_temperature">High temp(units:K)</string>
@@ -74,11 +74,11 @@
     <string name="data">Data</string>
     <string name="read">Read</string>
     <string name="write">Write</string>
-    <!-- -->
+    
     <string name="pic_save_success">Image saved successfully</string>
     <string name="pic_save_fail">Failed to save image</string>
     <string name="file_save_success">File saved successfully</string>
-    <!-- -->
+    
     <string name="OTG_confirm">Please make sure the OTG function is turned on</string>
     <string name="display_image_temp">Image+Temp</string>
     <string name="display_image">Image</string>

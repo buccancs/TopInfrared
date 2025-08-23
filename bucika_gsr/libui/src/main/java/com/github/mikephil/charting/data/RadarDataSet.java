@@ -11,13 +11,10 @@ import java.util.List;
 
 public class RadarDataSet extends LineRadarDataSet<RadarEntry> implements IRadarDataSet {
 
-    /// flag indicating whether highlight circle should be drawn or not
     protected boolean mDrawHighlightCircleEnabled = false;
 
     protected int mHighlightCircleFillColor = Color.WHITE;
 
-    /// The stroke color for highlight circle.
-    /// If Utils.COLOR_NONE, the color of the dataset is taken.
     protected int mHighlightCircleStrokeColor = ColorTemplate.COLOR_NONE;
 
     protected int mHighlightCircleStrokeAlpha = (int) (0.3 * 255);
@@ -29,13 +26,11 @@ public class RadarDataSet extends LineRadarDataSet<RadarEntry> implements IRadar
         super(yVals, label);
     }
 
-    /// Returns true if highlight circle should be drawn, false if not
     @Override
     public boolean isDrawHighlightCircleEnabled() {
         return mDrawHighlightCircleEnabled;
     }
 
-    /// Sets whether highlight circle should be drawn or not
     @Override
     public void setDrawHighlightCircleEnabled(boolean enabled) {
         mDrawHighlightCircleEnabled = enabled;
@@ -50,15 +45,11 @@ public class RadarDataSet extends LineRadarDataSet<RadarEntry> implements IRadar
         mHighlightCircleFillColor = color;
     }
 
-    /// Returns the stroke color for highlight circle.
-    /// If Utils.COLOR_NONE, the color of the dataset is taken.
     @Override
     public int getHighlightCircleStrokeColor() {
         return mHighlightCircleStrokeColor;
     }
 
-    /// Sets the stroke color for highlight circle.
-    /// Set to Utils.COLOR_NONE in order to use the color of the dataset;
     public void setHighlightCircleStrokeColor(int color) {
         mHighlightCircleStrokeColor = color;
     }

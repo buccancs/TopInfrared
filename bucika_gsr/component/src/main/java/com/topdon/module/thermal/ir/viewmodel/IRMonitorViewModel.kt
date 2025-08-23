@@ -19,10 +19,6 @@ class IRMonitorViewModel : BaseViewModel() {
         }
     }
 
-
-
-
-
     val detailListLD = MutableLiveData<List<ThermalEntity>>()
 
     fun queryDetail(startTime: Long) {

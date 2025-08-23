@@ -20,12 +20,6 @@ import com.github.mikephil.charting.utils.MPPointF;
 import com.github.mikephil.charting.utils.TransformerHorizontalBarChart;
 import com.github.mikephil.charting.utils.Utils;
 
-/**
- * BarChart with horizontal bar orientation. In this implementation, x- and y-axis are switched, meaning the YAxis class
- * represents the horizontal values and the XAxis class represents the vertical values.
- *
- * @author Philipp Jahoda
- */
 public class HorizontalBarChart extends BarChart {
 
     public HorizontalBarChart(Context context) {
@@ -72,7 +66,6 @@ public class HorizontalBarChart extends BarChart {
         offsetRight += mOffsetsBuffer.right;
         offsetBottom += mOffsetsBuffer.bottom;
 
-        // offsets for y-labels
         if (mAxisLeft.needsOffset()) {
             offsetTop += mAxisLeft.getRequiredHeightSpace(mAxisRendererLeft.getPaintAxisLabels());
         }
@@ -85,7 +78,6 @@ public class HorizontalBarChart extends BarChart {
 
         if (mXAxis.isEnabled()) {
 
-            // offsets for x-labels
             if (mXAxis.getPosition() == XAxisPosition.BOTTOM) {
 
                 offsetLeft += xlabelwidth;
@@ -167,13 +159,6 @@ public class HorizontalBarChart extends BarChart {
 
     protected float[] mGetPositionBuffer = new float[2];
 
-    /**
-     * Returns a recyclable MPPointF instance.
-     *
-     * @param e
-     * @param axis
-     * @return
-     */
     @Override
     public MPPointF getPosition(Entry e, AxisDependency axis) {
 
@@ -189,14 +174,6 @@ public class HorizontalBarChart extends BarChart {
         return MPPointF.getInstance(vals[0], vals[1]);
     }
 
-    /**
-     * Returns the Highlight object (contains x-index and DataSet index) of the selected value at the given touch point
-     * inside the BarChart.
-     *
-     * @param x
-     * @param y
-     * @return
-     */
     @Override
     public Highlight getHighlightByTouchPoint(float x, float y) {
 
@@ -205,7 +182,7 @@ public class HorizontalBarChart extends BarChart {
                 Log.e(LOG_TAG, "Can't select by touch. No data set.");
             return null;
         } else
-            return getHighlighter().getHighlight(y, x); // switch x and y
+            return getHighlighter().getHighlight(y, x);
     }
 
     @Override
@@ -223,10 +200,6 @@ public class HorizontalBarChart extends BarChart {
         float result = (float) Math.min(mXAxis.mAxisMaximum, posForGetHighestVisibleX.y);
         return result;
     }
-
-    /**
-     * ###### VIEWPORT METHODS BELOW THIS ######
-     */
 
     @Override
     public void setVisibleXRangeMaximum(float maxXRange) {

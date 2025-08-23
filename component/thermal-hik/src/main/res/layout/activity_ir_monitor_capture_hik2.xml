@@ -129,7 +129,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- 中间部分 -->
         <FrameLayout
             android:id="@+id/thermal_lay"
             android:layout_width="0dp"
@@ -139,12 +138,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/chart_lay"
             app:layout_constraintBottom_toBottomOf="parent">
-            <!-- 热成像画面图层 -->
+            
             <com.topdon.module.thermal.ir.view.HikSurfaceView
                 android:id="@+id/hik_surface_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
-            <!-- 温度图层 -->
+            
             <com.topdon.module.thermal.ir.view.TemperatureHikView
                 android:id="@+id/temperature_view"
                 android:layout_width="match_parent"

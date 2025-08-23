@@ -36,11 +36,6 @@ android {
     buildFeatures{
         dataBinding = true
     }
-//    repositories {
-//        flatDir {
-//            dirs '../../libir/libs'
-//        }
-//    }
 
     flavorDimensions 'app'
     productFlavors {
@@ -83,7 +78,6 @@ dependencies {
     api Deps.compass_sense
     api Deps.compass_core
 
-    // gsy player
     implementation "com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer-java:v8.1.4"
     implementation "com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer-exo_player2:v8.1.4"
     implementation "com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer-armv64:v8.1.4"

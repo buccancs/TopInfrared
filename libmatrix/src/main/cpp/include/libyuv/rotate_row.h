@@ -1,12 +1,4 @@
-/*
- *  Copyright 2013 The LibYuv Project Authors. All rights reserved.
- *
- *  Use of this source code is governed by a BSD-style license
- *  that can be found in the LICENSE file in the root of the source
- *  tree. An additional intellectual property rights grant can be found
- *  in the file PATENTS. All contributing project authors may
- *  be found in the AUTHORS file in the root of the source tree.
- */
+
 
 #ifndef INCLUDE_LIBYUV_ROTATE_ROW_H_
 #define INCLUDE_LIBYUV_ROTATE_ROW_H_
@@ -26,24 +18,20 @@ extern "C" {
 #if defined(__native_client__)
 #define LIBYUV_DISABLE_NEON
 #endif
-// MemorySanitizer does not support assembly code yet. http://crbug.com/344505
 #if defined(__has_feature)
 #if __has_feature(memory_sanitizer)
 #define LIBYUV_DISABLE_X86
 #endif
 #endif
-// The following are available for Visual C and clangcl 32 bit:
 #if !defined(LIBYUV_DISABLE_X86) && defined(_M_IX86) && defined(_MSC_VER)
 #define HAS_TRANSPOSEWX8_SSSE3
 #define HAS_TRANSPOSEUVWX8_SSE2
 #endif
 
-// The following are available for GCC 32 or 64 bit:
 #if !defined(LIBYUV_DISABLE_X86) && (defined(__i386__) || defined(__x86_64__))
 #define HAS_TRANSPOSEWX8_SSSE3
 #endif
 
-// The following are available for 64 bit GCC:
 #if !defined(LIBYUV_DISABLE_X86) && defined(__x86_64__)
 #define HAS_TRANSPOSEWX8_FAST_SSSE3
 #define HAS_TRANSPOSEUVWX8_SSE2
@@ -216,8 +204,8 @@ void TransposeUVWx16_Any_MSA(const uint8_t* src,
                              int width);
 
 #ifdef __cplusplus
-}  // extern "C"
-}  // namespace libyuv
+}
+}
 #endif
 
-#endif  // INCLUDE_LIBYUV_ROTATE_ROW_H_
+#endif

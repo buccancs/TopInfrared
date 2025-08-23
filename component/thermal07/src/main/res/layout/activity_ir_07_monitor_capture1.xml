@@ -76,5 +76,4 @@
         app:layout_constraintTop_toTopOf="@id/fl_rtsp"
         app:layout_constraintBottom_toBottomOf="@id/fl_rtsp" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>

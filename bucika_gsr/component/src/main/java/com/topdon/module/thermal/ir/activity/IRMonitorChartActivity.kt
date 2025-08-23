@@ -53,21 +53,14 @@ import org.greenrobot.eventbus.ThreadMode
 import java.math.BigDecimal
 import java.math.RoundingMode
 
-/**
- * 温度实时监控
- */
 @Route(path = RouterConfig.IR_MONITOR_CHART)
 class IRMonitorChartActivity : BaseActivity(),ITsTempListener {
 
-    /** 默认数据流模式：图像+温度复合数据 */
     protected var defaultDataFlowMode = CommonParams.DataFlowMode.IMAGE_AND_TEMP_OUTPUT
 
     private var gainStatus = CommonParams.GainStatus.HIGH_GAIN
     private var isTS001 = false
 
-    /**
-     * 从上一界面传递过来的，当前选中的 点/线/面 信息.
-     */
     private var selectBean: SelectPositionBean = SelectPositionBean()
 
     private var ircmd: IRCMD?= null
@@ -94,7 +87,6 @@ class IRMonitorChartActivity : BaseActivity(),ITsTempListener {
 
         temperatureView.isEnabled = false
         temperatureView.setTextSize(SaveSettingUtil.tempTextSize)
-
 
         initDataIR()
     }
@@ -144,7 +136,7 @@ class IRMonitorChartActivity : BaseActivity(),ITsTempListener {
                     bean.maxTemp = maxBigDecimal.setScale(1, RoundingMode.HALF_UP).toFloat()
                     bean.minTemp = minBigDecimal.setScale(1, RoundingMode.HALF_UP).toFloat()
                     bean.createTime = System.currentTimeMillis()
-                    canUpdate = true//可以开始更新记录
+                    canUpdate = true
                 }
             }
         }
@@ -156,7 +148,6 @@ class IRMonitorChartActivity : BaseActivity(),ITsTempListener {
         if (!isrun) {
             configParam()
             temperatureView.postDelayed({
-                //初始配置,伪彩铁红
                 try {
                     if (!isStop){
                         pseudoColorMode = 3
@@ -166,7 +157,7 @@ class IRMonitorChartActivity : BaseActivity(),ITsTempListener {
                         cameraView.start()
                         isrun = true
                         if (!isRecord){
-                            recordThermal()//开始记录
+                            recordThermal()
                         }
                     }
                 }catch (e:Exception){
@@ -179,7 +170,7 @@ class IRMonitorChartActivity : BaseActivity(),ITsTempListener {
     override fun onResume() {
         super.onResume()
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-        mp_chart_view.highlightValue(null) //关闭高亮点Marker
+        mp_chart_view.highlightValue(null)
     }
 
     override fun onPause() {
@@ -218,13 +209,11 @@ class IRMonitorChartActivity : BaseActivity(),ITsTempListener {
     }
 
     private var isRecord = false
-    private var timeMillis = 1000L //间隔1s
+    private var timeMillis = 1000L
     private var canUpdate = false
 
     private var recordJob: Job? = null
-    /**
-     * 开始每隔1秒记录一个温度数据到数据库.
-     */
+    
     private fun recordThermal() {
         recordJob = lifecycleScope.launch(Dispatchers.IO) {
             isRecord = true
@@ -266,9 +255,8 @@ class IRMonitorChartActivity : BaseActivity(),ITsTempListener {
         }
     }
 
-
     private var imageThread: ImageThreadTC? = null
-    private var bitmap: Bitmap? = null //不需要显示图像，可去掉
+    private var bitmap: Bitmap? = null
     private var iruvc: IRUVCTC? = null
     private val cameraWidth = 256
     private val cameraHeight = 384
@@ -290,13 +278,6 @@ class IRMonitorChartActivity : BaseActivity(),ITsTempListener {
 
     private var rotateAngle = 270
 
-    /**
-     * 初始数据
-     *
-     * 不做图像更新
-     * 去掉cameraView
-     * syncimage.valid = true
-     */
     private fun initDataIR() {
         imageWidth = cameraHeight - tempHeight
         imageHeight = cameraWidth
@@ -314,13 +295,11 @@ class IRMonitorChartActivity : BaseActivity(),ITsTempListener {
         temperatureView.setSyncimage(syncimage)
         temperatureView.setTemperature(temperatureBytes)
         setViewLay()
-        // 某些特定客户的特殊设备需要使用该命令关闭sensor
         if (Usbcontorl.isload) {
-            Usbcontorl.usb3803_mode_setting(1) //打开5V
+            Usbcontorl.usb3803_mode_setting(1)
             Log.w("123", "打开5V")
         }
     }
-
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun iruvctc(event: PreviewComplete) {
@@ -334,9 +313,6 @@ class IRMonitorChartActivity : BaseActivity(),ITsTempListener {
         addTempLine()
     }
 
-    /**
-     * 图像信号处理
-     */
     private fun startISP() {
         try {
             imageThread = ImageThreadTC(this@IRMonitorChartActivity, imageWidth, imageHeight)
@@ -352,10 +328,6 @@ class IRMonitorChartActivity : BaseActivity(),ITsTempListener {
         }
     }
 
-
-    /**
-     * @param isRestart 是否是重启模组
-     */
     private fun startUSB(isRestart: Boolean) {
         iruvc = IRUVCTC(cameraWidth, cameraHeight, this@IRMonitorChartActivity, syncimage,
             defaultDataFlowMode, object : ConnectCallback {
@@ -369,26 +341,19 @@ class IRMonitorChartActivity : BaseActivity(),ITsTempListener {
                         "ConnectCallback->onIRCMDCreate"
                     )
                     this@IRMonitorChartActivity.ircmd = ircmd
-                    // 需要等IRCMD初始化完成之后才可以调用
-//                    ircmd.setPseudoColor(
-//                        CommonParams.PreviewPathChannel.PREVIEW_PATH0,
-//                        PseudocodeUtils.changePseudocodeModeByOld(pseudoColorMode))
                     val fwBuildVersionInfoBytes = ByteArray(50)
                     ircmd?.getDeviceInfo(
                         CommonParams.DeviceInfoType.DEV_INFO_FW_BUILD_VERSION_INFO,
                         fwBuildVersionInfoBytes
-                    ) //ok
+                    )
                     val value = IntArray(1)
                     val arm = String(fwBuildVersionInfoBytes.copyOfRange(0, 8))
                     isTS001 = arm.contains("Mini256", true)
                     ircmd!!.getPropTPDParams(CommonParams.PropTPDParams.TPD_PROP_GAIN_SEL, value)
                     Log.d(TAG, "TPD_PROP_GAIN_SEL=" + value[0])
                     gainStatus = if (value[0] == 1) {
-                        // 当前机芯为高增益
                         CommonParams.GainStatus.HIGH_GAIN
-                        // 等效大气透过率表
                     } else {
-                        // 当前机芯为低增益
                         CommonParams.GainStatus.LOW_GAIN
                     }
                 }
@@ -413,10 +378,6 @@ class IRMonitorChartActivity : BaseActivity(),ITsTempListener {
 
     }
 
-
-    /**
-     *
-     */
     private fun restartUsbCamera() {
         if (iruvc != null) {
             iruvc!!.stopPreview()
@@ -426,7 +387,6 @@ class IRMonitorChartActivity : BaseActivity(),ITsTempListener {
     }
 
     private var isConfigWait = false
-    //配置
     private fun configParam() {
         lifecycleScope.launch {
             isConfigWait = true
@@ -434,23 +394,20 @@ class IRMonitorChartActivity : BaseActivity(),ITsTempListener {
                 delay(100)
             }
             val config = ConfigRepository.readConfig(false)
-            val disChar = (config.distance * 128).toInt() //距离(米)
-            val emsChar = (config.radiation * 128).toInt() //发射率
+            val disChar = (config.distance * 128).toInt()
+            val emsChar = (config.radiation * 128).toInt()
             XLog.w("设置TPD_PROP DISTANCE:${disChar}, EMS:${emsChar}}")
             val timeMillis = 250L
             delay(timeMillis)
-            //发射率
             ircmd!!.setPropTPDParams(
                 CommonParams.PropTPDParams.TPD_PROP_EMS,
                 CommonParams.PropTPDParamsValue.NumberType(emsChar.toString())
             )
             delay(timeMillis)
-            //距离
             ircmd!!.setPropTPDParams(
                 CommonParams.PropTPDParams.TPD_PROP_DISTANCE,
                 CommonParams.PropTPDParamsValue.NumberType(disChar.toString())
             )
-            // 自动快门
             delay(timeMillis)
             ircmd?.zoomCenterDown(
                 CommonParams.PreviewPathChannel.PREVIEW_PATH0,
@@ -472,7 +429,6 @@ class IRMonitorChartActivity : BaseActivity(),ITsTempListener {
                 CommonParams.ZoomScaleStep.ZOOM_STEP2
             )
             iruvc?.let {
-                // 部分机型在关闭自动快门，初始会花屏
                 withContext(Dispatchers.IO){
                     if (SaveSettingUtil.isAutoShutter) {
                         ircmd!!.setPropAutoShutterParameter(
@@ -487,7 +443,6 @@ class IRMonitorChartActivity : BaseActivity(),ITsTempListener {
                     }
                 }
             }
-            //复位对比度、细节
             delay(timeMillis)
             ircmd?.setPropImageParams(
                 CommonParams.PropImageParams.IMAGE_PROP_LEVEL_CONTRAST,
@@ -506,19 +461,14 @@ class IRMonitorChartActivity : BaseActivity(),ITsTempListener {
         }
     }
 
-    /**
-     * 绘制点线面
-     */
     private fun addTempLine() {
         temperatureView.visibility = View.VISIBLE
         when (selectBean.type) {
             1 -> {
-                //点
                 temperatureView.addScalePoint(selectBean.startPosition)
                 temperatureView.temperatureRegionMode = REGION_MODE_POINT
             }
             2 -> {
-                //线
                 temperatureView.addScaleLine(
                     Line(
                         selectBean.startPosition,
@@ -528,7 +478,6 @@ class IRMonitorChartActivity : BaseActivity(),ITsTempListener {
                 temperatureView.temperatureRegionMode = REGION_MODE_LINE
             }
             3 -> {
-                //面
                 temperatureView.addScaleRectangle(
                     Rect(
                         selectBean.startPosition!!.x,
@@ -571,17 +520,12 @@ class IRMonitorChartActivity : BaseActivity(),ITsTempListener {
         return tmp!!
     }
 
-
-    /**
-     * 单点修正过程
-     */
     private fun tempCorrect(
         temp: Float,
         gainStatus: CommonParams.GainStatus, tempInfo: Long
     ): Float {
 
         if (!isTS001) {
-            //不是ts001不需要修正
             return temp
         }
         if (ts_data_H == null || ts_data_L == null) {
@@ -616,16 +560,13 @@ class IRMonitorChartActivity : BaseActivity(),ITsTempListener {
         return newTemp
     }
 
-
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun cameraEvent(event: DeviceCameraEvent) {
         when (event.action) {
             100 -> {
-                //准备图像
                 showCameraLoading()
             }
             101 -> {
-                //显示图像
                 dismissCameraLoading()
                 addTempLine()
             }

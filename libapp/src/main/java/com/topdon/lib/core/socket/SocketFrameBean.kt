@@ -1,49 +1,6 @@
 package com.topdon.lib.core.socket
 
-/**
- * TC007 Socket 一帧数据.
- * @param isMaxShow 最高温点是否显示
- * @param isMinShow 最低温点是否显示
- * @param isCenterShow 中心点是否显示
- * @param maxX 最高温点 X 轴坐标
- * @param maxY 最高温点 Y 轴坐标
- * @param maxValue 最高温点温度值，单位摄氏度*10
- * @param minX 最低温点 X 轴坐标
- * @param minY 最低温点 Y 轴坐标
- * @param minValue 最低温点温度值，单位摄氏度*10
- * @param centerX 中心点 X 轴坐标
- * @param centerY 中心点 Y 轴坐标
- * @param centerValue 中心点温度值，单位摄氏度*10
- * @param isMaxWarn 整帧高温点报警是否开启
- * @param isMinWarn 整帧低温点报警是否开启
- * @param isCenterWarn 整帧中心点报警是否开启
- *
- * @param isP1Show 点1是否显示
- * @param p1X 点1 X 轴坐标
- * @param p1Y 点1 Y 轴坐标
- * @param p1Value 点1温度值，单位摄氏度*10
- * @param isP1MaxWarn 点1高温点报警是否开启
- * @param isP1MinWarn 点1低温点报警是否开启
- * @param isP1CenterWarn 点1中心点报警是否开启
- *
- * @param isL1Show 线1是否显示
- * @param l1StartX 线1起始点 X 轴坐标
- * @param l1StartY 线1起始点 Y 轴坐标
- * @param l1EndX 线1终止点 X 轴坐标
- * @param l1EndY 线1终止点 Y 轴坐标
- * @param l1MaxX 线1最高温点 X 轴坐标
- * @param l1MaxY 线1最高温点 Y 轴坐标
- * @param l1MaxValue 线1最高温点温度值，单位摄氏度*10
- * @param l1MinX 线1最低温点 X 轴坐标
- * @param l1MinY 线1最低温点 Y 轴坐标
- * @param l1MinValue 线1最低温点温度值，单位摄氏度*10
- * @param l1AveValue 线1平均温，单位摄氏度*10
- * @param isL1MaxWarn 线1高温点报警是否开启
- * @param isL1MinWarn 线1低温点报警是否开启
- * @param isL1CenterWarn 线1中心点报警是否开启
- */
 data class SocketFrameBean(
-    //整帧测温结果
     val isMaxShow: Boolean,
     val isMinShow: Boolean,
     val isCenterShow: Boolean,
@@ -60,7 +17,6 @@ data class SocketFrameBean(
     val isMinWarn: Boolean,
     val isCenterWarn: Boolean,
 
-    //点测温结果
     val isP1Show: Boolean,
     val p1X: Int,
     val p1Y: Int,
@@ -83,7 +39,6 @@ data class SocketFrameBean(
     val isP3MinWarn: Boolean,
     val isP3CenterWarn: Boolean,
 
-    //线测温结果
     val isL1Show: Boolean,
     val l1StartX: Int,
     val l1StartY: Int,
@@ -130,7 +85,6 @@ data class SocketFrameBean(
     val isL3MinWarn: Boolean,
     val isL3CenterWarn: Boolean,
 
-    //区域测温结果
     val isR1Show: Boolean,
     val r1StartX: Int,
     val r1StartY: Int,

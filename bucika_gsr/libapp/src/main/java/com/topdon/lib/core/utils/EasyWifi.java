@@ -12,11 +12,6 @@ import android.net.wifi.WifiNetworkSpecifier;
 
 import com.topdon.lib.core.BaseApplication;
 
-/**
- * des:
- * author: CaiSongL
- * date: 2024/5/23 17:39
- **/
 public class EasyWifi {
     private static volatile EasyWifi mInstance;
     private WifiConnectCallback wifiConnectCallback;
@@ -24,7 +19,6 @@ public class EasyWifi {
     private final WifiManager wifiManager = (WifiManager) BaseApplication.instance.getSystemService(Context.WIFI_SERVICE);
     private final ConnectivityManager connectivityManager = (ConnectivityManager) BaseApplication.instance.getSystemService(Context.CONNECTIVITY_SERVICE);
 
-    /* loaded from: classes2.dex */
     public enum WiFiEncryptionStandard {
         WEP,
         WPA_EAP,
@@ -33,14 +27,12 @@ public class EasyWifi {
         WPA3
     }
 
-    /* loaded from: classes2.dex */
     public enum WifiCapability {
         WIFI_CIPHER_WEP,
         WIFI_CIPHER_WPA,
         WIFI_CIPHER_NO_PASS
     }
 
-    /* loaded from: classes2.dex */
     public interface WifiConnectCallback {
         void onFailure();
 
@@ -87,8 +79,8 @@ public class EasyWifi {
         if (wiFiEncryptionStandard == WiFiEncryptionStandard.WPA3) {
             build = new WifiNetworkSpecifier.Builder().setSsid(str).setWpa3Passphrase(str2).build();
         }
-        this.connectivityManager.requestNetwork(new NetworkRequest.Builder().addTransportType(1).addCapability(13).addCapability(14).setNetworkSpecifier(build).build(), new ConnectivityManager.NetworkCallback() { // from class: com.ir.networklib.EasyWifi.1
-            @Override // android.net.ConnectivityManager.NetworkCallback
+        this.connectivityManager.requestNetwork(new NetworkRequest.Builder().addTransportType(1).addCapability(13).addCapability(14).setNetworkSpecifier(build).build(), new ConnectivityManager.NetworkCallback() {
+            @Override
             public void onAvailable(Network network) {
                 super.onAvailable(network);
                 if (EasyWifi.this.wifiConnectCallback != null) {
@@ -96,7 +88,7 @@ public class EasyWifi {
                 }
             }
 
-            @Override // android.net.ConnectivityManager.NetworkCallback
+            @Override
             public void onUnavailable() {
                 super.onUnavailable();
                 if (EasyWifi.this.wifiConnectCallback != null) {
@@ -182,8 +174,8 @@ public class EasyWifi {
         } else {
             builder.addTransportType(0);
         }
-        getConnectivityManager().requestNetwork(builder.build(), new ConnectivityManager.NetworkCallback() { // from class: com.ir.networklib.EasyWifi.2
-            @Override // android.net.ConnectivityManager.NetworkCallback
+        getConnectivityManager().requestNetwork(builder.build(), new ConnectivityManager.NetworkCallback() {
+            @Override
             public void onAvailable(Network network) {
                 try {
                     Log.d(EasyWifi.this.TAG, "设置网络类型时onAvailable: ");

@@ -16,30 +16,20 @@ import com.blankj.utilcode.util.SizeUtils
 import com.topdon.lib.core.utils.ScreenUtil
 import kotlinx.android.synthetic.main.item_menu_3d.view.*
 
-/**
- * 二级菜单 RecyclerView 所用 Adapter.
- */
 class MenuAdapter(val context: Context, val type: Type) : RecyclerView.Adapter<MenuAdapter.ViewHolder>() {
-    /**
-     * 当前选中 item index，用于实现选中效果.
-     */
+    
     private var selectIndex = 0
 
-    /**
-     * item 点击事件监听.
-     */
     var onItemClickListener: ((position: Int) -> Unit)? = null
 
     init {
         if (type == Type.VISUAL){
-//            selectIndex = 1
         }else if (type == Type.MARK){
             selectIndex = -1
         } else if (type == Type.MODE) {
             selectIndex = 2
         }
     }
-
 
     companion object {
         private val VISUAL_ARRAY = arrayOf(
@@ -53,7 +43,6 @@ class MenuAdapter(val context: Context, val type: Type) : RecyclerView.Adapter<M
             ItemData(R.string.pseudo_custom_title, R.drawable.selector_menu2_mark_custom),
             ItemData(R.string.thermal_high_temperature, R.drawable.selector_menu2_mark_max_temp),
             ItemData(R.string.app_Low_temperature, R.drawable.selector_menu2_mark_min_temp),
-//            ItemData(R.string.menu_3d_range_temp, R.drawable.selector_menu2_mark_range_temp),
             ItemData(R.string.report_delete, R.drawable.selector_menu2_mark_del),
         )
         private val PSEUDO_ARRAY = arrayOf(
@@ -69,7 +58,6 @@ class MenuAdapter(val context: Context, val type: Type) : RecyclerView.Adapter<M
             ItemData(R.string.thermal_rect, R.drawable.selector_menu2_mode_rect),
         )
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_menu_3d, parent, false))
@@ -106,7 +94,6 @@ class MenuAdapter(val context: Context, val type: Type) : RecyclerView.Adapter<M
             holder.itemView.iv_pseudo.visibility = if(position == selectIndex) View.VISIBLE else View.GONE
         }
 
-        //单独设置删除文本颜色
         if (type == Type.MARK && position == MARK_ARRAY.size - 1) {
             holder.itemView.tv_menu.setTextColor(0x66ffffff)
         }
@@ -146,7 +133,7 @@ class MenuAdapter(val context: Context, val type: Type) : RecyclerView.Adapter<M
     @SuppressLint("NotifyDataSetChanged")
     inner class ViewHolder(rootView: View) : RecyclerView.ViewHolder(rootView) {
         init {
-            val canSeeCount = itemCount.toFloat() //一屏可见的 item 数量，目前都是全都显示完
+            val canSeeCount = itemCount.toFloat()
             if (ScreenUtil.isPortrait(context)) {
                 val with = (ScreenUtil.getScreenWidth(context)/ canSeeCount).toInt()
                 rootView.layoutParams = ViewGroup.LayoutParams(with, ViewGroup.LayoutParams.WRAP_CONTENT)
@@ -177,24 +164,13 @@ class MenuAdapter(val context: Context, val type: Type) : RecyclerView.Adapter<M
     data class ItemData(@StringRes val textResId: Int, @DrawableRes val imgResId: Int = 0)
 
     enum class Type {
-        /**
-         * 视觉.
-         */
+        
         VISUAL,
 
-        /**
-         * 标定.
-         */
         MARK,
 
-        /**
-         * 伪彩.
-         */
         PSEUDO,
 
-        /**
-         * 模式.
-         */
         MODE,
     }
 }

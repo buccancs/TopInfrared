@@ -7,7 +7,6 @@
     tools:ignore="HardcodedText"
     tools:background="#000000">
 
-    <!-- 低于 Android12 显示操作指引时模糊背景图片 -->
     <ImageView
         android:id="@+id/iv_blur_bg"
         android:layout_width="0dp"
@@ -28,7 +27,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
 
-    <!-- 从顶部到发射率的占位 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ll_space_top"
         android:layout_width="0dp"
@@ -49,7 +47,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- 默认模式 -->
         <TextView
             android:id="@+id/tv_default_title"
             android:layout_width="0dp"
@@ -71,7 +68,6 @@
             app:layout_constraintTop_toTopOf="@id/tv_default_title"
             app:layout_constraintBottom_toBottomOf="@id/tv_default_title" />
 
-        <!-- 环境温度 -->
         <TextView
             android:id="@+id/tv_default_temp_title"
             android:layout_width="0dp"
@@ -103,7 +99,6 @@
             app:layout_constraintTop_toTopOf="@id/space_default_temp_title"
             app:layout_constraintBottom_toBottomOf="@id/space_default_temp_title" />
 
-        <!-- 测温距离 -->
         <TextView
             android:id="@+id/tv_default_dis_title"
             android:layout_width="0dp"
@@ -136,7 +131,6 @@
             app:layout_constraintBottom_toBottomOf="@id/space_default_dis_title" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- 发射率 -->
     <TextView
         android:id="@+id/tv_space_em_title"
         android:layout_width="0dp"
@@ -193,7 +187,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_custom_title" />
 
-    <!-- 第1步操作指引 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_step1"
         android:layout_width="0dp"
@@ -316,7 +309,6 @@
             app:layout_constraintEnd_toEndOf="@id/view_bg_theme1"
             app:layout_constraintTop_toBottomOf="@id/tv_count1" />
 
-        <!-- 下一步 -->
         <TextView
             android:id="@+id/tv_next"
             android:layout_width="wrap_content"
@@ -335,7 +327,6 @@
             app:layout_constraintTop_toBottomOf="@id/view_bg_theme1" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- 第2步操作指引-底部 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_step2_bottom"
         android:layout_width="0dp"
@@ -390,7 +381,6 @@
             app:layout_constraintTop_toBottomOf="@id/barrier_emissivity_bottom" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- 第2步操作指引-顶部 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_step2_top"
         android:layout_width="0dp"
@@ -452,7 +442,6 @@
             app:layout_constraintEnd_toEndOf="@id/view_bg_theme2"
             app:layout_constraintBottom_toTopOf="@id/tv_tips2" />
 
-        <!-- 我知道了 -->
         <TextView
             android:id="@+id/tv_i_know"
             android:layout_width="wrap_content"

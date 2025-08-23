@@ -16,9 +16,6 @@ import com.topdon.lib.core.tools.UnitTools
 import com.topdon.lib.core.utils.ScreenUtil
 import kotlinx.android.synthetic.main.dialog_tip_emissivity.view.*
 
-/**
- * 发射率的提示弹窗
- */
 class TipEmissivityDialog : Dialog {
 
     constructor(context: Context) : super(context)
@@ -69,7 +66,6 @@ class TipEmissivityDialog : Dialog {
             return this
         }
 
-
         fun setCancelListener(event: ((check: Boolean) -> Unit)? = null): Builder {
             this.closeEvent = event
             return this
@@ -92,7 +88,6 @@ class TipEmissivityDialog : Dialog {
             val inflater =
                 context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val view = inflater.inflate(R.layout.dialog_tip_emissivity, null)
-
 
             view.tv_environment_title.text = context!!.getString(R.string.thermal_config_environment) + ":"
             view.tv_distance_title.text = context!!.getString(R.string.thermal_config_distance) + ":"
@@ -135,13 +130,11 @@ class TipEmissivityDialog : Dialog {
             val lp = dialog!!.window!!.attributes
             val wRatio =
                 if (context!!.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
-                    //竖屏
                     0.75
                 } else {
-                    //横屏
                     0.35
                 }
-            lp.width = (ScreenUtil.getScreenWidth(context!!) * wRatio).toInt() //设置宽度
+            lp.width = (ScreenUtil.getScreenWidth(context!!) * wRatio).toInt()
             dialog!!.window!!.attributes = lp
 
             dialog!!.setCanceledOnTouchOutside(canceled)
@@ -154,17 +147,9 @@ class TipEmissivityDialog : Dialog {
                 dismiss()
                 closeEvent?.invoke(hasCheck)
             }
-            //title
             if (title != null) {
                 titleText.setText(title, TextView.BufferType.NORMAL)
             }
-            //msg
-//            if (message != null) {
-//                messageText.visibility = View.VISIBLE
-//                messageText.setText(message, TextView.BufferType.NORMAL)
-//            } else {
-//                messageText.visibility = View.GONE
-//            }
             dialog!!.setContentView(view)
             return dialog as TipEmissivityDialog
         }

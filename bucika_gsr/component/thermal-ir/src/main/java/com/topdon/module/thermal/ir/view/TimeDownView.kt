@@ -12,10 +12,6 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.blankj.utilcode.util.SizeUtils
 import java.util.*
 
-/**
- * @author: CaiSongL
- * @date: 2023/4/7 23:43
- */
 public class TimeDownView : AppCompatTextView {
     private var timer: Timer? = null
     private var downTimerTask: DownTimerTask? = null
@@ -45,11 +41,6 @@ public class TimeDownView : AppCompatTextView {
         init()
     }
 
-    /**
-     * 开始计时
-     *
-     * @param seconds
-     */
     fun downSecond(seconds: Int) {
         downSecond(seconds,true)
     }
@@ -67,14 +58,6 @@ public class TimeDownView : AppCompatTextView {
         }
     }
 
-    /**
-     * 倒计时开启方法
-     *
-     * @param downCount     倒计时总数
-     * @param lastDown      显示的倒计时的最后一个数
-     * @param delayMills    延迟启动倒计时（毫秒数）
-     * @param intervalMills 倒计时间隔时间（毫秒数）
-     */
     fun downTime(downCount: Int, lastDown: Int, delayMills: Long, intervalMills: Long,startAnimate : Boolean) {
         timer = Timer()
         this.downCount = downCount
@@ -104,15 +87,12 @@ public class TimeDownView : AppCompatTextView {
         super.onDraw(canvas)
     }
 
-    /**
-     * 取消
-     */
     fun cancel() {
         animationSet?.cancel()
         downTimerTask?.cancel()
         timer?.cancel()
         drawTextFlag = DRAW_TEXT_NO
-        invalidate() //刷新一下
+        invalidate()
         visibility = GONE
         downTimerTask = null
         timer = null
@@ -135,23 +115,12 @@ public class TimeDownView : AppCompatTextView {
         fun onLastTimeFinish(num: Int)
     }
 
-    /**
-     * 每个倒计时事件监听.
-     */
     var onTimeListener: ((time: Int) -> Unit)? = null
-    /**
-     * 倒计时结束事件监听.
-     */
+    
     var onFinishListener: (() -> Unit)? = null
-
-
 
     var downTimeWatcher: DownTimeWatcher? = null
 
-    /**
-     * 监听倒计时的变化
-     * @param downTimeWatcher
-     */
     fun setOnTimeDownListener(downTimeWatcher: DownTimeWatcher?) {
         this.downTimeWatcher = downTimeWatcher
     }
@@ -166,23 +135,19 @@ public class TimeDownView : AppCompatTextView {
                     downTimeWatcher!!.onTime(downCount)
                 }
                 onTimeListener?.invoke(downCount)
-//                Log.e("测试","//handleMessage"+downCount+"//"+lastDown);
                 if (downCount >= lastDown - 1) {
-                    drawTextFlag = DRAW_TEXT_YES //默认绘制
-                    //未到结束时
+                    drawTextFlag = DRAW_TEXT_YES
                     if (downCount >= lastDown) {
                         text = downCount.toString() + ""
                         startDefaultAnimate()
                         if (downCount == lastDown && downTimeWatcher != null) {
                             downTimeWatcher!!.onLastTime(downCount)
                         }
-                    } else if (downCount == lastDown - 1) { // 若lastDown为0，downCount == -1时是倒计时真正结束之时。
-                        //倒计时结束，虽然setText()方法触发onDraw，但重写使之不进行绘制
-                        //设置不绘制标记
+                    } else if (downCount == lastDown - 1) {
                         if (afterDownDimissFlag == AFTER_LAST_TIME_DIMISS) {
                             drawTextFlag = DRAW_TEXT_NO
                         }
-                        invalidate() //刷新一下
+                        invalidate()
                         isRunning = false
                         downTimerTask == null
                         timer?.cancel()
@@ -194,7 +159,6 @@ public class TimeDownView : AppCompatTextView {
                     }
                     downCount--
                 }
-                //
             }
         }
     }
@@ -202,41 +166,27 @@ public class TimeDownView : AppCompatTextView {
     private val DRAW_TEXT_YES = 1
     private val DRAW_TEXT_NO = 0
 
-    /**
-     * 是否执行onDraw的标识，默认绘制
-     */
     private var drawTextFlag = DRAW_TEXT_YES
     private val AFTER_LAST_TIME_DIMISS = 1
     private val AFTER_LAST_TIME_NODIMISS = 0
 
-    /**
-     * 在倒计时结束之后文字是否消失的标志，默认消失
-     */
     private var afterDownDimissFlag = AFTER_LAST_TIME_DIMISS
 
-    /**
-     * 设置倒计时结束后文字不消失
-     */
     fun setAfterDownNoDimiss() {
         afterDownDimissFlag = AFTER_LAST_TIME_NODIMISS
     }
 
-    /**
-     * 设置倒计时结束后文字消失
-     */
     fun setAferDownDimiss() {
         afterDownDimissFlag = AFTER_LAST_TIME_DIMISS
     }
 
     var startDefaultAnimFlag = true
 
-    //关闭默认动画
     fun closeDefaultAnimate() {
         animationSet?.reset()
         startDefaultAnimFlag = false
     }
 
-    //开启默认动画
     private fun startDefaultAnimate() {
         if (startDefaultAnimFlag) {
             animation?.start()
@@ -260,7 +210,6 @@ public class TimeDownView : AppCompatTextView {
         scaleAnimation.duration = intervalMills
         val alphaAnimation = AlphaAnimation(1f, 0.3f)
         alphaAnimation.duration = intervalMills
-        //将AlphaAnimation这个已经设置好的动画添加到 AnimationSet中
         animationSet!!.addAnimation(scaleAnimation)
         animationSet!!.addAnimation(alphaAnimation)
         animationSet!!.interpolator = AccelerateInterpolator()

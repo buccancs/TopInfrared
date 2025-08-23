@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="area">
-        <item>@string/area_acre</item>         <!-- 英亩 -->
-        <item>@string/area_square_metre</item> <!-- 平方米 -->
-        <item>@string/area_hectare</item>      <!-- 公顷 -->
+        <item>@string/area_acre</item>         
+        <item>@string/area_square_metre</item> 
+        <item>@string/area_hectare</item>      
     </string-array>
     
     <string-array name="currency">
-        <item>"USD"</item> <!-- 美元USD -->
-        <item>"EUR"</item> <!-- 欧元EUR -->
-        <item>"GBP"</item> <!-- 英镑GBP -->
-        <item>"AUD"</item> <!-- 澳元AUD -->
-        <item>"JPY"</item> <!-- 日元JPY -->
-        <item>"CAD"</item> <!-- 加元CAD -->
-        <item>"NZD"</item> <!-- 新西兰NZD -->
-        <item>"RMB"</item> <!-- 人民币RMB -->
-        <item>"HKD"</item> <!-- 港币HKD -->
+        <item>"USD"</item> 
+        <item>"EUR"</item> 
+        <item>"GBP"</item> 
+        <item>"AUD"</item> 
+        <item>"JPY"</item> 
+        <item>"CAD"</item> 
+        <item>"NZD"</item> 
+        <item>"RMB"</item> 
+        <item>"HKD"</item> 
     </string-array>
 </resources>

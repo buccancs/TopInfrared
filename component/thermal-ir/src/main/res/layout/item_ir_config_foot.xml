@@ -67,5 +67,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/tv_all_emissivity" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>

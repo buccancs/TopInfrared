@@ -31,7 +31,6 @@ class ColorSelectAdapter(val context: Context) : RecyclerView.Adapter<RecyclerVi
         ColorSelectBean(R.color.color_select6, "#FF808080", 6),
     )
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.ui_item_color_select, parent, false)
@@ -63,6 +62,5 @@ class ColorSelectAdapter(val context: Context) : RecyclerView.Adapter<RecyclerVi
         val img: ImageView = itemView.item_color_img
         val checkImg: ImageView = itemView.item_color_check
     }
-
 
 }

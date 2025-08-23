@@ -10,9 +10,6 @@ import com.github.mikephil.charting.utils.ObjectPool;
 import com.github.mikephil.charting.utils.Transformer;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
-/**
- * Created by Philipp Jahoda on 19/02/16.
- */
 public class ZoomJob extends ViewPortJob {
 
     private static ObjectPool<ZoomJob> pool;

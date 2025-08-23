@@ -6,8 +6,6 @@
     android:layout_height="match_parent"
     tools:background="#16131e">
 
-
-    <!-- 数据为空时提示图片 -->
     <ImageView
         android:id="@+id/iv_empty"
         android:layout_width="0dp"

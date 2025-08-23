@@ -14,10 +14,6 @@ import static org.opencv.imgproc.Imgproc.COLOR_YUV2GRAY_YUYV;
 import static org.opencv.imgproc.Imgproc.applyColorMap;
 import static org.opencv.imgproc.Imgproc.cvtColor;
 
-/**
- * @author: CaiSongL
- * @date: 2023/10/26 19:58
- */
 public class IROpen3DToolsEx  extends IROpen3DTools {
 
     private Mat img ;
@@ -38,7 +34,6 @@ public class IROpen3DToolsEx  extends IROpen3DTools {
         img.convertTo(gray_image, CV_8UC1);
         image = new Mat();
         applyColorMap(gray_image,image,15);
-//        image = psuColor(gray_image,type);
         halfx = (float)rws / 2;
         halfy = (float)cls / 2;
     }

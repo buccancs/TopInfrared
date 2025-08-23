@@ -8,7 +8,6 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import java.lang.reflect.Type
 
-
 class StringConverterFactory : Converter.Factory() {
 
     override fun responseBodyConverter(

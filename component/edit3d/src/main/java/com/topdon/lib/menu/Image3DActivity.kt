@@ -19,15 +19,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
 
-
-/**
- * 热成像的3D界面
- * @author: CaiSongL
- * @date: 2023/8/26 14:42
- */
 @Route(path = RouterConfig.IR_GALLERY_3D)
 class Image3DActivity : BaseActivity() {
-
 
     private var ir_path  : String ?= null
     private var temp_high : Float = 0F
@@ -61,7 +54,7 @@ class Image3DActivity : BaseActivity() {
                 System.arraycopy(allBytes, 0, headLenBytes, 0, 2)
                 val headLen = headLenBytes.bytesToInt()
                 System.arraycopy(allBytes, headLen, imageBytes, 0, imageBytes.size)
-                System.arraycopy(allBytes, imageBytes.size+headLen, temperatureBytes, 0, temperatureBytes.size) //温度数据 (192 x 256 x 2)
+                System.arraycopy(allBytes, imageBytes.size+headLen, temperatureBytes, 0, temperatureBytes.size)
             }
             open3DTools.init(imageBytes!!,1)
             ir_sf = IRSurfaceView(this@Image3DActivity)
@@ -83,7 +76,6 @@ class Image3DActivity : BaseActivity() {
         menu.onMarkClickListener = {
             when(it){
                 0->{
-                    //自定义
                     irRender?.updatePointData(tempY,tempX,temp_high,temp_low,IROpen3DTools.TYPE_SEL_TEMP,temperatureBytes)
                     val temp = open3DTools.getRandomPoint(tempY,tempX,temp_high,temp_low,IROpen3DTools.TYPE_SEL_TEMP,temperatureBytes)
                     ir_sf.requestRender()
@@ -92,10 +84,8 @@ class Image3DActivity : BaseActivity() {
                     bar_pick_view_x.visibility = View.VISIBLE
                     bar_pick_view_y.visibility = View.VISIBLE
 
-//                    tv_temp.setTextColor(Color.GREEN)
                 }
                 1->{
-                    //高温
                     irRender?.updatePointData(0,0,temp_high,temp_low,IROpen3DTools.TYPE_HIGHT_TEMP,temperatureBytes)
                     val temp = open3DTools.getRandomPoint(0,0,temp_high,temp_low,IROpen3DTools.TYPE_HIGHT_TEMP,temperatureBytes)
                     ir_sf.requestRender()
@@ -103,7 +93,6 @@ class Image3DActivity : BaseActivity() {
                     tv_temp.text = getXYZText(temp_high,temp[0][0],temp[0][1])
                     bar_pick_view_x.visibility = View.GONE
                     bar_pick_view_y.visibility = View.GONE
-//                    tv_temp.setTextColor(Color.RED)
                 }
                 2->{
                     irRender?.updatePointData(0,0,temp_high,temp_low,IROpen3DTools.TYPE_LOW_TEMP,temperatureBytes)
@@ -113,7 +102,6 @@ class Image3DActivity : BaseActivity() {
                     tv_temp.text = getXYZText(temp_low,temp[0][0],temp[0][1])
                     bar_pick_view_x.visibility = View.GONE
                     bar_pick_view_y.visibility = View.GONE
-//                    tv_temp.setTextColor(Color.BLUE)
                 }
                 3->{
                     irRender?.updatePointData(0,0,temp_high,temp_low,IROpen3DTools.TYPE_HIDE_TEMP,temperatureBytes)
@@ -192,7 +180,6 @@ class Image3DActivity : BaseActivity() {
         }
     }
 
-
     private fun getXYZText(temp: Float, x : Float, y:Float):String{
         return "X ${(256 - (y * open3DTools.halfy + open3DTools.halfy)).toInt()}," +
                 "Y ${( 192 - (x * open3DTools.halfx + open3DTools.halfx)).toInt()}," +
@@ -201,16 +188,13 @@ class Image3DActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-//        ir_sf?.onResume()
     }
 
     override fun onPause() {
         super.onPause()
-//        ir_sf?.onPause()
     }
 
     override fun initData() {
     }
-
 
 }

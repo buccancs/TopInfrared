@@ -239,9 +239,6 @@
 	<string name="third_party_components">komponenty osób trzecich</string>
 	<string name="edit_image_error_tip">Obraz nie zawiera danych dotyczących temperatury i nie obsługuje edycji.</string>
 
-
-	<!--	波兰polish-->
-	<!-- 2.00版本 -->
 	<string name="app_lapsePhotography">Zdjęcie z czasem</string>
 	<string name="app_Manual_Shutter">Ręczna migawka</string>
 	<string name="app_record_sound">Nagrywanie dźwięku</string>
@@ -282,7 +279,6 @@
 	<string name="app_open">Przejdź do Ustawień</string>
 	<string name="album_report_aleart">Nagranie wideo zatrzymało się z powodu niewystarczającej ilości pamięci masowej telefonu.</string>
 	<string name="tip_video_record">Nagrania wideo są ograniczone do 60-minut.</string>
-
 
 	<string name="temp_alarm_alarm">Alarm</string>
 	<string name="temp_alarm_high_alarm">Alarm wysokiej temperatury</string>
@@ -343,7 +339,6 @@
 	<string name="start_fail_and_restart">Start nie powiodł się! Proszę wyjść z aplikacji i ponownie ją otworzyć </string>
 	<string name="app_Low_temperature">niska temperatura</string>
 
-
 	<string name="monitor_finish">Przestań</string>
 	<string name="album_menu_2d">Edycja 2D</string>
 	<string name="album_menu_3d">Edycja 3D</string>
@@ -380,7 +375,6 @@
 	<string name="tip_album_temp_exportfile">Czy chcesz eksportować dane temperatury do pliku Excel?</string>
 	<string name="tip_change_pseudo_mode">Czy chcesz przełączyć się na tryb renderowania dynamicznego?</string>
 
-
 	<string name="menu_3d_visual">Widok</string>
 	<string name="menu_3d_calibrate">Kalibracja</string>
 	<string name="model">Tryb</string>
@@ -393,7 +387,6 @@
 	<string name="menu_3d_x_axis">Oś X</string>
 	<string name="menu_3d_y_axis">Oś Y</string>
 
-	<!--TS001-->
 	<string name="album_menu_Photos">zdjęcie</string>
 	<string name="feedback_problem_type_6">Inne</string>
 	<string name="app_got_it">Wiem</string>
@@ -498,13 +491,10 @@
 	<string name="installation_package_downloading_tips">Zaczyna się ściągać. Proszę sprawdzić postępy w powiadomieniach</string>
 	<string name="welcome_use_app">Witamy w %1$s</string>
 
-	<!--波兰语-->
-
 	<string name="dual_light_correction">Podwójna korekcja światła</string>
 	<string name="dual_light_correction_tips_1">Ponieważ ostrość dwóch kamer nie jest wyrównana, obrazy uchwycone z różnych odległości przez dwie kamery nie zostaną wyrównane.\nTa funkcja może niezależnie pomóc w wyrównaniu obrazu.</string>
 	<string name="dual_light_correction_tips_2">1 Pozwól źródłu ciepła (np. dłoni) pozostać na obrazie z odległością około 0,5 metra od kamery.\n2. Kliknij, aby zrobić zdjęcie.</string>
 	<string name="dual_light_correction_tips_3">1 Przeciągnij obrazy, aby je wyrównać.\n2. Przewiń pasek postępu, aby dostosować kąt wyrównania.\n3. Naciśnij przycisk OK, aby zakończyć korektę.</string>
-
 
 	<string name="menu_thermal_visible_light">Światło widoczne</string>
 	<string name="menu_thermal_imaging">Podczerwień</string>
@@ -523,7 +513,6 @@
 
 	<string name="text_p_umeng">Aby zapewnić lepszą funkcjonalność, nasze produkty integrują Umeng+SDK w celu tworzenia statystyk danych i gromadzenia dzienników. SDK będzie zbierać dane identyfikujące Twoje urządzenie i konto</string>
 
-	<!--TS004-->
 	<string name="ts004_connection_device">Urządzenia podłączone przewodowo</string>
 	<string name="ts004_auto_save">Automatyczne zapisywanie do telefonu</string>
 	<string name="ts004_save_tips">Jeśli ta funkcja jest włączona, po połączeniu się z aplikacją do robienia zdjęć lub nagrywania wideo, zdjęcia i filmy zostaną automatycznie zapisane lokalnie w telefonie.</string>
@@ -603,12 +592,10 @@
 	<string name="ts004_faq_q5">Jak wyświetlić przechwycone obrazy termowizyjne na komputerze PC?</string>
 	<string name="ts004_faq_a5">Podłącz TS004 do komputera za pomocą kabla USB, a następnie będziesz mógł przeglądać obrazy termowizyjne zapisane na TS004.</string>
 
-	<!-- TC001 老 APP 引流 -->
 	<string name="gallery_transfer">Transfer galerii</string>
 	<string name="gallery_transfer_wait">Dane są przekazywane. Proszę poczekać.</string>
 	<string name="gallery_transfer_complete">Przesyłanie danych zakończone</string>
 
-	<!-- 3.70 -->
 	<string name="user_jump">Pomiń</string>
 	<string name="tc_guide_tips1">Wyświetlaj wykresy monitora w czasie rzeczywistym i rekordy monitora historii.</string>
 	<string name="tc_guide_tips2">Aby zapewnić dokładny pomiar temperatury, ustaw odpowiednie parametry przed pomiarem temperatury.</string>
@@ -625,7 +612,6 @@
 	<string name="ts004_conntenct_tip">Użyjesz danych komórkowych. Urządzenie może zostać odłączone.</string>
 	<string name="fireware_update_tips">Bug fixes and performance improvements</string>
 
-	<!-- 3.80 -->
 	<string name="tc_local_album">Galeria lokalna</string>
 	<string name="tc_connect_device">Podłącz urządzenie</string>
 	<string name="tc_connect_tips">Wybierz urządzenie, które chcesz podłączyć.</string>
@@ -637,7 +623,6 @@
 	<string name="tc_reset_tips">Wszystkie ustawienia urządzenia zostaną przywrócone do ustawień fabrycznych. Potwierdzić przywrócenie?</string>
 	<string name="coming_soon">Niedługo...</string>
 
-	<!-- 3.90 -->
 	<string name="tc007_connect_tips1">1. Upewnij się, że urządzenie ma wystarczającą moc i jest wystarczająco blisko</string>
 	<string name="tc007_connect_tips2">2. Włącz Bluetooth i WiFi w telefonie</string>
 	<string name="tc007_connect_tips3">3. Wejdź stronę skanowania APP</string>
@@ -654,7 +639,6 @@
 	<string name="wifi_connect_loading">Oczekuje się, że zajmie to 15s…</string>
 	<string name="tc007_done_fast">Częste operacje</string>
 
-	<!-- 房屋检测 -->
 	<string name="main_professional_test">Badania profesjonalne</string>
 	<string name="main_temperature_test">Badanie temperatury</string>
 	<string name="main_thermal_tips">Profesjonalne badania obrazowania termicznego</string>
@@ -823,7 +807,6 @@
 	<string name="abnormal_description17">Na temperaturę grzejnika lusterka tylnego wpływa wiele czynników, takich jak temperatura otoczenia i obciążenie grzejnika. Monitoruj temperaturę grzejnika za pomocą kamery termicznej, a następnie możesz ocenić, czy tylne lusterko można skutecznie ogrzewać.</string>
 	<string name="abnormal_description18">Na temperaturę silnika okna wpływa wiele czynników, takich jak temperatura otoczenia i obciążenie silnika. Monitoruj temperaturę silnika za pomocą kamery termowizyjnej. Jeśli temperatura jest zbyt wysoka, może być spowodowana awarią mechanizmu podnoszenia okien lub samego silnika.</string>
 
-	<!-- 房屋检测新增 -->
 	<string name="vehicle_function">Funkcja</string>
 	<string name="ability_find">znaleźć</string>
 	<string name="ability_monitory">Przeglądanie temperatury obiektu w czasie rzeczywistym w celu generowania danych</string>
@@ -849,7 +832,6 @@
 	<string name="pdf_project_item">projekt</string>
 	<string name="house_sign_finish_tips">Proszę wypełnić podpis elektroniczny</string>
 
-	<!-- 4.50 -->
 	<string name="thermal_trend">Wykres trendu</string>
 	<string name="thermal_trend_tips">Narysuj odcinek linii na obrazie, aby zobaczyć zmianę temperatury.</string>
 	<string name="material_view_all">Zobacz wszystko</string>
@@ -962,7 +944,6 @@
 	<string name="tips_tisr_off">Funkcja Imaging Super Resolution została dezaktywowana.</string>
 	<string name="tips_tisr_fail">Twój telefon nie obsługuje OpenCL i nie może włączyć funkcji Imaging Super Resolution.</string>
 
-	<!-- 4.70 -->
 	<string name="testing_guidance">Wytyczne dotyczące badań</string>
 	<string name="unlock_professional_perspectives">Uwolnienie perspektyw zawodowych</string>
 	<string name="app_error_reload">Wczytaj ponownie</string>

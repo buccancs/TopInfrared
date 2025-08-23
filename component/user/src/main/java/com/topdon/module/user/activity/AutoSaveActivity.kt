@@ -7,9 +7,6 @@ import com.topdon.lib.core.ktbase.BaseActivity
 import com.topdon.module.user.R
 import kotlinx.android.synthetic.main.activity_auto_save.*
 
-/**
- * 自动保存到手机
- */
 @Route(path = RouterConfig.AUTO_SAVE)
 class AutoSaveActivity :BaseActivity(){
 

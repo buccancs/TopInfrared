@@ -33,7 +33,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <!-- 提示1 -->
             <TextView
                 android:id="@+id/tv_tips1"
                 android:layout_width="wrap_content"
@@ -57,7 +56,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_tips1" />
 
-            <!-- 提示2 -->
             <TextView
                 android:id="@+id/tv_tips2"
                 android:layout_width="wrap_content"
@@ -81,7 +79,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_tips2" />
 
-            <!-- 仅TC007，提示3 -->
             <TextView
                 android:id="@+id/tv_tips3"
                 android:layout_width="wrap_content"
@@ -109,7 +106,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_tips3" />
 
-            <!-- 仅TC007，提示4 -->
             <TextView
                 android:id="@+id/tv_tips4"
                 android:layout_width="wrap_content"
@@ -137,7 +133,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_tips4" />
 
-            <!-- 仅 TS004 时，更多帮助入口 -->
             <TextView
                 android:id="@+id/tv_more_help"
                 android:layout_width="wrap_content"

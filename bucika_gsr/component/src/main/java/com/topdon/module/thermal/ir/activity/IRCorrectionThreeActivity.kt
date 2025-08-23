@@ -9,12 +9,6 @@ import com.topdon.module.thermal.ir.R
 import com.topdon.module.thermal.ir.fragment.IRCorrectionFragment
 import kotlinx.android.synthetic.main.activity_ir_correction_three.*
 
-/**
- *
- * 锅盖矫正
- * @author: CaiSongL
- * @date: 2023/8/4 9:06
- */
 @Route(path = RouterConfig.IR_CORRECTION_THREE)
 class IRCorrectionThreeActivity : BaseActivity() {
 

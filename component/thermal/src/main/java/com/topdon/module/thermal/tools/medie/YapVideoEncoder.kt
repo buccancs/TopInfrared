@@ -12,12 +12,6 @@ import java.io.IOException
 import java.nio.ByteBuffer
 import kotlin.concurrent.thread
 
-/**
- * @author YaphetZhao
- * @email yaphetzhao@gmail.com
- * @data 2020-07-30
- * @wechat yaphetzhao92
- */
 class YapVideoEncoder(
     private val IProvider: IYapVideoProvider<Bitmap>,
     private val out: File,
@@ -44,7 +38,6 @@ class YapVideoEncoder(
                 }
                 val types = info.supportedTypes
                 var found = false
-                // The decoder required by the rotation training
                 var j = 0
                 while (j < types.size && !found) {
                     if (types[j] == "video/avc") {
@@ -105,14 +98,8 @@ class YapVideoEncoder(
         mediaFormat.setInteger(MediaFormat.KEY_FRAME_RATE, mFrameRate)
         mediaFormat.setInteger(MediaFormat.KEY_I_FRAME_INTERVAL, 10)
 
-        // For planar YUV format, the Y of all pixels is stored consecutively,
-        // followed by the U of all pixels, followed by the V of all pixels
-        // For the YUV format of packed, the Y,U,
-        // and V of each pixel are continuously cross-stored
-
         try {
             mediaCodec = MediaCodec.createEncoderByType(MediaFormat.MIMETYPE_VIDEO_AVC)
-            // Create the generated MP4 initialization object
             if (!out.exists()) {
                 out.createNewFile()
             }
@@ -202,7 +189,6 @@ class YapVideoEncoder(
                     }
                     val input = getNV12(widthFix, heightFix, bitmap)
                     bitmap = null
-                    // Valid empty cache
                     val inputBuffer = if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
                         buffers!![inputBufferIndex]
                     } else {
@@ -210,7 +196,6 @@ class YapVideoEncoder(
                     }
                     inputBuffer!!.clear()
                     inputBuffer.put(input)
-                    // Put the data on the encoding queue
                     mediaCodec!!.queueInputBuffer(inputBufferIndex, 0, input.size, ptsUsec, 0)
                     drainEncoder(false, info)
                 }
@@ -336,7 +321,6 @@ class YapVideoEncoder(
         var index = 0
         for (j in 0 until height) {
             for (i in 0 until width) {
-                // val a = argb[index] and -0x1000000 shr 24
                 val r = argb[index] and 0xff0000 shr 16
                 val g = argb[index] and 0xff00 shr 8
                 val b = argb[index] and 0xff shr 0
@@ -361,7 +345,6 @@ class YapVideoEncoder(
         var index = 0
         for (j in 0 until height) {
             for (i in 0 until width) {
-                // val a = argb[index] and -0x1000000 shr 24
                 val r = argb[index] and 0xff0000 shr 16
                 val g = argb[index] and 0xff00 shr 8
                 val b = argb[index] and 0xff shr 0
@@ -383,7 +366,6 @@ class YapVideoEncoder(
         var index = 0
         for (j in 0 until height) {
             for (i in 0 until width) {
-                // val a = argb[index] and -0x1000000 shr 24
                 val r = argb[index] and 0xff0000 shr 16
                 val g = argb[index] and 0xff00 shr 8
                 val b = argb[index] and 0xff shr 0
@@ -409,24 +391,23 @@ class YapVideoEncoder(
         var index = 0
         for (j in 0 until height) {
             for (i in 0 until width) {
-                // val a = argb[index] and -0x1000000 shr 24
                 val r = argb[index] and 0xff0000 shr 16
                 val g = argb[index] and 0xff00 shr 8
                 val b = argb[index] and 0xff shr 0
                 val y = (66 * r + 129 * g + 25 * b + 128 shr 8) + 16
                 val u = (112 * r - 94 * g - 18 * b + 128 shr 8) + 128
                 val v = (-38 * r - 74 * g + 112 * b + 128 shr 8) + 128
-                if (j % 2 == 0 && index % 2 == 0) { // 0
+                if (j % 2 == 0 && index % 2 == 0) {
                     yuv420sp[yIndex++] = (if (y < 0) 0 else if (y > 255) 255 else y).toByte()
                     yuv420sp[yIndex + 1] = (if (v < 0) 0 else if (v > 255) 255 else v).toByte()
                     yuv420sp[vIndex + 1] = (if (u < 0) 0 else if (u > 255) 255 else u).toByte()
                     yIndex++
-                } else if (j % 2 == 0 && index % 2 == 1) { //1
+                } else if (j % 2 == 0 && index % 2 == 1) {
                     yuv420sp[yIndex++] = (if (y < 0) 0 else if (y > 255) 255 else y).toByte()
-                } else if (j % 2 == 1 && index % 2 == 0) { //2
+                } else if (j % 2 == 1 && index % 2 == 0) {
                     yuv420sp[vIndex++] = (if (y < 0) 0 else if (y > 255) 255 else y).toByte()
                     vIndex++
-                } else if (j % 2 == 1 && index % 2 == 1) { //3
+                } else if (j % 2 == 1 && index % 2 == 1) {
                     yuv420sp[vIndex++] = (if (y < 0) 0 else if (y > 255) 255 else y).toByte()
                 }
                 index++

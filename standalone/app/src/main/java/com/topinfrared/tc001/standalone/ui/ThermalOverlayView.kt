@@ -21,13 +21,11 @@ class ThermalOverlayView @JvmOverloads constructor(
     private var areaTopLeft: PointF? = null
     private var areaBottomRight: PointF? = null
     
-    // Enhanced measurement data
     private var measurementHistory = mutableListOf<MeasurementData>()
     private var showTemperatureGradient = true
     private var showMeasurementHistory = false
     private val maxHistorySize = 100
     
-    // Animation and visual enhancements
     private var animationPhase = 0f
     private val animationPaint = Paint()
     private val gradientColors = intArrayOf(
@@ -57,7 +55,7 @@ class ThermalOverlayView @JvmOverloads constructor(
     
     private val fillPaint = Paint().apply {
         color = Color.YELLOW
-        this.alpha = 64 // Semi-transparent
+        this.alpha = 64
         style = Paint.Style.FILL
         isAntiAlias = true
     }
@@ -81,24 +79,21 @@ class ThermalOverlayView @JvmOverloads constructor(
     init {
         setBackgroundColor(Color.TRANSPARENT)
         
-        // Start animation for visual enhancements
         startAnimation()
     }
     
     private fun startAnimation() {
-        // Animate measurement indicators
         post(object : Runnable {
             override fun run() {
                 animationPhase = (animationPhase + 0.1f) % (2 * PI.toFloat())
                 invalidate()
-                postDelayed(this, 50) // 20 FPS animation
+                postDelayed(this, 50)
             }
         })
     }
     
     fun setTemperatureMeasureMode(mode: TC001ThermalManager.TempMode) {
         currentMode = mode
-        // Clear previous measurements when mode changes
         when (mode) {
             TC001ThermalManager.TempMode.POINT -> {
                 lineStart = null
@@ -188,17 +183,14 @@ class ThermalOverlayView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         
-        // Draw temperature gradient background if enabled
         if (showTemperatureGradient) {
             drawTemperatureGradient(canvas)
         }
         
-        // Draw measurement history if enabled
         if (showMeasurementHistory) {
             drawMeasurementHistory(canvas)
         }
         
-        // Draw current measurements
         drawTemperatureMeasurements(canvas)
     }
     
@@ -220,36 +212,29 @@ class ThermalOverlayView @JvmOverloads constructor(
         pointLocation?.let { point ->
             val temperature = getMockTemperature(point.x, point.y)
             
-            // Store measurement in history
             addToHistory(temperature, point, TC001ThermalManager.TempMode.POINT)
             
-            // Animated crosshair
             val pulseSize = 20f + 5f * sin(animationPhase)
             
-            // Draw animated crosshair
             val alpha = (128 + 127 * sin(animationPhase * 2)).toInt()
             paint.alpha = alpha
             canvas.drawLine(point.x - pulseSize, point.y, point.x + pulseSize, point.y, paint)
             canvas.drawLine(point.x, point.y - pulseSize, point.x, point.y + pulseSize, paint)
             
-            // Draw circle around point with pulse effect
             paint.alpha = 255
             val circleRadius = pulseSize * 1.5f
             canvas.drawCircle(point.x, point.y, circleRadius, paint)
             
-            // Enhanced temperature display with color coding
             val tempText = String.format("%.1f°C", temperature)
             val tempColor = getTemperatureColor(temperature)
             textPaint.color = tempColor
             
-            // Draw temperature text with enhanced styling
             val textBounds = Rect()
             textPaint.getTextBounds(tempText, 0, tempText.length, textBounds)
             
             val textX = point.x - textBounds.width() / 2
             val textY = point.y - pulseSize * 3
             
-            // Background for text
             val textBg = RectF(
                 textX - 10f, textY - textBounds.height() - 5f,
                 textX + textBounds.width() + 10f, textY + 5f
@@ -268,7 +253,6 @@ class ThermalOverlayView @JvmOverloads constructor(
     private fun drawLineMeasurement(canvas: Canvas) {
         lineStart?.let { start ->
             lineEnd?.let { end ->
-                // Draw line with enhanced styling
                 val lineGradient = LinearGradient(
                     start.x, start.y, end.x, end.y,
                     getTemperatureColor(getMockTemperature(start.x, start.y)),
@@ -281,24 +265,20 @@ class ThermalOverlayView @JvmOverloads constructor(
                 
                 canvas.drawLine(start.x, start.y, end.x, end.y, gradientPaint)
                 
-                // Draw animated endpoints
                 val pulseRadius = 8f + 2f * sin(animationPhase)
                 canvas.drawCircle(start.x, start.y, pulseRadius, paint)
                 canvas.drawCircle(end.x, end.y, pulseRadius, paint)
                 
-                // Calculate center point and distance
                 val centerX = (start.x + end.x) / 2
                 val centerY = (start.y + end.y) / 2
                 val distance = sqrt((end.x - start.x).pow(2) + (end.y - start.y).pow(2))
                 
-                // Enhanced temperature readings with thermal profile
                 val startTemp = getMockTemperature(start.x, start.y)
                 val endTemp = getMockTemperature(end.x, end.y)
                 val avgTemp = (startTemp + endTemp) / 2
                 val maxTemp = kotlin.math.max(startTemp, endTemp)
                 val minTemp = kotlin.math.min(startTemp, endTemp)
                 
-                // Store measurements in history
                 addToHistory(avgTemp, PointF(centerX, centerY), TC001ThermalManager.TempMode.LINE)
                 
                 val tempText = String.format(
@@ -306,7 +286,6 @@ class ThermalOverlayView @JvmOverloads constructor(
                     minTemp, maxTemp, avgTemp, abs(maxTemp - minTemp), distance
                 )
                 
-                // Enhanced text display
                 textPaint.color = Color.WHITE
                 textPaint.textSize = 28f
                 
@@ -318,7 +297,6 @@ class ThermalOverlayView @JvmOverloads constructor(
                     textPaint.getTextBounds(line, 0, line.length, textBounds)
                     val textX = centerX - textBounds.width() / 2
                     
-                    // Background for each line
                     val textBg = RectF(
                         textX - 8f, yOffset - textBounds.height() - 2f,
                         textX + textBounds.width() + 8f, yOffset + 2f
@@ -348,7 +326,6 @@ class ThermalOverlayView @JvmOverloads constructor(
                 val rect = RectF(left, top, right, bottom)
                 val area = (right - left) * (bottom - top)
                 
-                // Create thermal gradient for area
                 val thermalGradient = RadialGradient(
                     (left + right) / 2, (top + bottom) / 2,
                     kotlin.math.max(right - left, bottom - top) / 2,
@@ -357,23 +334,19 @@ class ThermalOverlayView @JvmOverloads constructor(
                     Shader.TileMode.CLAMP
                 )
                 
-                // Draw area with thermal gradient
                 gradientPaint.shader = thermalGradient
                 gradientPaint.style = Paint.Style.FILL
                 gradientPaint.alpha = 100
                 canvas.drawRect(rect, gradientPaint)
                 
-                // Draw border with animation
                 val borderWidth = 4f + 2f * sin(animationPhase)
                 paint.strokeWidth = borderWidth
                 canvas.drawRect(rect, paint)
                 
-                // Enhanced temperature analysis for area
                 val centerX = (left + right) / 2
                 val centerY = (top + bottom) / 2
                 
-                // Sample multiple points within the area for better analysis
-                val samplePoints = 25 // 5x5 grid
+                val samplePoints = 25
                 val tempSamples = mutableListOf<Float>()
                 
                 for (i in 0 until 5) {
@@ -389,7 +362,6 @@ class ThermalOverlayView @JvmOverloads constructor(
                 val avgTemp = tempSamples.average().toFloat()
                 val stdDev = sqrt(tempSamples.map { (it - avgTemp).pow(2) }.average()).toFloat()
                 
-                // Store measurement in history
                 addToHistory(avgTemp, PointF(centerX, centerY), TC001ThermalManager.TempMode.AREA)
                 
                 val tempText = String.format(
@@ -397,7 +369,6 @@ class ThermalOverlayView @JvmOverloads constructor(
                     minTemp, maxTemp, avgTemp, stdDev, maxTemp - minTemp, area
                 )
                 
-                // Enhanced multi-line text display
                 textPaint.color = Color.WHITE
                 textPaint.textSize = 26f
                 
@@ -409,7 +380,6 @@ class ThermalOverlayView @JvmOverloads constructor(
                     val textBounds = Rect()
                     textPaint.getTextBounds(line, 0, line.length, textBounds)
                     
-                    // Background for each line
                     val textBg = RectF(
                         textX - 8f, yOffset - textBounds.height() - 2f,
                         textX + textBounds.width() + 8f, yOffset + 2f
@@ -425,31 +395,24 @@ class ThermalOverlayView @JvmOverloads constructor(
                     yOffset += textBounds.height() + 6f
                 }
                 
-                // Draw hot/cold spots
                 drawHotColdSpots(canvas, rect, tempSamples)
             }
         }
     }
     
     private fun getMockTemperature(x: Float, y: Float): Float {
-        // Enhanced mock temperature calculation with realistic thermal patterns
         val normalizedX = x / width
         val normalizedY = y / height
         
-        // Multiple heat sources for more realistic thermal pattern
         val centerDistance = sqrt((normalizedX - 0.5).pow(2) + (normalizedY - 0.5).pow(2))
         val cornerDistance = sqrt((normalizedX - 0.8).pow(2) + (normalizedY - 0.2).pow(2))
         
-        // Base temperature with environmental variation
-        val baseTemp = 18f + 2f * sin(System.currentTimeMillis() / 10000f) // Slow environmental change
+        val baseTemp = 18f + 2f * sin(System.currentTimeMillis() / 10000f)
         
-        // Primary hot spot in center
         val centerHotSpot = 28f * exp(-centerDistance * 5).toFloat()
         
-        // Secondary hot spot in corner
         val cornerHotSpot = 15f * exp(-cornerDistance * 8).toFloat()
         
-        // Edge cooling effect
         val edgeCooling = -5f * kotlin.math.max(
             kotlin.math.max(
                 kotlin.math.abs(normalizedX - 0.5f) - 0.3f,
@@ -458,17 +421,13 @@ class ThermalOverlayView @JvmOverloads constructor(
             0f
         )
         
-        // Add realistic noise
         val noise = (-1.5f + (Math.random().toFloat() * 3f))
         
         return kotlin.math.max(10f, baseTemp + centerHotSpot + cornerHotSpot + edgeCooling + noise)
     }
-    
-    /**
-     * Get color based on temperature for visual feedback
-     */
+
     private fun getTemperatureColor(temperature: Float): Int {
-        val normalizedTemp = ((temperature - 10f) / 40f).coerceIn(0f, 1f) // 10-50°C range
+        val normalizedTemp = ((temperature - 10f) / 40f).coerceIn(0f, 1f)
         
         return when {
             normalizedTemp < 0.2f -> Color.BLUE
@@ -478,10 +437,7 @@ class ThermalOverlayView @JvmOverloads constructor(
             else -> Color.RED
         }
     }
-    
-    /**
-     * Add measurement to history
-     */
+
     private fun addToHistory(temperature: Float, location: PointF, mode: TC001ThermalManager.TempMode) {
         val measurement = MeasurementData(
             System.currentTimeMillis(),
@@ -492,15 +448,11 @@ class ThermalOverlayView @JvmOverloads constructor(
         
         measurementHistory.add(measurement)
         
-        // Keep history size manageable
         if (measurementHistory.size > maxHistorySize) {
             measurementHistory.removeAt(0)
         }
     }
-    
-    /**
-     * Draw temperature gradient background
-     */
+
     private fun drawTemperatureGradient(canvas: Canvas) {
         if (width <= 0 || height <= 0) return
         
@@ -517,7 +469,7 @@ class ThermalOverlayView @JvmOverloads constructor(
                 val color = getTemperatureColor(temp)
                 val paint = Paint().apply { 
                     this.color = color
-                    this.alpha = 30 // Very transparent
+                    this.alpha = 30
                 }
                 bitmapCanvas.drawPoint(x.toFloat(), y.toFloat(), paint)
             }
@@ -529,16 +481,13 @@ class ThermalOverlayView @JvmOverloads constructor(
         bitmap.recycle()
         scaledBitmap.recycle()
     }
-    
-    /**
-     * Draw measurement history
-     */
+
     private fun drawMeasurementHistory(canvas: Canvas) {
         val currentTime = System.currentTimeMillis()
         
         measurementHistory.forEachIndexed { index, measurement ->
             val age = currentTime - measurement.timestamp
-            val maxAge = 30000L // 30 seconds
+            val maxAge = 30000L
             
             if (age < maxAge) {
                 val alpha = (255 * (1f - age.toFloat() / maxAge)).toInt()
@@ -549,15 +498,11 @@ class ThermalOverlayView @JvmOverloads constructor(
             }
         }
     }
-    
-    /**
-     * Draw hot and cold spots in area measurement
-     */
+
     private fun drawHotColdSpots(canvas: Canvas, rect: RectF, tempSamples: List<Float>) {
         val minTemp = tempSamples.minOrNull() ?: return
         val maxTemp = tempSamples.maxOrNull() ?: return
         
-        // Find positions of min/max temperatures
         var minIndex = -1
         var maxIndex = -1
         
@@ -566,13 +511,11 @@ class ThermalOverlayView @JvmOverloads constructor(
             if (temp == maxTemp && maxIndex == -1) maxIndex = index
         }
         
-        // Calculate positions
         val minX = rect.left + (rect.right - rect.left) * (minIndex % 5) / 4f
         val minY = rect.top + (rect.bottom - rect.top) * (minIndex / 5) / 4f
         val maxX = rect.left + (rect.right - rect.left) * (maxIndex % 5) / 4f
         val maxY = rect.top + (rect.bottom - rect.top) * (maxIndex / 5) / 4f
         
-        // Draw cold spot (blue)
         val coldPaint = Paint().apply {
             color = Color.BLUE
             this.alpha = 150
@@ -580,7 +523,6 @@ class ThermalOverlayView @JvmOverloads constructor(
         }
         canvas.drawCircle(minX, minY, 8f, coldPaint)
         
-        // Draw hot spot (red)
         val hotPaint = Paint().apply {
             color = Color.RED
             this.alpha = 150
@@ -588,10 +530,7 @@ class ThermalOverlayView @JvmOverloads constructor(
         }
         canvas.drawCircle(maxX, maxY, 8f, hotPaint)
     }
-    
-    /**
-     * Public methods for configuration
-     */
+
     fun setShowTemperatureGradient(show: Boolean) {
         showTemperatureGradient = show
         invalidate()

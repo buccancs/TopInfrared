@@ -2,16 +2,14 @@
 <resources>
     
     <string name="app_name">TC001 Standalone</string>
-    
-    <!-- Main Activity -->
+
     <string name="main_title">TC001 Thermal Camera</string>
     <string name="connect_tc001">Connect TC001</string>
     <string name="open_thermal_view">Open Thermal View</string>
     <string name="local_files">Local Files</string>
     <string name="tc001_connected">TC001 Connected</string>
     <string name="tc001_not_connected">TC001 Not Connected</string>
-    
-    <!-- Thermal Activity -->
+
     <string name="capture">Capture</string>
     <string name="record">Record</string>
     <string name="start_recording">Start Recording</string>
@@ -19,15 +17,13 @@
     <string name="point_mode">Point</string>
     <string name="line_mode">Line</string>
     <string name="area_mode">Area</string>
-    
-    <!-- Features -->
+
     <string name="feature_thermal_imaging">Real-time thermal imaging</string>
     <string name="feature_temperature">Temperature measurement</string>
     <string name="feature_capture">Local image capture</string>
     <string name="feature_recording">Video recording</string>
     <string name="feature_english_only">English interface only</string>
-    
-    <!-- Messages -->
+
     <string name="device_not_found">TC001 device not found. Please connect the device.</string>
     <string name="connection_failed">Failed to connect: %s</string>
     <string name="permissions_required">Permissions required for TC001 functionality</string>

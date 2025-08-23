@@ -37,7 +37,6 @@ class ThermalActivity : AppCompatActivity() {
     private fun initializeThermalManager() {
         thermalManager = TC001ThermalManager(this) { bitmap ->
             runOnUiThread {
-                // Update thermal image display
                 binding.ivThermalView.setImageBitmap(bitmap)
             }
         }
@@ -45,22 +44,18 @@ class ThermalActivity : AppCompatActivity() {
     
     private fun setupUI() {
         binding.apply {
-            // Back button
             btnBack.setOnClickListener {
                 finish()
             }
             
-            // Capture thermal image
             btnCapture.setOnClickListener {
                 captureThermalImage()
             }
             
-            // Toggle recording
             btnRecord.setOnClickListener {
                 toggleRecording()
             }
             
-            // Enhanced thermal controls with overlay configuration
             btnTempModePoint.setOnClickListener {
                 thermalManager.setTemperatureMeasureMode(TC001ThermalManager.TempMode.POINT)
                 binding.thermalOverlay.setTemperatureMeasureMode(TC001ThermalManager.TempMode.POINT)
@@ -79,7 +74,6 @@ class ThermalActivity : AppCompatActivity() {
                 updateTempModeUI(TC001ThermalManager.TempMode.AREA)
             }
             
-            // Additional overlay controls
             btnToggleGradient?.setOnClickListener {
                 val currentState = (it.tag as? Boolean) ?: true
                 val newState = !currentState
@@ -101,7 +95,6 @@ class ThermalActivity : AppCompatActivity() {
                 Toast.makeText(this@ThermalActivity, "Measurement history cleared", Toast.LENGTH_SHORT).show()
             }
             
-            // Enhanced recording controls
             btnSamsung4K?.setOnClickListener {
                 toggleSamsung4KRecording()
             }
@@ -236,12 +229,10 @@ class ThermalActivity : AppCompatActivity() {
     
     private fun updateTempModeUI(mode: TC001ThermalManager.TempMode) {
         binding.apply {
-            // Reset all button states
             btnTempModePoint.isSelected = false
             btnTempModeLine.isSelected = false
             btnTempModeArea.isSelected = false
             
-            // Set active button
             when (mode) {
                 TC001ThermalManager.TempMode.POINT -> btnTempModePoint.isSelected = true
                 TC001ThermalManager.TempMode.LINE -> btnTempModeLine.isSelected = true
@@ -379,13 +370,11 @@ class ThermalActivity : AppCompatActivity() {
                     binding.btnParallelRec.text = "Parallel"
                     binding.btnParallelRec.backgroundTintList = getColorStateList(R.color.design_default_color_primary)
                     
-                    // Reset individual buttons
                     binding.btnSamsung4K.text = "Samsung 4K"
                     binding.btnSamsung4K.backgroundTintList = getColorStateList(R.color.purple_700)
                     binding.btnDngRawL3.text = "DNG RAW L3"
                     binding.btnDngRawL3.backgroundTintList = getColorStateList(R.color.purple_700)
                     
-                    // Hide status indicators
                     binding.tvSamsung4KStatus.visibility = View.GONE
                     binding.tvDngRawStatus.visibility = View.GONE
                     updateEnhancedRecordingVisibility()
@@ -457,7 +446,6 @@ class ThermalActivity : AppCompatActivity() {
         enhancedRecordingUpdateJob = lifecycleScope.launch {
             while (thermalManager.isAnyEnhancedRecordingActive()) {
                 try {
-                    // Update Samsung 4K status
                     val samsung4KType = EnhancedRecordingManager.Companion.RecordingType.SAMSUNG_4K_30FPS
                     if (thermalManager.isEnhancedRecordingActive(samsung4KType)) {
                         val duration = thermalManager.getEnhancedRecordingDuration(samsung4KType)
@@ -466,7 +454,6 @@ class ThermalActivity : AppCompatActivity() {
                         binding.tvSamsung4KStatus.text = String.format("Samsung 4K: %02d:%02d", minutes, seconds)
                     }
                     
-                    // Update DNG RAW status
                     val dngRawType = EnhancedRecordingManager.Companion.RecordingType.DNG_RAW_LEVEL3_30FPS
                     if (thermalManager.isEnhancedRecordingActive(dngRawType)) {
                         val duration = thermalManager.getEnhancedRecordingDuration(dngRawType)
@@ -475,7 +462,7 @@ class ThermalActivity : AppCompatActivity() {
                         binding.tvDngRawStatus.text = String.format("DNG RAW L3: %02d:%02d", minutes, seconds)
                     }
                     
-                    delay(1000) // Update every second
+                    delay(1000)
                     
                 } catch (e: Exception) {
                     Log.w(TAG, "Enhanced recording timer update failed", e)

@@ -26,9 +26,7 @@ import static org.opencv.imgproc.Imgproc.*;
 
 public class OnlineMethod {
 
-
     static {
-//        new OpenCVNativeLoader().init();
         System.loadLibrary("opencv_java4");
     }
 
@@ -41,9 +39,7 @@ public class OnlineMethod {
                 int value = (int)(temperature[i + 1] << 8) + (int)(temperature[i]);
                 double divid = 16.0;
                 double g = (value / 4.0) / divid - 273.15;
-                //cout << g << " ";
                 temp[t] = g;
-                //cout << temp[t] << " ";
                 t++;
             }
         }
@@ -59,17 +55,10 @@ public class OnlineMethod {
         tem.put(0,0,temp);
         tem.convertTo(tem, CV_8UC1);
 
-        //Mat kernal = Mat.ones(5, 5, CV_8UC1);
-        //Mat es = getStructuringElement(MORPH_ELLIPSE,new Size(9, 4));
         Mat thres_gray = new Mat();
-        //Mat temperature = Mat::zeros(192, 256, CV_8UC1);
-        //threshold(temperature, thres_gray, 50, 255, THRESH_BINARY);
-        //int thres = int(high_t);
-        //src = 255 - src;
 
         threshold(tem, thres_gray, high_t, 255, THRESH_BINARY);
 
-        //vector<vector<Point>> cnts;
         List<MatOfPoint> cnts = new ArrayList<MatOfPoint>();
         Mat hierarchy = new Mat();
         findContours(thres_gray, cnts, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
@@ -101,12 +90,7 @@ public class OnlineMethod {
 
             }
 
-            //minEnclosingCircle(cnts[i], center[i], radius[i]);
         }
-        //cv::Mat imageContours = cv::Mat::zeros(cv::Size(W, H), CV_8UC1);
-        //Bezier
-        //Mat drawing = Mat::zeros(image.size(), CV_8UC3);imshow("Contours", im)
-        // waitKey(0);
         return im;
 
     }
@@ -119,9 +103,7 @@ public class OnlineMethod {
                 int value = (int)(temperature[i + 1] << 8) + (int)(temperature[i]);
                 double divid = 16.0;
                 double g = (value / 4.0) / divid - 273.15;
-                //cout << g << " ";
                 temp[t] = g;
-                //cout << temp[t] << " ";
                 t++;
             }
         }
@@ -129,7 +111,6 @@ public class OnlineMethod {
         tem = new Mat(192, 256, CV_64FC1);
         tem.put(0,0,temp);
         tem.convertTo(tem, CV_8UC1);
-
 
         Mat thres_gray = new Mat();
         threshold(tem, thres_gray, low_t, 255, 4);
@@ -193,7 +174,6 @@ public class OnlineMethod {
         Utils.matToBitmap(mat, dstBitmap);
         return draw_temp_edge(src,temperature,low_t,color_l,type);
     }
-
 
     public static Bitmap draw_edge_from_temp_reigon_bitmap(byte[] image,byte[] temperature,int row, int col, double high_t, double low_t, int color_h, int color_l, int type) throws IOException {
         Mat src = draw_high_temp_edge(image,temperature,high_t,color_h,type);

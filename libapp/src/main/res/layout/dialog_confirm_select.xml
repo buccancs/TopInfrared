@@ -88,7 +88,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rl_message" />
 
-    <!-- 取消 -->
     <TextView
         android:id="@+id/tv_cancel"
         android:layout_width="0dp"
@@ -103,7 +102,6 @@
         app:layout_constraintTop_toTopOf="@id/view_space"
         app:layout_constraintBottom_toBottomOf="@id/view_space" />
 
-    <!-- 确认 -->
     <TextView
         android:id="@+id/tv_confirm"
         android:layout_width="0dp"
@@ -119,6 +117,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/view_space"
         app:layout_constraintBottom_toBottomOf="@id/view_space" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -105,7 +105,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-
             <androidx.constraintlayout.utils.widget.ImageFilterView
                 android:id="@+id/camera_gallery_img"
                 android:layout_width="54dp"
@@ -117,7 +116,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:roundPercent="1" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

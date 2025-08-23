@@ -5,7 +5,6 @@
     android:background="@color/black"
     android:keepScreenOn="true">
 
-    <!-- top title -->
     <LinearLayout
         android:id="@+id/controlToolBar"
         android:layout_width="match_parent"
@@ -99,27 +98,23 @@
 
     </LinearLayout>
 
-    <!-- 中间部分 -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/imageToolBar"
         android:layout_below="@id/controlToolBar">
 
-        <!-- 红外出图图层 -->
         <com.infisense.usbir.view.CameraView
             android:id="@+id/cameraView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <!-- 温度图层 -->
         <com.infisense.usbir.view.TemperatureView
             android:id="@+id/temperatureView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </RelativeLayout>
 
-    <!-- bottom menu -->
     <LinearLayout
         android:id="@+id/imageToolBar"
         android:layout_width="match_parent"
@@ -130,7 +125,6 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp">
 
-        <!-- 打快门，出图后模糊可以手动打快门 -->
         <ImageView
             android:id="@+id/manualShutButton"
             android:layout_width="wrap_content"
@@ -139,7 +133,6 @@
             android:background="@drawable/shut"
             android:foreground="?selectableItemBackground" />
 
-        <!-- 打背景 -->
         <ImageView
             android:id="@+id/btnShutterStatusSet"
             android:layout_width="wrap_content"
@@ -148,7 +141,6 @@
             android:background="@drawable/shut_on"
             android:foreground="?selectableItemBackground" />
 
-        <!-- 快门开合 -->
         <ToggleButton
             android:id="@+id/shutterSwitch"
             android:layout_width="80dp"
@@ -158,7 +150,6 @@
             android:textOff="Shutter Off"
             android:textOn="Shutter On" />
 
-        <!-- 拍照 -->
         <ImageView
             android:id="@+id/captureImageButton"
             android:layout_width="wrap_content"
@@ -167,7 +158,6 @@
             android:background="@drawable/photo"
             android:foreground="?selectableItemBackground" />
 
-        <!-- 录像 -->
         <ImageView
             android:id="@+id/recordVideoButton"
             android:layout_width="wrap_content"

@@ -8,14 +8,6 @@ import com.github.mikephil.charting.data.BubbleData;
 import com.github.mikephil.charting.interfaces.dataprovider.BubbleDataProvider;
 import com.github.mikephil.charting.renderer.BubbleChartRenderer;
 
-/**
- * The BubbleChart. Draws bubbles. Bubble chart implementation: Copyright 2015
- * Pierre-Marc Airoldi Licensed under Apache License 2.0. In the BubbleChart, it
- * is the area of the bubble, not the radius or diameter of the bubble that
- * conveys the data.
- *
- * @author Philipp Jahoda
- */
 public class BubbleChart extends BarLineChartBase<BubbleData> implements BubbleDataProvider {
 
     public BubbleChart(Context context) {

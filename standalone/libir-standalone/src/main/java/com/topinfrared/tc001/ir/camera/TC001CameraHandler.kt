@@ -7,11 +7,6 @@ import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-/**
- * Simplified TC001 camera handler for standalone version
- * This is a mock implementation for demonstration purposes
- * In a real implementation, this would interface with actual TC001 hardware
- */
 class TC001CameraHandler(
     private val context: Context,
     private val frameCallback: (Bitmap?) -> Unit
@@ -28,14 +23,12 @@ class TC001CameraHandler(
     private var mockFrameThread: Thread? = null
     
     fun initialize(): Boolean {
-        // Mock initialization for standalone demo
         Log.d(TAG, "Initializing TC001 camera handler (mock)")
         return true
     }
     
     suspend fun connectToDevice(device: UsbDevice?): Boolean = withContext(Dispatchers.IO) {
         try {
-            // Mock connection for standalone demo
             Log.i(TAG, "Connecting to TC001 device (mock)${device?.let { " - Device: ${it.deviceName}" } ?: ""}")
             isConnected = true
             true
@@ -88,7 +81,7 @@ class TC001CameraHandler(
                 try {
                     val bitmap = createMockThermalBitmap()
                     frameCallback(bitmap)
-                    Thread.sleep(100) // ~10 FPS for demo
+                    Thread.sleep(100)
                 } catch (e: InterruptedException) {
                     break
                 } catch (e: Exception) {
@@ -110,49 +103,41 @@ class TC001CameraHandler(
             for (x in 0 until PREVIEW_WIDTH) {
                 val index = y * PREVIEW_WIDTH + x
                 
-                // Create realistic thermal pattern with hot spots
                 val dx = (x - centerX).toDouble() / PREVIEW_WIDTH
                 val dy = (y - centerY).toDouble() / PREVIEW_HEIGHT
                 
-                // Create moving hot spots
                 val hotSpot1 = kotlin.math.exp(-((dx - 0.3 * kotlin.math.sin(time * 0.5)) * (dx - 0.3 * kotlin.math.sin(time * 0.5)) + 
                                                 (dy - 0.3 * kotlin.math.cos(time * 0.5)) * (dy - 0.3 * kotlin.math.cos(time * 0.5))) * 10)
                 val hotSpot2 = kotlin.math.exp(-((dx + 0.2 * kotlin.math.sin(time * 0.7)) * (dx + 0.2 * kotlin.math.sin(time * 0.7)) + 
                                                 (dy + 0.2 * kotlin.math.cos(time * 0.7)) * (dy + 0.2 * kotlin.math.cos(time * 0.7))) * 15)
                 
-                // Base temperature + hot spots + some noise
                 var temp = 0.3 + 0.4 * hotSpot1 + 0.3 * hotSpot2 + 0.1 * kotlin.math.sin(time + x * 0.1 + y * 0.1)
                 temp = temp.coerceIn(0.0, 1.0)
                 
-                // Convert to thermal color mapping (iron colormap approximation)
                 val r: Int
                 val g: Int 
                 val b: Int
                 
                 when {
                     temp < 0.25 -> {
-                        // Cold: dark blue to blue
                         val factor = temp * 4
                         r = 0
                         g = 0
                         b = (128 + factor * 127).toInt()
                     }
                     temp < 0.5 -> {
-                        // Cool: blue to cyan
                         val factor = (temp - 0.25) * 4
                         r = 0
                         g = (factor * 255).toInt()
                         b = 255
                     }
                     temp < 0.75 -> {
-                        // Warm: cyan to yellow
                         val factor = (temp - 0.5) * 4
                         r = (factor * 255).toInt()
                         g = 255
                         b = ((1 - factor) * 255).toInt()
                     }
                     else -> {
-                        // Hot: yellow to red
                         val factor = (temp - 0.75) * 4
                         r = 255
                         g = ((1 - factor) * 255).toInt()

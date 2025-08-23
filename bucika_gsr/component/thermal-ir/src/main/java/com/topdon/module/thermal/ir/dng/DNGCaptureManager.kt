@@ -18,10 +18,6 @@ import java.util.*
 import java.util.concurrent.Semaphore
 import java.util.concurrent.TimeUnit
 
-/**
- * DNG (Digital Negative) Capture Manager for RAD DNG Level 3 recording
- * Captures RAW sensor data at 30FPS and saves as DNG files
- */
 @SuppressLint("MissingPermission")
 class DNGCaptureManager(
     private val context: Context
@@ -31,27 +27,23 @@ class DNGCaptureManager(
         private const val TAG = "DNGCaptureManager"
         private const val MAX_IMAGES = 10
         private const val TARGET_FPS = 30
-        private const val CAPTURE_INTERVAL_MS = 1000L / TARGET_FPS // ~33.33ms for 30 FPS
+        private const val CAPTURE_INTERVAL_MS = 1000L / TARGET_FPS
     }
     
-    // Camera2 API components
     private var cameraManager: CameraManager? = null
     private var cameraDevice: CameraDevice? = null
     private var cameraCaptureSession: CameraCaptureSession? = null
     private var imageReader: ImageReader? = null
     
-    // Background thread handling
     private var backgroundHandler: Handler? = null
     private var backgroundThread: HandlerThread? = null
     private val cameraOpenCloseLock = Semaphore(1)
     
-    // Capture state
     private var isCapturing = false
     private var captureCount = 0
     private var captureStartTime = 0L
     private var currentCaptureDir: File? = null
     
-    // Camera characteristics
     private var sensorOrientation = 0
     private var rawSize: Size? = null
     private var characteristics: CameraCharacteristics? = null
@@ -60,10 +52,7 @@ class DNGCaptureManager(
         cameraManager = context.getSystemService(Context.CAMERA_SERVICE) as CameraManager
         setupBackgroundThread()
     }
-    
-    /**
-     * Start DNG capture sequence at 30 FPS
-     */
+
     fun startDNGCapture(): Boolean {
         if (isCapturing) {
             XLog.w(TAG, "DNG capture already in progress")
@@ -79,10 +68,7 @@ class DNGCaptureManager(
             false
         }
     }
-    
-    /**
-     * Stop DNG capture sequence
-     */
+
     fun stopDNGCapture(): Boolean {
         if (!isCapturing) {
             XLog.w(TAG, "No DNG capture in progress")
@@ -104,15 +90,9 @@ class DNGCaptureManager(
             false
         }
     }
-    
-    /**
-     * Check if DNG capture is active
-     */
+
     fun isCapturing(): Boolean = isCapturing
-    
-    /**
-     * Get current capture statistics
-     */
+
     fun getCaptureStats(): Map<String, Any> {
         val duration = if (isCapturing) System.currentTimeMillis() - captureStartTime else 0L
         val actualFPS = if (duration > 0) (captureCount * 1000.0) / duration else 0.0
@@ -170,7 +150,6 @@ class DNGCaptureManager(
             characteristics = cameraManager?.getCameraCharacteristics(cameraId)
             val map = characteristics?.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP)
             
-            // Get RAW sensor size
             val rawSizes = map?.getOutputSizes(ImageFormat.RAW_SENSOR)
             rawSize = rawSizes?.maxByOrNull { it.width * it.height }
             
@@ -182,7 +161,6 @@ class DNGCaptureManager(
                 throw RuntimeException("Time out waiting to lock camera opening.")
             }
             
-            // Create ImageReader for RAW capture
             rawSize?.let { size ->
                 imageReader = ImageReader.newInstance(
                     size.width, size.height,
@@ -225,18 +203,15 @@ class DNGCaptureManager(
                 val characteristics = cameraManager?.getCameraCharacteristics(cameraId)
                 val facing = characteristics?.get(CameraCharacteristics.LENS_FACING)
                 
-                // Prefer back camera for RAW capture
                 if (facing == CameraCharacteristics.LENS_FACING_BACK) {
                     val capabilities = characteristics.get(CameraCharacteristics.REQUEST_AVAILABLE_CAPABILITIES)
                     
-                    // Check if camera supports RAW capture
                     if (capabilities?.contains(CameraCharacteristics.REQUEST_AVAILABLE_CAPABILITIES_RAW) == true) {
                         return cameraId
                     }
                 }
             }
             
-            // Fallback to first available camera with RAW support
             cameraIdList.find { cameraId ->
                 val characteristics = cameraManager?.getCameraCharacteristics(cameraId)
                 val capabilities = characteristics?.get(CameraCharacteristics.REQUEST_AVAILABLE_CAPABILITIES)
@@ -297,13 +272,11 @@ class DNGCaptureManager(
             val captureBuilder = cameraDevice?.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE)
             captureBuilder?.addTarget(imageReader?.surface!!)
             
-            // RAD DNG Level 3 optimized settings
             captureBuilder?.set(CaptureRequest.CONTROL_MODE, CaptureRequest.CONTROL_MODE_AUTO)
             captureBuilder?.set(CaptureRequest.CONTROL_AF_MODE, CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE)
             captureBuilder?.set(CaptureRequest.CONTROL_AE_MODE, CaptureRequest.CONTROL_AE_MODE_ON)
             captureBuilder?.set(CaptureRequest.JPEG_QUALITY, 100.toByte())
             
-            // Set high quality for RAD DNG Level 3
             captureBuilder?.set(CaptureRequest.COLOR_CORRECTION_MODE, CaptureRequest.COLOR_CORRECTION_MODE_HIGH_QUALITY)
             captureBuilder?.set(CaptureRequest.EDGE_MODE, CaptureRequest.EDGE_MODE_HIGH_QUALITY)
             captureBuilder?.set(CaptureRequest.NOISE_REDUCTION_MODE, CaptureRequest.NOISE_REDUCTION_MODE_HIGH_QUALITY)
@@ -312,7 +285,6 @@ class DNGCaptureManager(
             captureCount = 0
             captureStartTime = System.currentTimeMillis()
             
-            // Start continuous capture at 30 FPS
             val captureRequest = captureBuilder?.build()
             captureRequest?.let {
                 cameraCaptureSession?.setRepeatingRequest(it, captureCallback, backgroundHandler)
@@ -331,7 +303,6 @@ class DNGCaptureManager(
             request: CaptureRequest,
             result: TotalCaptureResult
         ) {
-            // Capture completed successfully
         }
         
         override fun onCaptureFailed(
@@ -363,15 +334,13 @@ class DNGCaptureManager(
             val filename = "frame_%06d.dng".format(captureCount)
             val outputFile = File(currentCaptureDir, filename)
             
-            // Convert RAW image to DNG format
             val buffer = image.planes[0].buffer
             val bytes = ByteArray(buffer.remaining())
             buffer.get(bytes)
             
-            // Create DNG file with proper headers and metadata
             createDNGFile(outputFile, bytes, image.width, image.height)
             
-            if (captureCount % 30 == 0) { // Log every second (30 frames)
+            if (captureCount % 30 == 0) {
                 val elapsed = System.currentTimeMillis() - captureStartTime
                 val actualFPS = (captureCount * 1000.0) / elapsed
                 XLog.d(TAG, "Captured $captureCount frames, actual FPS: %.2f".format(actualFPS))
@@ -384,17 +353,12 @@ class DNGCaptureManager(
     
     private fun createDNGFile(outputFile: File, rawData: ByteArray, width: Int, height: Int) {
         try {
-            // For now, create a simplified DNG file
-            // In production, this would use Adobe DNG SDK or implement full DNG specification
             
             outputFile.outputStream().use { fos ->
-                // DNG Header (simplified)
                 writeDNGHeader(fos, width, height, rawData.size)
                 
-                // RAW image data
                 fos.write(rawData)
                 
-                // DNG metadata (simplified)
                 writeDNGMetadata(fos)
             }
             
@@ -404,66 +368,49 @@ class DNGCaptureManager(
     }
     
     private fun writeDNGHeader(fos: OutputStream, width: Int, height: Int, dataSize: Int) {
-        // Simplified DNG header implementation
-        // This is a basic implementation - production code would use proper DNG library
         
         val header = ByteBuffer.allocate(1024)
         
-        // TIFF Header
-        header.put("II".toByteArray()) // Little endian
-        header.putShort(42) // TIFF magic number
-        header.putInt(8) // Offset to first IFD
+        header.put("II".toByteArray())
+        header.putShort(42)
+        header.putInt(8)
         
-        // Basic DNG tags
-        header.putShort(8) // Number of directory entries
+        header.putShort(8)
         
-        // Image width tag
-        header.putShort(0x0100)  // ImageWidth
-        header.putShort(4)       // LONG
-        header.putInt(1)         // Count
-        header.putInt(width)     // Value
+        header.putShort(0x0100)
+        header.putShort(4)
+        header.putInt(1)
+        header.putInt(width)
         
-        // Image height tag  
-        header.putShort(0x0101)  // ImageLength
-        header.putShort(4)       // LONG
-        header.putInt(1)         // Count
-        header.putInt(height)    // Value
-        
-        // Add more DNG-specific tags as needed...
-        
+        header.putShort(0x0101)
+        header.putShort(4)
+        header.putInt(1)
+        header.putInt(height)
+
         fos.write(header.array(), 0, header.position())
     }
     
     private fun writeDNGMetadata(fos: OutputStream) {
-        // Add DNG metadata
         val metadata = ByteBuffer.allocate(512)
         
-        // Camera make/model
         val make = "TOPDON"
         val model = "TC001 RAD DNG Level 3"
         
         metadata.put(make.toByteArray())
         metadata.put(model.toByteArray())
         
-        // Timestamp
         val timestamp = SimpleDateFormat("yyyy:MM:dd HH:mm:ss", Locale.getDefault()).format(Date())
         metadata.put(timestamp.toByteArray())
         
         fos.write(metadata.array(), 0, metadata.position())
     }
-    
-    /**
-     * Get list of captured DNG files
-     */
+
     fun getCapturedFiles(): List<File> {
         return currentCaptureDir?.listFiles { file ->
             file.extension.lowercase() == "dng"
         }?.toList() ?: emptyList()
     }
-    
-    /**
-     * Cleanup resources
-     */
+
     fun cleanup() {
         stopDNGCapture()
         stopBackgroundThread()

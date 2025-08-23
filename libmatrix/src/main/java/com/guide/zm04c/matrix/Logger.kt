@@ -10,10 +10,6 @@ import java.util.*
 
 object Logger {
 
-    /**
-     * ERROR
-     */
-
     @JvmStatic
     fun e(clazz: Class<*>, msg: String) {
         if (BuildConfig.DEBUG) {
@@ -28,9 +24,6 @@ object Logger {
         }
     }
 
-    /**
-     * WARN
-     */
     @JvmStatic
     fun w(clazz: Class<*>, msg: String) {
         if (BuildConfig.DEBUG) {
@@ -44,10 +37,6 @@ object Logger {
             Log.w(tag, msg + "")
         }
     }
-
-    /**
-     * INFO
-     */
 
     @JvmStatic
     fun i(clazz: Class<*>, msg: String) {
@@ -63,10 +52,6 @@ object Logger {
         }
     }
 
-    /**
-     * DEBUG
-     */
-
     @JvmStatic
     fun d(clazz: Class<*>, msg: String) {
         if (BuildConfig.DEBUG) {
@@ -81,10 +66,6 @@ object Logger {
         }
     }
 
-    /**
-     * VERBOSE
-     */
-
     @JvmStatic
     fun v(clazz: Class<*>, msg: String) {
         if (BuildConfig.DEBUG) {
@@ -98,22 +79,15 @@ object Logger {
         }
     }
 
+    private val MYLOG_PATH_SDCARD_DIR = "/sdcard/Guide/log"
 
-    private val MYLOG_PATH_SDCARD_DIR = "/sdcard/Guide/log" // 日志文件在sdcard中的路径
+    private val MYLOGFILEName = "Log.txt"
 
-    private val MYLOGFILEName = "Log.txt" // 本类输出的日志文件名称
+    private val myLogSdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 
-    private val myLogSdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss") // 日志的输出格式
+    private val logfile = SimpleDateFormat("yyyy-MM-dd")
 
-    private val logfile = SimpleDateFormat("yyyy-MM-dd") // 日志文件格式
-
-    /**
-     * 打开日志文件并写入日志
-     * @param mylogtype
-     * @param tag
-     * @param text
-     */
-    fun f(tag: String, text: String) { // 新建或打开日志文件
+    fun f(tag: String, text: String) {
         val nowtime = Date()
         val needWriteFiel = logfile.format(nowtime)
         val needWriteMessage = myLogSdf.format(nowtime) + "    " + "    " + tag + "    " + text
@@ -121,7 +95,7 @@ object Logger {
         if (!dirsFile.exists()) {
             dirsFile.mkdirs()
         }
-        val file = File(dirsFile.toString(), needWriteFiel + MYLOGFILEName) // MYLOG_PATH_SDCARD_DIR
+        val file = File(dirsFile.toString(), needWriteFiel + MYLOGFILEName)
         if (!file.exists()) {
             try {
                 file.createNewFile()
@@ -129,7 +103,7 @@ object Logger {
             }
         }
         try {
-            val filerWriter = FileWriter(file, true) // 后面这个参数代表是不是要接上文件中原来的数据，不进行覆盖
+            val filerWriter = FileWriter(file, true)
             val bufWriter = BufferedWriter(filerWriter)
             bufWriter.write(needWriteMessage)
             bufWriter.newLine()

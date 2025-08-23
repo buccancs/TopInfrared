@@ -18,27 +18,12 @@ import java.util.List;
 
 public class ScatterDataSet extends LineScatterCandleRadarDataSet<Entry> implements IScatterDataSet {
 
-    /**
-     * the size the scattershape will have, in density pixels
-     */
     private float mShapeSize = 15f;
 
-    /**
-     * Renderer responsible for rendering this DataSet, default: square
-     */
     protected IShapeRenderer mShapeRenderer = new SquareShapeRenderer();
 
-    /**
-     * The radius of the hole in the shape (applies to Square, Circle and Triangle)
-     * - default: 0.0
-     */
     private float mScatterShapeHoleRadius = 0f;
 
-    /**
-     * Color for the hole in the shape.
-     * Setting to `ColorTemplate.COLOR_NONE` will behave as transparent.
-     * - default: ColorTemplate.COLOR_NONE
-     */
     private int mScatterShapeHoleColor = ColorTemplate.COLOR_NONE;
 
     public ScatterDataSet(List<Entry> yVals, String label) {
@@ -64,12 +49,6 @@ public class ScatterDataSet extends LineScatterCandleRadarDataSet<Entry> impleme
         scatterDataSet.mScatterShapeHoleColor = mScatterShapeHoleColor;
     }
 
-    /**
-     * Sets the size in density pixels the drawn scattershape will have. This
-     * only applies for non custom shapes.
-     *
-     * @param size
-     */
     public void setScatterShapeSize(float size) {
         mShapeSize = size;
     }
@@ -79,22 +58,10 @@ public class ScatterDataSet extends LineScatterCandleRadarDataSet<Entry> impleme
         return mShapeSize;
     }
 
-    /**
-     * Sets the ScatterShape this DataSet should be drawn with. This will search for an available IShapeRenderer and set this
-     * renderer for the DataSet.
-     *
-     * @param shape
-     */
     public void setScatterShape(ScatterChart.ScatterShape shape) {
         mShapeRenderer = getRendererForShape(shape);
     }
 
-    /**
-     * Sets a new IShapeRenderer responsible for drawing this DataSet.
-     * This can also be used to set a custom IShapeRenderer aside from the default ones.
-     *
-     * @param shapeRenderer
-     */
     public void setShapeRenderer(IShapeRenderer shapeRenderer) {
         mShapeRenderer = shapeRenderer;
     }
@@ -104,12 +71,6 @@ public class ScatterDataSet extends LineScatterCandleRadarDataSet<Entry> impleme
         return mShapeRenderer;
     }
 
-    /**
-     * Sets the radius of the hole in the shape (applies to Square, Circle and Triangle)
-     * Set this to <= 0 to remove holes.
-     *
-     * @param holeRadius
-     */
     public void setScatterShapeHoleRadius(float holeRadius) {
         mScatterShapeHoleRadius = holeRadius;
     }
@@ -119,11 +80,6 @@ public class ScatterDataSet extends LineScatterCandleRadarDataSet<Entry> impleme
         return mScatterShapeHoleRadius;
     }
 
-    /**
-     * Sets the color for the hole in the shape.
-     *
-     * @param holeColor
-     */
     public void setScatterShapeHoleColor(int holeColor) {
         mScatterShapeHoleColor = holeColor;
     }
