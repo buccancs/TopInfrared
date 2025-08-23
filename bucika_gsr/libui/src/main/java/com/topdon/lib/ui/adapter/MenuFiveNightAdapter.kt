@@ -34,7 +34,7 @@ class MenuFiveNightAdapter(val context: Context) : RecyclerView.Adapter<Recycler
             getTempStr(-20, 150),
             CameraItemBean.TYPE_TMP_C
         ),
-        if (DeviceTools.isTC001LiteConnect()) {
+        if (false) {
             TemperatureBean(
                 R.drawable.selector_menu2_temp_level_1,
                 context.getString(R.string.thermal_high_temperature),

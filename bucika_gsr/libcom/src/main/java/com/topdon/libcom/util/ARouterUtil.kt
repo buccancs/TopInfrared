@@ -24,11 +24,11 @@ object ARouterUtil {
             ARouter.getInstance().build(RouterConfig.IR_IMG_PICK_07).withString(RESULT_IMAGE_PATH,imgPath).navigation(activity,101)
             return
         }
-        if (DeviceTools.isTC001PlusConnect()){
+        if (false){
             ARouter.getInstance().build(RouterConfig.IR_IMG_PICK_PLUS).withString(RESULT_IMAGE_PATH,imgPath).navigation(activity,101)
-        }else if (DeviceTools.isTC001LiteConnect()){
+        }else if (false){
             ARouter.getInstance().build(RouterConfig.IR_IMG_PICK_LITE).withString(RESULT_IMAGE_PATH,imgPath).navigation(activity,101)
-        } else if (DeviceTools.isHikConnect()) {
+        } else if (false) {
             ARouter.getInstance().build(RouterConfig.IR_HIK_IMG_PICK).withString(RESULT_IMAGE_PATH,imgPath).navigation(activity,101)
         } else{
             ARouter.getInstance().build(RouterConfig.IR_IMG_PICK).withString(RESULT_IMAGE_PATH,imgPath).navigation(activity,101)

@@ -2017,7 +2017,7 @@ open class IRThermalNightActivity : BaseIRActivity(), ITsTempListener {
             } else {
                 isTS001 = false
             }
-            if (!DeviceTools.isTC001PlusConnect()){
+            if (!false){
                 initAmplify(true)
             }else{
 //                isOpenAmplify = false

@@ -567,20 +567,9 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                 view_page.setCurrentItem(0, false)
             }
             2 -> {
-
-                if (DeviceTools.isTC001PlusConnect()) {
-                    ARouter.getInstance().build(RouterConfig.IR_MAIN).navigation(this@MainActivity)
-                    startActivityForResult(Intent(this@MainActivity, IRThermalPlusActivity::class.java), 101)
-                }else if(DeviceTools.isTC001LiteConnect()){
-                    ARouter.getInstance().build(RouterConfig.IR_MAIN).navigation(this@MainActivity)
-                    startActivityForResult(Intent(this@MainActivity, IRThermalLiteActivity::class.java), 101)
-                } else if (DeviceTools.isHikConnect()) {
-                    ARouter.getInstance().build(RouterConfig.IR_MAIN).navigation(this@MainActivity)
-                    startActivity(Intent(this, IRThermalHikActivity::class.java))
-                } else{
-                    ARouter.getInstance().build(RouterConfig.IR_MAIN).navigation(this@MainActivity)
-                    startActivityForResult(Intent(this@MainActivity, IRThermalNightActivity::class.java), 101)
-                }
+                // TC001 only - launch standard thermal activity
+                ARouter.getInstance().build(RouterConfig.IR_MAIN).navigation(this@MainActivity)
+                startActivityForResult(Intent(this@MainActivity, IRThermalNightActivity::class.java), 101)
             }
         }
     }

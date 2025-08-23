@@ -13,7 +13,6 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
-import com.blankj.utilcode.util.AppUtils
 import com.hjq.permissions.OnPermissionCallback
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
@@ -25,11 +24,8 @@ import com.topdon.lib.core.config.RouterConfig
 import com.topdon.lib.core.dialog.TipDialog
 import com.topdon.lib.core.ktbase.BaseActivity
 import com.topdon.lib.core.repository.GalleryRepository.DirType
-import com.topdon.lib.core.repository.TC007Repository
-import com.topdon.lib.core.socket.WebSocketProxy
 import com.topdon.lib.core.tools.DeviceTools
 import com.topdon.lib.core.utils.CommUtils
-import com.topdon.lib.core.utils.NetWorkUtils
 import com.topdon.lib.core.utils.PermissionUtils
 import com.topdon.lms.sdk.LMS
 import com.topdon.module.thermal.ir.BuildConfig
@@ -45,21 +41,13 @@ import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 
 /**
- * 插件式 或 TC007 首页.
- *
- * 需要传递参数：
- * - [ExtraKeyConfig.IS_TC007] - 当前设备是否为 TC007
+ * TC001 插件式首页.
  *
  * Created by LCG on 2024/4/18.
+ * Modified to support TC001 only.
  */
 @Route(path = RouterConfig.IR_MAIN)
 class IRMainActivity : BaseActivity(), View.OnClickListener {
-
-    /**
-     * 从上一界面传递过来的，当前是否为 TC007 设备类型.
-     * true-TC007 false-其他插件式设备
-     */
-    private var isTC007 = false
 
     override fun initContentView(): Int = R.layout.activity_ir_main
 
@@ -69,11 +57,9 @@ class IRMainActivity : BaseActivity(), View.OnClickListener {
     }
 
     override fun initView() {
-        isTC007 = intent.getBooleanExtra(ExtraKeyConfig.IS_TC007, false)
-
         view_page.offscreenPageLimit = 5
         view_page.isUserInputEnabled = false
-        view_page.adapter = ViewPagerAdapter(this, isTC007)
+        view_page.adapter = ViewPagerAdapter(this)
         view_page.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 refreshTabSelect(position)
@@ -92,26 +78,10 @@ class IRMainActivity : BaseActivity(), View.OnClickListener {
 
     override fun onResume() {
         super.onResume()
-//        DeviceTools.isConnect(true)
-        if (isTC007) {
-            if (WebSocketProxy.getInstance().isTC007Connect()) {
-                NetWorkUtils.switchNetwork(false)
-                iv_main_bg.setImageResource(R.drawable.ic_ir_main_bg_connect)
-                lifecycleScope.launch {
-                    TC007Repository.syncTime()
-                }
-                if (SharedManager.isConnect07AutoOpen) {
-                    ARouter.getInstance().build(RouterConfig.IR_THERMAL_07).navigation(this)
-                }
-            } else {
-                iv_main_bg.setImageResource(R.drawable.ic_ir_main_bg_disconnect)
-            }
+        if (DeviceTools.isConnect(isAutoRequest = false)) {
+            iv_main_bg.setImageResource(R.drawable.ic_ir_main_bg_connect)
         } else {
-            if (DeviceTools.isConnect(isAutoRequest = false)) {
-                iv_main_bg.setImageResource(R.drawable.ic_ir_main_bg_connect)
-            } else {
-                iv_main_bg.setImageResource(R.drawable.ic_ir_main_bg_disconnect)
-            }
+            iv_main_bg.setImageResource(R.drawable.ic_ir_main_bg_disconnect)
         }
     }
 
@@ -119,27 +89,19 @@ class IRMainActivity : BaseActivity(), View.OnClickListener {
     }
 
     override fun connected() {
-        if (!isTC007) {
-            iv_main_bg.setImageResource(R.drawable.ic_ir_main_bg_connect)
-        }
+        iv_main_bg.setImageResource(R.drawable.ic_ir_main_bg_connect)
     }
 
     override fun disConnected() {
-        if (!isTC007) {
-            iv_main_bg.setImageResource(R.drawable.ic_ir_main_bg_disconnect)
-        }
+        iv_main_bg.setImageResource(R.drawable.ic_ir_main_bg_disconnect)
     }
 
     override fun onSocketConnected(isTS004: Boolean) {
-        if (!isTS004 && isTC007) {
-            iv_main_bg.setImageResource(R.drawable.ic_ir_main_bg_connect)
-        }
+        // TC001 only supports USB connection, no socket connection needed
     }
 
     override fun onSocketDisConnected(isTS004: Boolean) {
-        if (!isTS004 && isTC007) {
-            iv_main_bg.setImageResource(R.drawable.ic_ir_main_bg_disconnect)
-        }
+        // TC001 only supports USB connection, no socket connection needed
     }
 
     override fun onClick(v: View?) {
@@ -348,17 +310,16 @@ class IRMainActivity : BaseActivity(), View.OnClickListener {
 
 
 
-    private class ViewPagerAdapter(activity: FragmentActivity, val isTC007: Boolean) : FragmentStateAdapter(activity) {
+    private class ViewPagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
         override fun getItemCount() = 5
 
         override fun createFragment(position: Int): Fragment {
             if (position == 1) {//图库
                 return IRGalleryTabFragment().apply {
                     arguments = Bundle().also {
-                        val dirType = if (isTC007) DirType.TC007.ordinal else DirType.LINE.ordinal
                         it.putBoolean(ExtraKeyConfig.CAN_SWITCH_DIR, false)
                         it.putBoolean(ExtraKeyConfig.HAS_BACK_ICON, false)
-                        it.putInt(ExtraKeyConfig.DIR_TYPE, dirType)
+                        it.putInt(ExtraKeyConfig.DIR_TYPE, DirType.LINE.ordinal)
                     }
                 }
             } else {
@@ -368,7 +329,7 @@ class IRMainActivity : BaseActivity(), View.OnClickListener {
                     3 -> PDFListFragment()
                     else -> ARouter.getInstance().build(RouterConfig.TC_MORE).navigation() as Fragment
                 }
-                fragment.arguments = Bundle().also { it.putBoolean(ExtraKeyConfig.IS_TC007, isTC007) }
+                fragment.arguments = Bundle().also { it.putBoolean(ExtraKeyConfig.IS_TC007, false) }
                 return fragment
             }
         }

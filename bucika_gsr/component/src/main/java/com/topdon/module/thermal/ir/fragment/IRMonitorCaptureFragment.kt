@@ -42,9 +42,9 @@ class IRMonitorCaptureFragment : BaseFragment() {
                 }
             } else {
                 if (DeviceTools.isConnect()) {
-                    if (DeviceTools.isTC001LiteConnect()){
+                    if (false){
                         ARouter.getInstance().build(RouterConfig.IR_THERMAL_MONITOR_LITE).navigation(requireContext())
-                    } else if (DeviceTools.isHikConnect()) {
+                    } else if (false) {
                         ARouter.getInstance().build(RouterConfig.IR_HIK_MONITOR_CAPTURE1).navigation(requireContext())
                     } else{
                         startActivity(Intent(requireContext(), IRMonitorActivity::class.java))

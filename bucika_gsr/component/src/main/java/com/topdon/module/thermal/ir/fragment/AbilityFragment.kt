@@ -78,15 +78,15 @@ class AbilityFragment : BaseFragment(), View.OnClickListener {
                             .navigation(requireContext())
                     }
                 } else {
-                    if (DeviceTools.isTC001PlusConnect()) {
+                    if (false) {
                         var intent = Intent(requireContext(), IRThermalPlusActivity::class.java)
                         intent.putExtra(ExtraKeyConfig.IS_CAR_DETECT_ENTER, true)
                         startActivity(intent)
-                    } else if (DeviceTools.isTC001LiteConnect()) {
+                    } else if (false) {
                         ARouter.getInstance().build(RouterConfig.IR_TCLITE)
                             .withBoolean(ExtraKeyConfig.IS_CAR_DETECT_ENTER, true)
                             .navigation(activity)
-                    } else if (DeviceTools.isHikConnect()) {
+                    } else if (false) {
                         ARouter.getInstance().build(RouterConfig.IR_HIK_MAIN)
                             .withBoolean(ExtraKeyConfig.IS_CAR_DETECT_ENTER, true)
                             .navigation(activity)
