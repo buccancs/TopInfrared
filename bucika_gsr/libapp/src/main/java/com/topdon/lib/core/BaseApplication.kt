@@ -10,7 +10,6 @@ import android.text.TextUtils
 import android.util.Log
 import android.webkit.WebView
 import androidx.annotation.RequiresApi
-import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.LanguageUtils
 import com.elvishew.xlog.XLog
 import com.topdon.lib.core.broadcast.DeviceBroadcastReceiver
@@ -55,7 +54,7 @@ abstract class BaseApplication : Application() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             webviewSetPath(this)
         }
-        initARouter()
+        // ARouter removed - deprecated and not needed for offline mode
         onLanguageChange()
 
     }
