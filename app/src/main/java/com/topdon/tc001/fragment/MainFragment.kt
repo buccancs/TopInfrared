@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.launcher.ARouter
 import com.elvishew.xlog.XLog
-import com.topdon.lib.core.bean.event.SocketMsgEvent
 import com.topdon.lib.core.common.SharedManager
 import com.topdon.lib.core.config.ExtraKeyConfig
 import com.topdon.lib.core.config.RouterConfig
@@ -23,13 +22,9 @@ import com.topdon.lib.core.dialog.TipDialog
 import com.topdon.lib.core.ktbase.BaseFragment
 import com.topdon.lib.core.repository.BatteryInfo
 import com.topdon.lib.core.repository.TC007Repository
-import com.topdon.lib.core.socket.SocketCmdUtil
-import com.topdon.lib.core.socket.WebSocketProxy
 import com.topdon.lib.core.tools.AppLanguageUtils
 import com.topdon.lib.core.tools.DeviceTools
 import com.topdon.lib.core.tools.LocaleContextWrapper
-import com.topdon.lib.core.utils.NetWorkUtils
-import com.topdon.lib.core.utils.WsCmdConstants
 import com.topdon.lms.sdk.weiget.TToast
 import com.topdon.tc001.DeviceTypeActivity
 import com.topdon.tc001.R
@@ -49,9 +44,6 @@ import kotlinx.android.synthetic.main.item_device_connect.view.tv_title
 import kotlinx.android.synthetic.main.item_device_connect.view.view_device_state
 import kotlinx.coroutines.launch
 import org.bytedeco.librealsense.context
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
-import org.json.JSONObject
 
 
 /**
@@ -71,8 +63,9 @@ class MainFragment : BaseFragment(), View.OnClickListener {
         tv_connect_device.setOnClickListener(this)
         iv_add.setOnClickListener(this)
         adapter.hasConnectLine = DeviceTools.isConnect()
-        adapter.hasConnectTS004 = WebSocketProxy.getInstance().isTS004Connect()
-        adapter.hasConnectTC007 = WebSocketProxy.getInstance().isTC007Connect()
+        // Remove WiFi-based device connections - offline mode only
+        adapter.hasConnectTS004 = false
+        adapter.hasConnectTC007 = false
         adapter.onItemClickListener = {
             when (it) {
                 ConnectType.LINE -> {
@@ -82,20 +75,12 @@ class MainFragment : BaseFragment(), View.OnClickListener {
                         .navigation(requireContext())
                 }
                 ConnectType.TS004 -> {
-                    if (WebSocketProxy.getInstance().isTS004Connect()) {
-                        ARouter.getInstance().build(RouterConfig.IR_MONOCULAR).navigation(requireContext())
-                    } else {
-                        ARouter.getInstance()
-                            .build(RouterConfig.IR_DEVICE_ADD)
-                            .withBoolean("isTS004", true)
-                            .navigation(requireContext())
-                    }
+                    // WiFi-based device - disabled in offline mode
+                    TToast.show("WiFi devices disabled in offline mode")
                 }
                 ConnectType.TC007 -> {
-                    ARouter.getInstance()
-                        .build(RouterConfig.IR_MAIN)
-                        .withBoolean(ExtraKeyConfig.IS_TC007, true)
-                        .navigation(requireContext())
+                    // WiFi-based device - disabled in offline mode  
+                    TToast.show("WiFi devices disabled in offline mode")
                 }
             }
         }
@@ -124,20 +109,10 @@ class MainFragment : BaseFragment(), View.OnClickListener {
         recycler_view.layoutManager = LinearLayoutManager(requireContext())
         recycler_view.adapter = adapter
 
-        if (WebSocketProxy.getInstance().isTC007Connect()) {
-            lifecycleScope.launch {
-                val batteryInfo: BatteryInfo? = TC007Repository.getBatteryInfo()
-                if (batteryInfo != null) {
-                    adapter.tc007Battery = batteryInfo
-                }
-            }
-        }
+        // Offline mode - TC007 WiFi connection disabled
         viewLifecycleOwner.lifecycle.addObserver(object : DefaultLifecycleObserver {
             override fun onResume(owner: LifecycleOwner) {
-                // 要是当前已连接 TS004、TC007，切到流量上，不然登录注册意见反馈那些没网
-                if (WebSocketProxy.getInstance().isConnected()) {
-                    NetWorkUtils.switchNetwork(true)
-                }
+                // Offline mode - no network switching needed
             }
         })
     }
@@ -156,8 +131,9 @@ class MainFragment : BaseFragment(), View.OnClickListener {
         cl_has_device.isVisible = hasAnyDevice
         cl_no_device.isVisible = !hasAnyDevice
         adapter.hasConnectLine = DeviceTools.isConnect(isAutoRequest = false)
-        adapter.hasConnectTS004 = WebSocketProxy.getInstance().isTS004Connect()
-        adapter.hasConnectTC007 = WebSocketProxy.getInstance().isTC007Connect()
+        // Offline mode - WiFi devices disabled
+        adapter.hasConnectTS004 = false
+        adapter.hasConnectTC007 = false
         adapter.notifyDataSetChanged()
     }
 
@@ -206,20 +182,7 @@ class MainFragment : BaseFragment(), View.OnClickListener {
         }
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onSocketMsgEvent(event: SocketMsgEvent) {
-        if (SocketCmdUtil.getCmdResponse(event.text) == WsCmdConstants.APP_EVENT_HEART_BEATS) {//心跳
-            if (!adapter.hasConnectTC007) {//当前连接的不是 TC007
-                return
-            }
-            try {
-                val battery: JSONObject = JSONObject(event.text).getJSONObject("battery")
-                adapter.tc007Battery = BatteryInfo(battery.getString("status"), battery.getString("remaining"))
-            } catch (_: Exception) {
-
-            }
-        }
-    }
+    // Offline mode - socket events disabled
 
     private class MyAdapter : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
         /**
@@ -359,14 +322,10 @@ class MainFragment : BaseFragment(), View.OnClickListener {
                                 }
                             }
                             ConnectType.TS004 -> {
-                                if (WebSocketProxy.getInstance().isTS004Connect()) {
-                                    return@setOnLongClickListener true
-                                }
+                                // WiFi device - always offline in offline mode
                             }
                             ConnectType.TC007 -> {
-                                if (WebSocketProxy.getInstance().isTC007Connect()) {
-                                    return@setOnLongClickListener true
-                                }
+                                // WiFi device - always offline in offline mode
                             }
                         }
                         onItemLongClickListener?.invoke(it, deviceType)

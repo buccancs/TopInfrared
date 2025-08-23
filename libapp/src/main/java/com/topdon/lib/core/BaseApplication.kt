@@ -3,13 +3,7 @@ package com.topdon.lib.core
 import android.app.Activity
 import android.app.ActivityManager
 import android.app.Application
-import android.content.BroadcastReceiver
 import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
-import android.media.MediaScannerConnection
-import android.net.ConnectivityManager
-import android.net.NetworkInfo
 import android.os.Build
 import android.os.Process
 import android.text.TextUtils
@@ -18,27 +12,15 @@ import android.webkit.WebView
 import androidx.annotation.RequiresApi
 import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.LanguageUtils
+import com.topdon.lib.core.BuildConfig
 import com.elvishew.xlog.XLog
-import com.topdon.lib.core.bean.event.SocketMsgEvent
 import com.topdon.lib.core.broadcast.DeviceBroadcastReceiver
 import com.topdon.lib.core.common.SharedManager
-import com.topdon.lib.core.config.DeviceConfig
-import com.topdon.lib.core.config.FileConfig
 import com.topdon.lib.core.db.AppDatabase
-import com.topdon.lib.core.repository.FileBean
-import com.topdon.lib.core.repository.TS004Repository
-import com.topdon.lib.core.socket.SocketCmdUtil
-import com.topdon.lib.core.socket.WebSocketProxy
 import com.topdon.lib.core.tools.AppLanguageUtils
-import com.topdon.lib.core.utils.NetWorkUtils
-import com.topdon.lib.core.utils.WifiUtil
-import com.topdon.lib.core.utils.WsCmdConstants
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import org.greenrobot.eventbus.EventBus
-import org.json.JSONObject
 import java.io.File
 
 abstract class BaseApplication : Application() {
@@ -76,100 +58,18 @@ abstract class BaseApplication : Application() {
         }
         initARouter()
         onLanguageChange()
-
-        WebSocketProxy.getInstance().onMessageListener = {
-            parserSocketMessage(it)
-        }
-
     }
 
-    open fun initWebSocket(){
-        connectWebSocket()
-        //注册网络变更广播
-        if (Build.VERSION.SDK_INT < 33) {
-            registerReceiver(NetworkChangedReceiver(), IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
-        } else {
-            registerReceiver(NetworkChangedReceiver(), IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION), Context.RECEIVER_NOT_EXPORTED)
-        }
-    }
-
-    private fun connectWebSocket() {
-        val ssid = WifiUtil.getCurrentWifiSSID(this) ?: return
-        Log.i("WebSocket", "当前连接 Wifi SSID: $ssid")
-        if (ssid.startsWith(DeviceConfig.TS004_NAME_START)) {
-            SharedManager.hasTS004 = true
-            WebSocketProxy.getInstance().startWebSocket(ssid)
-        } else if (ssid.startsWith(DeviceConfig.TC007_NAME_START)) {
-            SharedManager.hasTC007 = true
-            WebSocketProxy.getInstance().startWebSocket(ssid)
-        }else{
-            NetWorkUtils.switchNetwork(true)
-        }
-    }
-
-    fun disconnectWebSocket() {
-        Log.i("WebSocket", "disconnectWebSocket()")
-        WebSocketProxy.getInstance().stopWebSocket()
-    }
-
-    /**
-     * 解析socket消息
-     * @param msgJson
-     */
-    private fun parserSocketMessage(msgJson: String) {
-        if (TextUtils.isEmpty(msgJson)) return
-        EventBus.getDefault().post(SocketMsgEvent(msgJson))
-
-        if (SharedManager.is04AutoSync) {//自动保存到手机开启
-            when (SocketCmdUtil.getCmdResponse(msgJson)) {
-                WsCmdConstants.AR_COMMAND_SNAPSHOT -> {//拍照事件
-                    autoSaveNewest(false)
-                }
-
-                WsCmdConstants.AR_COMMAND_VRECORD -> {//开始或结束录像事件
-                    try {
-                        val data: JSONObject = JSONObject(msgJson).getJSONObject("data")
-                        val enable: Boolean = data.getBoolean("enable")
-                        if (!enable) {//结束才同步
-                            autoSaveNewest(true)
-                        }
-                    } catch (_: Exception) {
-
-                    }
-                }
+    //清除无用数据
+    fun clearDb() {
+        GlobalScope.launch(Dispatchers.Default) {
+            try {
+                AppDatabase.getInstance().thermalDao().deleteZero(SharedManager.getUserId())
+            } catch (e: Exception) {
+                XLog.e("delete db error: ${e.message}")
             }
         }
     }
-
-    private fun autoSaveNewest(isVideo: Boolean) {
-        CoroutineScope(Dispatchers.IO).launch {
-            val fileList: List<FileBean>? = TS004Repository.getNewestFile(if (isVideo) 1 else 0)
-            if (!fileList.isNullOrEmpty()) {
-                val fileBean: FileBean = fileList[0]
-                val url = "http://192.168.40.1:8080/DCIM/${fileBean.name}"
-                val file = File(FileConfig.ts004GalleryDir, fileBean.name)
-                TS004Repository.download(url, file)
-                MediaScannerConnection.scanFile(this@BaseApplication, arrayOf(FileConfig.ts004GalleryDir), null, null)
-            }
-        }
-    }
-
-    private inner class NetworkChangedReceiver : BroadcastReceiver() {
-        override fun onReceive(context: Context?, intent: Intent?) {
-            if (ConnectivityManager.CONNECTIVITY_ACTION == intent?.action) {
-                val manager = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-                val activeNetwork: NetworkInfo = manager.activeNetworkInfo ?: return
-                if (activeNetwork.isConnected && activeNetwork.type == ConnectivityManager.TYPE_WIFI) {
-                    connectWebSocket()
-                }else{
-//                    NetWorkUtils.
-                }
-                Log.i("WebSocket", "网络切换 Wifi SSID: $activeNetwork"+activeNetwork.type)
-            }
-        }
-    }
-
-
 
     /**
      * 设置webview的android9以上系统的多进程兼容性处理
@@ -209,17 +109,6 @@ abstract class BaseApplication : Application() {
             }
             ARouter.openDebug()
             ARouter.init(this)
-        }
-    }
-
-    //清除无用数据
-    fun clearDb() {
-        GlobalScope.launch(Dispatchers.Default) {
-            try {
-                AppDatabase.getInstance().thermalDao().deleteZero(SharedManager.getUserId())
-            } catch (e: Exception) {
-                XLog.e("delete db error: ${e.message}")
-            }
         }
     }
 

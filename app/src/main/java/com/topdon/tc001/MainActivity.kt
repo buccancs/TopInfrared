@@ -41,7 +41,6 @@ import com.topdon.lib.core.dialog.TipDialog
 import com.topdon.lib.core.dialog.TipOtgDialog
 import com.topdon.lib.core.ktbase.BaseActivity
 import com.topdon.lib.core.repository.GalleryRepository
-import com.topdon.lib.core.socket.WebSocketProxy
 import com.topdon.lib.core.tools.DeviceTools
 import com.topdon.lib.core.utils.CommUtils
 import com.topdon.lib.core.utils.PermissionUtils
@@ -136,33 +135,21 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         if (!SharedManager.hasTcLine && !SharedManager.hasTS004 && !SharedManager.hasTC007) {
             //仅当设备列表为空时，才执行自动跳转
             if (DeviceTools.isConnect()) {
-                if (!WebSocketProxy.getInstance().isConnected()) {
-                    ARouter.getInstance()
-                        .build(RouterConfig.IR_MAIN)
-                        .withBoolean(ExtraKeyConfig.IS_TC007, false)
-                        .navigation(this)
-                }
-            } else {
-                if (WebSocketProxy.getInstance().isTS004Connect()) {
-                    ARouter.getInstance().build(RouterConfig.IR_MONOCULAR).navigation(this)
-                } else if (WebSocketProxy.getInstance().isTC007Connect()) {
-                    ARouter.getInstance()
-                        .build(RouterConfig.IR_MAIN)
-                        .withBoolean(ExtraKeyConfig.IS_TC007, true)
-                        .navigation(this)
-                }
+                // Offline mode - only USB connections supported
+                ARouter.getInstance()
+                    .build(RouterConfig.IR_MAIN)
+                    .withBoolean(ExtraKeyConfig.IS_TC007, false)
+                    .navigation(this)
             }
+            // WiFi devices disabled in offline mode
         }
 
         if (DeviceTools.isConnect()) {
             SharedManager.hasTcLine = true
         }
-        if (WebSocketProxy.getInstance().isTS004Connect()) {
-            SharedManager.hasTS004 = true
-        }
-        if (WebSocketProxy.getInstance().isTC007Connect()) {
-            SharedManager.hasTC007 = true
-        }
+        // Offline mode - WiFi devices disabled
+        SharedManager.hasTS004 = false
+        SharedManager.hasTC007 = false
 //        initLauncher()
     }
 
@@ -355,9 +342,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     private var tipOtgDialog: TipOtgDialog? = null
 
     override fun disConnected() {
-        if (WebSocketProxy.getInstance().isTS004Connect()) {
-            ARouter.getInstance().build(RouterConfig.IR_MONOCULAR).navigation(this)
-        }
+        // Offline mode - WiFi devices disabled
         //无连接OTG提示
         if (tipOtgDialog != null && tipOtgDialog!!.isShowing) {
             return
