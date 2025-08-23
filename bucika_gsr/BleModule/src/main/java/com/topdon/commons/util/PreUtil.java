@@ -199,18 +199,21 @@ public class PreUtil {
 
     @SuppressLint("CommitPrefEdits")
     public void put(String key, Object defaultObj) {
-        if (defaultObj instanceof String) {
-            preferences.edit().putString(key, (String) defaultObj);
-        } else if (defaultObj instanceof Integer) {
-            preferences.edit().putInt(key, (Integer) defaultObj);
-        } else if (defaultObj instanceof Boolean) {
-            preferences.edit().putBoolean(key, (Boolean) defaultObj);
-        } else if (defaultObj instanceof Float) {
-            preferences.edit().putFloat(key, (Float) defaultObj);
-        } else if (defaultObj instanceof Long) {
-            preferences.edit().putLong(key, (Long) defaultObj);
+        Editor edit = preferences.edit();
+        if (edit != null) {
+            if (defaultObj instanceof String) {
+                edit.putString(key, (String) defaultObj);
+            } else if (defaultObj instanceof Integer) {
+                edit.putInt(key, (Integer) defaultObj);
+            } else if (defaultObj instanceof Boolean) {
+                edit.putBoolean(key, (Boolean) defaultObj);
+            } else if (defaultObj instanceof Float) {
+                edit.putFloat(key, (Float) defaultObj);
+            } else if (defaultObj instanceof Long) {
+                edit.putLong(key, (Long) defaultObj);
+            }
+            edit.commit();
         }
-        preferences.edit().commit();
     }
 
     public Object get(String key, Object defaultObj) {
