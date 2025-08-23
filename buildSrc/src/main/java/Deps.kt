@@ -16,9 +16,10 @@ object Deps {
 
     const val work_runtime_ktx = "androidx.work:work-runtime-ktx:2.7.1"
 
-    const val retrofit2 = "com.squareup.retrofit2:retrofit:2.9.0"
-    const val converter_gson = "com.squareup.retrofit2:converter-gson:2.9.0"
-    const val adapter_rxjava2 = "com.squareup.retrofit2:adapter-rxjava2:2.9.0"
+    // Network dependencies - disabled for offline mode
+    // const val retrofit2 = "com.squareup.retrofit2:retrofit:2.9.0"
+    // const val converter_gson = "com.squareup.retrofit2:converter-gson:2.9.0"  
+    // const val adapter_rxjava2 = "com.squareup.retrofit2:adapter-rxjava2:2.9.0"
 
     const val eventbus = "org.greenrobot:eventbus:3.2.0"
 
@@ -56,7 +57,8 @@ object Deps {
     const val refresh_header_material = "com.scwang.smart:refresh-header-material:2.0.3"
 
     const val ir_layout = "com.github.CoderCaiSL:jitpackMvn:+"
-    const val logging_interceptor = "com.squareup.okhttp3:logging-interceptor:4.9.0"
+    // Network interceptor - disabled for offline mode
+    // const val logging_interceptor = "com.squareup.okhttp3:logging-interceptor:4.9.0"
     const val colorpickerview = "com.github.skydoves:colorpickerview:2.2.4"
     const val MNImageBrowser = "com.github.maning0303:MNImageBrowser:V1.3.7"
     const val compass_sense = "com.github.kylecorry31.andromeda:sense:6.2.0"//指南针

@@ -89,9 +89,10 @@ dependencies {
 
     api Deps.work_runtime_ktx
 
-    api Deps.retrofit2
-    api Deps.converter_gson
-    api Deps.adapter_rxjava2
+    // Network dependencies - disabled for offline mode
+    // api Deps.retrofit2
+    // api Deps.converter_gson
+    // api Deps.adapter_rxjava2
 
     api Deps.eventbus
 
@@ -120,7 +121,8 @@ dependencies {
     api Deps.refresh_header_classics
     api Deps.refresh_header_material
 
-    api Deps.logging_interceptor
+    // Network interceptor - disabled for offline mode
+    // api Deps.logging_interceptor
     api Deps.colorpickerview
     api Deps.MNImageBrowser
     api Deps.nifty
